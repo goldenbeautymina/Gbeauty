@@ -251,7 +251,7 @@
     </div>
 
     <!-- 表單區 -->
-    <section id="booking.html" class="section">
+    <section id="bookingForm" class="section">
       <div class="sectionHead">
         <h2>預約表單</h2>
         <span>填寫完成後，我會以你留下的聯絡方式與你確認時段</span>
