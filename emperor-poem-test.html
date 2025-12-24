@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>皇帝詩命運測驗｜GBeauty</title>
+
+<style>
+body{
+  margin:0;
+  font-family: system-ui, -apple-system, "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+  background:#faf7f2;
+  color:#1f2937;
+}
+.wrap{
+  max-width:760px;
+  margin:0 auto;
+  padding:50px 20px 70px;
+}
+h1{text-align:center;}
+.subtitle{
+  text-align:center;
+  font-size:14px;
+  color:#4b5563;
+  margin-bottom:30px;
+}
+.card{
+  background:#fff;
+  border-radius:18px;
+  padding:26px 22px;
+  box-shadow:0 14px 35px rgba(0,0,0,.08);
+}
+select, button{
+  width:100%;
+  margin-top:14px;
+  padding:14px;
+  border-radius:12px;
+  border:1px solid #e5e7eb;
+  font-size:16px;
+}
+button{
+  background:#111827;
+  color:#fff;
+  font-weight:700;
+  cursor:pointer;
+}
+.result{
+  display:none;
+  margin-top:28px;
+  background:#fff;
+  border-radius:18px;
+  padding:26px 22px;
+  box-shadow:0 14px 35px rgba(0,0,0,.08);
+}
+</style>
+</head>
+
+<body>
+<div class="wrap">
+
+<h1>皇帝詩命運測驗</h1>
+<div class="subtitle">
+命運是勞碌還是富貴？<br>
+出生季節與時辰，早已暗藏線索。
+</div>
+
+<div class="card">
+  <label>你的出生季節</label>
+  <select id="season">
+    <option value="">請選擇</option>
+    <option value="spring">春季（2/4–5/5）</option>
+    <option value="summer">夏季（5/6–8/7）</option>
+    <option value="autumn">秋季（8/8–11/7）</option>
+    <option value="winter">冬季（11/8–2/3）</option>
+  </select>
+
+  <label>你的出生時辰</label>
+  <select id="time">
+    <option value="">請選擇</option>
+    <option value="子">子時</option>
+    <option value="丑">丑時</option>
+    <option value="寅">寅時</option>
+    <option value="卯">卯時</option>
+    <option value="辰">辰時</option>
+    <option value="巳">巳時</option>
+    <option value="午">午時</option>
+    <option value="未">未時</option>
+    <option value="申">申時</option>
+    <option value="酉">酉時</option>
+    <option value="戌">戌時</option>
+    <option value="亥">亥時</option>
+  </select>
+
+  <button onclick="calc()">查看我的皇帝命位</button>
+</div>
+
+<div id="result" class="result"></div>
+
+</div>
+
+<script>
+const table = {
+  spring:{
+    子:"皇帝頭", 卯:"皇帝肩", 酉:"皇帝肩",
+    丑:"皇帝腹", 亥:"皇帝腹",
+    午:"皇帝腰",
+    巳:"皇帝手", 未:"皇帝手",
+    辰:"皇帝膝", 戌:"皇帝膝",
+    寅:"皇帝足", 申:"皇帝足"
+  },
+  summer:{
+    午:"皇帝頭",
+    卯:"皇帝肩", 酉:"皇帝肩",
+    未:"皇帝腹", 亥:"皇帝腹",
+    子:"皇帝腰",
+    丑:"皇帝手", 巳:"皇帝手",
+    辰:"皇帝膝", 戌:"皇帝膝",
+    寅:"皇帝足", 申:"皇帝足"
+  },
+  autumn:{
+    亥:"皇帝頭",
+    子:"皇帝肩", 午:"皇帝肩",
+    卯:"皇帝腹", 未:"皇帝腹",
+    申:"皇帝腰",
+    丑:"皇帝手", 巳:"皇帝手",
+    寅:"皇帝膝", 酉:"皇帝膝",
+    辰:"皇帝足", 戌:"皇帝足"
+  },
+  winter:{
+    巳:"皇帝頭",
+    卯:"皇帝肩", 酉:"皇帝肩",
+    寅:"皇帝腹", 申:"皇帝腹",
+    子:"皇帝腰",
+    午:"皇帝手", 亥:"皇帝手",
+    丑:"皇帝膝", 未:"皇帝膝",
+    辰:"皇帝足", 戌:"皇帝足"
+  }
+};
+
+function calc(){
+  const s = document.getElementById("season").value;
+  const t = document.getElementById("time").value;
+  if(!s || !t){ alert("請完整選擇季節與時辰"); return; }
+
+  const r = table[s][t];
+  const box = document.getElementById("result");
+  box.innerHTML = `<h2>你是：${r}</h2>
+  <p>這代表你一生的運程重心，落在這個位置所象徵的能量。</p>
+  <p>這不是好壞，而是你此生最容易用力、也最需要調整的地方。</p>`;
+  box.style.display = "block";
+  box.scrollIntoView({behavior:"smooth"});
+}
+</script>
+
+</body>
+</html>
