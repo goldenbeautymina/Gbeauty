@@ -240,7 +240,7 @@
       </div>
 
       <div class="actions">
-        <a class="btn primary" href="#bookingForm">立即填寫預約</a>
+        <a class="btn primary" href="booking.html" target="_blank" rel="noopener">立即填寫預約</a>
 
         <!-- 如果嵌入在 LINE / iPhone 內建瀏覽器有問題，可用這個開新分頁 -->
         <a class="btn ghost" target="_blank" rel="noopener"
@@ -251,7 +251,7 @@
     </div>
 
     <!-- 表單區 -->
-    <section id="bookingForm" class="section">
+    <section id="booking.html" class="section">
       <div class="sectionHead">
         <h2>預約表單</h2>
         <span>填寫完成後，我會以你留下的聯絡方式與你確認時段</span>
