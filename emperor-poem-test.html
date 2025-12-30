@@ -6,73 +6,171 @@
 <title>皇帝詩命運測驗｜GBeauty</title>
 
 <style>
-body{margin:0;font-family:system-ui,-apple-system,"Noto Sans TC","Microsoft JhengHei",sans-serif;background:#faf7f2;color:#1f2937;line-height:1.6}
-.wrap{max-width:860px;margin:0 auto;padding:50px 20px 80px}
-h1{text-align:center;margin:0 0 8px}
-.subtitle{text-align:center;font-size:14px;color:#4b5563;margin-bottom:28px}
-.card{background:#fff;border-radius:18px;padding:26px 22px;box-shadow:0 14px 35px rgba(0,0,0,.08)}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-@media(max-width:680px){.grid{grid-template-columns:1fr}}
-label{font-weight:700;font-size:14px}
-select,button{width:100%;margin-top:8px;padding:14px;border-radius:12px;border:1px solid #e5e7eb;font-size:16px;background:#fff}
-button{margin-top:18px;background:#111827;color:#fff;font-weight:800;cursor:pointer;border:none}
-button:hover{filter:brightness(1.05)}
-.result{display:none;margin-top:28px;background:#fff;border-radius:18px;padding:26px 22px;box-shadow:0 14px 35px rgba(0,0,0,.08)}
-.badge{display:inline-block;padding:6px 10px;border-radius:999px;background:#111827;color:#fff;font-size:12px;font-weight:800;margin-bottom:10px}
-.pill{display:inline-block;padding:6px 10px;border-radius:999px;border:1px solid #e5e7eb;font-size:12px;background:#fafafa;margin-right:6px}
-.note{margin-top:14px;padding:12px;background:#fff7ed;border-left:4px solid #b45309;border-radius:12px;font-size:14px}
-.ctaRow{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
-.cta{padding:12px 16px;border-radius:999px;font-weight:800;text-decoration:none;border:1px solid #e5e7eb;color:#111827;background:#fff}
-.cta.primary{background:#111827;color:#fff;border-color:#111827}
+  body{
+    margin:0;
+    font-family: system-ui, -apple-system, "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+    background:#faf7f2;
+    color:#1f2937;
+    line-height:1.6;
+  }
+  .wrap{
+    max-width:900px;
+    margin:0 auto;
+    padding:50px 20px 80px;
+  }
+  h1{text-align:center;margin:0 0 8px;letter-spacing:.4px;}
+  .subtitle{
+    text-align:center;
+    font-size:14px;
+    color:#4b5563;
+    margin:0 0 26px;
+  }
+  .card{
+    background:#fff;
+    border-radius:18px;
+    padding:26px 22px;
+    box-shadow:0 14px 35px rgba(0,0,0,.08);
+  }
+  .grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:14px;
+  }
+  @media(max-width:680px){ .grid{grid-template-columns:1fr;} }
+
+  label{font-weight:800;font-size:14px;}
+  select,button{
+    width:100%;
+    margin-top:8px;
+    padding:14px;
+    border-radius:12px;
+    border:1px solid #e5e7eb;
+    font-size:16px;
+    background:#fff;
+  }
+  button{
+    margin-top:18px;
+    background:#111827;
+    color:#fff;
+    font-weight:900;
+    cursor:pointer;
+    border:none;
+  }
+  button:hover{filter:brightness(1.05);}
+
+  .result{
+    display:none;
+    margin-top:26px;
+    background:#fff;
+    border-radius:18px;
+    padding:26px 22px;
+    box-shadow:0 14px 35px rgba(0,0,0,.08);
+  }
+  .badge{
+    display:inline-block;
+    padding:6px 10px;
+    border-radius:999px;
+    background:#111827;
+    color:#fff;
+    font-size:12px;
+    font-weight:900;
+    letter-spacing:.5px;
+    margin-bottom:10px;
+  }
+  .k{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0 2px;}
+  .pill{
+    display:inline-block;
+    padding:6px 10px;
+    border-radius:999px;
+    border:1px solid #e5e7eb;
+    font-size:12px;
+    color:#374151;
+    background:#fafafa;
+  }
+  .note{
+    margin-top:12px;
+    font-size:14px;
+    color:#4b5563;
+    border-left:4px solid #b45309;
+    padding:10px 12px;
+    background:#fff7ed;
+    border-radius:12px;
+  }
+  .ctaRow{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    margin-top:16px;
+  }
+  .cta{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    padding:12px 16px;
+    border-radius:999px;
+    font-weight:900;
+    text-decoration:none;
+    border:1px solid #e5e7eb;
+    color:#111827;
+    background:#fff;
+  }
+  .cta.primary{
+    background:#111827;
+    color:#fff;
+    border-color:#111827;
+  }
 </style>
 </head>
 
 <body>
 <div class="wrap">
 
-<h1>皇帝詩命運測驗</h1>
-<div class="subtitle">依出生季節 × 出生時辰，看你此生運程重心落在黃帝哪個部位。</div>
-
-<div class="card">
-  <div class="grid">
-    <div>
-      <label>出生季節（新曆）</label>
-      <select id="season">
-        <option value="">請選擇</option>
-        <option value="spring">春季(2/4-5/5)</option>
-        <option value="summer">夏季(5/6-8/7)</option>
-        <option value="autumn">秋季(8/8-11/7)</option>
-        <option value="winter">冬季(11/8-2/3)</option>
-      </select>
-    </div>
-    <div>
-      <label>出生時辰</label>
-      <select id="time">
-        <option value="">請選擇</option>
-        <option value="子">子時(晚上11-1點)</option>
-        <option value="丑">丑時(凌晨1-3點)</option>
-        <option value="寅">寅時(凌晨3-5點)</option>
-        <option value="卯">卯時(早上5-7點)</option>
-        <option value="辰">辰時(早上7-9點)</option>
-        <option value="巳">巳時(早上9-11點)</option>
-        <option value="午">午時(中午11-1點)</option>
-        <option value="未">未時(下午1-3點)</option>
-        <option value="申">申時(下午3-5點)</option>
-        <option value="酉">酉時(下午5-7點)</option>
-        <option value="戌">戌時(晚上7-9點)</option>
-        <option value="亥">亥時(晚上9-11點)</option>
-      </select>
-    </div>
+  <h1>皇帝詩命運測驗</h1>
+  <div class="subtitle">
+    依「出生季節 × 出生時辰」，找出你生於黃帝哪個部位，看看一生運程著力點。
   </div>
-  <button onclick="calc()">查看我的皇帝命位</button>
-</div>
 
-<div id="result" class="result"></div>
+  <div class="card">
+    <div class="grid">
+      <div>
+        <label for="season">出生季節（新曆）</label>
+        <select id="season">
+          <option value="">請選擇</option>
+          <option value="spring">春季</option>
+          <option value="summer">夏季</option>
+          <option value="autumn">秋季</option>
+          <option value="winter">冬季</option>
+        </select>
+      </div>
 
+      <div>
+        <label for="time">出生時辰</label>
+        <select id="time">
+          <option value="">請選擇</option>
+          <option value="子">子時</option>
+          <option value="丑">丑時</option>
+          <option value="寅">寅時</option>
+          <option value="卯">卯時</option>
+          <option value="辰">辰時</option>
+          <option value="巳">巳時</option>
+          <option value="午">午時</option>
+          <option value="未">未時</option>
+          <option value="申">申時</option>
+          <option value="酉">酉時</option>
+          <option value="戌">戌時</option>
+          <option value="亥">亥時</option>
+        </select>
+      </div>
+    </div>
+
+    <button type="button" onclick="calc()">查看我的皇帝命位</button>
+  </div>
+
+  <div id="result" class="result"></div>
 </div>
 
 <script>
-/** ✅ 你的 Google Form（已對好 entry 編號） */
+/** ✅ 你的 Google Form（簡答題版本，預填會穩定帶入） */
 const FORM_BASE =
   "https://docs.google.com/forms/d/e/1FAIpQLSedMQBg5Bv2fXPYKtMamZr9sYaZ_mtBegk8KD1_-oqrh6c5BA/viewform?usp=pp_url"
   + "&entry.115350540=SEASON"
@@ -80,47 +178,147 @@ const FORM_BASE =
   + "&entry.569870339=PART"
   + "&entry.384840199=CONSULT";
 
-/** ✅ 四季×時辰→皇帝部位（依你給的規則） */
-const table={
+/** ✅ 四季×時辰→皇帝部位 */
+const table = {
   spring:{子:"皇帝頭",卯:"皇帝肩",酉:"皇帝肩",丑:"皇帝腹",亥:"皇帝腹",午:"皇帝腰",巳:"皇帝手",未:"皇帝手",辰:"皇帝膝",戌:"皇帝膝",寅:"皇帝足",申:"皇帝足"},
   summer:{午:"皇帝頭",卯:"皇帝肩",酉:"皇帝肩",未:"皇帝腹",亥:"皇帝腹",子:"皇帝腰",丑:"皇帝手",巳:"皇帝手",辰:"皇帝膝",戌:"皇帝膝",寅:"皇帝足",申:"皇帝足"},
   autumn:{亥:"皇帝頭",子:"皇帝肩",午:"皇帝肩",卯:"皇帝腹",未:"皇帝腹",申:"皇帝腰",丑:"皇帝手",巳:"皇帝手",寅:"皇帝膝",酉:"皇帝膝",辰:"皇帝足",戌:"皇帝足"},
   winter:{巳:"皇帝頭",卯:"皇帝肩",酉:"皇帝肩",寅:"皇帝腹",申:"皇帝腹",子:"皇帝腰",午:"皇帝手",亥:"皇帝手",丑:"皇帝膝",未:"皇帝膝",辰:"皇帝足",戌:"皇帝足"}
 };
 
-/** ✅ 命位→主要諮詢方向（對應你表單只有「眉/眼/唇」單選） */
-const consultPrimaryMap={
-  "皇帝頭":"眉",
-  "皇帝肩":"眉",
-  "皇帝手":"唇",
-  "皇帝腹":"唇",
-  "皇帝膝":"眉",
-  "皇帝足":"眼",
-  "皇帝腰":"眉"
+/** ✅ 命位 → 諮詢方向（你表單「方向」是簡答，所以可以放完整句） */
+const consultMap = {
+  "皇帝頭":"眉為主 × 眼為輔",
+  "皇帝肩":"眉 × 眼",
+  "皇帝手":"唇為主 × 眉為輔",
+  "皇帝腹":"唇 × 眼",
+  "皇帝膝":"眉為主",
+  "皇帝足":"眼 × 唇",
+  "皇帝腰":"眉 × 唇"
 };
 
-/** ✅ 讓預填「完全吻合你表單選項文字」（很重要！） */
-const seasonLabel={
-  spring:"春季(2/4-5/5)",
-  summer:"夏季(5/6-8/7)",
-  autumn:"秋季(8/8-11/7)",
-  winter:"冬季(11/8-2/3)"
+/** ✅ 命位解說（你給的內容，整理精簡成結果頁版） */
+const explain = {
+  "皇帝頭":{
+    title:"衣食無憂",
+    keywords:["先天資源","生活安穩","福氣延續"],
+    paras:[
+      "生在皇帝頭的人，像是生在皇族權貴。成長期間多半風平浪靜、衣食無憂，這份福氣往往能延續一生。",
+      "但也因條件較順，容易少了衝勁；若你願意再努力一點，成功機會往往比一般人更高。"
+    ],
+    teacher:"老師提醒：你不是不夠強，只是別忘了把天賦拿出來用。"
+  },
+  "皇帝手":{
+    title:"財源不絕",
+    keywords:["實幹型","交際手腕","適合業務/創業"],
+    paras:[
+      "生在皇帝手的人名副其實是實幹型，靠行動與人際把成果做出來，財源也更容易被你握在手上。",
+      "早年多半平實，但若及早找到專長並堅定前進，越到後面越能衣食無憂。"
+    ],
+    teacher:"老師提醒：你很會付出，也要記得讓成果回到自己身上。"
+  },
+  "皇帝肩":{
+    title:"中年轉好",
+    keywords:["奔波勞心","中年轉順","親友助力"],
+    paras:[
+      "生在皇帝肩的人早年不至於差，但常身心勞累、四處奔波；中年後際遇更容易大幅轉好。",
+      "財運也更容易從「財來財去」轉為「只進不出」。若善用合作優勢，成功更容易被放大。"
+    ],
+    teacher:"老師提醒：把合作用在對的人與對的事上，你會走得更順。"
+  },
+  "皇帝膝":{
+    title:"一生勞碌",
+    keywords:["少偏財運","靠努力累積","後勁強"],
+    paras:[
+      "生在皇帝膝的人一生較辛苦，好運不太會突然降臨；你得到的多靠比別人更多的努力換來。",
+      "但也因磨練多，你的毅力往往更強。若能不放棄，晚年會有轉好的機會。"
+    ],
+    teacher:"老師提醒：你不是命差，你是『越走越穩、越磨越強』的命。"
+  },
+  "皇帝足":{
+    title:"他鄉發展",
+    keywords:["靠自己","外地轉運","留意溝通"],
+    paras:[
+      "生在皇帝足的人長輩緣與助力較少，人生多靠自己決定成敗。",
+      "走出去到外地發展，反而更容易轉運；感情上記得慢一點說，緣分更穩。"
+    ],
+    teacher:"老師提醒：你的路不在原地，在你願意走出去的地方。"
+  },
+  "皇帝腰":{
+    title:"集萬千寵愛",
+    keywords:["貴人扶持","中年穩富","要練抗壓"],
+    paras:[
+      "生在皇帝腰的人多受疼愛、資源較多，也常有貴人扶持，中年後更容易穩定富足。",
+      "但要留意別成了溫室花朵；磨練心性與意志力，成就會來得更快。"
+    ],
+    teacher:"老師提醒：你的命很好，把自己練強一點，貴氣才留得住。"
+  },
+  "皇帝腹":{
+    title:"聰明才智易成功",
+    keywords:["腦筋靈活","追求卓越","腳踏實地更久"],
+    paras:[
+      "生在皇帝腹的人腦筋靈活、才氣不俗，特別容易在工作上發光。",
+      "但要小心好高騖遠。只要你願意腳踏實地，成就會更大也更持久，財富也不會少。"
+    ],
+    teacher:"老師提醒：把聰明落地，你就會走得又穩又遠。"
+  }
 };
 
-const timeLabel={
-  子:"子時(晚上11-1點)",
-  丑:"丑時(凌晨1-3點)",
-  寅:"寅時(凌晨3-5點)",
-  卯:"卯時(早上5-7點)",
-  辰:"辰時(早上7-9點)",
-  巳:"巳時(早上9-11點)",
-  午:"午時(中午11-1點)",
-  未:"未時(下午1-3點)",
-  申:"申時(下午3-5點)",
-  酉:"酉時(下午5-7點)",
-  戌:"戌時(晚上7-9點)",
-  亥:"亥時(晚上9-11點)"
-};
+const seasonText = { spring:"春季", summer:"夏季", autumn:"秋季", winter:"冬季" };
 
-/** ✅ 命位簡述（結果頁用） */
-const brief={
+function esc(s){
+  return String(s)
+    .replaceAll("&","&amp;").replaceAll("<","&lt;").replaceAll(">","&gt;")
+    .replaceAll('"',"&quot;").replaceAll("'","&#39;");
+}
+
+function calc(){
+  const s = document.getElementById("season").value;
+  const t = document.getElementById("time").value;
+  if(!s || !t){ alert("請完整選擇季節與時辰"); return; }
+
+  const part = table[s][t];
+  const consult = consultMap[part] || "";
+  const ex = explain[part];
+
+  // ✅ 簡答題：直接帶入「春季」「未時」「皇帝腹」「眉×眼…」即可
+  const submitUrl = FORM_BASE
+    .replace("SEASON", encodeURIComponent(seasonText[s]))
+    .replace("TIME", encodeURIComponent(t + "時"))
+    .replace("PART", encodeURIComponent(part))
+    .replace("CONSULT", encodeURIComponent(consult));
+
+  const keywordHtml = (ex.keywords||[]).map(k => `<span class="pill">${esc(k)}</span>`).join("");
+  const parasHtml = (ex.paras||[]).map(p => `<p>${esc(p)}</p>`).join("");
+
+  const box = document.getElementById("result");
+  box.innerHTML = `
+    <div class="badge">測驗結果</div>
+    <h2>你生在【${esc(part)}】｜${esc(ex.title)}</h2>
+    <div class="k">${keywordHtml}</div>
+
+    <p style="margin-top:10px; color:#6b7280; font-size:13px;">
+      你的選擇：${esc(seasonText[s])}・${esc(t)}時
+    </p>
+
+    <p><span class="pill">適合的諮詢方向：${esc(consult)}</span></p>
+
+    ${parasHtml}
+
+    <div class="note">${esc(ex.teacher)}<br>
+      <b>儲存結果說明：</b>點下方「儲存我的測驗結果」後，Google 表單會自動填好四題，你只要按一次「提交」，資料就會進 Google Sheet。
+    </div>
+
+    <div class="ctaRow">
+      <a class="cta primary" href="booking.html#bookingForm">想更細緻判讀，直接預約</a>
+      <a class="cta" href="${submitUrl}" target="_blank" rel="noopener">儲存我的測驗結果</a>
+      <a class="cta" href="./">回首頁</a>
+    </div>
+  `;
+  box.style.display = "block";
+  box.scrollIntoView({behavior:"smooth"});
+}
+</script>
+
+</body>
+</html>
