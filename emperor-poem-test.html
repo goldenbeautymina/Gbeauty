@@ -6,126 +6,27 @@
 <title>皇帝詩命運測驗｜GBeauty</title>
 
 <style>
-  body{
-    margin:0;
-    font-family: system-ui, -apple-system, "Noto Sans TC", "Microsoft JhengHei", sans-serif;
-    background:#faf7f2;
-    color:#1f2937;
-    line-height:1.6;
-  }
-  .wrap{
-    max-width:900px;
-    margin:0 auto;
-    padding:50px 20px 80px;
-  }
-  h1{text-align:center;margin:0 0 8px;letter-spacing:.4px;}
-  .subtitle{
-    text-align:center;
-    font-size:14px;
-    color:#4b5563;
-    margin:0 0 26px;
-  }
-  .card{
-    background:#fff;
-    border-radius:18px;
-    padding:26px 22px;
-    box-shadow:0 14px 35px rgba(0,0,0,.08);
-  }
-  .grid{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:14px;
-  }
-  @media(max-width:680px){ .grid{grid-template-columns:1fr;} }
-
-  label{font-weight:900;font-size:14px;}
-  select,input,button{
-    width:100%;
-    margin-top:8px;
-    padding:14px;
-    border-radius:12px;
-    border:1px solid #e5e7eb;
-    font-size:16px;
-    background:#fff;
-    box-sizing:border-box;
-  }
-  input::placeholder{color:#9ca3af;}
-  button{
-    margin-top:18px;
-    background:#111827;
-    color:#fff;
-    font-weight:900;
-    cursor:pointer;
-    border:none;
-  }
-  button:hover{filter:brightness(1.05);}
-
-  .result{
-    display:none;
-    margin-top:26px;
-    background:#fff;
-    border-radius:18px;
-    padding:26px 22px;
-    box-shadow:0 14px 35px rgba(0,0,0,.08);
-  }
-  .badge{
-    display:inline-block;
-    padding:6px 10px;
-    border-radius:999px;
-    background:#111827;
-    color:#fff;
-    font-size:12px;
-    font-weight:900;
-    letter-spacing:.5px;
-    margin-bottom:10px;
-  }
-  .k{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0 2px;}
-  .pill{
-    display:inline-block;
-    padding:6px 10px;
-    border-radius:999px;
-    border:1px solid #e5e7eb;
-    font-size:12px;
-    color:#374151;
-    background:#fafafa;
-  }
-  .note{
-    margin-top:12px;
-    font-size:14px;
-    color:#4b5563;
-    border-left:4px solid #b45309;
-    padding:10px 12px;
-    background:#fff7ed;
-    border-radius:12px;
-  }
-  .ctaRow{
-    display:flex;
-    flex-wrap:wrap;
-    gap:10px;
-    margin-top:16px;
-  }
-  .cta{
-    display:inline-flex;
-    align-items:center;
-    justify-content:center;
-    padding:12px 16px;
-    border-radius:999px;
-    font-weight:900;
-    text-decoration:none;
-    border:1px solid #e5e7eb;
-    color:#111827;
-    background:#fff;
-  }
-  .cta.primary{
-    background:#111827;
-    color:#fff;
-    border-color:#111827;
-  }
-  .mini{
-    margin-top:8px;
-    font-size:12px;
-    color:#6b7280;
-  }
+  body{margin:0;font-family:system-ui,-apple-system,"Noto Sans TC","Microsoft JhengHei",sans-serif;background:#faf7f2;color:#1f2937;line-height:1.6}
+  .wrap{max-width:900px;margin:0 auto;padding:50px 20px 80px}
+  h1{text-align:center;margin:0 0 8px;letter-spacing:.4px}
+  .subtitle{text-align:center;font-size:14px;color:#4b5563;margin:0 0 26px}
+  .card{background:#fff;border-radius:18px;padding:26px 22px;box-shadow:0 14px 35px rgba(0,0,0,.08)}
+  label{font-weight:900;font-size:14px}
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  @media(max-width:680px){.grid{grid-template-columns:1fr}}
+  select,input,button{width:100%;margin-top:8px;padding:14px;border-radius:12px;border:1px solid #e5e7eb;font-size:16px;background:#fff;box-sizing:border-box}
+  input::placeholder{color:#9ca3af}
+  .btn{display:inline-flex;align-items:center;justify-content:center;padding:12px 16px;border-radius:999px;font-weight:900;text-decoration:none;border:1px solid #e5e7eb;color:#111827;background:#fff;cursor:pointer}
+  .btn.primary{background:#111827;color:#fff;border-color:#111827}
+  .btn:disabled{opacity:.6;cursor:not-allowed}
+  .row{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
+  .mini{margin-top:8px;font-size:12px;color:#6b7280}
+  .note{margin-top:14px;font-size:14px;color:#4b5563;border-left:4px solid #b45309;padding:10px 12px;background:#fff7ed;border-radius:12px}
+  .result{display:none;margin-top:26px;background:#fff;border-radius:18px;padding:26px 22px;box-shadow:0 14px 35px rgba(0,0,0,.08)}
+  .badge{display:inline-block;padding:6px 10px;border-radius:999px;background:#111827;color:#fff;font-size:12px;font-weight:900;letter-spacing:.5px;margin-bottom:10px}
+  .k{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0 2px}
+  .pill{display:inline-block;padding:6px 10px;border-radius:999px;border:1px solid #e5e7eb;font-size:12px;color:#374151;background:#fafafa}
+  .ctaRow{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
 </style>
 </head>
 
@@ -133,13 +34,11 @@
 <div class="wrap">
 
   <h1>皇帝詩命運測驗</h1>
-  <div class="subtitle">
-    依「出生季節 × 出生時辰」，找出你生於黃帝哪個部位，看看一生運程著力點。
-  </div>
+  <div class="subtitle">先把結果儲存好，我再把答案溫柔地交給你。</div>
 
+  <!-- 入口卡：先儲存 -->
   <div class="card">
 
-    <!-- ✅ 新增：姓名輸入框（最上面） -->
     <div style="margin-bottom:14px;">
       <label for="custName">你的名字（用來記錄結果）</label>
       <input id="custName" placeholder="例如：陳圓圓">
@@ -148,7 +47,7 @@
 
     <div class="grid">
       <div>
- <label for="season">你的出生季節（新曆）</label>
+      </div> <label for="season">你的出生季節（新曆）</label>
         <select id="season">
           <option value="">請選擇</option>
           <option value="spring">春季（2/4–5/5）</option>
@@ -178,15 +77,30 @@
         </select>
         <div class="helper">時辰以「出生時間」為準。</div>
       </div>
-  </div>
-    <button type="button" onclick="calc()">查看我的皇帝命位</button>
+
+    </div>
+
+    <div class="note">
+      小提醒：這個測驗的答案會先「替你記錄」到資料庫裡。<br>
+      你按下「儲存並揭曉」後，表單會自動填好，你只要按一次「提交」，我就能把答案完整留存。
+    </div>
+
+    <div class="row">
+      <button class="btn primary" id="btnSaveReveal" type="button" onclick="saveAndReveal()">儲存並揭曉</button>
+      <button class="btn" id="btnAlready" type="button" onclick="confirmSubmitted()" disabled>我已提交，顯示結果</button>
+      <a class="btn" href="./">回首頁</a>
+    </div>
+
+    <div class="mini" id="statusText"></div>
   </div>
 
+  <!-- 結果區（先隱藏） -->
   <div id="result" class="result"></div>
+
 </div>
 
 <script>
-/** ✅ 你的 Google Form（簡答題版本，已含姓名 entry） */
+/** ✅ Google Form（含姓名 entry） */
 const FORM_BASE =
   "https://docs.google.com/forms/d/e/1FAIpQLSedMQBg5Bv2fXPYKtMamZr9sYaZ_mtBegk8KD1_-oqrh6c5BA/viewform?usp=pp_url"
   + "&entry.1299194271=NAME"
@@ -203,7 +117,6 @@ const table = {
   winter:{巳:"皇帝頭",卯:"皇帝肩",酉:"皇帝肩",寅:"皇帝腹",申:"皇帝腹",子:"皇帝腰",午:"皇帝手",亥:"皇帝手",丑:"皇帝膝",未:"皇帝膝",辰:"皇帝足",戌:"皇帝足"}
 };
 
-/** ✅ 命位 → 諮詢方向（簡答可放完整句） */
 const consultMap = {
   "皇帝頭":"眉為主 × 眼為輔",
   "皇帝肩":"眉 × 眼",
@@ -214,7 +127,6 @@ const consultMap = {
   "皇帝腰":"眉 × 唇"
 };
 
-/** ✅ 命位解說（精簡版） */
 const explain = {
   "皇帝頭":{
     title:"衣食無憂",
@@ -283,36 +195,37 @@ const explain = {
 
 const seasonText = { spring:"春季", summer:"夏季", autumn:"秋季", winter:"冬季" };
 
+/** ✅ 提交紀錄（24 小時） */
+const SUBMIT_KEY = "gbeauty_emperor_submitted_until";
+
 function esc(s){
   return String(s)
     .replaceAll("&","&amp;").replaceAll("<","&lt;").replaceAll(">","&gt;")
     .replaceAll('"',"&quot;").replaceAll("'","&#39;");
 }
 
-function calc(){
+function getInputs(){
   const name = document.getElementById("custName").value.trim();
   const s = document.getElementById("season").value;
   const t = document.getElementById("time").value;
+  return {name,s,t};
+}
 
-  if(!name){
-    alert("請先輸入姓名，方便我為你記錄測驗結果🙂");
-    return;
-  }
-  if(!s || !t){
-    alert("請完整選擇季節與時辰");
-    return;
-  }
-
+function buildPrefillUrl(name,s,t){
   const part = table[s][t];
   const consult = consultMap[part] || "";
-  const ex = explain[part];
-
-  const submitUrl = FORM_BASE
+  return FORM_BASE
     .replace("NAME", encodeURIComponent(name))
     .replace("SEASON", encodeURIComponent(seasonText[s]))
     .replace("TIME", encodeURIComponent(t + "時"))
     .replace("PART", encodeURIComponent(part))
     .replace("CONSULT", encodeURIComponent(consult));
+}
+
+function renderResult(name,s,t){
+  const part = table[s][t];
+  const consult = consultMap[part] || "";
+  const ex = explain[part];
 
   const keywordHtml = (ex.keywords||[]).map(k => `<span class="pill">${esc(k)}</span>`).join("");
   const parasHtml = (ex.paras||[]).map(p => `<p>${esc(p)}</p>`).join("");
@@ -331,20 +244,66 @@ function calc(){
 
     ${parasHtml}
 
-    <div class="note">${esc(ex.teacher)}<br>
-      <b>儲存結果：</b>點下方按鈕後，表單會自動填好（含姓名）。你只要按一次「提交」，資料就會進 Google Sheet。
+    <div class="note">
+      ${esc(ex.teacher)}<br>
+      老師想補一句：你願意了解自己，就是在把人生慢慢整理回來。
     </div>
 
     <div class="ctaRow">
-      <a class="cta primary" href="booking.html#bookingForm">想更細緻判讀，直接預約</a>
-      <a class="cta" href="${submitUrl}" target="_blank" rel="noopener">儲存我的測驗結果</a>
-      <a class="cta" href="vip.html">查看 VIP 矩陣總說（需密碼）</a>
-      <a class="cta" href="./">回首頁</a>
+      <a class="btn primary" href="booking.html#bookingForm">想更細緻判讀，直接預約</a>
+      <a class="btn" href="vip.html">看 VIP 矩陣總說（需密碼）</a>
+      <a class="btn" href="./">回首頁</a>
     </div>
   `;
   box.style.display = "block";
   box.scrollIntoView({behavior:"smooth"});
 }
+
+function setStatus(msg){
+  document.getElementById("statusText").textContent = msg || "";
+}
+
+function enableRevealButton(){
+  document.getElementById("btnAlready").disabled = false;
+}
+
+/** ① 儲存並揭曉：先打開表單 */
+function saveAndReveal(){
+  const {name,s,t} = getInputs();
+  if(!name){ alert("請先輸入姓名，方便我為你記錄🙂"); return; }
+  if(!s || !t){ alert("請完整選擇季節與時辰"); return; }
+
+  const url = buildPrefillUrl(name,s,t);
+
+  // 開新分頁讓他按提交
+  window.open(url, "_blank", "noopener");
+
+  setStatus("✅ 我已把表單替你填好並開啟；你只要按一次「提交」，我就能把結果完整留存。提交後回來按「我已提交，顯示結果」。");
+  enableRevealButton();
+}
+
+/** ② 使用者回來按：我已提交 */
+function confirmSubmitted(){
+  const {name,s,t} = getInputs();
+  if(!name || !s || !t){
+    alert("請確認姓名、季節、時辰都有填好🙂");
+    return;
+  }
+  // 記住 24 小時，避免他一直被擋
+  const until = Date.now() + 24*60*60*1000;
+  localStorage.setItem(SUBMIT_KEY, String(until));
+
+  renderResult(name,s,t);
+}
+
+function autoRevealIfRecentlySubmitted(){
+  const until = Number(localStorage.getItem(SUBMIT_KEY) || "0");
+  if(until && until > Date.now()){
+    enableRevealButton();
+    setStatus("你最近已完成提交🙂 如果要直接看結果，按「我已提交，顯示結果」。");
+  }
+}
+autoRevealIfRecentlySubmitted();
 </script>
 
 </body>
