@@ -21,12 +21,43 @@
   .btn:disabled{opacity:.6;cursor:not-allowed}
   .row{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
   .mini{margin-top:8px;font-size:12px;color:#6b7280}
+  .helper{margin-top:8px;font-size:12px;color:#6b7280}
   .note{margin-top:14px;font-size:14px;color:#4b5563;border-left:4px solid #b45309;padding:10px 12px;background:#fff7ed;border-radius:12px}
   .result{display:none;margin-top:26px;background:#fff;border-radius:18px;padding:26px 22px;box-shadow:0 14px 35px rgba(0,0,0,.08)}
   .badge{display:inline-block;padding:6px 10px;border-radius:999px;background:#111827;color:#fff;font-size:12px;font-weight:900;letter-spacing:.5px;margin-bottom:10px}
   .k{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0 2px}
   .pill{display:inline-block;padding:6px 10px;border-radius:999px;border:1px solid #e5e7eb;font-size:12px;color:#374151;background:#fafafa}
   .ctaRow{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
+
+  /* ✅ 儀式文字 */
+  #ritualText{
+    display:none;
+    text-align:center;
+    margin:20px 0 10px;
+    color:#4b5563;
+    font-size:15px;
+    line-height:1.8;
+  }
+
+  /* ✅ 3 秒緩衝動畫 */
+  .loaderWrap{
+    display:none;
+    justify-content:center;
+    align-items:center;
+    gap:8px;
+    margin:18px 0 6px;
+  }
+  .dot{
+    width:8px;height:8px;border-radius:50%;
+    background:#111827;opacity:.25;
+    animation: pulse 1.4s infinite ease-in-out;
+  }
+  .dot:nth-child(2){animation-delay:.2s}
+  .dot:nth-child(3){animation-delay:.4s}
+  @keyframes pulse{
+    0%,80%,100%{transform:scale(.6);opacity:.25}
+    40%{transform:scale(1);opacity:.9}
+  }
 </style>
 </head>
 
@@ -47,7 +78,7 @@
 
     <div class="grid">
       <div>
-      </div> <label for="season">你的出生季節（新曆）</label>
+        <label for="season">你的出生季節（新曆）</label>
         <select id="season">
           <option value="">請選擇</option>
           <option value="spring">春季（2/4–5/5）</option>
@@ -77,7 +108,6 @@
         </select>
         <div class="helper">時辰以「出生時間」為準。</div>
       </div>
-
     </div>
 
     <div class="note">
@@ -92,6 +122,15 @@
     </div>
 
     <div class="mini" id="statusText"></div>
+  </div>
+
+  <!-- ✅ 儀式文字 + 動畫 -->
+  <div id="ritualText">
+    老師先幫你把今天的答案收好。<br>
+    我們慢慢來，讓結果用剛剛好的速度出現。
+  </div>
+  <div id="loader" class="loaderWrap">
+    <div class="dot"></div><div class="dot"></div><div class="dot"></div>
   </div>
 
   <!-- 結果區（先隱藏） -->
@@ -111,7 +150,7 @@ const FORM_BASE =
 
 /** ✅ 四季×時辰→皇帝部位 */
 const table = {
-  spring:{子:"皇帝頭",卯:"皇帝肩",酉:"皇帝肩",丑:"皇帝腹",亥:"皇帝腹",午:"皇帝腰",巳:"皇帝手",未:"皇帝手",辰:"皇帝膝",戌:"皇帝膝",寅:"皇帝足",申:"皇帝足"},
+  spring:{子:"皇帝頭",卯:"皇帝肩",酉:"皇帝肩",丑:"皇帝腹",亥:"皇帝腹",午:"皇帝腰",巐:"皇帝手",巳:"皇帝手",未:"皇帝手",辰:"皇帝膝",戌:"皇帝膝",寅:"皇帝足",申:"皇帝足"},
   summer:{午:"皇帝頭",卯:"皇帝肩",酉:"皇帝肩",未:"皇帝腹",亥:"皇帝腹",子:"皇帝腰",丑:"皇帝手",巳:"皇帝手",辰:"皇帝膝",戌:"皇帝膝",寅:"皇帝足",申:"皇帝足"},
   autumn:{亥:"皇帝頭",子:"皇帝肩",午:"皇帝肩",卯:"皇帝腹",未:"皇帝腹",申:"皇帝腰",丑:"皇帝手",巳:"皇帝手",寅:"皇帝膝",酉:"皇帝膝",辰:"皇帝足",戌:"皇帝足"},
   winter:{巳:"皇帝頭",卯:"皇帝肩",酉:"皇帝肩",寅:"皇帝腹",申:"皇帝腹",子:"皇帝腰",午:"皇帝手",亥:"皇帝手",丑:"皇帝膝",未:"皇帝膝",辰:"皇帝足",戌:"皇帝足"}
@@ -274,26 +313,38 @@ function saveAndReveal(){
   if(!s || !t){ alert("請完整選擇季節與時辰"); return; }
 
   const url = buildPrefillUrl(name,s,t);
-
-  // 開新分頁讓他按提交
   window.open(url, "_blank", "noopener");
 
   setStatus("✅ 我已把表單替你填好並開啟；你只要按一次「提交」，我就能把結果完整留存。提交後回來按「我已提交，顯示結果」。");
   enableRevealButton();
 }
 
-/** ② 使用者回來按：我已提交 */
+/** ② 使用者回來按：我已提交（✅ 儀式文字 + 3 秒後揭曉） */
 function confirmSubmitted(){
   const {name,s,t} = getInputs();
   if(!name || !s || !t){
     alert("請確認姓名、季節、時辰都有填好🙂");
     return;
   }
-  // 記住 24 小時，避免他一直被擋
+
+  // 記住 24 小時
   const until = Date.now() + 24*60*60*1000;
   localStorage.setItem(SUBMIT_KEY, String(until));
 
-  renderResult(name,s,t);
+  const ritual = document.getElementById("ritualText");
+  const loader = document.getElementById("loader");
+  const result = document.getElementById("result");
+
+  ritual.style.display = "block";
+  loader.style.display = "flex";
+  result.style.display = "none";
+  ritual.scrollIntoView({behavior:"smooth"});
+
+  setTimeout(() => {
+    ritual.style.display = "none";
+    loader.style.display = "none";
+    renderResult(name,s,t);
+  }, 3000);
 }
 
 function autoRevealIfRecentlySubmitted(){
