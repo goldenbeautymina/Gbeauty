@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>GBeauty｜VIP 教學版</title>
+<style>
+  :root{
+    --bg:#faf7f2; --card:#fff; --text:#1f2937; --muted:#6b7280;
+    --line:#e5e7eb; --btn:#111827; --btnText:#fff; --gold:#b45309;
+    --shadow:0 14px 35px rgba(0,0,0,.08); --r:18px; --max:920px;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:system-ui,-apple-system,"Noto Sans TC","Microsoft JhengHei",sans-serif;background:var(--bg);color:var(--text);line-height:1.7}
+  .wrap{max-width:var(--max);margin:0 auto;padding:42px 16px 80px}
+  .top{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:18px}
+  .brand{display:flex;align-items:center;gap:12px}
+  .logo{width:64px;height:64px;border-radius:50%;object-fit:cover;box-shadow:0 10px 25px rgba(0,0,0,.15)}
+  .brand strong{font-size:18px}
+  .slogan{font-size:13px;color:#4b5563;margin-top:4px}
+  .slogan::before{content:"「"} .slogan::after{content:"」"}
+  .btn{display:inline-flex;align-items:center;justify-content:center;padding:10px 14px;border-radius:12px;border:1px solid var(--line);background:#fff;color:var(--text);text-decoration:none;font-weight:800;cursor:pointer}
+  .btn.primary{background:var(--btn);color:var(--btnText);border-color:var(--btn)}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow);padding:22px}
+  h1{margin:0 0 6px;font-size:24px}
+  .sub{margin:0 0 14px;color:var(--muted);font-size:14px}
+  .row{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:10px}
+  input{flex:1;min-width:220px;padding:14px;border-radius:12px;border:1px solid var(--line);font-size:16px}
+  .note{margin-top:12px;background:#fff7ed;border-left:4px solid var(--gold);padding:10px 12px;border-radius:12px;color:#4b5563;font-size:14px}
+  .vip{display:none;margin-top:16px}
+  .divider{height:1px;background:var(--line);margin:16px 0}
+  table{width:100%;border-collapse:collapse;margin:14px 0;font-size:14px}
+  th,td{border:1px solid #e5e7eb;padding:10px;vertical-align:top}
+  thead tr{background:#fafafa}
+</style>
+</head>
+
+<body>
+<div class="wrap">
+
+  <div class="top">
+    <div class="brand">
+      <img class="logo" src="images/gbeauty-logo.jpg" alt="GBeauty">
+      <div>
+        <strong>GBeauty VIP（教學版）</strong>
+        <div class="slogan">當臉的線條順了，人的選擇也會跟著順。</div>
+      </div>
+    </div>
+    <div class="row" style="margin:0">
+      <a class="btn" href="vip.html">回 VIP 選單</a>
+      <a class="btn" href="./">回首頁</a>
+    </div>
+  </div>
+
+  <!-- 🔐 密碼入口 -->
+  <div id="gate" class="card">
+    <h1>VIP｜教學版</h1>
+    <p class="sub">每次進入都需要輸入密碼（避免內容外流）。</p>
+
+    <div class="row">
+      <input id="name" type="text" placeholder="你的名字">
+    </div>
+    <div class="row">
+      <input id="pw" type="password" placeholder="請輸入 VIP 密碼">
+      <button class="btn primary" type="button" onclick="unlock()">進入</button>
+      <a class="btn" href="vip.html">回 VIP 選單</a>
+    </div>
+
+    <div class="note">
+      老師提醒：慢慢看就好。你讀得懂的那一段，就是你現在最需要的那一段。
+    </div>
+  </div>
+
+  <!-- ✅ 內容區：完整放回你原本 VIP 內容 -->
+  <div id="vip" class="card vip">
+    <h1>VIP｜紫微主星 × 生命靈數 × 開運眉型矩陣（總說）</h1>
+    <p class="sub">教學版：可直接用於上課講解、示範與對照。</p>
+
+    <h2>一、這個矩陣，是拿來做什麼的？</h2>
+    <p>
+      有人說命運靠自己創造，也有人說冥冥中自有安排。
+      其實兩者都對——你的人生裡，有「天生的底色」，也有「你可以選擇的走法」。
+    </p>
+    <p>
+      這套「紫微主星 × 生命靈數 × 開運眉型」矩陣，就是把這兩件事合在一起：
+      我們先看你天生帶來的能量與傾向，再把它落實到你現在的狀態與外在呈現，
+      讓你在照鏡子、做選擇、與人互動時，都能更穩、更順、更靠近真正的自己。
+    </p>
+
+    <div class="note">
+      老師想先跟你說：這不是算命嚇人，也不是改臉求奇蹟。<br>
+      我們做的是「剛剛好的調整」——讓你的線條回到適合你的位置。
+    </div>
+
+    <h2>二、三層判讀：點・線・面（最核心）</h2>
+    <ul>
+      <li><b>紫微主星：定主軸（線）</b> —— 你天生的底層動力、人生走向與做事風格。</li>
+      <li><b>生命靈數：看性格（面）</b> —— 你面對關係、壓力、選擇時，會用什麼方式運作。</li>
+      <li><b>開運眉型：落實在現在（點）</b> —— 你此刻的狀態，最需要被「順一下」的關鍵位置。</li>
+    </ul>
+    <p>
+      你可以把它想成：紫微是你的「骨架」、靈數是你的「肌肉與習慣」，
+      眉型是你現在的「表情與氣場入口」。
+      三者對齊時，你就會有那種感覺——<b>「怎麼突然順了」</b>。
+    </p>
+
+    <h2>三、矩陣怎麼用？（老師的判讀流程）</h2>
+    <ol>
+      <li>
+        <b>先定主軸（紫微主星）</b><br>
+        這一步是抓你的核心能量：你擅長什麼、容易卡在哪裡、人生要往哪種方向才順。
+      </li>
+      <li>
+        <b>再看運作方式（生命靈數）</b><br>
+        同樣的命格，不同的人會走出不同結果，
+        靈數就是你「做選擇、處理情緒、面對關係」的慣性。
+      </li>
+      <li>
+        <b>最後落地到當下（眉型）</b><br>
+        眉是最直接的「狀態指示器」。
+        我會看你目前的眉頭、眉中、眉尾，以及左右眉的分工，
+        找到你最需要被安住、被穩住、被順一下的位置。
+      </li>
+    </ol>
+
+    <h2>四、矩陣不是用來貼標籤，而是用來「找到你」</h2>
+    <p>
+      很多人來找我，不是運不好，是狀態有點亂。
+      眉型只要順了，情緒會穩、選擇會清楚、人也會更敢做自己。
+    </p>
+    <p>所以我在諮詢裡很常說一句話：</p>
+    <div class="note">「當臉的線條順了，人的選擇也會跟著順。」</div>
+
+    <h2>五、三個你會最常遇到的狀況（對應處理方式）</h2>
+    <ul>
+      <li>
+        <b>1）我很努力，但就是卡卡的</b><br>
+        常見：方向不清、責任過重、一直在撐。<br>
+        矩陣會先抓主軸，再用眉型把「壓力點」放掉，讓你回到可前進的節奏。
+      </li>
+      <li>
+        <b>2）我想改變，但我不知道從哪開始</b><br>
+        常見：想很多、怕選錯、被情緒拖著走。<br>
+        矩陣會把你的「慣性」整理出來，眉型做一個剛剛好的定錨，你就會比較敢選。
+      </li>
+      <li>
+        <b>3）我很會照顧別人，但常常忘記自己</b><br>
+        常見：付出多、界線弱、能量漏。<br>
+        我會用眉型與唇/眼的方向，幫你把「回收能量」這件事做回來。
+      </li>
+    </ul>
+
+    <h2>六、VIP 小提醒（很重要）</h2>
+    <ul>
+      <li>這一套不是「絕對命定」，而是「你的能量地圖」。懂自己，你就更能選得對。</li>
+      <li>如果你今天狀態很亂，也不用急著下結論。狀態會變，眉也會變，人生就會跟著變。</li>
+      <li>你不需要先想好答案。帶著你現在的樣子來，就夠了。</li>
+    </ul>
+
+    <div class="note">
+      如果你願意，我可以把你的矩陣「做成一張專屬的諮詢對照表」：<br>
+      你會知道自己什麼時候最容易卡、怎麼調整最快、哪一種眉型最適合你。
+    </div>
+
+    <h2>七、下一步：我可以怎麼帶你做？</h2>
+    <ul>
+      <li><b>快速版（30 分鐘）</b>：抓主軸＋找出你目前最需要調整的眉型關鍵。</li>
+      <li><b>完整版（60–90 分鐘）</b>：紫微主星 × 靈數 × 眉型矩陣對齊，做成你的專屬「開運線條策略」。</li>
+    </ul>
+    <p>你不用很厲害才來，你只要願意更靠近自己一點點，就可以了。</p>
+
+    <div class="divider"></div>
+
+    <!-- ✅ 你後面那三張表：完整放回 -->
+    <h2>矩陣快速判讀表（老師實務用）</h2>
+    <p>
+      這張表，是我在諮詢與教學時最常用的「快速對照表」。
+      不用一次看懂全部，只要抓住<strong>主星（線）→ 靈數（面）→ 眉型（點）</strong>，
+      就能很快知道一個人現在卡在哪、該從哪裡順。
+    </p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>紫微主星特質（線）</th>
+          <th>常見生命靈數狀態（面）</th>
+          <th>眉型判讀重點（點）</th>
+          <th>老師的調整方向</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>領導／主控型</strong><br>（如：紫微、武曲、天府）</td>
+          <td>靈數 1／8<br>容易想掌控、責任感重</td>
+          <td>眉峰過高、眉壓重<br>左右眉不平衡</td>
+          <td>降低眉峰銳度，拉平眉中線條，<br>讓人從「撐住」回到「穩住」。</td>
+        </tr>
+        <tr>
+          <td><strong>付出／服務型</strong><br>（如：天同、太陰）</td>
+          <td>靈數 2／6<br>容易顧別人、忽略自己</td>
+          <td>眉尾散、眉尾下垂<br>眉頭能量弱</td>
+          <td>補眉尾收斂度、強化眉頭支撐，<br>幫助能量回收、不再過度付出。</td>
+        </tr>
+        <tr>
+          <td><strong>行動／衝勁型</strong><br>（如：七殺、破軍、廉貞）</td>
+          <td>靈數 3／5<br>想很多、衝很快</td>
+          <td>眉型起伏大、左右不一致</td>
+          <td>拉順眉型節奏、減少突角，<br>幫助行動前先穩定判斷。</td>
+        </tr>
+        <tr>
+          <td><strong>思考／智慧型</strong><br>（如：天機、文昌、文曲）</td>
+          <td>靈數 7／9<br>想太多、內在拉扯</td>
+          <td>眉型過細、眉頭斷裂</td>
+          <td>補眉頭連續性，<br>讓思緒不再分散，決策更落地。</td>
+        </tr>
+        <tr>
+          <td><strong>穩定／承載型</strong><br>（如：天梁、天相）</td>
+          <td>靈數 4<br>容易責任過重、壓力累積</td>
+          <td>眉型厚重、眉壓眼</td>
+          <td>放鬆眉壓、留呼吸感，<br>讓責任感不再變成負擔。</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="note">
+      老師提醒：這張表不是讓你「對號入座一輩子」，而是幫你快速看出——<br>
+      <b>你現在最需要被順的是哪一段能量。</b>
+    </div>
+
+    <h2>矩陣 × 皇帝詩｜交叉判讀表</h2>
+    <p>
+      皇帝詩測驗，看的是你「一生最常用力的位置」；
+      矩陣判讀，則是把這個位置放回你的人生結構裡看。
+      下面這張表，是我實務上最常用來做「快速銜接解說」的工具。
+    </p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>皇帝詩結果</th>
+          <th>矩陣對應層次</th>
+          <th>常見人生狀態</th>
+          <th>老師的判讀重點</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><b>皇帝頭</b></td>
+          <td>主軸層（線）</td>
+          <td>想很多、責任感重、壓力集中在「思考與決策」</td>
+          <td>是否用腦過度？眉型是否太銳、太高？<br>先讓思緒鬆下來，選擇才會順。</td>
+        </tr>
+        <tr>
+          <td><b>皇帝肩</b></td>
+          <td>責任層（線＋面）</td>
+          <td>扛很多、替人奔波，中年前特別勞心</td>
+          <td>左右眉是否不平衡？<br>是否把別人的責任也背在自己身上？</td>
+        </tr>
+        <tr>
+          <td><b>皇帝手</b></td>
+          <td>行動層（面）</td>
+          <td>很會做事、很會給，人生靠實幹累積</td>
+          <td>能量是否只流出不回收？<br>眉尾與唇的線條是否留得住成果？</td>
+        </tr>
+        <tr>
+          <td><b>皇帝腹</b></td>
+          <td>內在層（面）</td>
+          <td>聰明、敏感、情緒與安全感影響決策</td>
+          <td>眉頭是否斷、細？<br>先穩住內在，外在表現自然會出來。</td>
+        </tr>
+        <tr>
+          <td><b>皇帝膝</b></td>
+          <td>支撐層（點）</td>
+          <td>人生多磨練，靠毅力一步一步走</td>
+          <td>眉型是否給得出「方向感」？<br>不急著求快，先走穩。</td>
+        </tr>
+        <tr>
+          <td><b>皇帝足</b></td>
+          <td>現實層（點）</td>
+          <td>外在環境影響大，適合往外走</td>
+          <td>眼神是否定錨？<br>先站穩自己，環境自然會配合。</td>
+        </tr>
+        <tr>
+          <td><b>皇帝腰</b></td>
+          <td>資源層（線）</td>
+          <td>貴人多、被保護，但容易少了抗壓</td>
+          <td>眉型是否太溫？<br>適度加力量，才能撐得起福氣。</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="note">
+      老師提醒：皇帝詩不是在說你的人生結果，<br>
+      而是在告訴你——<b>你最需要被「順一下」的是哪一段。</b>
+    </div>
+
+    <h2>左右眉 × 事業／感情｜快速對照表</h2>
+    <p>
+      在實務判讀裡，我一定會分開看左右眉。
+      因為它們代表的不是好壞，而是你「能量分配的方向」。
+    </p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>眉位</th>
+          <th>主要對應</th>
+          <th>常見狀態</th>
+          <th>老師的觀察重點</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><b>左眉</b></td>
+          <td>事業／外在表現</td>
+          <td>工作狀態、企圖心、執行力</td>
+          <td>是否有方向感？眉頭是否穩？<br>左眉亂，事業多半先亂。</td>
+        </tr>
+        <tr>
+          <td><b>右眉</b></td>
+          <td>感情／內在關係</td>
+          <td>情感互動、安全感、親密模式</td>
+          <td>是否下垂、斷裂、無力？<br>右眉弱，關係裡容易委屈。</td>
+        </tr>
+        <tr>
+          <td><b>左右不平衡</b></td>
+          <td>事業與感情失衡</td>
+          <td>顧工作忘關係／顧關係壓事業</td>
+          <td>調整不是「變一樣」，<br>而是讓兩邊各司其職。</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="note">
+      老師提醒：左左右右不是對錯，而是你現在把力氣用在哪裡。<br>
+      當兩邊回到適合的位置，人生自然比較順。
+    </div>
+
+    <div class="divider"></div>
+    <div class="row">
+      <a class="btn primary" href="booking.html#bookingForm">我要預約做完整矩陣判讀</a>
+      <a class="btn" href="vip.html">回 VIP 選單</a>
+      <a class="btn" href="./">回首頁</a>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  const VIP_PASSWORD = "GBEAUTY2026";
+
+  function qs(key){
+    const v = new URLSearchParams(location.search).get(key);
+    return v ? v : "";
+  }
+
+  document.getElementById("name").value = qs("name");
+
+  function unlock(){
+    const name = document.getElementById("name").value.trim();
+    const pw = document.getElementById("pw").value.trim();
+
+    if(!name){ alert("請先輸入姓名🙂"); return; }
+    if(pw !== VIP_PASSWORD){ alert("密碼不正確，再試一次就好🙂"); return; }
+
+    document.getElementById("gate").style.display = "none";
+    document.getElementById("vip").style.display = "block";
+    document.getElementById("vip").scrollIntoView({behavior:"smooth"});
+  }
+</script>
+
+</body>
+</html>
