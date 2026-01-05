@@ -3,43 +3,31 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>GBeauty｜VIP 矩陣總說</title>
-
+<title>GBeauty｜VIP 入口</title>
 <style>
-:root{
-  --bg:#faf7f2; --card:#fff; --text:#1f2937; --muted:#6b7280;
-  --line:#e5e7eb; --btn:#111827; --btnText:#fff; --gold:#b45309;
-  --shadow:0 14px 35px rgba(0,0,0,.08); --r:18px; --max:920px;
-}
-*{box-sizing:border-box}
-body{
-  margin:0;font-family:system-ui,-apple-system,"Noto Sans TC","Microsoft JhengHei",sans-serif;
-  background:var(--bg);color:var(--text);line-height:1.7
-}
-.wrap{max-width:var(--max);margin:0 auto;padding:42px 16px 80px}
-.top{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:18px}
-.brand{display:flex;align-items:center;gap:12px}
-.logo{width:64px;height:64px;border-radius:50%;object-fit:cover;box-shadow:0 10px 25px rgba(0,0,0,.15)}
-.brand strong{font-size:18px}
-.slogan{font-size:13px;color:#4b5563;margin-top:4px}
-.slogan::before{content:"「"} .slogan::after{content:"」"}
-.btn{display:inline-flex;align-items:center;justify-content:center;padding:10px 14px;
-  border-radius:12px;border:1px solid var(--line);background:#fff;
-  color:var(--text);text-decoration:none;font-weight:800}
-.btn.primary{background:var(--btn);color:var(--btnText);border-color:var(--btn)}
-.card{background:var(--card);border:1px solid var(--line);
-  border-radius:var(--r);box-shadow:var(--shadow);padding:22px}
-h1{margin:0 0 6px;font-size:24px}
-.sub{margin:0 0 14px;color:var(--muted);font-size:14px}
-.row{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:10px}
-input{flex:1;min-width:220px;padding:14px;border-radius:12px;
-  border:1px solid var(--line);font-size:16px}
-.note{
-  margin-top:12px;background:#fff7ed;border-left:4px solid var(--gold);
-  padding:10px 12px;border-radius:12px;color:#4b5563;font-size:14px
-}
-.vip{display:none;margin-top:16px}
-.divider{height:1px;background:var(--line);margin:16px 0}
+  :root{
+    --bg:#faf7f2; --card:#fff; --text:#1f2937; --muted:#6b7280;
+    --line:#e5e7eb; --btn:#111827; --btnText:#fff; --gold:#b45309;
+    --shadow:0 14px 35px rgba(0,0,0,.08); --r:18px; --max:920px;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:system-ui,-apple-system,"Noto Sans TC","Microsoft JhengHei",sans-serif;background:var(--bg);color:var(--text);line-height:1.7}
+  .wrap{max-width:var(--max);margin:0 auto;padding:42px 16px 80px}
+  .top{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:18px}
+  .brand{display:flex;align-items:center;gap:12px}
+  .logo{width:64px;height:64px;border-radius:50%;object-fit:cover;box-shadow:0 10px 25px rgba(0,0,0,.15)}
+  .brand strong{font-size:18px}
+  .slogan{font-size:13px;color:#4b5563;margin-top:4px}
+  .slogan::before{content:"「"} .slogan::after{content:"」"}
+  .btn{display:inline-flex;align-items:center;justify-content:center;padding:10px 14px;border-radius:12px;border:1px solid var(--line);background:#fff;color:var(--text);text-decoration:none;font-weight:800;cursor:pointer}
+  .btn.primary{background:var(--btn);color:var(--btnText);border-color:var(--btn)}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow);padding:22px}
+  h1{margin:0 0 6px;font-size:24px}
+  .sub{margin:0 0 14px;color:var(--muted);font-size:14px}
+  .row{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:10px}
+  input{flex:1;min-width:220px;padding:14px;border-radius:12px;border:1px solid var(--line);font-size:16px}
+  .note{margin-top:12px;background:#fff7ed;border-left:4px solid var(--gold);padding:10px 12px;border-radius:12px;color:#4b5563;font-size:14px}
+  .vip{display:none;margin-top:16px}
 </style>
 </head>
 
@@ -57,54 +45,65 @@ input{flex:1;min-width:220px;padding:14px;border-radius:12px;
     <a class="btn" href="./">回首頁</a>
   </div>
 
-  <!-- 🔐 密碼入口 -->
   <div id="gate" class="card">
-    <h1>VIP｜紫微 × 生命靈數 × 開運眉型矩陣</h1>
-    <p class="sub">
-      這一頁是給已上課 / 已預約 / VIP 會員閱讀的內容。  
-      請輸入老師提供的密碼。
-    </p>
+    <h1>VIP｜入口</h1>
+    <p class="sub">老師會先確認你是本人，再把內容交給你。請輸入姓名與密碼。</p>
+
+    <div class="row">
+      <input id="name" type="text" placeholder="你的名字（用來記錄/辨識）">
+    </div>
 
     <div class="row">
       <input id="pw" type="password" placeholder="請輸入 VIP 密碼">
-      <button class="btn primary" onclick="unlock()">進入</button>
+      <button class="btn primary" type="button" onclick="unlock()">進入</button>
+      <a class="btn" href="./">回首頁</a>
     </div>
 
     <div class="note">
-      老師提醒：  
-      能走到這一頁的人，通常已經準備好，  
-      要更深入理解自己了。
+      老師提醒：你不用急著看完。慢慢來，先把自己安住，內容才會真正進到心裡。
     </div>
   </div>
 
-  <!-- ✅ VIP 內容 -->
-  <div id="vip" class="card vip">
-    <!-- ⚠️ 這裡以下保留你原本的 VIP 全部內容（完全不動） -->
-    <!-- 你貼的矩陣表、皇帝詩交叉表、左右眉對照表都在這裡 -->
-    <!-- （內容太長，我不重複貼，但你原本貼的都可以直接放） -->
+  <div id="vipMenu" class="card vip">
+    <h1>VIP｜選擇版本</h1>
+    <p class="sub">我先把你原本的 VIP 內容完整放回來。你想再拆得更精緻，我再幫你切成更清楚的段落。</p>
 
-    <div class="divider"></div>
     <div class="row">
-      <a class="btn primary" href="booking.html#bookingForm">我要預約完整矩陣判讀</a>
+      <a class="btn primary" id="goTeach" href="vip-teaching.html">教學版（老師上課用）</a>
+      <a class="btn" id="goConsult" href="vip-consulting.html">諮詢版（對客戶判讀用）</a>
       <a class="btn" href="./">回首頁</a>
+    </div>
+
+    <div class="note">
+      小提醒：這是前端 VIP 密碼保護（你要更高安全等級，我也可以再幫你升級到後端驗證）。
     </div>
   </div>
 
 </div>
 
 <script>
-  // 🔑 每次必輸的 VIP 密碼
   const VIP_PASSWORD = "GBEAUTY2026";
 
   function unlock(){
+    const name = document.getElementById("name").value.trim();
     const pw = document.getElementById("pw").value.trim();
+
+    if(!name){
+      alert("請先輸入姓名，老師才知道要把內容交給誰🙂");
+      return;
+    }
     if(pw !== VIP_PASSWORD){
       alert("密碼不正確，再試一次就好🙂");
       return;
     }
+
+    // 把姓名帶到分頁（方便你未來要記錄/帶入資料）
+    document.getElementById("goTeach").href = "vip-teaching.html?name=" + encodeURIComponent(name);
+    document.getElementById("goConsult").href = "vip-consulting.html?name=" + encodeURIComponent(name);
+
     document.getElementById("gate").style.display = "none";
-    document.getElementById("vip").style.display = "block";
-    document.getElementById("vip").scrollIntoView({behavior:"smooth"});
+    document.getElementById("vipMenu").style.display = "block";
+    document.getElementById("vipMenu").scrollIntoView({behavior:"smooth"});
   }
 </script>
 
