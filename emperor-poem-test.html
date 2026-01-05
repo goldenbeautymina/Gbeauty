@@ -148,36 +148,37 @@
 
     <div class="grid">
       <div>
-        <label for="season">出生季節（新曆）</label>
+ <label for="season">你的出生季節（新曆）</label>
         <select id="season">
           <option value="">請選擇</option>
-          <option value="spring">春季</option>
-          <option value="summer">夏季</option>
-          <option value="autumn">秋季</option>
-          <option value="winter">冬季</option>
+          <option value="spring">春季（2/4–5/5）</option>
+          <option value="summer">夏季（5/6–8/7）</option>
+          <option value="autumn">秋季（8/8–11/7）</option>
+          <option value="winter">冬季（11/8–2/3）</option>
         </select>
+        <div class="helper">若你不確定季節，我也可以幫你用生日換算。</div>
       </div>
 
       <div>
-        <label for="time">出生時辰</label>
+        <label for="time">你的出生時辰</label>
         <select id="time">
           <option value="">請選擇</option>
-          <option value="子">子時</option>
-          <option value="丑">丑時</option>
-          <option value="寅">寅時</option>
-          <option value="卯">卯時</option>
-          <option value="辰">辰時</option>
-          <option value="巳">巳時</option>
-          <option value="午">午時</option>
-          <option value="未">未時</option>
-          <option value="申">申時</option>
-          <option value="酉">酉時</option>
-          <option value="戌">戌時</option>
-          <option value="亥">亥時</option>
+          <option value="子">子時（23:00–00:59）</option>
+          <option value="丑">丑時（01:00–02:59）</option>
+          <option value="寅">寅時（03:00–04:59）</option>
+          <option value="卯">卯時（05:00–06:59）</option>
+          <option value="辰">辰時（07:00–08:59）</option>
+          <option value="巳">巳時（09:00–10:59）</option>
+          <option value="午">午時（11:00–12:59）</option>
+          <option value="未">未時（13:00–14:59）</option>
+          <option value="申">申時（15:00–16:59）</option>
+          <option value="酉">酉時（17:00–18:59）</option>
+          <option value="戌">戌時（19:00–20:59）</option>
+          <option value="亥">亥時（21:00–22:59）</option>
         </select>
+        <div class="helper">時辰以「出生時間」為準。</div>
       </div>
-    </div>
-
+  </div>
     <button type="button" onclick="calc()">查看我的皇帝命位</button>
   </div>
 
