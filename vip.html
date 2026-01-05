@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>GBeauty｜VIP 矩陣總說</title>
+<style>
+  :root{
+    --bg:#faf7f2; --card:#fff; --text:#1f2937; --muted:#6b7280;
+    --line:#e5e7eb; --btn:#111827; --btnText:#fff; --gold:#b45309;
+    --shadow:0 14px 35px rgba(0,0,0,.08); --r:18px; --max:920px;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:system-ui,-apple-system,"Noto Sans TC","Microsoft JhengHei",sans-serif;background:var(--bg);color:var(--text);line-height:1.7}
+  .wrap{max-width:var(--max);margin:0 auto;padding:42px 16px 80px}
+  .top{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:18px}
+  .brand{display:flex;align-items:center;gap:12px}
+  .logo{width:64px;height:64px;border-radius:50%;object-fit:cover;box-shadow:0 10px 25px rgba(0,0,0,.15)}
+  .brand strong{font-size:18px}
+  .slogan{font-size:13px;color:#4b5563;margin-top:4px}
+  .slogan::before{content:"「"} .slogan::after{content:"」"}
+  .btn{display:inline-flex;align-items:center;justify-content:center;padding:10px 14px;border-radius:12px;border:1px solid var(--line);background:#fff;color:var(--text);text-decoration:none;font-weight:800}
+  .btn.primary{background:var(--btn);color:var(--btnText);border-color:var(--btn)}
+  .btn:hover{filter:brightness(1.03)}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow);padding:22px}
+  h1{margin:0 0 6px;font-size:24px}
+  .sub{margin:0 0 14px;color:var(--muted);font-size:14px}
+  .row{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:10px}
+  input{flex:1;min-width:220px;padding:14px;border-radius:12px;border:1px solid var(--line);font-size:16px}
+  label.small{font-size:13px;color:var(--muted)}
+  .note{margin-top:12px;background:#fff7ed;border-left:4px solid var(--gold);padding:10px 12px;border-radius:12px;color:#4b5563;font-size:14px}
+  .vip{display:none;margin-top:16px}
+  .divider{height:1px;background:var(--line);margin:16px 0}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="top">
+    <div class="brand">
+      <img class="logo" src="images/gbeauty-logo.jpg" alt="GBeauty">
+      <div>
+        <strong>GBeauty VIP</strong>
+        <div class="slogan">當臉的線條順了，人的選擇也會跟著順。</div>
+      </div>
+    </div>
+    <a class="btn" href="./">回首頁</a>
+  </div>
+
+  <!-- 密碼區 -->
+  <div id="gate" class="card">
+    <h1>VIP｜紫微主星 × 生命靈數 × 開運眉型矩陣（總說）</h1>
+    <p class="sub">這一頁是給「已上課 / 已預約 / VIP 會員」看的內容。輸入密碼後就能閱讀。</p>
+
+    <div class="row">
+      <input id="pw" type="password" placeholder="請輸入 VIP 密碼" autocomplete="current-password">
+      <button class="btn primary" onclick="unlock()">進入</button>
+    </div>
+
+    <div class="row">
+      <label class="small"><input type="checkbox" id="remember"> 記住我（7 天）</label>
+    </div>
+
+    <div class="note">
+      老師提醒：你願意走到這裡，表示你正在很認真地把人生整理回自己的節奏。慢慢看，不急。
+    </div>
+  </div>
+
+  <!-- VIP 內容區 -->
+  <div id="vip" class="card vip">
+    <h1>矩陣總說（VIP）</h1>
+    <p class="sub">以下內容可直接用於「諮詢時的判讀」與「學員的教學筆記」。</p>
+
+    <div class="divider"></div>
+
+    <!-- ✅ 把你的「紫微主星 × 生命靈數 × 開運眉型矩陣總說」貼在這裡 -->
+    <div id="vipContent">
+      <h2>一、為什麼要用「紫微 × 靈數 × 眉型」做矩陣？</h2>
+      <p>（把你的總說內容貼在這裡）</p>
+
+      <h2>二、三層判讀流程（老師用）</h2>
+      <ol>
+        <li>紫微主星：定主軸（線）</li>
+        <li>生命靈數：看性格（面）</li>
+        <li>眉型：落實在現在（點）</li>
+      </ol>
+
+      <h2>三、矩陣使用規則</h2>
+      <p>（把你的規則/案例/禁忌貼在這裡）</p>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="row">
+      <a class="btn primary" href="booking.html#bookingForm">我要預約做完整矩陣判讀</a>
+      <a class="btn" href="./">回首頁</a>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  // ✅ 你可以改這個密碼（建議用一組你私下發給 VIP 的）
+  const VIP_PASSWORD = "GBEAUTY2026";
+
+  // ✅ 可選：把密碼存 7 天（輕量保護）
+  const KEY = "gbeauty_vip_ok_until";
+
+  function now(){ return Date.now(); }
+
+  function isOk(){
+    const until = Number(localStorage.getItem(KEY) || "0");
+    return until && until > now();
+  }
+
+  function showVip(){
+    document.getElementById("gate").style.display = "none";
+    document.getElementById("vip").style.display = "block";
+    document.getElementById("vip").scrollIntoView({behavior:"smooth"});
+  }
+
+  function unlock(){
+    const pw = document.getElementById("pw").value.trim();
+    if(pw !== VIP_PASSWORD){
+      alert("密碼不正確，再試一次就好🙂");
+      return;
+    }
+    if(document.getElementById("remember").checked){
+      const sevenDays = 7 * 24 * 60 * 60 * 1000;
+      localStorage.setItem(KEY, String(now() + sevenDays));
+    }else{
+      localStorage.removeItem(KEY);
+    }
+    showVip();
+  }
+
+  // 已登入就直接顯示
+  if(isOk()) showVip();
+</script>
+</body>
+</html>
