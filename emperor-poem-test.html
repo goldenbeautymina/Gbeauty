@@ -67,12 +67,11 @@
   <h1>皇帝詩命運測驗</h1>
   <div class="subtitle">先把結果儲存好，我再把答案溫柔地交給你。</div>
 
-  <!-- 入口卡：先儲存 -->
   <div class="card">
 
     <div style="margin-bottom:14px;">
       <label for="custName">請用全名,來探究生命的能量</label>
-      <input id="custName" placeholder="例如：陳圓圓">
+      <input id="custName" placeholder="例如：陳圓圓" autocomplete="name">
       <div class="mini">我只用來標記你的測驗結果，方便後續為你整理與回覆🙂</div>
     </div>
 
@@ -112,7 +111,8 @@
 
     <div class="note">
       小提醒：這個測驗的答案會先「替你記錄」到資料庫裡。<br>
-      你按下「儲存並揭曉」後，表單會自動填好，你只要按一次「提交」，我就能把答案完整留存。
+      你按下「儲存並揭曉」後，表單會自動填好，你只要按一次「提交」，我就能把答案完整留存。<br>
+      ✅ 提交後回到這頁，直接按「我已提交，顯示結果」就可以。
     </div>
 
     <div class="row">
@@ -124,7 +124,6 @@
     <div class="mini" id="statusText"></div>
   </div>
 
-  <!-- ✅ 儀式文字 + 動畫 -->
   <div id="ritualText">
     老師先幫你把今天的答案收好。<br>
     我們慢慢來，讓結果用剛剛好的速度出現。
@@ -133,7 +132,6 @@
     <div class="dot"></div><div class="dot"></div><div class="dot"></div>
   </div>
 
-  <!-- 結果區（先隱藏） -->
   <div id="result" class="result"></div>
 
 </div>
@@ -148,9 +146,9 @@ const FORM_BASE =
   + "&entry.569870339=PART"
   + "&entry.384840199=CONSULT";
 
-/** ✅ 四季×時辰→皇帝部位 */
+/** ✅ 四季×時辰→皇帝部位（✅修正：移除奇怪的「巐」） */
 const table = {
-  spring:{子:"皇帝頭",卯:"皇帝肩",酉:"皇帝肩",丑:"皇帝腹",亥:"皇帝腹",午:"皇帝腰",巐:"皇帝手",巳:"皇帝手",未:"皇帝手",辰:"皇帝膝",戌:"皇帝膝",寅:"皇帝足",申:"皇帝足"},
+  spring:{子:"皇帝頭",卯:"皇帝肩",酉:"皇帝肩",丑:"皇帝腹",亥:"皇帝腹",午:"皇帝腰",巳:"皇帝手",未:"皇帝手",辰:"皇帝膝",戌:"皇帝膝",寅:"皇帝足",申:"皇帝足"},
   summer:{午:"皇帝頭",卯:"皇帝肩",酉:"皇帝肩",未:"皇帝腹",亥:"皇帝腹",子:"皇帝腰",丑:"皇帝手",巳:"皇帝手",辰:"皇帝膝",戌:"皇帝膝",寅:"皇帝足",申:"皇帝足"},
   autumn:{亥:"皇帝頭",子:"皇帝肩",午:"皇帝肩",卯:"皇帝腹",未:"皇帝腹",申:"皇帝腰",丑:"皇帝手",巳:"皇帝手",寅:"皇帝膝",酉:"皇帝膝",辰:"皇帝足",戌:"皇帝足"},
   winter:{巳:"皇帝頭",卯:"皇帝肩",酉:"皇帝肩",寅:"皇帝腹",申:"皇帝腹",子:"皇帝腰",午:"皇帝手",亥:"皇帝手",丑:"皇帝膝",未:"皇帝膝",辰:"皇帝足",戌:"皇帝足"}
@@ -167,79 +165,25 @@ const consultMap = {
 };
 
 const explain = {
-  "皇帝頭":{
-    title:"衣食無憂",
-    keywords:["先天資源","生活安穩","福氣延續"],
-    paras:[
-      "生在皇帝頭的人，成長期間多半風平浪靜、衣食無憂，福氣往往能延續一生。",
-      "但也因條件較順，容易少了衝勁；若你願意再努力一點，成功機會往往比一般人更高。"
-    ],
-    teacher:"老師提醒：你不是不夠強，只是別忘了把天賦拿出來用。"
-  },
-  "皇帝手":{
-    title:"財源不絕",
-    keywords:["實幹型","交際手腕","適合業務/創業"],
-    paras:[
-      "你靠行動與人際把成果做出來，財源也更容易被你握在手上。",
-      "早年多半平實，但若及早找到專長並堅定前進，越到後面越能衣食無憂。"
-    ],
-    teacher:"老師提醒：你很會付出，也要記得讓成果回到自己身上。"
-  },
-  "皇帝肩":{
-    title:"中年轉好",
-    keywords:["奔波勞心","中年轉順","親友助力"],
-    paras:[
-      "早年不至於差，但常身心勞累、四處奔波；中年後際遇更容易大幅轉好。",
-      "若善用合作優勢，把合作用在對的人與對的事上，成功更容易被放大。"
-    ],
-    teacher:"老師提醒：你會越走越順，關鍵是『關係走穩』。"
-  },
-  "皇帝膝":{
-    title:"一生勞碌",
-    keywords:["少偏財運","靠努力累積","後勁強"],
-    paras:[
-      "好運不太會突然降臨，你得到的多靠比別人更多的努力換來。",
-      "但也因磨練多，你的毅力往往更強；晚年有機會慢慢轉好。"
-    ],
-    teacher:"老師提醒：你不是命差，你是『越走越穩、越磨越強』的命。"
-  },
-  "皇帝足":{
-    title:"他鄉發展",
-    keywords:["靠自己","外地轉運","留意溝通"],
-    paras:[
-      "人生多靠自己決定成敗；走出去到外地發展，反而更容易轉運。",
-      "感情上記得慢一點說，緣分更穩。"
-    ],
-    teacher:"老師提醒：你的路不在原地，在你願意走出去的地方。"
-  },
-  "皇帝腰":{
-    title:"集萬千寵愛",
-    keywords:["貴人扶持","中年穩富","要練抗壓"],
-    paras:[
-      "資源與貴人運不差，中年後更容易穩定富足。",
-      "要留意別成了溫室花朵；磨練心性與意志力，成就會來得更快。"
-    ],
-    teacher:"老師提醒：你的命很好，把自己練強一點，貴氣才留得住。"
-  },
-  "皇帝腹":{
-    title:"聰明才智易成功",
-    keywords:["腦筋靈活","追求卓越","腳踏實地更久"],
-    paras:[
-      "你腦筋靈活、才氣不俗，特別容易在工作上發光。",
-      "只要你願意腳踏實地，成就會更大也更持久，財富也不會少。"
-    ],
-    teacher:"老師提醒：把聰明落地，你就會走得又穩又遠。"
-  }
+  "皇帝頭":{title:"衣食無憂",keywords:["先天資源","生活安穩","福氣延續"],paras:["生在皇帝頭的人，成長期間多半風平浪靜、衣食無憂，福氣往往能延續一生。","但也因條件較順，容易少了衝勁；若你願意再努力一點，成功機會往往比一般人更高。"],teacher:"老師提醒：你不是不夠強，只是別忘了把天賦拿出來用。"},
+  "皇帝手":{title:"財源不絕",keywords:["實幹型","交際手腕","適合業務/創業"],paras:["你靠行動與人際把成果做出來，財源也更容易被你握在手上。","早年多半平實，但若及早找到專長並堅定前進，越到後面越能衣食無憂。"],teacher:"老師提醒：你很會付出，也要記得讓成果回到自己身上。"},
+  "皇帝肩":{title:"中年轉好",keywords:["奔波勞心","中年轉順","親友助力"],paras:["早年不至於差，但常身心勞累、四處奔波；中年後際遇更容易大幅轉好。","若善用合作優勢，把合作用在對的人與對的事上，成功更容易被放大。"],teacher:"老師提醒：你會越走越順，關鍵是『關係走穩』。"},
+  "皇帝膝":{title:"一生勞碌",keywords:["少偏財運","靠努力累積","後勁強"],paras:["好運不太會突然降臨，你得到的多靠比別人更多的努力換來。","但也因磨練多，你的毅力往往更強；晚年有機會慢慢轉好。"],teacher:"老師提醒：你不是命差，你是『越走越穩、越磨越強』的命。"},
+  "皇帝足":{title:"他鄉發展",keywords:["靠自己","外地轉運","留意溝通"],paras:["人生多靠自己決定成敗；走出去到外地發展，反而更容易轉運。","感情上記得慢一點說，緣分更穩。"],teacher:"老師提醒：你的路不在原地，在你願意走出去的地方。"},
+  "皇帝腰":{title:"集萬千寵愛",keywords:["貴人扶持","中年穩富","要練抗壓"],paras:["資源與貴人運不差，中年後更容易穩定富足。","要留意別成了溫室花朵；磨練心性與意志力，成就會來得更快。"],teacher:"老師提醒：你的命很好，把自己練強一點，貴氣才留得住。"},
+  "皇帝腹":{title:"聰明才智易成功",keywords:["腦筋靈活","追求卓越","腳踏實地更久"],paras:["你腦筋靈活、才氣不俗，特別容易在工作上發光。","只要你願意腳踏實地，成就會更大也更持久，財富也不會少。"],teacher:"老師提醒：把聰明落地，你就會走得又穩又遠。"}
 };
 
 const seasonText = { spring:"春季", summer:"夏季", autumn:"秋季", winter:"冬季" };
+
+/** ✅ 重要：把輸入先記住，回來不會空掉 */
+const INPUT_KEY = "gbeauty_emperor_inputs_v1";
 
 /** ✅ 提交紀錄（24 小時） */
 const SUBMIT_KEY = "gbeauty_emperor_submitted_until";
 
 function esc(s){
-  return String(s)
-    .replaceAll("&","&amp;").replaceAll("<","&lt;").replaceAll(">","&gt;")
+  return String(s).replaceAll("&","&amp;").replaceAll("<","&lt;").replaceAll(">","&gt;")
     .replaceAll('"',"&quot;").replaceAll("'","&#39;");
 }
 
@@ -250,19 +194,40 @@ function getInputs(){
   return {name,s,t};
 }
 
+function saveInputsToLocal(){
+  const {name,s,t} = getInputs();
+  localStorage.setItem(INPUT_KEY, JSON.stringify({name,s,t, ts: Date.now()}));
+}
+
+function restoreInputsFromLocal(){
+  try{
+    const raw = localStorage.getItem(INPUT_KEY);
+    if(!raw) return;
+    const data = JSON.parse(raw);
+    if(!data) return;
+    if(typeof data.name === "string") document.getElementById("custName").value = data.name;
+    if(typeof data.s === "string") document.getElementById("season").value = data.s;
+    if(typeof data.t === "string") document.getElementById("time").value = data.t;
+  }catch(e){}
+}
+
 function buildPrefillUrl(name,s,t){
-  const part = table[s][t];
+  const part = table[s]?.[t];
   const consult = consultMap[part] || "";
   return FORM_BASE
     .replace("NAME", encodeURIComponent(name))
     .replace("SEASON", encodeURIComponent(seasonText[s]))
     .replace("TIME", encodeURIComponent(t + "時"))
-    .replace("PART", encodeURIComponent(part))
+    .replace("PART", encodeURIComponent(part || ""))
     .replace("CONSULT", encodeURIComponent(consult));
 }
 
 function renderResult(name,s,t){
-  const part = table[s][t];
+  const part = table[s]?.[t];
+  if(!part){
+    alert("老師小提醒：你選的季節/時辰沒有對到結果，請再確認一次🙂");
+    return;
+  }
   const consult = consultMap[part] || "";
   const ex = explain[part];
 
@@ -306,30 +271,45 @@ function enableRevealButton(){
   document.getElementById("btnAlready").disabled = false;
 }
 
+/** ✅ 任何輸入變動，都先存起來（回來不會空） */
+["custName","season","time"].forEach(id=>{
+  const el = document.getElementById(id);
+  el.addEventListener("input", saveInputsToLocal);
+  el.addEventListener("change", saveInputsToLocal);
+});
+
 /** ① 儲存並揭曉：先打開表單 */
 function saveAndReveal(){
   const {name,s,t} = getInputs();
   if(!name){ alert("請先輸入姓名，方便我為你記錄🙂"); return; }
   if(!s || !t){ alert("請完整選擇季節與時辰"); return; }
 
+  saveInputsToLocal(); // ✅先記住
+
   const url = buildPrefillUrl(name,s,t);
   window.open(url, "_blank", "noopener");
 
   setStatus("✅ 我已把表單替你填好並開啟；你只要按一次「提交」，我就能把結果完整留存。提交後回來按「我已提交，顯示結果」。");
-  enableRevealButton();
+  enableRevealButton(); // ✅先解鎖
 }
 
 /** ② 使用者回來按：我已提交（✅ 儀式文字 + 3 秒後揭曉） */
 function confirmSubmitted(){
-  const {name,s,t} = getInputs();
+  // ✅優先用目前欄位；若空了就從 localStorage 取回
+  let {name,s,t} = getInputs();
   if(!name || !s || !t){
-    alert("請確認姓名、季節、時辰都有填好🙂");
+    restoreInputsFromLocal();
+    ({name,s,t} = getInputs());
+  }
+
+  if(!name || !s || !t){
+    alert("老師小提醒：回來後欄位被清空了，請再輸入姓名、季節、時辰🙂");
     return;
   }
 
-  // 記住 24 小時
   const until = Date.now() + 24*60*60*1000;
   localStorage.setItem(SUBMIT_KEY, String(until));
+  saveInputsToLocal();
 
   const ritual = document.getElementById("ritualText");
   const loader = document.getElementById("loader");
@@ -348,12 +328,21 @@ function confirmSubmitted(){
 }
 
 function autoRevealIfRecentlySubmitted(){
+  restoreInputsFromLocal(); // ✅回到頁面就先把欄位補回來
+
   const until = Number(localStorage.getItem(SUBMIT_KEY) || "0");
+  // ✅只要有填過資料，就直接把按鈕開起來（避免回來按不了）
+  const {name,s,t} = getInputs();
+  if(name && s && t) enableRevealButton();
+
   if(until && until > Date.now()){
     enableRevealButton();
     setStatus("你最近已完成提交🙂 如果要直接看結果，按「我已提交，顯示結果」。");
+  }else if(name && s && t){
+    setStatus("填好後可按「儲存並揭曉」。提交完成回來，按「我已提交，顯示結果」。");
   }
 }
+
 autoRevealIfRecentlySubmitted();
 </script>
 
