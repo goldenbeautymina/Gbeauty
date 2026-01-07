@@ -5,69 +5,45 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>皇帝詩命運測驗｜GBeauty</title>
 
-  <!-- ✅ API_URL 一定要放在 script 裡 -->
+  <style>
+    body{margin:0;font-family:system-ui,-apple-system,"Noto Sans TC","Microsoft JhengHei",sans-serif;background:#faf7f2;color:#1f2937;line-height:1.6}
+    .wrap{max-width:900px;margin:0 auto;padding:50px 20px 80px}
+    h1{text-align:center;margin:0 0 8px;letter-spacing:.4px}
+    .subtitle{text-align:center;font-size:14px;color:#4b5563;margin:0 0 26px}
+    .card{background:#fff;border-radius:18px;padding:26px 22px;box-shadow:0 14px 35px rgba(0,0,0,.08)}
+    label{font-weight:900;font-size:14px}
+    .grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+    @media(max-width:680px){.grid{grid-template-columns:1fr}}
+    select,input,button{width:100%;margin-top:8px;padding:14px;border-radius:12px;border:1px solid #e5e7eb;font-size:16px;background:#fff;box-sizing:border-box}
+    input::placeholder{color:#9ca3af}
+    .btn{display:inline-flex;align-items:center;justify-content:center;padding:12px 16px;border-radius:999px;font-weight:900;text-decoration:none;border:1px solid #e5e7eb;color:#111827;background:#fff;cursor:pointer}
+    .btn.primary{background:#111827;color:#fff;border-color:#111827}
+    .btn.danger{border-color:#fecaca;background:#fff1f2;color:#991b1b}
+    .btn:disabled{opacity:.6;cursor:not-allowed}
+    .row{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
+    .mini{margin-top:8px;font-size:12px;color:#6b7280}
+    .helper{margin-top:8px;font-size:12px;color:#6b7280}
+    .note{margin-top:14px;font-size:14px;color:#4b5563;border-left:4px solid #b45309;padding:10px 12px;background:#fff7ed;border-radius:12px}
+    .result{display:none;margin-top:26px;background:#fff;border-radius:18px;padding:26px 22px;box-shadow:0 14px 35px rgba(0,0,0,.08)}
+    .badge{display:inline-block;padding:6px 10px;border-radius:999px;background:#111827;color:#fff;font-size:12px;font-weight:900;letter-spacing:.5px;margin-bottom:10px}
+    .k{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0 2px}
+    .pill{display:inline-block;padding:6px 10px;border-radius:999px;border:1px solid #e5e7eb;font-size:12px;color:#374151;background:#fafafa}
+    .ctaRow{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
+
+    /* 儀式文字 */
+    #ritualText{display:none;text-align:center;margin:20px 0 10px;color:#4b5563;font-size:15px;line-height:1.8}
+    .loaderWrap{display:none;justify-content:center;align-items:center;gap:8px;margin:18px 0 6px}
+    .dot{width:8px;height:8px;border-radius:50%;background:#111827;opacity:.25;animation:pulse 1.4s infinite ease-in-out}
+    .dot:nth-child(2){animation-delay:.2s}
+    .dot:nth-child(3){animation-delay:.4s}
+    @keyframes pulse{0%,80%,100%{transform:scale(.6);opacity:.25}40%{transform:scale(1);opacity:.9}}
+  </style>
+
+  <!-- ✅ 所有 JS 變數/程式都要在 script 裡，才不會跑到頁面上 -->
   <script>
+    // 你如果之後要用 Apps Script 寫入 Sheet，再用這個（目前先放著也OK）
     const API_URL = "https://script.google.com/macros/s/AKfycbyS7aWthUky7PNZaChierMEqmu5VcAuyfa1Uv0QKBjTOCRiaHCX44K-lf_JZlcxZaSi4w/exec";
   </script>
-  
-<style>
-  body{margin:0;font-family:system-ui,-apple-system,"Noto Sans TC","Microsoft JhengHei",sans-serif;background:#faf7f2;color:#1f2937;line-height:1.6}
-  .wrap{max-width:900px;margin:0 auto;padding:50px 20px 80px}
-  h1{text-align:center;margin:0 0 8px;letter-spacing:.4px}
-  .subtitle{text-align:center;font-size:14px;color:#4b5563;margin:0 0 26px}
-  .card{background:#fff;border-radius:18px;padding:26px 22px;box-shadow:0 14px 35px rgba(0,0,0,.08)}
-  label{font-weight:900;font-size:14px}
-  .grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-  @media(max-width:680px){.grid{grid-template-columns:1fr}}
-  select,input,button{width:100%;margin-top:8px;padding:14px;border-radius:12px;border:1px solid #e5e7eb;font-size:16px;background:#fff;box-sizing:border-box}
-  input::placeholder{color:#9ca3af}
-  .btn{display:inline-flex;align-items:center;justify-content:center;padding:12px 16px;border-radius:999px;font-weight:900;text-decoration:none;border:1px solid #e5e7eb;color:#111827;background:#fff;cursor:pointer}
-  .btn.primary{background:#111827;color:#fff;border-color:#111827}
-  .btn:disabled{opacity:.6;cursor:not-allowed}
-  .row{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
-  .mini{margin-top:8px;font-size:12px;color:#6b7280}
-  .helper{margin-top:8px;font-size:12px;color:#6b7280}
-  .note{margin-top:14px;font-size:14px;color:#4b5563;border-left:4px solid #b45309;padding:10px 12px;background:#fff7ed;border-radius:12px}
-  .result{display:none;margin-top:26px;background:#fff;border-radius:18px;padding:26px 22px;box-shadow:0 14px 35px rgba(0,0,0,.08)}
-  .badge{display:inline-block;padding:6px 10px;border-radius:999px;background:#111827;color:#fff;font-size:12px;font-weight:900;letter-spacing:.5px;margin-bottom:10px}
-  .k{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0 2px}
-  .pill{display:inline-block;padding:6px 10px;border-radius:999px;border:1px solid #e5e7eb;font-size:12px;color:#374151;background:#fafafa}
-  .ctaRow{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
- 
-  </style>
-</head>
-
-
-  /* ✅ 儀式文字 */
-  #ritualText{
-    display:none;
-    text-align:center;
-    margin:20px 0 10px;
-    color:#4b5563;
-    font-size:15px;
-    line-height:1.8;
-  }
-
-  /* ✅ 3 秒緩衝動畫 */
-  .loaderWrap{
-    display:none;
-    justify-content:center;
-    align-items:center;
-    gap:8px;
-    margin:18px 0 6px;
-  }
-  .dot{
-    width:8px;height:8px;border-radius:50%;
-    background:#111827;opacity:.25;
-    animation: pulse 1.4s infinite ease-in-out;
-  }
-  .dot:nth-child(2){animation-delay:.2s}
-  .dot:nth-child(3){animation-delay:.4s}
-  @keyframes pulse{
-    0%,80%,100%{transform:scale(.6);opacity:.25}
-    40%{transform:scale(1);opacity:.9}
-  }
-</style>
 </head>
 
 <body>
@@ -79,9 +55,9 @@
   <div class="card">
 
     <div style="margin-bottom:14px;">
-      <label for="custName">請用全名,來探究生命的能量</label>
+      <label for="custName">請用中文全名，來探究生命的能量</label>
       <input id="custName" placeholder="例如：陳圓圓" autocomplete="name">
-      <div class="mini">我只用來標記測驗結果，方便後續整理與回覆🙂</div>
+      <div class="mini">我只用來標記您的測驗結果，方便後續為您整理與回覆🙂</div>
     </div>
 
     <div class="grid">
@@ -94,11 +70,11 @@
           <option value="autumn">秋季（8/8–11/7）</option>
           <option value="winter">冬季（11/8–2/3）</option>
         </select>
-        <div class="helper">若你不確定季節，我也可以幫你用生日換算。</div>
+        <div class="helper">請依國曆出生月日來選取出生季節。</div>
       </div>
 
       <div>
-        <label for="time">你的出生時辰</label>
+        <label for="time">您的出生時辰</label>
         <select id="time">
           <option value="">請選擇</option>
           <option value="子">子時（23:00–00:59）</option>
@@ -119,14 +95,15 @@
     </div>
 
     <div class="note">
-      小提醒：這個測驗的答案會先「替你記錄」到資料庫裡。<br>
-      你按下「儲存並揭曉」後，表單會自動填好，你只要按一次「提交」，我就能把答案完整留存。<br>
+      小提醒：若您要做這個小測驗，分析結果前會先記錄到資料庫裡。<br>
+      需要先按下「儲存並揭曉」後，表單會自動填好，只要按一次「提交」，我就能把答案完整留存。<br>
       ✅ 提交後回到這頁，直接按「我已提交，顯示結果」就可以。
     </div>
 
     <div class="row">
-      <button class="btn primary" id="btnSaveReveal" type="button" onclick="saveAndReveal()">儲存並揭曉</button>
-      <button class="btn" id="btnAlready" type="button" onclick="confirmSubmitted()" disabled>我已提交，顯示結果</button>
+      <button class="btn primary" id="btnSaveReveal" type="button">儲存並揭曉</button>
+      <button class="btn" id="btnAlready" type="button" disabled>我已提交，顯示結果</button>
+      <button class="btn danger" id="btnClear" type="button">清除資料</button>
       <a class="btn" href="./">回首頁</a>
     </div>
 
@@ -146,7 +123,7 @@
 </div>
 
 <script>
-/** ✅ Google Form（含姓名 entry） */
+/** Google Form（含姓名 entry） */
 const FORM_BASE =
   "https://docs.google.com/forms/d/e/1FAIpQLSedMQBg5Bv2fXPYKtMamZr9sYaZ_mtBegk8KD1_-oqrh6c5BA/viewform?usp=pp_url"
   + "&entry.1299194271=NAME"
@@ -155,7 +132,7 @@ const FORM_BASE =
   + "&entry.569870339=PART"
   + "&entry.384840199=CONSULT";
 
-/** ✅ 四季×時辰→皇帝部位（✅修正：移除奇怪的「巐」） */
+/** 四季×時辰→皇帝部位 */
 const table = {
   spring:{子:"皇帝頭",卯:"皇帝肩",酉:"皇帝肩",丑:"皇帝腹",亥:"皇帝腹",午:"皇帝腰",巳:"皇帝手",未:"皇帝手",辰:"皇帝膝",戌:"皇帝膝",寅:"皇帝足",申:"皇帝足"},
   summer:{午:"皇帝頭",卯:"皇帝肩",酉:"皇帝肩",未:"皇帝腹",亥:"皇帝腹",子:"皇帝腰",丑:"皇帝手",巳:"皇帝手",辰:"皇帝膝",戌:"皇帝膝",寅:"皇帝足",申:"皇帝足"},
@@ -185,10 +162,8 @@ const explain = {
 
 const seasonText = { spring:"春季", summer:"夏季", autumn:"秋季", winter:"冬季" };
 
-/** ✅ 重要：把輸入先記住，回來不會空掉 */
+/** ✅ 這個 key 會造成「上一位資料留著」 */
 const INPUT_KEY = "gbeauty_emperor_inputs_v1";
-
-/** ✅ 提交紀錄（24 小時） */
 const SUBMIT_KEY = "gbeauty_emperor_submitted_until";
 
 function esc(s){
@@ -201,23 +176,6 @@ function getInputs(){
   const s = document.getElementById("season").value;
   const t = document.getElementById("time").value;
   return {name,s,t};
-}
-
-function saveInputsToLocal(){
-  const {name,s,t} = getInputs();
-  localStorage.setItem(INPUT_KEY, JSON.stringify({name,s,t, ts: Date.now()}));
-}
-
-function restoreInputsFromLocal(){
-  try{
-    const raw = localStorage.getItem(INPUT_KEY);
-    if(!raw) return;
-    const data = JSON.parse(raw);
-    if(!data) return;
-    if(typeof data.name === "string") document.getElementById("custName").value = data.name;
-    if(typeof data.s === "string") document.getElementById("season").value = data.s;
-    if(typeof data.t === "string") document.getElementById("time").value = data.t;
-  }catch(e){}
 }
 
 function buildPrefillUrl(name,s,t){
@@ -280,7 +238,42 @@ function enableRevealButton(){
   document.getElementById("btnAlready").disabled = false;
 }
 
-/** ✅ 任何輸入變動，都先存起來（回來不會空） */
+/** ✅ 清除欄位與 localStorage，避免下一位看到上一位資料 */
+function clearAll(){
+  document.getElementById("custName").value = "";
+  document.getElementById("season").value = "";
+  document.getElementById("time").value = "";
+  document.getElementById("result").style.display = "none";
+  document.getElementById("ritualText").style.display = "none";
+  document.getElementById("loader").style.display = "none";
+  document.getElementById("btnAlready").disabled = true;
+  localStorage.removeItem(INPUT_KEY);
+  localStorage.removeItem(SUBMIT_KEY);
+  setStatus("已清除資料🙂 可以開始新的測驗。");
+}
+
+/** ✅ 只有你自己想測試才保留：用 ?keep=1 開啟記憶模式 */
+const keepMode = new URLSearchParams(location.search).get("keep") === "1";
+
+function saveInputsToLocal(){
+  if(!keepMode) return; // ✅預設不記憶，避免客人看到上一位
+  const {name,s,t} = getInputs();
+  localStorage.setItem(INPUT_KEY, JSON.stringify({name,s,t, ts: Date.now()}));
+}
+
+function restoreInputsFromLocal(){
+  if(!keepMode) return;
+  try{
+    const raw = localStorage.getItem(INPUT_KEY);
+    if(!raw) return;
+    const data = JSON.parse(raw);
+    if(typeof data.name === "string") document.getElementById("custName").value = data.name;
+    if(typeof data.s === "string") document.getElementById("season").value = data.s;
+    if(typeof data.t === "string") document.getElementById("time").value = data.t;
+  }catch(e){}
+}
+
+/** 輸入事件：只有 keep=1 才會記 */
 ["custName","season","time"].forEach(id=>{
   const el = document.getElementById(id);
   el.addEventListener("input", saveInputsToLocal);
@@ -293,32 +286,25 @@ function saveAndReveal(){
   if(!name){ alert("請先輸入姓名，方便我為你記錄🙂"); return; }
   if(!s || !t){ alert("請完整選擇季節與時辰"); return; }
 
-  saveInputsToLocal(); // ✅先記住
+  saveInputsToLocal();
 
   const url = buildPrefillUrl(name,s,t);
   window.open(url, "_blank", "noopener");
 
   setStatus("✅ 我已把表單替你填好並開啟；你只要按一次「提交」，我就能把結果完整留存。提交後回來按「我已提交，顯示結果」。");
-  enableRevealButton(); // ✅先解鎖
+  enableRevealButton();
 }
 
-/** ② 使用者回來按：我已提交（✅ 儀式文字 + 3 秒後揭曉） */
+/** ② 我已提交：儀式 + 3 秒後顯示 */
 function confirmSubmitted(){
-  // ✅優先用目前欄位；若空了就從 localStorage 取回
-  let {name,s,t} = getInputs();
+  const {name,s,t} = getInputs();
   if(!name || !s || !t){
-    restoreInputsFromLocal();
-    ({name,s,t} = getInputs());
-  }
-
-  if(!name || !s || !t){
-    alert("老師小提醒：回來後欄位被清空了，請再輸入姓名、季節、時辰🙂");
+    alert("老師小提醒：請先輸入姓名、季節、時辰🙂");
     return;
   }
 
   const until = Date.now() + 24*60*60*1000;
   localStorage.setItem(SUBMIT_KEY, String(until));
-  saveInputsToLocal();
 
   const ritual = document.getElementById("ritualText");
   const loader = document.getElementById("loader");
@@ -333,26 +319,34 @@ function confirmSubmitted(){
     ritual.style.display = "none";
     loader.style.display = "none";
     renderResult(name,s,t);
-  }, 3000);
+
+    // ✅ 顯示結果後自動清除（避免下一位看到）
+    if(!keepMode){
+      localStorage.removeItem(INPUT_KEY);
+      localStorage.removeItem(SUBMIT_KEY);
+    }
+  }, 1800);
 }
 
-function autoRevealIfRecentlySubmitted(){
-  restoreInputsFromLocal(); // ✅回到頁面就先把欄位補回來
+function init(){
+  restoreInputsFromLocal();
 
-  const until = Number(localStorage.getItem(SUBMIT_KEY) || "0");
-  // ✅只要有填過資料，就直接把按鈕開起來（避免回來按不了）
+  // 只要有填資料就解鎖（避免回來按不了）
   const {name,s,t} = getInputs();
   if(name && s && t) enableRevealButton();
 
-  if(until && until > Date.now()){
-    enableRevealButton();
-    setStatus("你最近已完成提交🙂 如果要直接看結果，按「我已提交，顯示結果」。");
-  }else if(name && s && t){
-    setStatus("填好後可按「儲存並揭曉」。提交完成回來，按「我已提交，顯示結果」。");
+  // 綁定按鈕
+  document.getElementById("btnSaveReveal").addEventListener("click", saveAndReveal);
+  document.getElementById("btnAlready").addEventListener("click", confirmSubmitted);
+  document.getElementById("btnClear").addEventListener("click", clearAll);
+
+  if(!keepMode){
+    setStatus("（提示）這頁預設不保留上次資料，避免下一位看到🙂");
+  }else{
+    setStatus("你目前是 keep=1 測試模式：會保留上次輸入。");
   }
 }
-
-autoRevealIfRecentlySubmitted();
+init();
 </script>
 
 </body>
