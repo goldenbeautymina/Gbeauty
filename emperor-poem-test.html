@@ -30,7 +30,6 @@
     .pill{display:inline-block;padding:6px 10px;border-radius:999px;border:1px solid #e5e7eb;font-size:12px;color:#374151;background:#fafafa}
     .ctaRow{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
 
-    /* 儀式文字 */
     #ritualText{display:none;text-align:center;margin:20px 0 10px;color:#4b5563;font-size:15px;line-height:1.8}
     .loaderWrap{display:none;justify-content:center;align-items:center;gap:8px;margin:18px 0 6px}
     .dot{width:8px;height:8px;border-radius:50%;background:#111827;opacity:.25;animation:pulse 1.4s infinite ease-in-out}
@@ -38,12 +37,6 @@
     .dot:nth-child(3){animation-delay:.4s}
     @keyframes pulse{0%,80%,100%{transform:scale(.6);opacity:.25}40%{transform:scale(1);opacity:.9}}
   </style>
-
-  <!-- ✅ 所有 JS 變數/程式都要在 script 裡，才不會跑到頁面上 -->
-  <script>
-    // 你如果之後要用 Apps Script 寫入 Sheet，再用這個（目前先放著也OK）
-    const API_URL = "https://script.google.com/macros/s/AKfycbyS7aWthUky7PNZaChierMEqmu5VcAuyfa1Uv0QKBjTOCRiaHCX44K-lf_JZlcxZaSi4w/exec";
-  </script>
 </head>
 
 <body>
@@ -53,7 +46,6 @@
   <div class="subtitle">先把結果儲存好，我再把答案溫柔地交給您。</div>
 
   <div class="card">
-
     <div style="margin-bottom:14px;">
       <label for="custName">請用中文全名，來探究生命的能量</label>
       <input id="custName" placeholder="例如：陳圓圓" autocomplete="name">
@@ -95,9 +87,9 @@
     </div>
 
     <div class="note">
-      小提醒：若您要做這個小測驗，分析結果前會先記錄到資料庫裡。<br>
-      需要先按下「儲存並揭曉」後，表單會自動填好，只要按一次「提交」，我就能把答案完整留存。<br>
-      ✅ 提交後回到這頁，直接按「我已提交，顯示結果」就可以。
+      小提醒：分析結果前會先記錄到資料庫裡。<br>
+      先按「儲存並揭曉」→ 會開啟已填好的 Google 表單 → 按一次「提交」。<br>
+      ✅ 提交後回到這頁，按「我已提交，顯示結果」就可以。
     </div>
 
     <div class="row">
@@ -123,7 +115,10 @@
 </div>
 
 <script>
-/** Google Form（含姓名 entry） */
+/** ✅（可先放著）Apps Script API */
+const API_URL = "https://script.google.com/macros/s/AKfycbyS7aWthUky7PNZaChierMEqmu5VcAuyfa1Uv0QKBjTOCRiaHCX44K-lf_JZlcxZaSi4w/exec";
+
+/** ✅ Google Form（prefill） */
 const FORM_BASE =
   "https://docs.google.com/forms/d/e/1FAIpQLSedMQBg5Bv2fXPYKtMamZr9sYaZ_mtBegk8KD1_-oqrh6c5BA/viewform?usp=pp_url"
   + "&entry.1299194271=NAME"
@@ -132,7 +127,6 @@ const FORM_BASE =
   + "&entry.569870339=PART"
   + "&entry.384840199=CONSULT";
 
-/** 四季×時辰→皇帝部位 */
 const table = {
   spring:{子:"皇帝頭",卯:"皇帝肩",酉:"皇帝肩",丑:"皇帝腹",亥:"皇帝腹",午:"皇帝腰",巳:"皇帝手",未:"皇帝手",辰:"皇帝膝",戌:"皇帝膝",寅:"皇帝足",申:"皇帝足"},
   summer:{午:"皇帝頭",卯:"皇帝肩",酉:"皇帝肩",未:"皇帝腹",亥:"皇帝腹",子:"皇帝腰",丑:"皇帝手",巳:"皇帝手",辰:"皇帝膝",戌:"皇帝膝",寅:"皇帝足",申:"皇帝足"},
@@ -162,37 +156,62 @@ const explain = {
 
 const seasonText = { spring:"春季", summer:"夏季", autumn:"秋季", winter:"冬季" };
 
-/** ✅ 這個 key 會造成「上一位資料留著」 */
-const INPUT_KEY = "gbeauty_emperor_inputs_v1";
-const SUBMIT_KEY = "gbeauty_emperor_submitted_until";
+/** ✅ 用 sessionStorage：同一分頁內有效，顯示後清掉（下一位不會看到上一位） */
+const INPUT_KEY = "gb_emperor_inputs_session";
+const PENDING_KEY = "gb_emperor_pending_session";
 
 function esc(s){
   return String(s).replaceAll("&","&amp;").replaceAll("<","&lt;").replaceAll(">","&gt;")
     .replaceAll('"',"&quot;").replaceAll("'","&#39;");
 }
 
+function setStatus(msg){
+  document.getElementById("statusText").textContent = msg || "";
+}
+
+function enableRevealButton(){
+  document.getElementById("btnAlready").disabled = false;
+}
+
 function getInputs(){
-  const name = document.getElementById("custName").value.trim();
-  const s = document.getElementById("season").value;
-  const t = document.getElementById("time").value;
-  return {name,s,t};
+  return {
+    name: (document.getElementById("custName").value || "").trim(),
+    s: document.getElementById("season").value || "",
+    t: document.getElementById("time").value || ""
+  };
+}
+
+function saveSession(){
+  const {name,s,t} = getInputs();
+  sessionStorage.setItem(INPUT_KEY, JSON.stringify({name,s,t,ts:Date.now()}));
+}
+
+function restoreSession(){
+  try{
+    const raw = sessionStorage.getItem(INPUT_KEY);
+    if(!raw) return;
+    const data = JSON.parse(raw);
+    if(data?.name != null) document.getElementById("custName").value = data.name;
+    if(data?.s != null) document.getElementById("season").value = data.s;
+    if(data?.t != null) document.getElementById("time").value = data.t;
+  }catch(e){}
 }
 
 function buildPrefillUrl(name,s,t){
-  const part = table[s]?.[t];
+  const part = table[s]?.[t] || "";
   const consult = consultMap[part] || "";
   return FORM_BASE
     .replace("NAME", encodeURIComponent(name))
-    .replace("SEASON", encodeURIComponent(seasonText[s]))
-    .replace("TIME", encodeURIComponent(t + "時"))
-    .replace("PART", encodeURIComponent(part || ""))
+    .replace("SEASON", encodeURIComponent(seasonText[s] || ""))
+    .replace("TIME", encodeURIComponent(t ? (t + "時") : ""))
+    .replace("PART", encodeURIComponent(part))
     .replace("CONSULT", encodeURIComponent(consult));
 }
 
 function renderResult(name,s,t){
   const part = table[s]?.[t];
   if(!part){
-    alert("老師小提醒：你選的季節/時辰沒有對到結果，請再確認一次🙂");
+    alert("老師小提醒：季節/時辰沒有對到結果，請再確認一次🙂");
     return;
   }
   const consult = consultMap[part] || "";
@@ -206,20 +225,15 @@ function renderResult(name,s,t){
     <div class="badge">測驗結果</div>
     <h2>${esc(name)}，你生在【${esc(part)}】｜${esc(ex.title)}</h2>
     <div class="k">${keywordHtml}</div>
-
     <p style="margin-top:10px; color:#6b7280; font-size:13px;">
       你的選擇：${esc(seasonText[s])}・${esc(t)}時
     </p>
-
     <p><span class="pill">適合的諮詢方向：${esc(consult)}</span></p>
-
     ${parasHtml}
-
     <div class="note">
       ${esc(ex.teacher)}<br>
       老師想補一句：你願意了解自己，就是在把人生慢慢整理回來。
     </div>
-
     <div class="ctaRow">
       <a class="btn primary" href="booking.html#bookingForm">想更細緻判讀，直接預約</a>
       <a class="btn" href="vip.html">看 VIP 矩陣總說（需密碼）</a>
@@ -230,81 +244,31 @@ function renderResult(name,s,t){
   box.scrollIntoView({behavior:"smooth"});
 }
 
-function setStatus(msg){
-  document.getElementById("statusText").textContent = msg || "";
-}
-
-function enableRevealButton(){
-  document.getElementById("btnAlready").disabled = false;
-}
-
-/** ✅ 清除欄位與 localStorage，避免下一位看到上一位資料 */
-function clearAll(){
-  document.getElementById("custName").value = "";
-  document.getElementById("season").value = "";
-  document.getElementById("time").value = "";
-  document.getElementById("result").style.display = "none";
-  document.getElementById("ritualText").style.display = "none";
-  document.getElementById("loader").style.display = "none";
-  document.getElementById("btnAlready").disabled = true;
-  localStorage.removeItem(INPUT_KEY);
-  localStorage.removeItem(SUBMIT_KEY);
-  setStatus("已清除資料🙂 可以開始新的測驗。");
-}
-
-/** ✅ 只有你自己想測試才保留：用 ?keep=1 開啟記憶模式 */
-const keepMode = new URLSearchParams(location.search).get("keep") === "1";
-
-function saveInputsToLocal(){
-  if(!keepMode) return; // ✅預設不記憶，避免客人看到上一位
-  const {name,s,t} = getInputs();
-  localStorage.setItem(INPUT_KEY, JSON.stringify({name,s,t, ts: Date.now()}));
-}
-
-function restoreInputsFromLocal(){
-  if(!keepMode) return;
-  try{
-    const raw = localStorage.getItem(INPUT_KEY);
-    if(!raw) return;
-    const data = JSON.parse(raw);
-    if(typeof data.name === "string") document.getElementById("custName").value = data.name;
-    if(typeof data.s === "string") document.getElementById("season").value = data.s;
-    if(typeof data.t === "string") document.getElementById("time").value = data.t;
-  }catch(e){}
-}
-
-/** 輸入事件：只有 keep=1 才會記 */
-["custName","season","time"].forEach(id=>{
-  const el = document.getElementById(id);
-  el.addEventListener("input", saveInputsToLocal);
-  el.addEventListener("change", saveInputsToLocal);
-});
-
-/** ① 儲存並揭曉：先打開表單 */
 function saveAndReveal(){
   const {name,s,t} = getInputs();
-  if(!name){ alert("請先輸入姓名，方便我為你記錄🙂"); return; }
-  if(!s || !t){ alert("請完整選擇季節與時辰"); return; }
+  if(!name){ alert("請先輸入姓名🙂"); return; }
+  if(!s || !t){ alert("請完整選擇季節與時辰🙂"); return; }
 
-  saveInputsToLocal();
+  saveSession();
+  sessionStorage.setItem(PENDING_KEY, "1");
+  enableRevealButton();
 
   const url = buildPrefillUrl(name,s,t);
   window.open(url, "_blank", "noopener");
 
-  setStatus("✅ 我已把表單替你填好並開啟；你只要按一次「提交」，我就能把結果完整留存。提交後回來按「我已提交，顯示結果」。");
-  enableRevealButton();
+  setStatus("✅ 表單已開啟並自動填好。提交後回來這頁，按「我已提交，顯示結果」。");
 }
 
-/** ② 我已提交：儀式 + 3 秒後顯示 */
 function confirmSubmitted(){
-  const {name,s,t} = getInputs();
+  let {name,s,t} = getInputs();
   if(!name || !s || !t){
-    alert("老師小提醒：請先輸入姓名、季節、時辰🙂");
+    restoreSession();
+    ({name,s,t} = getInputs());
+  }
+  if(!name || !s || !t){
+    alert("回來後欄位是空的，請重新輸入姓名/季節/時辰🙂");
     return;
   }
-
-  const until = Date.now() + 24*60*60*1000;
-  localStorage.setItem(SUBMIT_KEY, String(until));
 
   const ritual = document.getElementById("ritualText");
   const loader = document.getElementById("loader");
@@ -320,31 +284,49 @@ function confirmSubmitted(){
     loader.style.display = "none";
     renderResult(name,s,t);
 
-    // ✅ 顯示結果後自動清除（避免下一位看到）
-    if(!keepMode){
-      localStorage.removeItem(INPUT_KEY);
-      localStorage.removeItem(SUBMIT_KEY);
-    }
-  }, 1800);
+    // 顯示後清掉（下一位不會看到上一位）
+    sessionStorage.removeItem(INPUT_KEY);
+    sessionStorage.removeItem(PENDING_KEY);
+  }, 1500);
+}
+
+function clearAll(){
+  document.getElementById("custName").value = "";
+  document.getElementById("season").value = "";
+  document.getElementById("time").value = "";
+  document.getElementById("result").style.display = "none";
+  document.getElementById("ritualText").style.display = "none";
+  document.getElementById("loader").style.display = "none";
+  document.getElementById("btnAlready").disabled = true;
+  sessionStorage.removeItem(INPUT_KEY);
+  sessionStorage.removeItem(PENDING_KEY);
+  setStatus("已清除資料🙂 可以開始新的測驗。");
 }
 
 function init(){
-  restoreInputsFromLocal();
+  restoreSession();
 
-  // 只要有填資料就解鎖（避免回來按不了）
+  // 曾按過「儲存並揭曉」就解鎖
+  if(sessionStorage.getItem(PENDING_KEY) === "1"){
+    enableRevealButton();
+    setStatus("你已開啟表單🙂 提交後回來按「我已提交，顯示結果」。");
+  }
+
+  // 有填就先開按鈕（避免回來按不了）
   const {name,s,t} = getInputs();
   if(name && s && t) enableRevealButton();
 
-  // 綁定按鈕
+  ["custName","season","time"].forEach(id=>{
+    const el = document.getElementById(id);
+    el.addEventListener("input", saveSession);
+    el.addEventListener("change", saveSession);
+  });
+
   document.getElementById("btnSaveReveal").addEventListener("click", saveAndReveal);
   document.getElementById("btnAlready").addEventListener("click", confirmSubmitted);
   document.getElementById("btnClear").addEventListener("click", clearAll);
 
-  if(!keepMode){
-    setStatus("（提示）這頁預設不保留上次資料，避免下一位看到🙂");
-  }else{
-    setStatus("你目前是 keep=1 測試模式：會保留上次輸入。");
-  }
+  setStatus("（提示）這頁不會保留上一位資料🙂");
 }
 init();
 </script>
