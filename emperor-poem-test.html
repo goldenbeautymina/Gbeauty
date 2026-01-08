@@ -305,6 +305,16 @@ function clearAll(){
 
 function init(){
   restoreSession();
+  // ✅ 如果是從 after-submit 回來（?submitted=1），自動顯示結果
+const qs = new URLSearchParams(location.search);
+if(qs.get("submitted") === "1"){
+  // 把網址參數清掉，避免重新整理又再跑一次
+  history.replaceState(null, "", location.pathname);
+  enableRevealButton();
+  // 直接顯示結果（等同按「我已提交」）
+  confirmSubmitted();
+}
+
 
   // 曾按過「儲存並揭曉」就解鎖
   if(sessionStorage.getItem(PENDING_KEY) === "1"){
