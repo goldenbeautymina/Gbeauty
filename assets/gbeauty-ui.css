@@ -86,4 +86,107 @@ input::placeholder{color:#9ca3af}
   .hero-actions .btn{ width:auto; }
   .hero-img img{ height:420px; }
 }
+/* ===== Index one-page additions ===== */
+.topbar{
+  position:sticky; top:0; z-index:50;
+  background:rgba(250,247,242,.86);
+  backdrop-filter:saturate(180%) blur(10px);
+  border-bottom:1px solid var(--line);
+}
+.topbar-inner{
+  display:flex; align-items:center; justify-content:space-between;
+  padding:12px 16px;
+}
+.brand{display:flex; gap:10px; align-items:center; text-decoration:none}
+.brandMark{
+  width:38px; height:38px; border-radius:12px;
+  display:flex; align-items:center; justify-content:center;
+  background:#111827; color:#fff; font-weight:900;
+}
+.brandText{display:flex; flex-direction:column; line-height:1.15}
+.brandText small{color:var(--muted); font-size:12px; margin-top:2px}
+
+.navBtn{
+  border:1px solid var(--line); background:#fff; border-radius:12px;
+  padding:10px 12px; font-weight:900; cursor:pointer;
+}
+.navPanel{
+  display:none; flex-direction:column; gap:10px;
+  padding:12px 16px 16px;
+}
+.navPanel a{padding:10px 12px; border-radius:12px; border:1px solid var(--line); text-decoration:none; background:#fff}
+.navPanel.open{display:flex}
+
+.section{padding:34px 0}
+.section.soft{background:rgba(255,255,255,.5); border-top:1px solid rgba(229,231,235,.7); border-bottom:1px solid rgba(229,231,235,.7)}
+.sectionTitle{margin:0 0 8px; font-size:22px}
+.sectionSub{margin:0 0 16px; color:#4b5563; font-size:14px; line-height:1.7}
+
+.heroCard{
+  background:#fff; border:1px solid var(--line);
+  border-radius:18px; box-shadow:var(--shadow);
+  overflow:hidden;
+}
+.heroImg img{width:100%; display:block; aspect-ratio: 16/10; object-fit:cover}
+.heroText{padding:18px 16px}
+.heroActions{display:flex; flex-direction:column; gap:10px; margin-top:12px}
+.heroBadges{display:flex; flex-wrap:wrap; gap:8px; margin-top:14px}
+.chip{display:inline-flex; padding:6px 10px; border-radius:999px; border:1px solid var(--line); background:#fafafa; font-size:12px; color:#374151}
+
+.cards{display:grid; gap:12px}
+.cardItem{
+  background:#fff; border:1px solid var(--line);
+  border-radius:18px; box-shadow:var(--shadow);
+  padding:16px;
+}
+.cardItem h3{margin:0 0 8px; font-size:16px}
+.cardItem p{margin:0; color:#4b5563; font-size:14px; line-height:1.8}
+
+.ctaBox{
+  background:#fff; border:1px solid var(--line);
+  border-radius:18px; box-shadow:var(--shadow);
+  padding:18px 16px;
+}
+.ctaBtns{display:flex; flex-direction:column; gap:10px; margin-top:10px}
+.miniLine{margin-top:10px; font-size:12px; color:var(--muted)}
+
+.btnRowInline{display:flex; flex-direction:column; gap:10px; margin-top:12px}
+
+.studioCard{
+  background:#fff; border:1px solid var(--line);
+  border-radius:18px; box-shadow:var(--shadow);
+  overflow:hidden;
+}
+.studioCard img{width:100%; display:block; aspect-ratio: 16/10; object-fit:cover}
+.studioText{padding:16px}
+.studioText h3{margin:0 0 6px}
+.studioText p{margin:0; color:#4b5563; font-size:14px; line-height:1.8}
+
+.faq{
+  background:#fff; border:1px solid var(--line);
+  border-radius:18px; box-shadow:var(--shadow);
+  padding:12px 14px; margin-bottom:10px;
+}
+.faq summary{cursor:pointer; font-weight:900}
+.faq p{margin:10px 0 0; color:#4b5563; font-size:14px; line-height:1.8}
+
+.footer{padding:28px 0 40px; border-top:1px solid var(--line)}
+.footerGrid{display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap}
+.footerLinks{display:flex; gap:12px; flex-wrap:wrap}
+.footerLinks a{padding:8px 10px; border-radius:12px; border:1px solid var(--line); background:#fff; text-decoration:none}
+.muted{color:var(--muted); font-size:13px; margin-top:4px}
+.copyright{margin-top:14px; color:var(--muted); font-size:12px}
+
+/* 桌機微調 */
+@media (min-width: 820px){
+  .heroText{padding:22px}
+  .cards{grid-template-columns:repeat(3,1fr)}
+  .btnRowInline{flex-direction:row}
+  .ctaBtns{flex-direction:row}
+  .navPanel{display:flex; flex-direction:row; gap:10px; padding:0 16px 16px}
+  .navBtn{display:none}
+  .navPanel a{background:#fff}
+  .topbar-inner{padding:14px 16px}
+  .heroImg img{aspect-ratio: 16/9}
+}
 
