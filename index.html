@@ -1,139 +1,236 @@
 <!DOCTYPE html>
 <html lang="zh-TW">
 <head>
-<link rel="stylesheet" href="assets/gbeauty-ui.css">
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>GoldenBeauty｜開運眉眼唇</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GoldenBeauty｜開運眉眼唇・紋繡美學</title>
+  <meta name="description" content="GoldenBeauty｜開運眉眼唇・紋繡美學。用更適合你的眉型與線條，讓狀態穩、選擇更順。提供預約、測驗、VIP內容與完整諮詢。" />
 
-  <style>
-    body{
-      margin:0;
-      font-family: system-ui, -apple-system, "Noto Sans TC", "Microsoft JhengHei", sans-serif;
-      background:#faf7f2;
-      color:#1f2937;
-      line-height:1.6;
-    }
-    .wrap{
-      max-width:900px;
-      margin:0 auto;
-      padding:40px 20px;
-      text-align:center;
-    }
-    .logo{
-      width:120px;
-      height:120px;
-      border-radius:50%;
-      object-fit:cover;
-      box-shadow:0 10px 25px rgba(0,0,0,.15);
-      margin-bottom:16px;
-    }
-    h1{
-      margin:0 0 10px;
-      font-size:28px;
-    }
-    .slogan{
-      font-size:15px;
-      color:#4b5563;
-      margin-bottom:28px;
-    }
-    .quote{
-      background:#fff;
-      padding:18px;
-      border-radius:16px;
-      box-shadow:0 10px 30px rgba(0,0,0,.08);
-      margin-bottom:30px;
-    }
-    .quote p{
-      margin:6px 0;
-    }
-    .btn{
-      display:inline-block;
-      padding:14px 26px;
-      border-radius:999px;
-      background:#111827;
-      color:#fff;
-      font-weight:700;
-      text-decoration:none;
-      transition:.2s;
-    }
-    .btn:hover{
-      transform:translateY(-2px);
-    }
-  </style>
+  <!-- 你的主題 CSS -->
+  <link rel="stylesheet" href="./assets/gbeauty-ui.css" />
 </head>
 
 <body>
-  <div class="wrap">
-    <img src="images/gbeauty-logo.jpg" alt="GoldenBeauty" class="logo">
-<!-- Hero 視覺區 -->
-<section class="hero">
-  <div class="hero-img">
-    <img src="./assets/images/eyebrow-work.jpg" alt="GBeauty 專業開運紋眉">
-  </div>
 
-  <div class="hero-text">
-    <h1>當臉的線條順了，<br>人的選擇也會跟著順。</h1>
-    <p>
-      結合面相 × 氣質 × 開運邏輯，<br>
-      為你設計真正「適合你人生節奏」的眉型。
-    </p>
+  <!-- ✅ 手機置頂導覽（簡潔、好點） -->
+  <header class="topbar">
+    <div class="wrap topbar-inner">
+      <a class="brand" href="#top" aria-label="回到首頁">
+        <!-- 你有 logo 就換成圖片 -->
+        <span class="brandMark" aria-hidden="true">GB</span>
+        <span class="brandText">
+          <strong>GoldenBeauty</strong>
+          <small>開運眉眼唇・紋繡美學</small>
+        </span>
+      </a>
 
-    <div class="hero-actions">
-      <a href="emperor-poem-test.html" class="btn primary">先測我的皇帝命運</a>
-      <a href="booking.html#bookingForm" class="btn ghost">直接預約諮詢</a>
-    </div>
-  </div>
-</section>
-
-<!-- 工作室空間 -->
-<section class="studio">
-  <div class="studio-img">
-    <img src="./assets/images/studio.jpg" alt="GBeauty 工作室環境">
-  </div>
-
-  <div class="studio-text">
-    <h2>安心、專注、被好好對待的空間</h2>
-    <p>
-      紋眉不只是技術，<br>
-      而是一段「被理解、被照顧」的過程。<br><br>
-      這裡，是讓你放心交付臉與人生狀態的地方。
-    </p>
-  </div>
-</section>
-
-    <h1>GoldenBeauty</h1>
-    <h1>｜開運眉眼唇｜</h1>
-    <div class="slogan">
-      <p>「當臉的線條順了...</p>
-      <p> ...人的選擇也會跟著順。」</p>
+      <button class="navBtn" id="navBtn" type="button" aria-label="開啟選單" aria-expanded="false">
+        ☰
+      </button>
     </div>
 
-    <div class="quote">
-      <p>很多人不是運不好...</p>
-       <p> 只是狀態有點亂。</p>
-      <p>我不做奇蹟，只做剛剛好的調整。</p>
-      <p>當狀態穩了，選擇自然比較順。</p>
-    </div>
+    <nav class="navPanel" id="navPanel">
+      <a href="#service">服務特色</a>
+      <a href="#test">命運測驗</a>
+      <a href="#booking">立即預約</a>
+      <a href="#studio">工作室</a>
+      <a href="vip.html">VIP</a>
+    </nav>
+  </header>
 
-    <!-- ⭐ 正確連到預約頁 -->
-    <a href="booking.html#bookingForm" class="btn">立即填寫預約</a>
+  <main id="top">
 
-        <div class="quote">
-    <a href="emperor-poem-test.html" class="btn" style="background:#b45309; margin-left:14px;">
-  皇帝詩能量測驗
+    <!-- ✅ Hero：一眼看懂主題 + 兩個主 CTA -->
+    <section class="hero">
+      <div class="wrap">
 
-      <p>為了更清楚的了解自己天生的能量</p>
-   
-          <a href="vip.html" class="btn" style="background:#b45309; margin-left:14px;">
-            <p> ｜會員專區｜</p>
-             <p> 紫微×靈數×開運眉</p>
-             </a>
-         「接下來這一頁，是給已經準備好更深入理解自己的人。」
-          </a>
+        <div class="heroCard">
+          <div class="heroImg">
+            <!-- 放：紋眉工作照 -->
+            <img src="./assets/images/eyebrow-work.jpg" alt="商業紋眉施作照片" loading="lazy" />
+          </div>
+
+          <div class="heroText">
+            <h1>當臉的線條順了，人的選擇也會跟著順。</h1>
+            <p>
+              不是運不好，是狀態有點亂。<br>
+              我不做奇蹟，只做剛剛好的調整：讓你更像「狀態穩定」的自己。
+            </p>
+
+            <div class="heroActions">
+              <a class="btn primary" href="#booking">立即預約｜諮詢 & 施作</a>
+              <a class="btn" href="#test">先做 1 分鐘測驗｜看看你屬於哪一型</a>
+            </div>
+
+            <div class="heroBadges">
+              <span class="chip">✔ 客製化眉型設計</span>
+              <span class="chip">✔ 開運眉型諮詢</span>
+              <span class="chip">✔ 衛生流程／一人一套耗材</span>
+            </div>
+          </div>
         </div>
 
+      </div>
+    </section>
 
-  </div>
+    <!-- ✅ 服務特色 -->
+    <section id="service" class="section">
+      <div class="wrap">
+        <h2 class="sectionTitle">服務特色</h2>
+        <p class="sectionSub">你不需要變成別人，只要把自己「調回順」的線條。</p>
+
+        <div class="cards">
+          <article class="cardItem">
+            <h3>眉型設計｜看起來更乾淨有精神</h3>
+            <p>依臉型比例、骨相與氣質微調，讓眉頭、眉中、眉尾更協調自然。</p>
+          </article>
+
+          <article class="cardItem">
+            <h3>開運諮詢｜給你可落地的建議</h3>
+            <p>用「眉眼唇」線條做狀態整理：事業、關係、情緒能量都更穩。</p>
+          </article>
+
+          <article class="cardItem">
+            <h3>安心流程｜衛生與紀錄</h3>
+            <p>一人一套耗材、施作前後說明清楚，並保留紀錄方便後續追蹤。</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ✅ 命運測驗 CTA -->
+    <section id="test" class="section soft">
+      <div class="wrap">
+        <div class="ctaBox">
+          <div>
+            <h2 class="sectionTitle">皇帝詩命運測驗</h2>
+            <p class="sectionSub">先把結果記錄好，我再把答案溫柔地交給你。</p>
+          </div>
+
+          <div class="ctaBtns">
+            <a class="btn primary" href="emperor-poem-test.html">開始測驗（1 分鐘）</a>
+            <a class="btn" href="after-submit.html">提交後頁面（回來看結果）</a>
+          </div>
+
+          <div class="miniLine">
+            提醒：測驗提交後，請點「回到測驗頁」再按「我已提交，顯示結果」。
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ✅ 預約（可放 Google Form / LIFF / 你的 booking.html） -->
+    <section id="booking" class="section">
+      <div class="wrap">
+        <h2 class="sectionTitle">立即預約</h2>
+        <p class="sectionSub">你想調整的是哪一段狀態？我們從最適合你的線條開始。</p>
+
+        <div class="cards">
+          <article class="cardItem">
+            <h3>快速預約</h3>
+            <p>選擇你方便的時間，我會回覆確認並提供施作前注意事項。</p>
+            <div class="btnRowInline">
+              <a class="btn primary" href="booking.html#bookingForm">前往預約表單</a>
+              <a class="btn" href="vip.html">VIP 專屬內容</a>
+            </div>
+          </article>
+
+          <article class="cardItem">
+            <h3>我想先了解適合哪種眉型</h3>
+            <p>你可以先做測驗，或直接留言「想改善的困擾」，我會給你方向。</p>
+            <div class="btnRowInline">
+              <a class="btn" href="emperor-poem-test.html">先做測驗</a>
+              <a class="btn" href="#faq">看常見問題</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ✅ 工作室（放你提供的工作室照片） -->
+    <section id="studio" class="section soft">
+      <div class="wrap">
+        <h2 class="sectionTitle">工作室環境</h2>
+        <p class="sectionSub">舒服、乾淨、安靜，讓你安心把狀態調回來。</p>
+
+        <div class="studioCard">
+          <img src="./assets/images/studio.jpg" alt="GoldenBeauty 工作室照片" loading="lazy" />
+          <div class="studioText">
+            <h3>GoldenBeauty Studio</h3>
+            <p>到店前會先確認需求，施作過程會清楚說明每一步，讓你放心。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ✅ FAQ -->
+    <section id="faq" class="section">
+      <div class="wrap">
+        <h2 class="sectionTitle">常見問題</h2>
+
+        <details class="faq">
+          <summary>會不會看起來很「做過」？</summary>
+          <p>我們以「自然、乾淨、耐看」為優先，線條與顏色都以你本人的氣質做微調。</p>
+        </details>
+
+        <details class="faq">
+          <summary>我完全不知道自己適合什麼眉型怎麼辦？</summary>
+          <p>可以先做命運測驗，或直接預約諮詢，我會用更好懂的方式帶你找到方向。</p>
+        </details>
+
+        <details class="faq">
+          <summary>提交測驗後回來看不到結果？</summary>
+          <p>請回到測驗頁（不是停在 Google 表單頁），再按「我已提交，顯示結果」。若仍不行，我可以幫你檢查頁面版本。</p>
+        </details>
+      </div>
+    </section>
+
+    <!-- ✅ 頁尾 -->
+    <footer class="footer">
+      <div class="wrap">
+        <div class="footerGrid">
+          <div>
+            <strong>GoldenBeauty</strong>
+            <div class="muted">開運眉眼唇・紋繡美學</div>
+          </div>
+          <div class="footerLinks">
+            <a href="#service">服務</a>
+            <a href="#test">測驗</a>
+            <a href="#booking">預約</a>
+            <a href="vip.html">VIP</a>
+          </div>
+        </div>
+
+        <div class="copyright">
+          © <span id="y"></span> GoldenBeauty. All rights reserved.
+        </div>
+      </div>
+    </footer>
+
+  </main>
+
+  <!-- ✅ 小 JS：導覽開合 + 年份 -->
+  <script>
+    // 年份
+    document.getElementById("y").textContent = new Date().getFullYear();
+
+    // 手機導覽開合
+    const navBtn = document.getElementById("navBtn");
+    const navPanel = document.getElementById("navPanel");
+
+    navBtn.addEventListener("click", () => {
+      const open = navPanel.classList.toggle("open");
+      navBtn.setAttribute("aria-expanded", open ? "true" : "false");
+    });
+
+    // 點選單後自動收起
+    navPanel.querySelectorAll("a").forEach(a => {
+      a.addEventListener("click", () => {
+        navPanel.classList.remove("open");
+        navBtn.setAttribute("aria-expanded", "false");
+      });
+    });
+  </script>
+
 </body>
 </html>
