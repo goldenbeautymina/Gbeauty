@@ -1,0 +1,57 @@
+:root{
+  --bg:#faf7f2; --card:#fff; --text:#1f2937; --muted:#6b7280; --line:#e5e7eb;
+  --btn:#111827; --btnText:#fff; --gold:#b45309;
+  --shadow:0 14px 35px rgba(0,0,0,.08); --r:18px; --max:920px;
+  --dangerBg:#fff1f2; --dangerLine:#fecaca; --dangerText:#991b1b;
+}
+
+*{box-sizing:border-box}
+body{margin:0;font-family:system-ui,-apple-system,"Noto Sans TC","Microsoft JhengHei",sans-serif;background:var(--bg);color:var(--text);line-height:1.7}
+a{color:inherit}
+.wrap{max-width:var(--max);margin:0 auto;padding:42px 16px 80px}
+
+h1{margin:0 0 6px;font-size:28px;letter-spacing:.4px}
+.subtitle{font-size:14px;color:#4b5563;margin:0 0 18px}
+
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow);padding:22px 18px}
+@media(min-width:820px){ .card{padding:26px 22px} }
+
+label{font-weight:900;font-size:14px;display:block;margin-top:14px}
+.mini,.helper{margin-top:6px;font-size:12px;color:var(--muted)}
+
+input,select,textarea{
+  width:100%; margin-top:8px; padding:14px;
+  border-radius:14px; border:1px solid var(--line);
+  font-size:16px; background:#fff;
+}
+textarea{min-height:110px; resize:vertical}
+input::placeholder{color:#9ca3af}
+
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:8px}
+@media(max-width:720px){ .grid{grid-template-columns:1fr} }
+
+/* 手機友善按鈕：滿版、好點 */
+.btn{
+  display:flex; align-items:center; justify-content:center;
+  width:100%; padding:14px 16px; border-radius:999px;
+  font-weight:900; text-decoration:none;
+  border:1px solid var(--line); color:#111827; background:#fff;
+  cursor:pointer;
+}
+.btn.primary{background:var(--btn);color:var(--btnText);border-color:var(--btn)}
+.btn.danger{border-color:var(--dangerLine);background:var(--dangerBg);color:var(--dangerText)}
+.btn:disabled{opacity:.55;cursor:not-allowed}
+
+.btnRow{display:flex;flex-direction:column;gap:10px;margin-top:16px}
+@media(min-width:820px){ .btnRow{flex-direction:row} .btn{width:auto} }
+
+.note{
+  margin-top:14px; font-size:14px; color:#4b5563;
+  border-left:4px solid var(--gold);
+  padding:10px 12px; background:#fff7ed; border-radius:14px
+}
+
+.result{display:none;margin-top:18px;background:#fff;border-radius:18px;padding:22px 18px;box-shadow:var(--shadow);border:1px solid var(--line)}
+.badge{display:inline-block;padding:6px 10px;border-radius:999px;background:#111827;color:#fff;font-size:12px;font-weight:900;letter-spacing:.5px;margin-bottom:10px}
+.pill{display:inline-block;padding:6px 10px;border-radius:999px;border:1px solid var(--line);font-size:12px;color:#374151;background:#fafafa}
+.k{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0 2px}
