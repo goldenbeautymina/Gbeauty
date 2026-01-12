@@ -55,3 +55,35 @@ input::placeholder{color:#9ca3af}
 .badge{display:inline-block;padding:6px 10px;border-radius:999px;background:#111827;color:#fff;font-size:12px;font-weight:900;letter-spacing:.5px;margin-bottom:10px}
 .pill{display:inline-block;padding:6px 10px;border-radius:999px;border:1px solid var(--line);font-size:12px;color:#374151;background:#fafafa}
 .k{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0 2px}
+
+/* Hero 區（手機優先） */
+.hero { padding: 0 0 40px; }
+.hero-img img { width:100%; border-radius:18px; object-fit:cover; }
+.hero-text { margin-top:20px; text-align:center; }
+.hero-text h1 { font-size:22px; line-height:1.5; margin:0 0 12px; font-weight:700; }
+.hero-text p { font-size:15px; color:#4b5563; line-height:1.7; margin:0 0 20px; }
+.hero-actions { display:flex; flex-direction:column; gap:12px; }
+.hero-actions .btn { text-align:center; }
+
+/* Studio 區 */
+.studio { padding: 40px 0; }
+.studio-img img { width:100%; border-radius:18px; margin-bottom:20px; }
+.studio-text { text-align:center; }
+.studio-text h2 { font-size:20px; margin:0 0 12px; }
+.studio-text p { font-size:15px; color:#4b5563; line-height:1.8; margin:0; }
+
+/* 桌機強化：左右排版 */
+@media (min-width: 820px){
+  .hero{
+    display:grid;
+    grid-template-columns: 1.1fr .9fr;
+    gap:22px;
+    align-items:center;
+    padding: 0 0 52px;
+  }
+  .hero-text{ text-align:left; margin-top:0; }
+  .hero-actions{ flex-direction:row; }
+  .hero-actions .btn{ width:auto; }
+  .hero-img img{ height:420px; }
+}
+
