@@ -190,3 +190,85 @@ input::placeholder{color:#9ca3af}
   .heroImg img{aspect-ratio: 16/9}
 }
 
+/* ===== booking one-page ===== */
+.bkTop{
+  position:sticky; top:0; z-index:50;
+  background:rgba(250,247,242,.86);
+  backdrop-filter:saturate(180%) blur(10px);
+  border-bottom:1px solid var(--line);
+}
+.bkTopInner{
+  display:flex; justify-content:space-between; align-items:center;
+  padding:12px 16px;
+}
+.bkBack{text-decoration:none; font-weight:900; padding:8px 10px; border:1px solid var(--line); border-radius:12px; background:#fff}
+.bkLinks{display:flex; gap:8px}
+.bkLinks a{text-decoration:none; padding:8px 10px; border:1px solid var(--line); border-radius:12px; background:#fff}
+
+.bkHero{padding:22px 0 10px}
+.bkHeroCard{
+  background:#fff; border:1px solid var(--line);
+  border-radius:18px; box-shadow:var(--shadow);
+  padding:18px 16px;
+}
+.bkHeroText h1{margin:0 0 10px; font-size:22px; line-height:1.45}
+.bkHeroText p{margin:0; color:#4b5563; font-size:14px; line-height:1.8}
+.bkHeroActions{display:flex; flex-direction:column; gap:10px; margin-top:14px}
+.bkChips{display:flex; flex-wrap:wrap; gap:8px; margin-top:14px}
+
+.bkSection{padding:34px 0}
+.bkSection.soft{background:rgba(255,255,255,.5); border-top:1px solid rgba(229,231,235,.7); border-bottom:1px solid rgba(229,231,235,.7)}
+.bkTitle{margin:0 0 8px; font-size:22px}
+.bkSub{margin:0 0 16px; color:#4b5563; font-size:14px; line-height:1.7}
+
+.bkGrid{display:grid; gap:12px}
+.bkGrid2{display:grid; gap:12px}
+@media(min-width:820px){
+  .bkGrid{grid-template-columns:repeat(3,1fr)}
+  .bkGrid2{grid-template-columns:repeat(2,1fr)}
+}
+
+.bkCard{
+  background:#fff; border:1px solid var(--line);
+  border-radius:18px; box-shadow:var(--shadow);
+  padding:16px;
+}
+.bkCard h3{margin:0 0 10px; font-size:16px}
+.bkPrice{font-size:22px; font-weight:900; margin:0 0 10px}
+.bkPrice span{font-size:12px; color:var(--muted); margin-left:6px; font-weight:700}
+.bkList{margin:0; padding-left:18px; color:#4b5563; font-size:14px; line-height:1.8}
+.bkList li{margin:6px 0}
+
+.bkSteps{display:grid; gap:10px}
+.bkStep{
+  display:flex; gap:12px; align-items:flex-start;
+  background:#fff; border:1px solid var(--line);
+  border-radius:18px; box-shadow:var(--shadow);
+  padding:14px 14px;
+}
+.bkStepNo{
+  width:34px; height:34px; border-radius:12px;
+  display:flex; align-items:center; justify-content:center;
+  background:#111827; color:#fff; font-weight:900;
+  flex:0 0 auto;
+}
+.bkCTA{display:flex; flex-direction:column; gap:10px; margin-top:14px}
+@media(min-width:820px){ .bkCTA{flex-direction:row} }
+
+.bkFormCard{
+  background:#fff; border:1px solid var(--line);
+  border-radius:18px; box-shadow:var(--shadow);
+  padding:16px;
+}
+.bkIframe{
+  width:100%;
+  height: 720px;        /* ✅ 手機友善高度 */
+  border:0;
+  border-radius:14px;
+  background:#fff;
+}
+@media(min-width:820px){
+  .bkHeroCard{padding:22px}
+  .bkIframe{height: 820px;}
+}
+
