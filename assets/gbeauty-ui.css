@@ -1220,3 +1220,49 @@ img{ max-width:100%; height:auto; }
   color: #9ca3af;
   box-shadow: none;
 }
+/* =========================
+   CTA：暖灰（偏米）＋金邊（更明顯）
+   ========================= */
+:root{
+  --cta-bg:#f3efe6;          /* 暖灰偏米 */
+  --cta-bg-2:#efe8db;        /* hover 更暖一點 */
+  --cta-border:#b88a2a;      /* 金邊 */
+  --cta-shadow:0 10px 22px rgba(17,24,39,.10);
+  --cta-text:#1f2937;
+}
+
+/* 所有按鈕基礎一致：更溫柔 */
+.btn{
+  border-width:1px;
+  border-color:#e7dfd2; /* 更暖的邊線 */
+  background:#fff;
+}
+
+/* 主要 CTA：暖灰＋金邊 + 明顯質感 */
+.btn.primary{
+  background:linear-gradient(180deg,var(--cta-bg),#ffffff);
+  color:var(--cta-text);
+  border:2px solid var(--cta-border);
+  box-shadow:var(--cta-shadow);
+}
+
+/* hover / active：差異要明顯 */
+.btn.primary:hover{
+  background:linear-gradient(180deg,var(--cta-bg-2),#ffffff);
+  transform:translateY(-1px);
+}
+.btn.primary:active{
+  transform:translateY(0);
+  box-shadow:0 6px 14px rgba(17,24,39,.10);
+}
+
+/* 次要按鈕也變暖：更一致 */
+.btn:not(.primary):not(.danger){
+  background:#fff;
+  border-color:#e7dfd2;
+}
+
+/* 手機上按鈕更好按（你若已經有可忽略） */
+.btnRow, .heroActions, .ctaBtns, .btnRowInline{
+  gap:10px;
+}
