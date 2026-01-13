@@ -469,4 +469,520 @@ input::placeholder{color:#9ca3af}
 @media(min-width:820px){
   .iframeWrap iframe{height:820px;}
 }
+/* =========================================================
+   GBeauty UI CSS 必要補丁（可直接貼到 gbeauty-ui.css 最底部）
+   - 表單 Tabs（booking 內嵌三表單）
+   - Logo 顯示/大小（首頁看不到 logo 的常見原因）
+   - Hero 間距更溫馨（手機中間空太大）
+   - 內嵌 Google Form 手機高度/圓角
+   ========================================================= */
+
+/* ---------- 0) 全站節奏微調：更溫馨、間距更緊湊 ---------- */
+:root{
+  --max: 920px;
+  --r: 18px;
+  --shadow: 0 14px 35px rgba(0,0,0,.08);
+  --line: #e5e7eb;
+  --text: #1f2937;
+  --muted: #6b7280;
+  --bg: #faf7f2;
+  --card: #fff;
+  --btn: #111827;
+  --btnText: #fff;
+  --gold: #b45309;
+
+  /* ✅ 新增：更溫馨的留白 */
+  --space-1: 10px;
+  --space-2: 14px;
+  --space-3: 18px;
+  --space-4: 24px;
+}
+
+.wrap{
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 26px 16px 64px; /* ✅ 原本太高：縮小頂部 */
+}
+
+/* section 的上下距離（手機更舒服） */
+.section{ padding: 28px 0; }
+.section.soft{ padding: 26px 0; }
+
+/* 標題/副標題更溫柔 */
+.sectionTitle{
+  margin: 0 0 8px;
+  font-size: 20px;
+  letter-spacing: .2px;
+}
+.sectionSub{
+  margin: 0 0 14px;
+  color: #4b5563;
+  font-size: 14px;
+  line-height: 1.75;
+}
+
+/* ---------- 1) Topbar / Logo：確保 logo 會出現 ---------- */
+/* 常見原因：img 被設成 display:none 或高度太小，或 brand 容器溢出 */
+.topbar{
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(250,247,242,.92);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--line);
+}
+
+.topbar-inner{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap: 12px;
+  padding: 10px 0;
+}
+
+.brand{
+  display:flex;
+  align-items:center;
+  gap: 10px;
+  text-decoration:none;
+  min-width: 0;
+}
+
+.brandLogo{
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  object-fit: cover;
+  display: block;              /* ✅ 保證顯示 */
+  flex: 0 0 auto;
+  box-shadow: 0 8px 18px rgba(0,0,0,.10);
+  border: 1px solid rgba(229,231,235,.9);
+  background: #fff;
+}
+
+.brandText{
+  display:flex;
+  flex-direction:column;
+  line-height: 1.2;
+  min-width: 0;
+}
+
+.brandText strong{
+  font-size: 14px;
+  color: var(--text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.brandText small{
+  font-size: 12px;
+  color: var(--muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* 選單按鈕 */
+.navBtn{
+  border: 1px solid var(--line);
+  background: #fff;
+  border-radius: 999px;
+  padding: 10px 12px;
+  font-weight: 900;
+  cursor: pointer;
+}
+
+/* 手機下拉選單 */
+.navPanel{
+  display:none;
+  padding: 10px 16px 14px;
+  background: rgba(250,247,242,.96);
+  border-bottom: 1px solid var(--line);
+}
+.navPanel.open{ display:block; }
+
+.navPanel a{
+  display:block;
+  padding: 12px 14px;
+  border-radius: 14px;
+  text-decoration:none;
+  border: 1px solid rgba(229,231,235,.75);
+  background: #fff;
+  margin-top: 10px;
+  font-weight: 900;
+}
+
+/* 平板以上：navPanel 可以改成水平（若你有做桌機版導覽就保留） */
+@media(min-width: 860px){
+  .navBtn{ display:none; }
+  .navPanel{
+    display:flex !important;
+    gap: 10px;
+    padding: 0 0 12px;
+    border-bottom: none;
+    background: transparent;
+    justify-content:flex-end;
+  }
+  .navPanel a{
+    margin-top: 0;
+    display:inline-flex;
+    align-items:center;
+  }
+}
+
+/* ---------- 2) Hero：圖片＋文字疊加的「高級感」+ 間距縮小 ---------- */
+.hero{
+  padding: 18px 0 10px; /* ✅ 原本太空：收斂 */
+}
+
+.heroCard{
+  border-radius: 22px;
+  overflow: hidden;
+  background: var(--card);
+  border: 1px solid rgba(229,231,235,.9);
+  box-shadow: var(--shadow);
+}
+
+/* 圖片容器 */
+.heroImg{
+  position: relative;
+  height: 240px;
+}
+.heroImg img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display:block;
+  transform: scale(1.02);
+}
+
+/* ✅ 高級感：加上漸層遮罩，文字更穩 */
+.heroImg::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background: linear-gradient(
+    to top,
+    rgba(17,24,39,.56),
+    rgba(17,24,39,.16) 48%,
+    rgba(17,24,39,0) 75%
+  );
+}
+
+/* 文字區 */
+.heroText{
+  padding: 16px 16px 18px;
+  text-align: left;
+}
+
+.heroText h1{
+  margin: 0 0 10px;
+  font-size: 20px;
+  line-height: 1.45;
+  letter-spacing: .2px;
+}
+.heroText p{
+  margin: 0 0 14px;
+  font-size: 14px;
+  color: #4b5563;
+  line-height: 1.8;
+}
+
+/* CTA */
+.heroActions{
+  display:flex;
+  flex-direction:column;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+/* badges */
+.heroBadges{
+  display:flex;
+  flex-wrap:wrap;
+  gap: 8px;
+  margin-top: 14px;
+}
+
+/* chip */
+.chip{
+  display:inline-flex;
+  align-items:center;
+  padding: 7px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  border: 1px solid rgba(229,231,235,.9);
+  background: #fafafa;
+  color: #374151;
+}
+
+/* 桌機 Hero 更大更高級 */
+@media(min-width: 860px){
+  .heroCard{
+    display:grid;
+    grid-template-columns: 1.05fr .95fr;
+    align-items: stretch;
+  }
+  .heroImg{ height: 420px; }
+  .heroText{ padding: 22px 22px 24px; }
+  .heroText h1{ font-size: 26px; }
+  .heroText p{ font-size: 15px; }
+  .heroActions{ flex-direction:row; }
+  .heroActions .btn{ width:auto; }
+}
+
+/* ---------- 3) 通用按鈕：手機好點、不要太大空 ---------- */
+.btn{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  width:100%;
+  padding: 13px 14px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: #fff;
+  color: #111827;
+  font-weight: 900;
+  text-decoration:none;
+  cursor:pointer;
+}
+.btn.primary{
+  background: var(--btn);
+  color: var(--btnText);
+  border-color: var(--btn);
+}
+.btn:disabled{ opacity:.55; cursor:not-allowed; }
+
+/* 兩顆並排（桌機） */
+.btnRowInline{
+  display:flex;
+  flex-direction:column;
+  gap: 10px;
+  margin-top: 12px;
+}
+@media(min-width: 860px){
+  .btnRowInline{ flex-direction: row; }
+  .btnRowInline .btn{ width:auto; }
+}
+
+/* ---------- 4) 卡片/列表密度：更溫馨 ---------- */
+.cards{
+  display:grid;
+  gap: 12px;
+}
+@media(min-width: 860px){
+  .cards{
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+  }
+}
+
+.cardItem{
+  background: var(--card);
+  border: 1px solid rgba(229,231,235,.9);
+  border-radius: 18px;
+  box-shadow: 0 10px 26px rgba(0,0,0,.06);
+  padding: 16px 16px 18px;
+}
+.cardItem h3{
+  margin: 0 0 8px;
+  font-size: 15px;
+}
+.cardItem p{
+  margin: 0;
+  color: #4b5563;
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+/* ---------- 5) CTA Box（測驗區塊） ---------- */
+.ctaBox{
+  background: var(--card);
+  border: 1px solid rgba(229,231,235,.9);
+  border-radius: 18px;
+  box-shadow: var(--shadow);
+  padding: 16px;
+}
+.ctaBtns{
+  display:flex;
+  flex-direction:column;
+  gap: 10px;
+  margin-top: 12px;
+}
+@media(min-width: 860px){
+  .ctaBox{ display:flex; align-items:center; justify-content:space-between; gap: 14px; }
+  .ctaBtns{ flex-direction:row; margin-top: 0; }
+  .ctaBtns .btn{ width:auto; }
+}
+.miniLine{
+  margin-top: 10px;
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+/* ---------- 6) 工作室 Studio 卡 ---------- */
+.studioCard{
+  background: var(--card);
+  border: 1px solid rgba(229,231,235,.9);
+  border-radius: 18px;
+  overflow:hidden;
+  box-shadow: var(--shadow);
+}
+.studioCard img{
+  width:100%;
+  display:block;
+  height: 220px;
+  object-fit: cover;
+}
+.studioText{
+  padding: 14px 16px 16px;
+}
+.studioText h3{
+  margin: 0 0 6px;
+  font-size: 16px;
+}
+.studioText p{
+  margin: 0;
+  color: #4b5563;
+  font-size: 14px;
+  line-height: 1.8;
+}
+@media(min-width: 860px){
+  .studioCard{ display:grid; grid-template-columns: 1fr 1fr; }
+  .studioCard img{ height: 320px; }
+  .studioText{ padding: 18px 18px 20px; }
+}
+
+/* ---------- 7) FAQ ---------- */
+.faq{
+  background: var(--card);
+  border: 1px solid rgba(229,231,235,.9);
+  border-radius: 16px;
+  padding: 12px 14px;
+  box-shadow: 0 10px 24px rgba(0,0,0,.05);
+  margin-top: 12px;
+}
+.faq summary{
+  cursor:pointer;
+  font-weight: 900;
+  font-size: 14px;
+}
+.faq p{
+  margin: 10px 0 0;
+  color: #4b5563;
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+/* ---------- 8) 表單 Tabs（三表單） ---------- */
+.formHub{ padding: 16px !important; }
+.formTabs{
+  display:flex;
+  flex-direction:column;
+  gap: 10px;
+}
+@media(min-width: 860px){
+  .formTabs{
+    flex-direction:row;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+}
+
+.tabBtn{
+  width:100%;
+  text-align:left;
+  padding: 12px 14px;
+  border-radius: 14px;
+  border: 1px solid rgba(229,231,235,.9);
+  background: #fff;
+  font-weight: 900;
+  cursor:pointer;
+  line-height: 1.3;
+}
+.tabBtn.isActive{
+  background: #111827;
+  border-color: #111827;
+  color: #fff;
+}
+
+.formTopLine{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap: 10px;
+  margin: 14px 0 8px;
+}
+.paneTitle{
+  font-weight: 900;
+  font-size: 14px;
+}
+.miniLink{
+  font-size: 12px;
+  color: #374151;
+  text-decoration: underline;
+}
+
+/* ✅ Tab pane 顯示/隱藏 */
+.tabPane{ display:none; }
+.tabPane.isShow{ display:block; }
+
+/* 內嵌 Google Form 容器 */
+.iframeWrap{
+  width:100%;
+  border-radius: 16px;
+  overflow:hidden;
+  border: 1px solid rgba(229,231,235,.9);
+  background: #fff;
+  box-shadow: 0 10px 22px rgba(0,0,0,.05);
+}
+
+/* ✅ Google Form iframe：手機要夠高，避免看不到送出 */
+.iframeWrap iframe{
+  width: 100%;
+  height: 980px;       /* 手機預設高度 */
+  border: 0;
+  display:block;
+  background:#fff;
+}
+@media(min-width: 860px){
+  .iframeWrap iframe{ height: 860px; }
+}
+
+/* ---------- 9) Footer ---------- */
+.footer{
+  padding: 26px 0 34px;
+  border-top: 1px solid rgba(229,231,235,.9);
+  background: rgba(255,255,255,.55);
+}
+.footerGrid{
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap: 12px;
+}
+.footerLinks{
+  display:flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.footerLinks a{
+  text-decoration:none;
+  font-weight: 900;
+  font-size: 13px;
+  padding: 8px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(229,231,235,.9);
+  background:#fff;
+}
+.muted{ color: var(--muted); font-size: 12px; margin-top: 4px; }
+.copyright{
+  margin-top: 14px;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+/* ---------- 10) 小防呆：圖片載入失敗時也不要把區塊撐爆 ---------- */
+img{ max-width:100%; height:auto; }
 
