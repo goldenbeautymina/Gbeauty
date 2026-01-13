@@ -1167,3 +1167,56 @@ img{ max-width:100%; height:auto; }
   border-color: #e5e7eb;
   color: #9ca3af;
 }
+
+/* ===== GoldenBeauty Premium CTA（灰 × 金邊） ===== */
+
+/* 主 CTA：深灰底＋霧金邊 */
+.btn.primary{
+  background: #2f2f2f;              /* 深霧灰 */
+  color: #ffffff;
+  border: 1.5px solid #c9a24d;      /* 霧金 */
+  box-shadow: 0 6px 16px rgba(0,0,0,.15);
+  letter-spacing: .5px;
+}
+
+/* 主 CTA Hover：金色浮現（高級感） */
+.btn.primary:hover{
+  background: linear-gradient(
+    135deg,
+    #2f2f2f 0%,
+    #3a3a3a 60%,
+    #c9a24d 100%
+  );
+  border-color: #e2c16f;
+  box-shadow: 0 10px 26px rgba(201,162,77,.35);
+}
+
+/* 次 CTA：白底＋金灰線 */
+.btn{
+  background: #fbfbfb;
+  color: #2f2f2f;
+  border: 1.2px solid #e6d7b2;
+  font-weight: 600;
+}
+
+/* 次 CTA Hover */
+.btn:hover{
+  background: #f8f6f1;
+  border-color: #c9a24d;
+  color: #2f2f2f;
+}
+
+/* Hero 區 CTA：稍微更大一點（手機好點） */
+.heroActions .btn{
+  padding: 15px 18px;
+  font-size: 15.5px;
+  border-radius: 999px;
+}
+
+/* 禁用狀態（仍然高級） */
+.btn:disabled{
+  background: #e5e5e5;
+  border-color: #ddd2b3;
+  color: #9ca3af;
+  box-shadow: none;
+}
