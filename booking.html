@@ -3,84 +3,297 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>GBeauty｜開運眉眼唇 預約</title>
-
-  <style>
-    body{
-      margin:0;
-      font-family: system-ui, -apple-system, "Noto Sans TC", "Microsoft JhengHei", sans-serif;
-      background:#faf7f2;
-      color:#1f2937;
-    }
-    .wrap{
-      max-width:900px;
-      margin:0 auto;
-      padding:30px 20px 60px;
-    }
-    .header{
-      display:flex;
-      align-items:center;
-      gap:16px;
-      margin-bottom:24px;
-    }
-    .logo{
-      width:80px;
-      height:80px;
-      border-radius:50%;
-      object-fit:cover;
-      box-shadow:0 8px 20px rgba(0,0,0,.15);
-    }
-    h1{
-      margin:0;
-      font-size:22px;
-    }
-    .slogan{
-      font-size:13px;
-      color:#4b5563;
-      margin-top:4px;
-    }
-    .card{
-      background:#fff;
-      padding:20px;
-      border-radius:18px;
-      box-shadow:0 12px 30px rgba(0,0,0,.08);
-    }
-    iframe{
-      width:100%;
-      height:1500px;
-      border:0;
-    }
-    .back{
-      display:inline-block;
-      margin-bottom:16px;
-      color:#374151;
-      text-decoration:none;
-      font-size:14px;
-    }
-  </style>
+  <title>立即預約｜GoldenBeauty 開運眉眼唇</title>
+  <meta name="description" content="GoldenBeauty 預約頁｜價目、注意事項、常見問題一次看懂。線條順了，狀態就穩。" />
+  <link rel="stylesheet" href="./assets/gbeauty-ui.css" />
 </head>
 
 <body>
-  <div class="wrap">
 
-    <a href="index.html" class="back">← 回首頁</a>
-
-    <div class="header">
-      <img src="images/gbeauty-logo.jpg" alt="GBeauty" class="logo">
-      <div>
-        <h1>GBeauty｜開運眉眼唇 預約</h1>
-        <div class="slogan">當臉的線條順了，人的選擇也會跟著順。</div>
+  <!-- 簡易置頂：回首頁 / 回測驗 / VIP -->
+  <header class="bkTop">
+    <div class="wrap bkTopInner">
+      <a class="bkBack" href="./">← 回首頁</a>
+      <div class="bkLinks">
+        <a href="emperor-poem-test.html">測驗</a>
+        <a href="vip.html">VIP</a>
       </div>
     </div>
+  </header>
 
-    <!-- ⭐ 首頁會跳到這裡 -->
-    <div id="bookingForm" class="card">
-      <iframe
-        src="https://docs.google.com/forms/d/e/1FAIpQLSexG8VG9bjWXVa02-l4BEgf12KPSpTfLPB2JQHVYoFerM4uEw/viewform?embedded=true">
-        載入中…
-      </iframe>
+  <main id="top">
+
+    <!-- Hero -->
+    <section class="bkHero">
+      <div class="wrap">
+        <div class="bkHeroCard">
+          <div class="bkHeroText">
+            <h1>立即預約｜讓狀態回到「剛剛好的順」</h1>
+            <p>
+              你不需要變成別人。<br>
+              我只做「剛剛好的調整」，讓你看起來更乾淨、有精神、也更像自己。
+            </p>
+
+            <div class="bkHeroActions">
+              <a class="btn primary" href="#bookingForm">我想預約（往下填表）</a>
+              <a class="btn" href="#price">先看價目與項目</a>
+            </div>
+
+            <div class="bkChips">
+              <span class="chip">✔ 客製化眉型設計</span>
+              <span class="chip">✔ 開運諮詢導向</span>
+              <span class="chip">✔ 衛生流程透明</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 價目 -->
+    <section id="price" class="bkSection">
+      <div class="wrap">
+        <h2 class="bkTitle">價目與項目</h2>
+        <p class="bkSub">（可依你實際價格修改）先選你最需要的，我會在確認時再細聊。</p>
+
+        <div class="bkGrid">
+          <article class="bkCard">
+            <h3>開運眉型諮詢</h3>
+            <div class="bkPrice">NT$ 1,500<span>/次</span></div>
+            <ul class="bkList">
+              <li>眉頭/眉中/眉尾能量解析</li>
+              <li>左右眉平衡：事業/感情方向</li>
+              <li>給你可落地的調整建議</li>
+            </ul>
+            <a class="btn primary" href="#bookingForm">選這個｜我要諮詢</a>
+          </article>
+
+          <article class="bkCard">
+            <h3>自然系霧眉/飄眉</h3>
+            <div class="bkPrice">NT$ 12,000<span>/起</span></div>
+            <ul class="bkList">
+              <li>客製化眉型設計</li>
+              <li>依膚色/髮色調色</li>
+              <li>含基礎修復指引</li>
+            </ul>
+            <a class="btn primary" href="#bookingForm">選這個｜我要施作</a>
+          </article>
+
+          <article class="bkCard">
+            <h3>補色/修眉（舊眉調整）</h3>
+            <div class="bkPrice">NT$ 3,000<span>/起</span></div>
+            <ul class="bkList">
+              <li>評估舊眉狀況與底色</li>
+              <li>修正眉型與顏色偏差</li>
+              <li>必要時安排分次處理</li>
+            </ul>
+            <a class="btn primary" href="#bookingForm">選這個｜我要補色/修正</a>
+          </article>
+        </div>
+
+        <div class="note">
+          價格會依「舊眉底色、膚況、密度與期望效果」微調。<br>
+          你先填表，我會先替你做初步評估與時間安排🙂
+        </div>
+      </div>
+    </section>
+
+    <!-- 流程 -->
+    <section class="bkSection soft">
+      <div class="wrap">
+        <h2 class="bkTitle">預約流程（手機版一眼懂）</h2>
+
+        <div class="bkSteps">
+          <div class="bkStep">
+            <div class="bkStepNo">1</div>
+            <div>
+              <strong>填寫預約表單</strong>
+              <div class="muted">留下姓名/想改善的困擾/方便時段</div>
+            </div>
+          </div>
+
+          <div class="bkStep">
+            <div class="bkStepNo">2</div>
+            <div>
+              <strong>我回覆確認</strong>
+              <div class="muted">確認項目、預算、注意事項與時間</div>
+            </div>
+          </div>
+
+          <div class="bkStep">
+            <div class="bkStepNo">3</div>
+            <div>
+              <strong>到店諮詢與施作</strong>
+              <div class="muted">設計 → 確認 → 施作 → 修復指引</div>
+            </div>
+          </div>
+
+          <div class="bkStep">
+            <div class="bkStepNo">4</div>
+            <div>
+              <strong>追蹤與補色（如需）</strong>
+              <div class="muted">依膚況安排補色，效果更自然持久</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bkCTA">
+          <a class="btn primary" href="#bookingForm">好，我要開始預約</a>
+          <a class="btn" href="emperor-poem-test.html">我想先做測驗再預約</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 注意事項 -->
+    <section id="notice" class="bkSection">
+      <div class="wrap">
+        <h2 class="bkTitle">施作前注意事項</h2>
+        <p class="bkSub">為了安全與呈現效果，以下請你先快速看一下（很重要）。</p>
+
+        <div class="bkGrid2">
+          <article class="bkCard">
+            <h3>前 24–48 小時</h3>
+            <ul class="bkList">
+              <li>避免熬夜、飲酒、過量咖啡因</li>
+              <li>若會緊張，可先吃飽再來</li>
+              <li>當天避免濃妝（眉部尤佳）</li>
+            </ul>
+          </article>
+
+          <article class="bkCard">
+            <h3>不建議施作情況</h3>
+            <ul class="bkList">
+              <li>孕期/哺乳期（建議先評估）</li>
+              <li>重大皮膚發炎、嚴重過敏</li>
+              <li>近期醫美雷射/酸類療程（眉部）</li>
+            </ul>
+          </article>
+
+          <article class="bkCard">
+            <h3>若你有舊眉</h3>
+            <ul class="bkList">
+              <li>請拍 2–3 張自然光照片</li>
+              <li>近距離/遠距離各一張</li>
+              <li>我會先判斷能否修正或需淡化</li>
+            </ul>
+          </article>
+
+          <article class="bkCard">
+            <h3>修復期簡述</h3>
+            <ul class="bkList">
+              <li>結痂/脫皮是正常現象</li>
+              <li>期間避免摳抓、泡湯、桑拿</li>
+              <li>依指引保養，顏色會更穩</li>
+            </ul>
+          </article>
+        </div>
+
+        <div class="note">
+          有慢性病、長期用藥或特殊體質者，建議先在表單備註，我會先做安全評估🙂
+        </div>
+      </div>
+    </section>
+
+    <!-- 預約表單（你可以用：Google Form / LIFF / 內建表單） -->
+    <section id="bookingForm" class="bkSection soft">
+      <div class="wrap">
+        <h2 class="bkTitle">填寫預約（1 分鐘）</h2>
+        <p class="bkSub">你留資料，我負責把流程整理得很順，讓你安心。</p>
+
+        <div class="bkFormCard">
+          <!-- ✅ 方案 A：直接嵌入 Google Form（最省事）
+               把下面 src 換成你的「嵌入連結」 -->
+          <iframe
+            class="bkIframe"
+            src="YOUR_GOOGLE_FORM_EMBED_URL"
+            title="GoldenBeauty 預約表單"
+            loading="lazy"
+          ></iframe>
+
+          <!-- ✅ 方案 B：如果你想改用你自己的 HTML 表單 + Apps Script
+               我也可以幫你做（會更順、送出後直接顯示成功頁 + 回到結果頁） -->
+          <div class="mini">
+            若你想要「送出後自動顯示成功頁 + 可回到測驗結果」，我可以把表單改成 Apps Script 直寫 Google Sheet 的版本。
+          </div>
+
+          <div class="bkCTA">
+            <a class="btn primary" href="#top">我填完了｜回頁首</a>
+            <a class="btn" href="vip.html">看 VIP 內容</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" class="bkSection">
+      <div class="wrap">
+        <h2 class="bkTitle">常見問題 FAQ</h2>
+
+        <details class="faq">
+          <summary>會不會很痛？</summary>
+          <p>每個人感受不同，我會以「舒適度」優先，並在過程中隨時確認你的狀態。</p>
+        </details>
+
+        <details class="faq">
+          <summary>做完會很濃嗎？</summary>
+          <p>我走「自然、乾淨、耐看」路線，顏色會隨修復期變得更柔和自然。</p>
+        </details>
+
+        <details class="faq">
+          <summary>多久需要補色？</summary>
+          <p>依膚況與生活習慣不同，多在 4–8 週做補色評估，效果更穩。</p>
+        </details>
+
+        <details class="faq">
+          <summary>我有舊眉可以做嗎？</summary>
+          <p>可以先填表並上傳/提供照片，我會先判斷底色與可修正範圍，必要時分次處理。</p>
+        </details>
+
+        <div class="bkCTA">
+          <a class="btn primary" href="#bookingForm">好，我要預約</a>
+          <a class="btn" href="emperor-poem-test.html">我先做測驗再說</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 最後 CTA -->
+    <section class="bkSection soft">
+      <div class="wrap">
+        <div class="ctaBox">
+          <h2 class="sectionTitle">你願意了解自己，就是在把人生慢慢整理回來。</h2>
+          <p class="sectionSub">今天先做一個小決定：讓狀態回穩，選擇就會順。</p>
+
+          <div class="ctaBtns">
+            <a class="btn primary" href="#bookingForm">立即預約</a>
+            <a class="btn" href="./">回首頁看看服務</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="wrap">
+      <div class="footerGrid">
+        <div>
+          <strong>GoldenBeauty</strong>
+          <div class="muted">開運眉眼唇・紋繡美學</div>
+        </div>
+        <div class="footerLinks">
+          <a href="./">首頁</a>
+          <a href="emperor-poem-test.html">測驗</a>
+          <a href="vip.html">VIP</a>
+        </div>
+      </div>
+      <div class="copyright">
+        © <span id="y"></span> GoldenBeauty. All rights reserved.
+      </div>
     </div>
+  </footer>
 
-  </div>
+  <script>
+    document.getElementById("y").textContent = new Date().getFullYear();
+  </script>
+
 </body>
 </html>
