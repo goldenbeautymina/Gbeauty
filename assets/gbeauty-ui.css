@@ -986,3 +986,16 @@ input::placeholder{color:#9ca3af}
 /* ---------- 10) 小防呆：圖片載入失敗時也不要把區塊撐爆 ---------- */
 img{ max-width:100%; height:auto; }
 
+/* ===== Header Logo Size Fix ===== */
+.brandLogo{
+  height: 40px;        /* 原本多半是 28~32px，這裡放大 */
+  width: auto;
+  display: block;
+}
+
+/* 手機再大一點，更有存在感 */
+@media (max-width: 640px){
+  .brandLogo{
+    height: 44px;
+  }
+}
