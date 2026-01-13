@@ -1038,3 +1038,88 @@ img{ max-width:100%; height:auto; }
     height: 56px;
   }
 }
+
+/* ===== Hero Logo Overlay（Logo 變成 Hero 的一部分） ===== */
+
+/* Hero 圖容器要能定位 */
+.heroCard{ position: relative; overflow: hidden; }
+
+/* 圖片區也要能定位 */
+.heroImg{ position: relative; overflow: hidden; border-radius: 18px; }
+
+/* 黑金質感遮罩：讓字更好讀、也更溫馨 */
+.heroImg::after{
+  content:"";
+  position:absolute; inset:0;
+  background: linear-gradient(180deg,
+    rgba(0,0,0,.30) 0%,
+    rgba(0,0,0,.10) 35%,
+    rgba(0,0,0,0) 70%);
+  pointer-events:none;
+}
+
+/* ✅ Logo 疊在照片上：左上角，微霧玻璃感 */
+.heroLogoOverlay{
+  position:absolute;
+  top: 14px;
+  left: 14px;
+  display:flex;
+  align-items:center;
+  gap: 10px;
+  padding: 10px 12px;
+  border-radius: 999px;
+  background: rgba(255,255,255,.68);
+  border: 1px solid rgba(255,255,255,.55);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 10px 28px rgba(0,0,0,.16);
+  z-index: 3;
+}
+
+/* Logo 圖本體 */
+.heroLogoOverlay img{
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background:#fff;
+  padding: 2px;
+  box-shadow: 0 6px 16px rgba(0,0,0,.12);
+}
+
+/* Logo 文字（可選） */
+.heroLogoOverlay .heroBrandText{
+  display:flex;
+  flex-direction:column;
+  line-height:1.15;
+}
+
+.heroLogoOverlay .heroBrandText strong{
+  font-size: 13px;
+  letter-spacing: .3px;
+}
+
+.heroLogoOverlay .heroBrandText small{
+  font-size: 11px;
+  color: rgba(17,24,39,.70);
+}
+
+/* ✅ 手機：更大、更顯眼 */
+@media (max-width: 640px){
+  .heroLogoOverlay{
+    top: 12px;
+    left: 12px;
+    padding: 10px 12px;
+  }
+  .heroLogoOverlay img{
+    width: 48px;
+    height: 48px;
+  }
+}
+
+/* ✅ 如果你覺得 header 的 logo 會重複，也可以讓 header 小一點（可留可不留） */
+.brandLogo{
+  height: 44px;
+}
+@media (max-width:640px){
+  .brandLogo{ height: 40px; }
+}
