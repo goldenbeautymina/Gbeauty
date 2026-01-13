@@ -1123,3 +1123,47 @@ img{ max-width:100%; height:auto; }
 @media (max-width:640px){
   .brandLogo{ height: 40px; }
 }
+
+/* ===== Button Color Refinement（黑 → 高級灰） ===== */
+
+/* 主按鈕：溫潤深灰（取代純黑） */
+.btn.primary{
+  background: #374151;          /* slate-700 */
+  border-color: #374151;
+  color: #ffffff;
+}
+
+/* 主按鈕 hover（更深一點點） */
+.btn.primary:hover{
+  background: #1f2937;          /* slate-800 */
+  border-color: #1f2937;
+}
+
+/* 次要按鈕：淺灰白底，更溫馨 */
+.btn{
+  background: #f9fafb;          /* very light gray */
+  border-color: #e5e7eb;
+  color: #374151;
+}
+
+/* 次要按鈕 hover */
+.btn:hover{
+  background: #f3f4f6;
+}
+
+/* Hero 區特別微調（手機看起來更柔） */
+.heroActions .btn{
+  font-weight: 700;
+}
+
+/* 圓形主 CTA（如果你有用到圓形版本） */
+.btn.round.primary{
+  background: #374151;
+}
+
+/* 禁用狀態 */
+.btn:disabled{
+  background: #e5e7eb;
+  border-color: #e5e7eb;
+  color: #9ca3af;
+}
