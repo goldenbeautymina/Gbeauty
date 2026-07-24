@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>遇見。回甘｜生命靈數與專屬水晶 V5</title>
+<style>
+:root{
+  --green:#278c35;
+  --red:#df4d4d;
+  --ink:#24201f;
+  --muted:#756c69;
+  --paper:#f1dddd;
+  --line:#646464;
+  --panel:#ffffff;
+  --gold:#b58a4e;
+  --soft:#fbf5f1;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  font-family:"Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif;
+  background:linear-gradient(145deg,#fffaf8,#f8efeb);
+  color:var(--ink);
+}
+.wrap{max-width:1180px;margin:auto;padding:28px 18px 60px}
+.brand{
+  display:flex;align-items:center;gap:12px;margin-bottom:8px
+}
+.brand-mark{
+  width:44px;height:44px;border-radius:50%;
+  display:grid;place-items:center;
+  background:linear-gradient(145deg,#d7bd86,#9d7638);
+  color:#fff;font-size:24px
+}
+h1{font-size:clamp(28px,4vw,44px);margin:0}
+.intro{color:var(--muted);line-height:1.8;margin:0 0 22px}
+.layout{display:grid;grid-template-columns:350px 1fr;gap:22px;align-items:start}
+.card{
+  background:rgba(255,255,255,.97);
+  border:1px solid #eaded9;
+  border-radius:20px;
+  padding:20px;
+  box-shadow:0 14px 34px rgba(85,60,50,.10);
+}
+.controls{position:sticky;top:18px}
+label{display:block;font-weight:800;margin:10px 0 7px}
+input[type=date]{
+  width:100%;height:48px;padding:0 12px;font-size:17px;
+  border:1px solid #d8c9c3;border-radius:12px;background:#fff;
+}
+button{
+  width:100%;height:48px;border:0;border-radius:13px;
+  margin-top:13px;font-size:16px;font-weight:800;cursor:pointer;
+}
+.primary{background:#2e9147;color:#fff}
+.secondary{background:#f2e6e2;color:#5e4943}
+.note{
+  margin:14px 0 0;padding:13px;border-radius:12px;
+  background:#faf4f1;color:#675954;font-size:13px;line-height:1.75;
+}
+.result{
+  background:var(--paper);
+  border:8px double #e7a189;
+  padding:20px 20px 26px;
+}
+.headline{
+  color:var(--green);
+  font-size:clamp(22px,3.2vw,38px);
+  line-height:1.4;margin:0 0 18px;
+}
+.headline strong{font-size:1.08em}
+.chart{
+  width:min(100%,650px);
+  margin:auto;
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  grid-template-rows:repeat(4,1fr);
+  aspect-ratio:3/4;
+}
+.cell{
+  position:relative;
+  border:1.5px solid var(--line);
+  background:rgba(255,255,255,.80);
+  overflow:hidden;
+}
+.c0{grid-column:2;grid-row:1}
+.c1{grid-column:1;grid-row:2}
+.c4{grid-column:2;grid-row:2;background:transparent}
+.c7{grid-column:3;grid-row:2}
+.c2{grid-column:1;grid-row:3}
+.c5{grid-column:2;grid-row:3;background:transparent}
+.c8{grid-column:3;grid-row:3}
+.c3{grid-column:1;grid-row:4}
+.c6{grid-column:2;grid-row:4}
+.c9{grid-column:3;grid-row:4}
+.num{
+  position:absolute;inset:0;z-index:10;
+  display:flex;align-items:center;justify-content:center;
+  font:700 clamp(32px,6vw,58px) Georgia,"Times New Roman",serif;
+  color:#111;
+}
+.shape{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:2}
+.circle{border:4px solid var(--red);border-radius:50%}
+.circle.one{width:76%;height:76%}
+.circle.two{width:66%;height:66%}
+.circle.three{width:56%;height:56%}
+.circle.four{width:46%;height:46%}
+.square{width:72%;height:72%;border:4px solid var(--red);z-index:4}
+.triangle{
+  width:74%;height:74%;background:var(--red);
+  clip-path:polygon(50% 2%,3% 93%,97% 93%);z-index:3;
+}
+.triangle::after{
+  content:"";position:absolute;inset:7px 8px 8px;
+  background:rgba(255,255,255,.93);
+  clip-path:polygon(50% 2%,3% 93%,97% 93%);
+}
+.missing{
+  position:absolute;right:7px;bottom:5px;
+  font-size:12px;color:#9b8680;z-index:12
+}
+.details{
+  width:min(100%,650px);margin:18px auto 0;
+  display:grid;grid-template-columns:repeat(3,1fr);gap:10px
+}
+.detail{
+  background:rgba(255,255,255,.62);border-radius:11px;
+  padding:10px;text-align:center;line-height:1.55
+}
+.detail b{display:block;color:#704d45}
+.legend{
+  width:min(100%,650px);margin:12px auto 0;
+  display:flex;flex-wrap:wrap;justify-content:center;gap:8px
+}
+.legend span{
+  background:rgba(255,255,255,.58);padding:6px 9px;border-radius:9px;
+  font-size:13px;color:#695b57
+}
+.interpretation{
+  width:min(100%,650px);margin:14px auto 0;
+  background:rgba(255,255,255,.58);border-radius:12px;padding:14px;
+  line-height:1.75;color:#574d49
+}
+.crystal-section{
+  margin-top:22px;
+  background:#fff;border:1px solid #eaded9;border-radius:20px;
+  box-shadow:0 14px 34px rgba(85,60,50,.08);
+  padding:22px
+}
+.section-title{
+  margin:0 0 8px;font-size:clamp(24px,3vw,34px)
+}
+.section-sub{margin:0 0 18px;color:var(--muted);line-height:1.7}
+.crystal-highlight{
+  display:grid;grid-template-columns:160px 1fr;gap:18px;
+  padding:18px;border-radius:18px;
+  background:linear-gradient(145deg,#fff9ef,#f7eee4);
+  border:1px solid #ead5bc;
+  margin-bottom:20px
+}
+.crystal-orb{
+  aspect-ratio:1;border-radius:50%;
+  display:grid;place-items:center;
+  background:radial-gradient(circle at 35% 30%,#fff,#d6c3e9 35%,#8b6fa7 70%,#5d476c);
+  color:white;font-size:58px;box-shadow:inset 0 0 25px rgba(255,255,255,.55),0 10px 22px rgba(84,63,104,.2)
+}
+.crystal-highlight h3{margin:0 0 6px;font-size:26px}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 12px}
+.chip{background:#fff;border:1px solid #dfcfbd;padding:5px 9px;border-radius:999px;font-size:13px}
+.crystal-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:14px
+}
+.crystal-card{
+  border:1px solid #eadfd9;border-radius:16px;padding:16px;
+  background:linear-gradient(180deg,#fff,#fcf8f5);
+  transition:.2s transform,.2s box-shadow
+}
+.crystal-card:hover{transform:translateY(-3px);box-shadow:0 10px 24px rgba(86,61,50,.10)}
+.crystal-card.active{outline:3px solid rgba(46,145,71,.22);border-color:#78a984}
+.number-badge{
+  width:42px;height:42px;border-radius:50%;display:grid;place-items:center;
+  background:#2e9147;color:#fff;font-weight:900;font-size:20px;margin-bottom:10px
+}
+.crystal-card h4{margin:0 0 8px;font-size:20px}
+.crystal-card p{margin:6px 0;line-height:1.65;color:#5c504c}
+.crystal-name{color:#8d5c2f;font-weight:900}
+.energy-table-wrap{overflow:auto;margin-top:20px}
+.energy-table{
+  width:100%;border-collapse:collapse;min-width:900px
+}
+.energy-table th,.energy-table td{
+  border:1px solid #dfd1cb;padding:12px;vertical-align:top;line-height:1.6
+}
+.energy-table th{background:#f5e9e5;color:#5d453e}
+.energy-table tr:nth-child(even) td{background:#fdfaf8}
+.disclaimer{
+  margin-top:14px;color:#7d706b;font-size:12px;line-height:1.7
+}
+
+.energy-stats{
+  width:min(100%,650px);
+  margin:14px auto 0;
+  background:rgba(255,255,255,.66);
+  border-radius:12px;
+  padding:12px;
+}
+.energy-stats h3{
+  margin:0 0 10px;
+  font-size:18px;
+  color:#604b45;
+}
+.energy-stats-table{
+  width:100%;
+  border-collapse:collapse;
+  font-size:14px;
+}
+.energy-stats-table th,
+.energy-stats-table td{
+  border:1px solid #ddcec8;
+  padding:7px 6px;
+  text-align:center;
+}
+.energy-stats-table th{
+  background:#f4e6e1;
+}
+.energy-stats-table .active-row{
+  background:#fff8da;
+  font-weight:800;
+}
+.cell-svg{
+  position:absolute;
+  inset:4%;
+  width:92%;
+  height:92%;
+  z-index:2;
+  overflow:visible;
+}
+
+@media(max-width:900px){
+  .layout{grid-template-columns:1fr}
+  .controls{position:static}
+  .crystal-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:620px){
+  .result{padding:14px 9px 20px}
+  .details{grid-template-columns:1fr}
+  .crystal-highlight{grid-template-columns:1fr}
+  .crystal-orb{width:140px;margin:auto}
+  .crystal-grid{grid-template-columns:1fr}
+}
+@media print{
+  body{background:#fff}
+  h1,.intro,.controls{display:none}
+  .layout{display:block}
+  .card,.crystal-section{box-shadow:none;border:0;padding:0}
+  .crystal-grid{grid-template-columns:repeat(3,1fr)}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="brand">
+    <div class="brand-mark">☕</div>
+    <h1>遇見。回甘｜生命靈數能量圖</h1>
+  </div>
+  <p class="intro">輸入西元出生年月日，立即產生生命靈數圖、主命數、天賦數、缺數，以及 1～9 號人的專屬水晶與能量祝福。</p>
+
+  <div class="layout">
+    <section class="card controls">
+      <label for="birthday">西元出生日期</label>
+      <input id="birthday" type="date">
+      <button class="primary" id="generateBtn">產生生命靈數圖</button>
+      <button class="secondary" id="printBtn">列印／另存 PDF</button>
+
+      <div class="note">
+        <b>圖形規則</b><br>
+        ○ 圓形：出生年月日原始數字<br>
+        △ 三角形：每一次縮減過程中，二位數以上結果所包含的每一個後天數；重複幾次就畫幾個三角形<br>
+        □ 正方形：最後縮減後的個位數，也就是主命數<br><br>
+        同一個出生數字出現多次時，會顯示多層圓圈。
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="result">
+        <div class="headline">根據出生日期算出之生命靈數為：<strong id="lifeNumber">—</strong></div>
+        <div class="chart" id="chart"></div>
+
+        <div class="details">
+          <div class="detail"><b>生日數字</b><span id="birthDigits">—</span></div>
+          <div class="detail"><b>後天／天賦數</b><span id="talentDigits">—</span></div>
+          <div class="detail"><b>主命數</b><span id="mainNumber">—</span></div>
+        </div>
+
+        <div class="legend">
+          <span>○ 出生數字</span>
+          <span>△ 天賦數</span>
+          <span>□ 主命數</span>
+        </div>
+
+        <div class="interpretation" id="interpretation">請輸入出生日期後產生圖表。</div>
+        <div class="energy-stats" id="energyStats">
+          <h3>先天、後天與主命能量統計</h3>
+          <div id="energyStatsContent">完成計算後，這裡會顯示每個數字的能量數量。</div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <section class="crystal-section" id="crystalSection">
+    <h2 class="section-title">生命靈數 1～9 號人專屬水晶與能量對照</h2>
+    <p class="section-sub">完成計算後，系統會自動標示您的主命數，並顯示專屬水晶、核心需求與能量祝福。</p>
+
+    <div class="crystal-highlight" id="crystalHighlight">
+      <div class="crystal-orb">💎</div>
+      <div>
+        <h3>請先輸入出生日期</h3>
+        <p>完成計算後，這裡會顯示您的專屬能量水晶與祝福。</p>
+      </div>
+    </div>
+
+    <div class="crystal-grid" id="crystalGrid"></div>
+
+    <div class="energy-table-wrap">
+      <table class="energy-table">
+        <thead>
+          <tr>
+            <th>主命數</th>
+            <th>數字特質</th>
+            <th>核心能量需求與特質</th>
+            <th>數字對應的水晶與祝福</th>
+          </tr>
+        </thead>
+        <tbody id="energyTableBody"></tbody>
+      </table>
+    </div>
+
+    <p class="disclaimer">水晶內容屬於生活風格與自我覺察用途，不代表醫療、心理治療或財務保證。</p>
+  </section>
+</div>
+
+<script>
+const positions=[0,1,4,7,2,5,8,3,6,9];
+
+const profiles={
+  1:{
+    trait:"開創／獨立",
+    positive:"領導力、果斷、突破盲點。",
+    low:"容易自我中心、缺乏行動力。",
+    crystals:"鈦晶／金髮晶",
+    blessing:"增強自信與正財運，激發王者氣度的行動力。",
+    message:"願你相信自己的方向，也保有傾聽世界的柔軟。"
+  },
+  2:{
+    trait:"溝通／合作",
+    positive:"溫柔細膩、最強公關、善於協調。",
+    low:"猶豫不決、過度敏感、內耗委屈。",
+    crystals:"海藍寶／月光石",
+    blessing:"幫助內在沉澱、穩定情緒，提升溝通與表達力。",
+    message:"願你的溫柔不再成為委屈，也願你的聲音被真正理解。"
+  },
+  3:{
+    trait:"創意／表達",
+    positive:"充滿行動力、幽默感、點子豐富。",
+    low:"缺乏耐性、情緒化、容易三分鐘熱度。",
+    crystals:"黃水晶／葡萄石",
+    blessing:"凝聚正向創意思維，帶來喜悅並吸引豐盛磁場。",
+    message:"願你的靈感被好好接住，也願創意一步一步成為成果。"
+  },
+  4:{
+    trait:"穩定／安全感",
+    positive:"組織力強、條理分明、讓人信賴。",
+    low:"固執死板、缺乏安全感、害怕改變。",
+    crystals:"綠幽靈／茶晶",
+    blessing:"帶來沉穩踏實的能量，穩固磁場並打開心胸。",
+    message:"願你在穩定中保有彈性，也相信改變並不等於失去。"
+  },
+  5:{
+    trait:"自由／冒險",
+    positive:"熱愛自由、適應力強、多才多藝。",
+    low:"方向感迷失、放縱、容易焦躁不安。",
+    crystals:"拉長石／白水晶",
+    blessing:"激發潛能、擴展格局，在變動中保持清明與專注。",
+    message:"願你擁有自由，也擁有讓自由落地的方向。"
+  },
+  6:{
+    trait:"奉獻／愛與療癒",
+    positive:"極具同理心、善於照顧他人、重情義。",
+    low:"過度犧牲、情緒勒索、對親密關係要求完美。",
+    crystals:"粉晶／草莓晶",
+    blessing:"療癒心輪，帶來無條件的愛，修復與柔化關係。",
+    message:"願你在照顧別人的同時，也把自己放回愛裡。"
+  },
+  7:{
+    trait:"分析／真理",
+    positive:"邏輯能力強、擅長洞察本質。",
+    low:"多疑、想太多，容易焦慮與精神內耗。",
+    crystals:"紫水晶／青金石",
+    blessing:"開發智慧、沉靜心靈，將焦慮轉化為清明直覺。",
+    message:"願你在答案出現以前，也允許自己先安靜地呼吸。"
+  },
+  8:{
+    trait:"顯化／財富掌控",
+    positive:"具有商業頭腦、有責任感、具備大格局。",
+    low:"壓力過大、唯物主義、控制慾過強。",
+    crystals:"黑曜石／超七水晶",
+    blessing:"協助穩定界線、釋放負面能量，放大豐盛與行動磁場。",
+    message:"願你的力量不只用來掌控，也能用來承接與成全。"
+  },
+  9:{
+    trait:"靈性／圓滿",
+    positive:"慈悲心、大愛、具有強大的心靈渲染力。",
+    low:"流於空想、不切實際、容易與現實脫節。",
+    crystals:"舒俱萊／紫鋰輝",
+    blessing:"連結靈性與內在智慧，幫助理想在現實中落地。",
+    message:"願你的慈悲有邊界，也願理想一步一步成為日常。"
+  }
+};
+
+function reduceNumber(n){
+  const steps=[n];
+  while(n>9){
+    n=String(n).split("").reduce((a,b)=>a+Number(b),0);
+    steps.push(n);
+  }
+  return steps;
+}
+
+function createCell(number,birthCount,talentCount,isMain){
+  const cell=document.createElement("div");
+  cell.className=`cell c${number}`;
+
+  const svgNS="http://www.w3.org/2000/svg";
+  const svg=document.createElementNS(svgNS,"svg");
+  svg.setAttribute("viewBox","0 0 100 100");
+  svg.setAttribute("class","cell-svg");
+
+  // 圓形：先天能量。出現幾次，就畫幾個同心圓。
+  for(let i=0;i<birthCount;i++){
+    const r=Math.max(14,42-i*5);
+    const circle=document.createElementNS(svgNS,"circle");
+    circle.setAttribute("cx","50");
+    circle.setAttribute("cy","50");
+    circle.setAttribute("r",String(r));
+    circle.setAttribute("fill","none");
+    circle.setAttribute("stroke","#df4d4d");
+    circle.setAttribute("stroke-width","2.2");
+    svg.appendChild(circle);
+  }
+
+  // 三角形：後天／天賦能量。每出現一次，就畫一個同心三角形。
+  for(let i=0;i<talentCount;i++){
+    const inset=i*6;
+    const topY=8+inset;
+    const leftX=9+inset;
+    const rightX=91-inset;
+    const bottomY=90-inset;
+    if(rightX-leftX < 20) break;
+    const polygon=document.createElementNS(svgNS,"polygon");
+    polygon.setAttribute("points",`50,${topY} ${leftX},${bottomY} ${rightX},${bottomY}`);
+    polygon.setAttribute("fill","none");
+    polygon.setAttribute("stroke","#df4d4d");
+    polygon.setAttribute("stroke-width","2.2");
+    polygon.setAttribute("stroke-linejoin","round");
+    svg.appendChild(polygon);
+  }
+
+  // 正方形：主命數。
+  if(isMain){
+    const rect=document.createElementNS(svgNS,"rect");
+    rect.setAttribute("x","12");
+    rect.setAttribute("y","12");
+    rect.setAttribute("width","76");
+    rect.setAttribute("height","76");
+    rect.setAttribute("fill","none");
+    rect.setAttribute("stroke","#df4d4d");
+    rect.setAttribute("stroke-width","2.4");
+    svg.appendChild(rect);
+  }
+
+  cell.appendChild(svg);
+
+  const num=document.createElement("div");
+  num.className="num";
+  num.textContent=number;
+  cell.appendChild(num);
+
+  if(birthCount===0 && talentCount===0 && !isMain){
+    const missing=document.createElement("span");
+    missing.className="missing";
+    missing.textContent=`缺 ${number}`;
+    cell.appendChild(missing);
+  }
+  return cell;
+}
+
+function renderEmpty(){
+  const chart=document.getElementById("chart");
+  chart.innerHTML="";
+  positions.forEach(n=>chart.appendChild(createCell(n,0,0,false)));
+}
+renderEmpty();
+
+function renderCrystalCards(activeNumber=null){
+  const grid=document.getElementById("crystalGrid");
+  grid.innerHTML="";
+  for(let n=1;n<=9;n++){
+    const p=profiles[n];
+    const card=document.createElement("article");
+    card.className="crystal-card"+(n===activeNumber?" active":"");
+    card.id=`crystal-${n}`;
+    card.innerHTML=`
+      <div class="number-badge">${n}</div>
+      <h4>${p.trait}</h4>
+      <p><b>正向能量：</b>${p.positive}</p>
+      <p><b>低頻卡關：</b>${p.low}</p>
+      <p class="crystal-name">💎 ${p.crystals}</p>
+      <p>${p.blessing}</p>
+    `;
+    grid.appendChild(card);
+  }
+}
+
+function renderEnergyTable(){
+  const body=document.getElementById("energyTableBody");
+  body.innerHTML="";
+  for(let n=1;n<=9;n++){
+    const p=profiles[n];
+    const row=document.createElement("tr");
+    row.innerHTML=`
+      <td><b>${n} 號</b></td>
+      <td>${p.trait}</td>
+      <td><b>活出正面特質：</b>${p.positive}<br><br><b>低頻卡關時：</b>${p.low}</td>
+      <td><b>【${p.crystals}】</b><br>${p.blessing}</td>
+    `;
+    body.appendChild(row);
+  }
+}
+
+renderCrystalCards();
+renderEnergyTable();
+
+function updateCrystalHighlight(main){
+  const p=profiles[main];
+  document.getElementById("crystalHighlight").innerHTML=`
+    <div class="crystal-orb">💎</div>
+    <div>
+      <h3>${main} 號人的專屬能量水晶</h3>
+      <div class="chips">
+        <span class="chip">${p.trait}</span>
+        <span class="chip">${p.crystals}</span>
+      </div>
+      <p><b>正向特質：</b>${p.positive}</p>
+      <p><b>低頻提醒：</b>${p.low}</p>
+      <p><b>水晶祝福：</b>${p.blessing}</p>
+      <p><b>給你的話：</b>${p.message}</p>
+    </div>
+  `;
+  renderCrystalCards(main);
+}
+
+document.getElementById("generateBtn").addEventListener("click",()=>{
+  const value=document.getElementById("birthday").value;
+  if(!value){
+    alert("請先選擇出生日期");
+    return;
+  }
+
+  const compact=value.replaceAll("-","");
+  const digits=compact.split("").map(Number);
+  const counts=Array(10).fill(0);
+  digits.forEach(d=>counts[d]++);
+
+  const firstSum=digits.reduce((a,b)=>a+b,0);
+  const steps=reduceNumber(firstSum);
+  const main=steps[steps.length-1];
+  // 所有二位數以上的中間結果，都拆成個別數字並保留「出現次數」。
+  // 例如：38 → 11 → 2，後天數為 3、8、1、1，因此 1 要畫兩個三角形。
+  const talentCounts=Array(10).fill(0);
+  const intermediateValues=steps.slice(0,-1).filter(value=>value>9);
+  intermediateValues.forEach(value=>{
+    String(value).split("").map(Number).forEach(d=>talentCounts[d]++);
+  });
+  const talentDigits=[];
+  talentCounts.forEach((count,digit)=>{
+    for(let i=0;i<count;i++) talentDigits.push(digit);
+  });
+
+  const chart=document.getElementById("chart");
+  chart.innerHTML="";
+  positions.forEach(n=>{
+    chart.appendChild(createCell(n,counts[n],talentCounts[n],main===n));
+  });
+
+  document.getElementById("lifeNumber").textContent=main;
+  document.getElementById("birthDigits").textContent=digits.join("、");
+  document.getElementById("talentDigits").textContent=
+    talentDigits.length
+      ? `${intermediateValues.join(" → ")}（${talentDigits.join("、")}）`
+      : "無二位數以上的後天數";
+  document.getElementById("mainNumber").textContent=main;
+
+  const calculation=`${digits.join("＋")}＝${firstSum}` +
+    (steps.length>1 ? "，接著 " + steps.slice(0,-1).map((v,i)=>{
+      const ds=String(v).split("");
+      return `${ds.join("＋")}＝${steps[i+1]}`;
+    }).join("，接著 ") : "");
+
+  const missing=counts.map((c,i)=>c===0?i:null).filter(v=>v!==null);
+  const p=profiles[main];
+
+  document.getElementById("interpretation").innerHTML=
+    `<b>計算過程：</b>${calculation}<br>`+
+    `<b>${main} 號人的核心特質：</b>${p.trait}。${p.positive}<br>`+
+    `<b>生日原始數字中缺少：</b>${missing.length?missing.join("、"):"無"}<br>`+
+    `<b>專屬水晶：</b>${p.crystals}`;
+
+  const rows=[];
+  for(let n=0;n<=9;n++){
+    const total=counts[n]+talentCounts[n]+(main===n?1:0);
+    if(total>0){
+      rows.push(`
+        <tr class="${main===n?"active-row":""}">
+          <td>${n}</td>
+          <td>${counts[n]}</td>
+          <td>${talentCounts[n]}</td>
+          <td>${main===n?1:0}</td>
+          <td>${total}</td>
+        </tr>
+      `);
+    }
+  }
+  document.getElementById("energyStatsContent").innerHTML=`
+    <table class="energy-stats-table">
+      <thead>
+        <tr>
+          <th>數字</th>
+          <th>先天○</th>
+          <th>後天△</th>
+          <th>主命□</th>
+          <th>總能量</th>
+        </tr>
+      </thead>
+      <tbody>${rows.join("")}</tbody>
+    </table>
+  `;
+
+  updateCrystalHighlight(main);
+  document.getElementById(`crystal-${main}`).scrollIntoView({behavior:"smooth",block:"center"});
+});
+
+document.getElementById("printBtn").addEventListener("click",()=>window.print());
+</script>
+</body>
+</html>
