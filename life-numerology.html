@@ -38,15 +38,15 @@ body{
 }
 h1{font-size:clamp(28px,4vw,44px);margin:0}
 .intro{color:var(--muted);line-height:1.8;margin:0 0 22px}
-.layout{display:grid;grid-template-columns:350px 1fr;gap:22px;align-items:start}
-.card{
+.numerology-layout{display:grid;grid-template-columns:350px 1fr;gap:22px;align-items:start}
+.numerology-card{
   background:rgba(255,255,255,.97);
   border:1px solid #eaded9;
   border-radius:20px;
   padding:20px;
   box-shadow:0 14px 34px rgba(85,60,50,.10);
 }
-.controls{position:sticky;top:18px}
+.numerology-controls{position:sticky;top:18px}
 label{display:block;font-weight:800;margin:10px 0 7px}
 input[type=date]{
   width:100%;height:48px;padding:0 12px;font-size:17px;
@@ -242,6 +242,48 @@ button{
 
 
 /* GoldenBeauty 品牌頁補充樣式 */
+
+.numerology-layout{
+  display:grid;
+  grid-template-columns:minmax(280px,350px) minmax(0,1fr);
+  gap:22px;
+  align-items:start;
+  width:100%;
+}
+.numerology-card{
+  min-width:0;
+  width:100%;
+}
+.numerology-result-card{
+  display:block !important;
+  visibility:visible !important;
+  opacity:1 !important;
+}
+.numerology-result-card .result{
+  display:block !important;
+  width:100%;
+}
+#chart{
+  display:grid !important;
+  min-height:520px;
+}
+@media(max-width:1050px){
+  .numerology-layout{
+    grid-template-columns:1fr;
+  }
+  .numerology-controls{
+    position:static;
+  }
+  #chart{
+    min-height:420px;
+  }
+}
+@media(max-width:620px){
+  #chart{
+    min-height:360px;
+  }
+}
+
 .life-page{
   min-height:100vh;
 }
@@ -346,8 +388,8 @@ button{
 }
 
 @media(max-width:900px){
-  .layout{grid-template-columns:1fr}
-  .controls{position:static}
+  .numerology-layout{grid-template-columns:1fr}
+  .numerology-controls{position:static}
   .crystal-grid{grid-template-columns:1fr 1fr}
 }
 @media(max-width:620px){
@@ -360,8 +402,8 @@ button{
 @media print{
   body{background:#fff}
   .topbar,.life-hero-actions,.life-footer,.life-back-row{display:none!important}
-  h1,.intro,.controls{display:none}
-  .layout{display:block}
+  h1,.intro,.numerology-controls{display:none}
+  .numerology-layout{display:block}
   .card,.crystal-section{box-shadow:none;border:0;padding:0}
   .crystal-grid{grid-template-columns:repeat(3,1fr)}
 }
@@ -424,8 +466,8 @@ button{
     </div>
     <p class="intro">輸入西元出生年月日，立即產生生命靈數圖、主命數、天賦數、缺數，以及 1～9 號人的專屬水晶與能量祝福。</p>
 
-  <div class="layout">
-    <section class="card controls">
+  <div class="numerology-layout">
+    <section class="numerology-card numerology-controls">
       <label for="birthday">西元出生日期</label>
       <input id="birthday" type="date" aria-describedby="birthdayHelp">
       <small id="birthdayHelp" style="display:block;margin-top:7px;color:#756c69;">請輸入西元生日，例如：1978／06／07。</small>
@@ -441,10 +483,10 @@ button{
       </div>
     </section>
 
-    <section class="card">
+    <section class="numerology-card numerology-result-card">
       <div class="result">
         <div class="headline">根據出生日期算出之生命靈數為：<strong id="lifeNumber">—</strong></div>
-        <div class="chart" id="chart"></div>
+        <div class="chart" id="chart" aria-label="生命靈數九宮能量圖"></div>
 
         <div class="details">
           <div class="detail"><b>生日數字</b><span id="birthDigits">—</span></div>
