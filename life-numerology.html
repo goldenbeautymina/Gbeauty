@@ -3,7 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>遇見。回甘｜生命靈數與專屬水晶 V5</title>
+<title>生命靈數能量圖｜GoldenBeauty 開運眉眼唇・生命導航</title>
+<meta name="description" content="GoldenBeauty 生命靈數能量圖：輸入西元出生日期，查看先天能量、後天潛能、主命數、專屬水晶與個人祝福。">
+<link rel="stylesheet" href="./assets/gbeauty-ui.css">
 <style>
 :root{
   --green:#278c35;
@@ -24,8 +26,8 @@ body{
   background:linear-gradient(145deg,#fffaf8,#f8efeb);
   color:var(--ink);
 }
-.wrap{max-width:1180px;margin:auto;padding:28px 18px 60px}
-.brand{
+.numerology-wrap{max-width:1180px;margin:auto;padding:34px 18px 60px}
+.numerology-brand{
   display:flex;align-items:center;gap:12px;margin-bottom:8px
 }
 .brand-mark{
@@ -238,6 +240,111 @@ button{
   overflow:visible;
 }
 
+
+/* GoldenBeauty 品牌頁補充樣式 */
+.life-page{
+  min-height:100vh;
+}
+.life-hero{
+  padding:34px 0 8px;
+  text-align:center;
+}
+.life-eyebrow{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  margin-bottom:10px;
+  padding:7px 13px;
+  border:1px solid #ead9cc;
+  border-radius:999px;
+  background:rgba(255,255,255,.72);
+  color:#80644e;
+  font-size:13px;
+  font-weight:800;
+}
+.life-hero h1{
+  max-width:820px;
+  margin:0 auto 12px;
+  font-size:clamp(30px,5vw,52px);
+  line-height:1.2;
+  letter-spacing:.02em;
+}
+.life-hero .intro{
+  max-width:760px;
+  margin:0 auto 18px;
+}
+.life-hero-actions{
+  display:flex;
+  justify-content:center;
+  flex-wrap:wrap;
+  gap:10px;
+  margin-top:18px;
+}
+.life-section-label{
+  margin:0 0 10px;
+  color:#a17b55;
+  font-size:13px;
+  font-weight:900;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+}
+.life-footer{
+  margin-top:30px;
+  padding:28px 18px;
+  border-top:1px solid #eadfd9;
+  background:rgba(255,255,255,.74);
+}
+.life-footer-inner{
+  max-width:1180px;
+  margin:auto;
+  display:flex;
+  justify-content:space-between;
+  gap:18px;
+  flex-wrap:wrap;
+  align-items:center;
+}
+.life-footer-links{
+  display:flex;
+  flex-wrap:wrap;
+  gap:14px;
+}
+.life-footer a{
+  color:inherit;
+  text-decoration:none;
+}
+.life-footer a:hover{
+  text-decoration:underline;
+}
+.topbar .brand{
+  text-decoration:none;
+}
+.topbar .brandLogo{
+  object-fit:cover;
+}
+.life-back-row{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:10px;
+  margin-bottom:12px;
+  flex-wrap:wrap;
+}
+.life-back-link{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  text-decoration:none;
+  color:#705849;
+  font-weight:800;
+}
+.life-back-link:hover{
+  text-decoration:underline;
+}
+@media(max-width:620px){
+  .numerology-wrap{padding-top:22px}
+  .life-hero{padding-top:22px}
+}
+
 @media(max-width:900px){
   .layout{grid-template-columns:1fr}
   .controls{position:static}
@@ -252,6 +359,7 @@ button{
 }
 @media print{
   body{background:#fff}
+  .topbar,.life-hero-actions,.life-footer,.life-back-row{display:none!important}
   h1,.intro,.controls{display:none}
   .layout{display:block}
   .card,.crystal-section{box-shadow:none;border:0;padding:0}
@@ -260,17 +368,67 @@ button{
 </style>
 </head>
 <body>
-<div class="wrap">
-  <div class="brand">
-    <div class="brand-mark">☕</div>
-    <h1>遇見。回甘｜生命靈數能量圖</h1>
+<header class="topbar">
+  <div class="wrap topbar-inner">
+    <a class="brand" href="index.html" aria-label="回到 GoldenBeauty 首頁">
+      <img class="brandLogo" src="./images/gbeauty-logo.jpg" alt="GoldenBeauty Logo">
+      <span class="brandText">
+        <strong>GoldenBeauty</strong>
+        <small>開運眉眼唇・生命導航</small>
+      </span>
+    </a>
+
+    <button class="navBtn" id="navBtn" type="button" aria-label="開啟選單" aria-expanded="false">
+      ☰
+    </button>
   </div>
-  <p class="intro">輸入西元出生年月日，立即產生生命靈數圖、主命數、天賦數、缺數，以及 1～9 號人的專屬水晶與能量祝福。</p>
+
+  <nav class="navPanel" id="navPanel">
+    <a href="index.html">首頁</a>
+    <a href="index.html#test">命運探索</a>
+    <a href="emperor-poem-test.html">皇帝詩測驗</a>
+    <a href="index.html#booking">立即預約</a>
+    <a href="vip.html">VIP會員專屬</a>
+  </nav>
+</header>
+
+<main id="top" class="life-page">
+  <section class="life-hero">
+    <div class="numerology-wrap" style="padding-bottom:12px;">
+      <div class="life-eyebrow">GOLDENBEAUTY LIFE NAVIGATOR</div>
+      <h1>生命靈數能量圖</h1>
+      <p class="intro">
+        每一個出生數字，都是您與生俱來的能量線索。<br>
+        從先天圓圈、後天三角形到主命正方形，看見自己的特質、潛能與生命方向。
+      </p>
+
+      <div class="life-hero-actions">
+        <a class="btn primary" href="#calculator">開始分析</a>
+        <a class="btn" href="index.html#test">返回命運探索</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="numerology-wrap" id="calculator">
+    <div class="life-back-row">
+      <a class="life-back-link" href="index.html">← 回到 GoldenBeauty 首頁</a>
+      <span class="chip">約 1 分鐘完成</span>
+    </div>
+
+    <div class="numerology-brand">
+      <div class="brand-mark">🔢</div>
+      <div>
+        <p class="life-section-label">LIFE NUMBER ANALYSIS</p>
+        <h2 style="margin:0;font-size:clamp(25px,4vw,38px);">輸入生日，讀懂您的能量藍圖</h2>
+      </div>
+    </div>
+    <p class="intro">輸入西元出生年月日，立即產生生命靈數圖、主命數、天賦數、缺數，以及 1～9 號人的專屬水晶與能量祝福。</p>
 
   <div class="layout">
     <section class="card controls">
       <label for="birthday">西元出生日期</label>
-      <input id="birthday" type="date">
+      <input id="birthday" type="date" aria-describedby="birthdayHelp">
+      <small id="birthdayHelp" style="display:block;margin-top:7px;color:#756c69;">請輸入西元生日，例如：1978／06／07。</small>
       <button class="primary" id="generateBtn">產生生命靈數圖</button>
       <button class="secondary" id="printBtn">列印／另存 PDF</button>
 
@@ -339,9 +497,45 @@ button{
 
     <p class="disclaimer">水晶內容屬於生活風格與自我覺察用途，不代表醫療、心理治療或財務保證。</p>
   </section>
-</div>
+  </div>
+</main>
+
+<footer class="life-footer">
+  <div class="life-footer-inner">
+    <div>
+      <strong>GoldenBeauty</strong>
+      <div style="color:#756c69;margin-top:4px;">開運眉眼唇・生命導航</div>
+    </div>
+    <div class="life-footer-links">
+      <a href="index.html">首頁</a>
+      <a href="index.html#test">命運探索</a>
+      <a href="index.html#booking">立即預約</a>
+      <a href="vip.html">VIP會員專屬</a>
+    </div>
+    <div style="color:#756c69;">© <span id="siteYear"></span> GoldenBeauty</div>
+  </div>
+</footer>
 
 <script>
+document.getElementById("siteYear").textContent = new Date().getFullYear();
+
+const navBtn = document.getElementById("navBtn");
+const navPanel = document.getElementById("navPanel");
+
+if (navBtn && navPanel) {
+  navBtn.addEventListener("click", () => {
+    const open = navPanel.classList.toggle("open");
+    navBtn.setAttribute("aria-expanded", open ? "true" : "false");
+  });
+
+  navPanel.querySelectorAll("a").forEach(link => {
+    link.addEventListener("click", () => {
+      navPanel.classList.remove("open");
+      navBtn.setAttribute("aria-expanded", "false");
+    });
+  });
+}
+
 const positions=[0,1,4,7,2,5,8,3,6,9];
 
 const profiles={
