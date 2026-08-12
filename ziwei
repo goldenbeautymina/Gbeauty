@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>紫微斗數生命命盤｜GoldenBeauty 生命導航</title>
-<meta name="description" content="GoldenBeauty 紫微斗數排盤：真太陽時、十二宮、五行局、十四主星、六吉星、六煞星、生年四化。">
+<meta name="description" content="GoldenBeauty 紫微斗數排盤：真太陽時、十二宮、五行局、十四主星、六吉星、六煞星、生年四化、離心自化、向心自化、大限與流年。">
 <link rel="stylesheet" href="./assets/gbeauty-ui.css">
 <style>
 :root{--purple:#7552a3;--ink:#2c2728;--muted:#766d70;--line:#cdbfc7;--good:#2f7b50;--bad:#b84e4e}
@@ -15,14 +15,57 @@ label{display:block;font-weight:800;margin:12px 0 7px}input,select{width:100%;he
 .switch{display:grid;grid-template-columns:1fr 1fr;gap:8px}.switch button,.action{border:0;border-radius:11px;font-weight:900;cursor:pointer}.switch button{height:42px;background:#f2e9ef;color:#69566f}.switch button.on{background:var(--purple);color:#fff}.action{width:100%;height:48px;margin-top:14px}.primary{background:var(--purple);color:#fff}.secondary{background:#f2e7ef;color:#624b6e}
 .check{display:flex;gap:8px;align-items:flex-start;margin-top:12px;padding:10px;border:1px solid #e6dbe2;border-radius:11px;background:#fbf8fb}.check input{width:auto;height:auto;margin-top:4px}.check label{margin:0}.small{font-size:12px;color:#82767b;line-height:1.55}.solarbox{margin-top:10px;padding:11px;border-radius:11px;background:#fbf8fc;border:1px solid #e7dce9}.hide{display:none!important}
 .note,.status{margin-top:13px;padding:12px;border-radius:11px;font-size:13px;line-height:1.7}.note{background:#faf4f1;color:#665956}.status{background:#f5f0f7;color:#65546f}
-.chartScroll{overflow:auto}.chart{min-width:820px;display:grid;grid-template-columns:repeat(4,1fr);grid-template-rows:repeat(4,190px);border:2px solid #7d6b77}.palace{position:relative;border:1px solid #b8a9b3;padding:9px;background:#fff;overflow:hidden}.palace.life{background:#f2fbf4}.palace.body{box-shadow:inset 0 0 0 3px rgba(190,122,36,.20)}
+.chartScroll{overflow:auto}.chart{min-width:820px;position:relative;display:grid;grid-template-columns:repeat(4,1fr);grid-template-rows:repeat(4,190px);border:2px solid #7d6b77}.palace{position:relative;border:1px solid #b8a9b3;padding:9px;background:#fff;overflow:hidden}.palace.life{background:#f2fbf4}.palace.body{box-shadow:inset 0 0 0 3px rgba(190,122,36,.20)}
 .pname{font-size:18px;font-weight:900;padding-right:48px}.branch{position:absolute;right:8px;top:7px;font-weight:900}.stem{position:absolute;right:8px;top:29px;color:#968890;font-size:12px}.tags{display:flex;flex-wrap:wrap;gap:4px;margin-top:6px}.tag{font-size:10px;font-weight:900;padding:3px 6px;border-radius:999px}.lifeTag{background:#e4f4e7;color:#28723a}.bodyTag{background:#fff0d8;color:#995b0b}.originTag{background:#fff1c9;color:#8a5a08}.annualTag{background:#e7eefb;color:#345d98}.majorTag{background:#efe7f8;color:#64427b}
 .stars{display:flex;flex-wrap:wrap;gap:4px;margin-top:7px;align-content:flex-start}.star{display:inline-flex;align-items:center;gap:2px;padding:3px 5px;border-radius:7px;font-size:11px;font-weight:900}.main{background:#eee6f7;color:#573b6d}.good{background:#e7f5ed;color:var(--good)}.bad{background:#fae8e8;color:var(--bad)}.hua{display:inline-grid;place-items:center;width:16px;height:16px;border-radius:50%;font-size:10px;background:#fff2c8;color:#8a5b13;border:1px solid #e4ca83}.pfoot{position:absolute;left:9px;bottom:6px;font-size:10px;color:#8c7e85;line-height:1.35}
-.center{grid-column:2/4;grid-row:2/4;display:flex;align-items:center;justify-content:center;text-align:center;padding:20px;background:linear-gradient(145deg,#fff9f5,#f6eef8)}.center h3{margin:5px 0;font-size:25px}.center p{margin:4px 0;color:#6b5d65}.key{margin-top:9px;padding:9px;border-radius:11px;background:#ffffffb8;font-weight:800}
+.center{grid-column:2/4;grid-row:2/4;position:relative;z-index:2;display:flex;align-items:center;justify-content:center;text-align:center;padding:20px;background:linear-gradient(145deg,#fff9f5,#f6eef8)}.center>div{position:relative;z-index:8}.center h3{margin:5px 0;font-size:25px}.center p{margin:4px 0;color:#6b5d65}.key{margin-top:9px;padding:9px;border-radius:11px;background:#ffffffb8;font-weight:800}
 .b5{grid-column:1;grid-row:1}.b6{grid-column:2;grid-row:1}.b7{grid-column:3;grid-row:1}.b8{grid-column:4;grid-row:1}.b4{grid-column:1;grid-row:2}.b9{grid-column:4;grid-row:2}.b3{grid-column:1;grid-row:3}.b10{grid-column:4;grid-row:3}.b2{grid-column:1;grid-row:4}.b1{grid-column:2;grid-row:4}.b0{grid-column:3;grid-row:4}.b11{grid-column:4;grid-row:4}
 .summary{display:grid;grid-template-columns:repeat(7,1fr);gap:8px;margin-top:14px}.sum{padding:10px;border:1px solid #eaded9;border-radius:12px;text-align:center;background:#fff}.sum b{display:block;color:#6c507b;margin-bottom:4px}.legend{display:flex;gap:7px;flex-wrap:wrap;margin-top:12px}
 @media(max-width:960px){.layout{grid-template-columns:1fr}.controls{position:static}}@media(max-width:620px){.wrap2{padding:20px 12px 50px}.summary{grid-template-columns:1fr 1fr}}
 @media print{.topbar,.controls,.hero2,.life-footer{display:none!important}.layout{display:block}.panel{box-shadow:none;border:0}.chartScroll{overflow:visible}.chart{min-width:0;width:100%}}
+
+/* ===== 欽天四化：離心／向心自化 ===== */
+.selfHua,.inwardHua{
+  display:inline-flex;align-items:center;gap:2px;
+  margin-left:2px;padding:1px 4px;border-radius:999px;
+  font-size:9px;font-weight:900;line-height:1.35
+}
+.selfHua{background:#fff1e2;color:#a65516;border:1px solid #efc18f}
+.inwardHua{background:#e9f2ff;color:#315f99;border:1px solid #b9d1ef}
+.hua-lu{--huaColor:#b57a13}
+.hua-quan{--huaColor:#a24646}
+.hua-ke{--huaColor:#3e6f9f}
+.hua-ji{--huaColor:#66506f}
+.flyOverlay{
+  position:absolute;inset:0;width:100%;height:100%;
+  pointer-events:none;z-index:5;overflow:visible
+}
+.flyLineSelf{stroke:#c5772c;stroke-width:2.1;opacity:.82}
+.flyLineInward{stroke:#4777ae;stroke-width:2.1;opacity:.72}
+.flyLabel{
+  font-size:10px;font-weight:900;
+  paint-order:stroke;stroke:#fff;stroke-width:3px;stroke-linejoin:round
+}
+.flyLabelSelf{fill:#9b541b}
+.flyLabelInward{fill:#315f99}
+.selfPanel{
+  margin-top:14px;border:1px solid #e7dce3;border-radius:14px;
+  background:#fff;padding:14px
+}
+.selfPanel h3{margin:0 0 10px;font-size:18px;color:#624b6e}
+.selfGrid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.selfBox{
+  border-radius:12px;padding:11px;line-height:1.65;font-size:13px;
+  border:1px solid #eee3e8
+}
+.selfBox.out{background:#fff9f2}
+.selfBox.in{background:#f5f9ff}
+.selfBox b{display:block;margin-bottom:5px}
+.selfItem{padding:5px 0;border-bottom:1px dashed #e3d9de}
+.selfItem:last-child{border-bottom:0}
+.noSelf{color:#887b82;font-size:13px}
+@media(max-width:700px){.selfGrid{grid-template-columns:1fr}}
+
 </style>
 <script src="https://cdn.jsdelivr.net/npm/lunar-javascript@1.7.7/lunar.js"></script>
 </head>
@@ -35,7 +78,7 @@ label{display:block;font-weight:800;margin:12px 0 7px}input,select{width:100%;he
   <nav class="navPanel" id="navPanel"><a href="index.html">首頁</a><a href="index.html#test">命運探索</a><a href="life-numerology.html">生命靈數</a><a href="vip.html">VIP會員專屬</a></nav>
 </header>
 
-<section class="hero2"><div class="wrap2" style="padding-bottom:10px"><div style="font-weight:900;color:#76598a">GOLDENBEAUTY LIFE NAVIGATOR</div><h1>紫微斗數生命命盤</h1><p class="sub">本版：十二宮、五行局、十四主星、六吉星、六煞星、生年四化、來因宮、十年大限與流年，並提供真太陽時近似校正。</p></div></section>
+<section class="hero2"><div class="wrap2" style="padding-bottom:10px"><div style="font-weight:900;color:#76598a">GOLDENBEAUTY LIFE NAVIGATOR</div><h1>紫微斗數生命命盤</h1><p class="sub">本版：十二宮、五行局、十四主星、六吉星、六煞星、生年四化、來因宮、大限、流年，以及欽天四化的離心自化與對宮向心自化箭頭。</p></div></section>
 
 <main class="wrap2">
 <div class="layout">
@@ -67,11 +110,11 @@ label{display:block;font-weight:800;margin:12px 0 7px}input,select{width:100%;he
   <option value="10">戌時(19:00-21:00)</option>
   <option value="11">亥時(21:00-23:00)</option>
 </select>
-<div class="small">一般排盤直接選時辰即可；只有啟用真太陽時時，才需要輸入精確分鐘。</div>
+<div class="small">一般排盤直接選時辰即可；只有啟用真太陽時時，才需要輸入真實的精確出生時間。系統不會自動帶入預設時間。</div>
 
 <div id="exactTimeBox" class="hide">
   <div class="row2">
-    <div><label for="birthTime">精確出生時間</label><input id="birthTime" type="time" value="08:00"></div>
+    <div><label for="birthTime">精確出生時間</label><input id="birthTime" type="time" value="" placeholder="請輸入實際出生時間"></div>
     <div><label for="lateZiRule">晚子換日</label><select id="lateZiRule"><option value="same">23:00 後不換日</option><option value="next">23:00 起算次日</option></select></div>
   </div>
 </div>
@@ -90,7 +133,7 @@ label{display:block;font-weight:800;margin:12px 0 7px}input,select{width:100%;he
   <button class="action primary" id="generate">建立紫微命盤</button>
   <button class="action secondary" id="printBtn">列印／另存 PDF</button>
 
-  <div class="note"><b>本版已加入</b><br>✓ 命宮、身宮、十二宮、宮干<br>✓ 五行局、十四主星<br>✓ 六吉星：左輔、右弼、文昌、文曲、天魁、天鉞<br>✓ 六煞星：擎羊、陀羅、火星、鈴星、地空、地劫<br>✓ 生年四化（GoldenBeauty 欽天四化固定表）<br>✓ 祿存、天馬、天刑、華蓋、紅鸞、天喜、孤辰、寡宿<br>✓ 來因宮：依實際宮干與生年天干逐宮比對<br>✓ 十年大限：五行局起運，陽男陰女順、陰男陽女逆<br>✓ 流年：以流年地支立流年命宮<br><br><b>下一版：</b>宮干飛化、離心自化、向心自化。</div>
+  <div class="note"><b>本版已加入</b><br>✓ 命宮、身宮、十二宮、宮干<br>✓ 五行局、十四主星<br>✓ 六吉星：左輔、右弼、文昌、文曲、天魁、天鉞<br>✓ 六煞星：擎羊、陀羅、火星、鈴星、地空、地劫<br>✓ 生年四化（GoldenBeauty 欽天四化固定表）<br>✓ 祿存、天馬、天刑、華蓋、紅鸞、天喜、孤辰、寡宿<br>✓ 來因宮：依實際宮干與生年天干逐宮比對<br>✓ 十年大限：五行局起運，陽男陰女順、陰男陽女逆<br>✓ 流年：以流年地支立流年命宮<br>✓ 宮干飛化<br>✓ 離心自化：本宮宮干使本宮星曜四化<br>✓ 向心自化：本宮宮干使對宮星曜四化，箭頭射入對宮</div>
   <div id="status" class="status">等待輸入出生資料。</div>
 </section>
 
@@ -98,8 +141,19 @@ label{display:block;font-weight:800;margin:12px 0 7px}input,select{width:100%;he
   <h2 style="margin-top:0">十二宮命盤</h2>
   <div class="chartScroll"><div id="chart" class="chart"><div class="center"><div><div style="font-size:42px">🌌</div><h3>GoldenBeauty</h3><p>紫微斗數生命命盤</p><div class="key">請輸入出生資料後建立命盤</div></div></div></div></div>
   <div id="summary" class="summary"><div class="sum"><b>農曆生日</b><span>—</span></div><div class="sum"><b>出生年干支</b><span>—</span></div><div class="sum"><b>命宮</b><span>—</span></div><div class="sum"><b>身宮</b><span>—</span></div><div class="sum"><b>五行局</b><span>—</span></div><div class="sum"><b>來因宮</b><span>—</span></div><div class="sum"><b>流年</b><span>—</span></div></div>
-  <div class="legend"><span class="star main">十四主星</span><span class="star good">六吉星</span><span class="star bad">六煞星</span><span class="star wealth">祿存</span><span class="star minor">神煞／雜曜</span><span class="tag originTag">來因宮</span><span class="tag majorTag">大限</span><span class="tag annualTag">流年</span><span class="star main">星曜 <span class="hua">祿</span> 生年四化</span></div>
-  <div class="note"><b>驗證順序：</b>五行局 → 紫微 → 天府 → 十四主星 → 六吉星 → 六煞星 → 生年四化 → 來因宮 → 大限 → 流年。確認後再進欽天自化。</div>
+  <div class="legend"><span class="star main">十四主星</span><span class="star good">六吉星</span><span class="star bad">六煞星</span><span class="star wealth">祿存</span><span class="star minor">神煞／雜曜</span><span class="tag originTag">來因宮</span><span class="tag majorTag">大限</span><span class="tag annualTag">流年</span><span class="star main">生年四化：星曜 <span class="hua">祿</span></span>
+<span class="tag" style="background:#fff4e5;color:#a85b12">↗ 離心自化</span>
+<span class="tag" style="background:#eaf3ff;color:#315f9b">→ 向心自化</span></div>
+  <div class="note">
+  <b>圖例說明：</b>圓形「祿／權／科／忌」為生年四化；橘色「↗離心」代表本宮宮干使本宮星曜自化；藍色「→向心」代表對宮宮干射入本宮星曜。命盤箭頭與下方自化清單會同步顯示。
+</div>
+
+<div id="selfTransformPanel" class="selfPanel">
+  <h3>欽天四化｜自化判斷結果</h3>
+  <div class="noSelf">完成排盤後，這裡會列出離心自化與向心自化。</div>
+</div>
+
+<div class="note"><b>驗證順序：</b>先核對生年四化，再逐宮核對「宮干 → 本宮星曜＝離心自化」及「宮干 → 對宮星曜＝向心自化」。</div>
 </section>
 </div>
 </main>
@@ -135,7 +189,11 @@ for(let i=1;i<=30;i++){lunarDay.add(new Option(i+" 日",i))}
 let mode="solar";
 solarBtn.onclick=()=>{mode="solar";solarBtn.classList.add("on");lunarBtn.classList.remove("on");solarFields.classList.remove("hide");lunarFields.classList.add("hide")};
 lunarBtn.onclick=()=>{mode="lunar";lunarBtn.classList.add("on");solarBtn.classList.remove("on");lunarFields.classList.remove("hide");solarFields.classList.add("hide")};
-trueSolar.onchange=()=>{solarBox.classList.toggle("hide",!trueSolar.checked);exactTimeBox.classList.toggle("hide",!trueSolar.checked)};
+trueSolar.onchange=()=>{
+  solarBox.classList.toggle("hide",!trueSolar.checked);
+  exactTimeBox.classList.toggle("hide",!trueSolar.checked);
+  if(trueSolar.checked) birthTime.value="";
+};
 
 function rawSolar(){
   if(mode==="solar"){
@@ -166,6 +224,10 @@ function shichenLabel(h){
   ];
   return ranges[idx];
 }
+function shichenLabelByIndex(idx){
+  const representativeHours=[0,2,4,6,8,10,12,14,16,18,20,22];
+  return shichenLabel(representativeHours[idx]);
+}
 function yearGanZhi(y){return {gan:G[mod(y-4,10)],zhi:B[mod(y-4,12)]}}
 function isYangStem(g){return ["甲","丙","戊","庚","壬"].includes(g)}
 function majorDirection(yearStem,genderValue){
@@ -190,24 +252,39 @@ function moment(){
   const s=rawSolar();
   const selectedHi=Number(birthShichen.value);
 
-  // 一般排盤：直接使用選定時辰，不再要求輸入 24 小時制時間。
+  // 一般排盤：直接使用使用者選定的時辰。
   if(!trueSolar.checked){
     const representativeHours=[0,2,4,6,8,10,12,14,16,18,20,22];
     const h=representativeHours[selectedHi],mi=0,a={...s,h,mi};
     const l=Solar.fromYmd(s.y,s.m,s.d).getLunar();
-    return {l,ly:l.getYear(),lm:Math.abs(l.getMonth()),ld:l.getDay(),leap:l.getMonth()<0,hi:selectedHi,rawHi:selectedHi,raw:shichenLabel(h),adj:shichenLabel(h),fix:0,a,directShichen:true};
+    return {
+      l,ly:l.getYear(),lm:Math.abs(l.getMonth()),ld:l.getDay(),leap:l.getMonth()<0,
+      hi:selectedHi,rawHi:selectedHi,selectedHi,
+      raw:shichenLabel(h),adj:shichenLabel(h),fix:0,a,directShichen:true
+    };
   }
 
-  // 真太陽時：才使用精確出生時間做校正。
-  const tm=birthTime.value;if(!tm)throw Error("請輸入精確出生時間");
-  let [h,mi]=tm.split(":").map(Number),a={...s,h,mi},fix=0;
-  fix=solarFix(s.y,s.m,s.d,+longitude.value,+timezone.value,+dst.value||0);
+  // 真太陽時：必須使用真實的精確出生時間。
+  const tm=birthTime.value;
+  if(!tm)throw Error("啟用真太陽時後，請輸入真實的精確出生時間");
+  let [h,mi]=tm.split(":").map(Number),a={...s,h,mi};
+  const fix=solarFix(s.y,s.m,s.d,+longitude.value,+timezone.value,+dst.value||0);
   a=addMin(s.y,s.m,s.d,h,mi,fix);
 
   let cd={y:a.y,m:a.m,d:a.d};
-  if(lateZiRule.value==="next"&&a.h===23){const n=addMin(a.y,a.m,a.d,23,a.mi,60);cd={y:n.y,m:n.m,d:n.d}}
+  if(lateZiRule.value==="next"&&a.h===23){
+    const n=addMin(a.y,a.m,a.d,23,a.mi,60);
+    cd={y:n.y,m:n.m,d:n.d};
+  }
+
   const l=Solar.fromYmd(cd.y,cd.m,cd.d).getLunar();
-  return {l,ly:l.getYear(),lm:Math.abs(l.getMonth()),ld:l.getDay(),leap:l.getMonth()<0,hi:hourIdx(a.h),rawHi:hourIdx(h),raw:`${p2(h)}:${p2(mi)}`,adj:`${p2(a.h)}:${p2(a.mi)}`,fix,a,directShichen:false};
+  return {
+    l,ly:l.getYear(),lm:Math.abs(l.getMonth()),ld:l.getDay(),leap:l.getMonth()<0,
+    hi:hourIdx(a.h),rawHi:hourIdx(h),selectedHi,
+    raw:`${p2(h)}:${p2(mi)}`,
+    adj:`${p2(a.h)}:${p2(a.mi)}`,
+    fix,a,directShichen:false
+  };
 }
 function tiger(yg){return {甲:"丙",己:"丙",乙:"戊",庚:"戊",丙:"庚",辛:"庚",丁:"壬",壬:"壬",戊:"甲",癸:"甲"}[yg]}
 function pStem(i,yg){return G[mod(G.indexOf(tiger(yg))+mod(i-2,12),10)]}
@@ -305,6 +382,206 @@ function sideStars(map,m,h,g,z){
   add(map,gu,"孤辰","minor");
   add(map,gua,"寡宿","minor");
 }
+
+function huaClass(h){
+  return h==="祿"?"hua-lu":h==="權"?"hua-quan":h==="科"?"hua-ke":"hua-ji";
+}
+
+/*
+  欽天自化判斷規則（依目前 GoldenBeauty 固定四化表）：
+  1. 離心自化：某宮宮干 HUA[宮干] 中的星曜，若就在本宮，形成離心自化。
+  2. 向心自化：某宮宮干 HUA[宮干] 中的星曜，若在其對宮，形成「該宮向心X入對宮」。
+  3. 對宮固定為地支相隔六宮：index + 6。
+*/
+function buildSelfTransformations(pal,stars){
+  const outward=[];
+  const inward=[];
+
+  pal.forEach(source=>{
+    const rule=HUA[source.s]||{};
+    const oppositeIndex=mod(source.i+6,12);
+    const target=pal[oppositeIndex];
+
+    // 離心：本宮干使本宮星曜四化
+    stars[source.i].forEach(star=>{
+      const transform=rule[star.name];
+      if(transform){
+        outward.push({
+          type:"離心",
+          source:source.i,
+          target:source.i,
+          sourcePalace:source.name,
+          targetPalace:source.name,
+          sourceStem:source.s,
+          sourceBranch:source.b,
+          targetStem:source.s,
+          targetBranch:source.b,
+          star:star.name,
+          transform
+        });
+      }
+    });
+
+    // 向心：本宮干使對宮星曜四化，能量射入對宮
+    stars[oppositeIndex].forEach(star=>{
+      const transform=rule[star.name];
+      if(transform){
+        inward.push({
+          type:"向心",
+          source:source.i,
+          target:oppositeIndex,
+          sourcePalace:source.name,
+          targetPalace:target.name,
+          sourceStem:source.s,
+          sourceBranch:source.b,
+          targetStem:target.s,
+          targetBranch:target.b,
+          star:star.name,
+          transform
+        });
+      }
+    });
+  });
+
+  return {outward,inward};
+}
+
+function eventsForStar(events,palaceIndex,starName){
+  return events.filter(e=>e.target===palaceIndex&&e.star===starName);
+}
+
+function groupEvents(events,keyFn){
+  const map=new Map();
+  events.forEach(e=>{
+    const key=keyFn(e);
+    if(!map.has(key))map.set(key,[]);
+    map.get(key).push(e);
+  });
+  return [...map.values()];
+}
+
+// 十二地支在 4×4 紫微盤中的中心座標（viewBox 0~400）
+const PALACE_COORDS={
+  0:[250,350], // 子
+  1:[150,350], // 丑
+  2:[50,350],  // 寅
+  3:[50,250],  // 卯
+  4:[50,150],  // 辰
+  5:[50,50],   // 巳
+  6:[150,50],  // 午
+  7:[250,50],  // 未
+  8:[350,50],  // 申
+  9:[350,150], // 酉
+  10:[350,250],// 戌
+  11:[350,350] // 亥
+};
+
+function renderFlyOverlay(chartEl,b){
+  const NS="http://www.w3.org/2000/svg";
+  const svg=document.createElementNS(NS,"svg");
+  svg.setAttribute("class","flyOverlay");
+  svg.setAttribute("viewBox","0 0 400 400");
+  svg.setAttribute("preserveAspectRatio","none");
+
+  const defs=document.createElementNS(NS,"defs");
+  defs.innerHTML=`
+    <marker id="arrowSelf" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 z" fill="#c5772c"></path>
+    </marker>
+    <marker id="arrowInward" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 z" fill="#4777ae"></path>
+    </marker>`;
+  svg.appendChild(defs);
+
+  // 離心箭頭：由本宮中心往盤外射
+  groupEvents(b.selfTransforms.outward,e=>String(e.source)).forEach(group=>{
+    const i=group[0].source;
+    const [x,y]=PALACE_COORDS[i];
+    let vx=x-200,vy=y-200;
+    const len=Math.hypot(vx,vy)||1;
+    vx/=len;vy/=len;
+
+    const x1=x-vx*7,y1=y-vy*7;
+    const x2=x+vx*34,y2=y+vy*34;
+
+    const line=document.createElementNS(NS,"line");
+    line.setAttribute("x1",x1);line.setAttribute("y1",y1);
+    line.setAttribute("x2",x2);line.setAttribute("y2",y2);
+    line.setAttribute("class","flyLineSelf");
+    line.setAttribute("marker-end","url(#arrowSelf)");
+    svg.appendChild(line);
+
+    const text=document.createElementNS(NS,"text");
+    text.setAttribute("x",x+vx*18);
+    text.setAttribute("y",y+vy*18-4);
+    text.setAttribute("text-anchor","middle");
+    text.setAttribute("class","flyLabel flyLabelSelf");
+    const labels=[...new Set(group.map(e=>e.transform))].join("/");
+    text.textContent=`離心${labels}`;
+    svg.appendChild(text);
+  });
+
+  // 向心箭頭：由來源宮射向對宮
+  groupEvents(b.selfTransforms.inward,e=>`${e.source}-${e.target}`).forEach((group,gIndex)=>{
+    const s=group[0].source,t=group[0].target;
+    const [sx,sy]=PALACE_COORDS[s],[tx,ty]=PALACE_COORDS[t];
+
+    // 稍微縮短線段，避免箭頭直接蓋住星曜文字
+    const x1=sx+(tx-sx)*0.16,y1=sy+(ty-sy)*0.16;
+    const x2=sx+(tx-sx)*0.84,y2=sy+(ty-sy)*0.84;
+
+    const line=document.createElementNS(NS,"line");
+    line.setAttribute("x1",x1);line.setAttribute("y1",y1);
+    line.setAttribute("x2",x2);line.setAttribute("y2",y2);
+    line.setAttribute("class","flyLineInward");
+    line.setAttribute("marker-end","url(#arrowInward)");
+    svg.appendChild(line);
+
+    const text=document.createElementNS(NS,"text");
+    const mx=(x1+x2)/2,my=(y1+y2)/2;
+    // 同一直線若兩個方向都有向心，稍微錯開文字
+    const offset=(s<t?-8:10);
+    text.setAttribute("x",mx);
+    text.setAttribute("y",my+offset);
+    text.setAttribute("text-anchor","middle");
+    text.setAttribute("class","flyLabel flyLabelInward");
+    const labels=[...new Set(group.map(e=>e.transform))].join("/");
+    text.textContent=`向心${labels}`;
+    svg.appendChild(text);
+  });
+
+  chartEl.appendChild(svg);
+}
+
+function renderSelfTransformPanel(b){
+  const panel=document.getElementById("selfTransformPanel");
+  if(!panel)return;
+
+  const out=b.selfTransforms.outward;
+  const inn=b.selfTransforms.inward;
+
+  const outHtml=out.length
+    ? out.map(e=>`<div class="selfItem"><b>${e.sourcePalace}｜${e.sourceStem}${e.sourceBranch}</b>${e.star} ↗ 離心自化${e.transform}</div>`).join("")
+    : `<div class="noSelf">本盤未形成離心自化。</div>`;
+
+  const inHtml=inn.length
+    ? inn.map(e=>`<div class="selfItem"><b>${e.sourcePalace}｜${e.sourceStem}${e.sourceBranch} → ${e.targetPalace}｜${e.targetStem}${e.targetBranch}</b>${e.star} → 向心自化${e.transform}</div>`).join("")
+    : `<div class="noSelf">本盤未形成向心自化。</div>`;
+
+  panel.innerHTML=`
+    <h3>欽天四化｜自化判斷結果</h3>
+    <div class="selfGrid">
+      <div class="selfBox out">
+        <b>↗ 離心自化｜${out.length} 組</b>
+        ${outHtml}
+      </div>
+      <div class="selfBox in">
+        <b>→ 向心自化｜${inn.length} 組</b>
+        ${inHtml}
+      </div>
+    </div>`;
+}
+
 function build(m){
   const monthBase=mod(2+m.lm-1,12),life=mod(monthBase-m.hi,12),body=mod(monthBase+m.hi,12);
   const yg=m.l.getYearGan(),yz=m.l.getYearZhi();
@@ -317,16 +594,25 @@ function build(m){
   pal.forEach(p=>p.origin=(p.s===yg));
 
   const majors=buildMajorLimits(life,bu[1],yg,gender.value);
-  return {pal,life,body,yg,yz,bu,z,f,stars,majors};
+  const selfTransforms=buildSelfTransformations(pal,stars);
+  return {pal,life,body,yg,yz,bu,z,f,stars,majors,selfTransforms};
 }
-function starHTML(s,yg){
+function starHTML(s,yg,palaceIndex,b){
   const c=
     s.type==="main" ? "main" :
     s.type==="good" ? "good" :
     s.type==="bad" ? "bad" :
     s.type==="wealth" ? "wealth" : "minor";
-  const h=HUA[yg]?.[s.name]||"";
-  return `<span class="star ${c}">${s.name}${h?`<span class="hua">${h}</span>`:""}</span>`;
+
+  const natal=HUA[yg]?.[s.name]||"";
+  const outward=eventsForStar(b.selfTransforms.outward,palaceIndex,s.name);
+  const inward=eventsForStar(b.selfTransforms.inward,palaceIndex,s.name);
+
+  const natalHtml=natal?`<span class="hua">${natal}</span>`:"";
+  const outwardHtml=outward.map(e=>`<span class="selfHua ${huaClass(e.transform)}">↗${e.transform}</span>`).join("");
+  const inwardHtml=inward.map(e=>`<span class="inwardHua ${huaClass(e.transform)}">→${e.transform}</span>`).join("");
+
+  return `<span class="star ${c}">${s.name}${natalHtml}${outwardHtml}${inwardHtml}</span>`;
 }
 function render(b,m){
   chart.innerHTML="";
@@ -350,7 +636,7 @@ function render(b,m){
         ${major?`<span class="tag majorTag">大限 ${major.start}-${major.end}</span>`:""}
         ${isAnnualLife?`<span class="tag annualTag">${fy} 流年命宮</span>`:`<span class="tag annualTag">${annualName}</span>`}
       </div>
-      <div class="stars">${b.stars[p.i].map(s=>starHTML(s,b.yg)).join("")}</div>
+      <div class="stars">${b.stars[p.i].map(s=>starHTML(s,b.yg,p.i,b)).join("")}</div>
       <div class="pfoot">宮干 ${p.s}｜地支 ${p.b}<br>${major?`第${major.order}大限 ${major.start}-${major.end}歲`:""}</div>`;
     chart.appendChild(e);
   });
@@ -358,7 +644,7 @@ function render(b,m){
   const c=document.createElement("div");c.className="center";
   const cross=m.rawHi!==m.hi;
   const timeText=trueSolar.checked
-    ? `原時間 ${m.raw} → 真太陽時約 ${m.adj}（${m.fix>=0?"+":""}${m.fix.toFixed(1)}分）`
+    ? `原出生時間 ${m.raw}｜原時辰 ${shichenLabelByIndex(m.rawHi)} → 真太陽時約 ${m.adj}｜校正後時辰 ${shichenLabelByIndex(m.hi)}（${m.fix>=0?"+":""}${m.fix.toFixed(1)}分）`
     : "";
   const originText=originList.length
     ? originList.map(p=>`${p.name}｜${p.s}${p.b}`).join("、")
@@ -370,17 +656,19 @@ function render(b,m){
     <h3>${name.value.trim()||"未填姓名"}</h3>
     <p>${gender.value}｜${b.yg}${b.yz}年｜${b.bu[0]}｜大限${direction}</p>
     <p>農曆 ${m.ly}年 ${m.leap?"閏":""}${m.lm}月${m.ld}日</p>
-    <p>${shichenLabel(m.a.h)}${cross?"｜⚠ 真太陽時校正後跨時辰":""}</p>
+    <p>${shichenLabel(m.a.h)}${trueSolar.checked?(cross?"｜⚠ 真太陽時校正後跨時辰":"｜✅ 未跨時辰"):""}</p>
     ${timeText?`<p class="small">${timeText}</p>`:""}
     <div class="key">
       命宮：${b.pal[b.life].s}${B[b.life]}<br>
       身宮：${b.pal[b.body].s}${B[b.body]}<br>
       來因宮：${originText}<br>
       紫微：${B[b.z]}｜天府：${B[b.f]}<br>
-      流年：${fy} ${annual.gz.gan}${annual.gz.zhi}年｜流年命宮 ${annual.gz.zhi}
+      流年：${fy} ${annual.gz.gan}${annual.gz.zhi}年｜流年命宮 ${annual.gz.zhi}<br>離心自化：${b.selfTransforms.outward.length} 組｜向心自化：${b.selfTransforms.inward.length} 組
     </div>
   </div>`;
   chart.appendChild(c);
+  renderFlyOverlay(chart,b);
+  renderSelfTransformPanel(b);
 
   const vals=[
     `農曆 ${m.leap?"閏":""}${m.lm}月${m.ld}日`,
@@ -398,12 +686,40 @@ function render(b,m){
     `<br>大限：${direction}，第一大限 ${b.bu[1]}-${b.bu[1]+9} 歲。`+
     `<br>來因宮：${originText}`+
     `<br>流年：${fy} ${annual.gz.gan}${annual.gz.zhi}年，流年命宮在${annual.gz.zhi}。`+
+    `<br>欽天自化：離心 ${b.selfTransforms.outward.length} 組｜向心 ${b.selfTransforms.inward.length} 組。`+
     `<br>祿存：${B[lucun(b.yg)]}宮｜天馬：${B[tianma(b.yz)]}宮｜天刑：${B[tianxing(m.lm)]}宮。`+
     `<br>華蓋：${B[huagai(b.yz)]}宮｜紅鸞：${B[hongluan(b.yz)]}宮｜天喜：${B[tianxi(b.yz)]}宮。`+
     (()=>{const [gu,gua]=guchenGuasu(b.yz);return `<br>孤辰：${B[gu]}宮｜寡宿：${B[gua]}宮。`;})()+
-    (trueSolar.checked?`<br>真太陽時近似校正 ${m.fix>=0?"+":""}${m.fix.toFixed(1)} 分${cross?"；⚠ 已跨時辰並重排":""}`:"");
+    (trueSolar.checked
+      ? `<br>真太陽時近似校正 ${m.fix>=0?"+":""}${m.fix.toFixed(1)} 分。`+
+        (cross
+          ? `<br>⚠ 原時辰 ${shichenLabelByIndex(m.rawHi)} → 校正後 ${shichenLabelByIndex(m.hi)}，已跨時辰；命宮、身宮與時系星曜已依校正後時辰重排。`
+          : `<br>✅ 原時辰與校正後時辰相同，未跨時辰；命宮、身宮不因真太陽時校正而改變。`)
+      : "");
 }
-generate.onclick=()=>{try{const m=moment();render(build(m),m)}catch(e){alert(e.message);status.textContent=e.message}};
+generate.onclick=()=>{
+  try{
+    const m=moment();
+
+    if(trueSolar.checked && m.rawHi!==m.selectedHi){
+      const selectedText=shichenLabelByIndex(m.selectedHi);
+      const exactText=shichenLabelByIndex(m.rawHi);
+      const ok=confirm(
+        `您上方選擇的是「${selectedText}」，但精確出生時間 ${m.raw} 屬於「${exactText}」。\n\n`+
+        `若精確時間才是正確出生資料，請按「確定」繼續；若輸入錯誤，請按「取消」回去修改。`
+      );
+      if(!ok){
+        status.innerHTML=`⚠ 請確認出生資料：時辰選擇為 ${selectedText}，精確時間 ${m.raw} 則屬於 ${exactText}。`;
+        return;
+      }
+    }
+
+    render(build(m),m);
+  }catch(e){
+    alert(e.message);
+    status.textContent=e.message;
+  }
+};
 printBtn.onclick=()=>window.print();
 (function empty(){const c=chart.querySelector(".center");B.forEach((b,i)=>{const e=document.createElement("div");e.className=`palace b${i}`;e.innerHTML=`<div class="branch">${b}</div><div class="pname">—</div><div class="pfoot">等待排盤</div>`;chart.appendChild(e)});chart.appendChild(c)})();
 </script>
