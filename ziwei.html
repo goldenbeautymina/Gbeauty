@@ -1,510 +1,1084 @@
 <!DOCTYPE html>
 <html lang="zh-TW">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>GoldenBeauty｜開運眉眼唇・紋繡美學</title>
-  <meta name="description" content="GoldenBeauty｜開運眉眼唇・紋繡美學。用更適合你的眉型與線條，讓狀態穩、選擇更順。提供預約、測驗、VIP會員專屬內容與完整諮詢。" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>紫微斗數生命命盤｜GoldenBeauty 生命導航</title>
+<meta name="description" content="GoldenBeauty 紫微斗數排盤：真太陽時、十二宮、五行局、十四主星、六吉星、六煞星、生年四化、離心自化、向心自化、大限與流年。">
+<link rel="stylesheet" href="./assets/gbeauty-ui.css">
+<style>
+:root{--purple:#7552a3;--ink:#2c2728;--muted:#766d70;--line:#cdbfc7;--good:#2f7b50;--bad:#b84e4e}
+*{box-sizing:border-box}body{margin:0;font-family:"Noto Sans TC","Microsoft JhengHei",sans-serif;background:linear-gradient(145deg,#fffaf8,#f7eef4);color:var(--ink)}
+.wrap2{max-width:1280px;margin:auto;padding:28px 18px 60px}.hero2{text-align:center;padding:34px 0 10px}.hero2 h1{font-size:clamp(30px,5vw,50px);margin:8px 0}.sub{color:var(--muted);line-height:1.8}
+.layout{display:grid;grid-template-columns:minmax(310px,380px) 1fr;gap:22px;align-items:start}.panel{background:#fff;border:1px solid #eaded9;border-radius:20px;padding:20px;box-shadow:0 14px 34px rgba(85,60,50,.10)}.controls{position:sticky;top:18px}
+label{display:block;font-weight:800;margin:12px 0 7px}input,select{width:100%;height:46px;border:1px solid #d8c9c3;border-radius:11px;padding:0 11px;background:#fff;font-size:15px}.row2{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.switch{display:grid;grid-template-columns:1fr 1fr;gap:8px}.switch button,.action{border:0;border-radius:11px;font-weight:900;cursor:pointer}.switch button{height:42px;background:#f2e9ef;color:#69566f}.switch button.on{background:var(--purple);color:#fff}.action{width:100%;height:48px;margin-top:14px}.primary{background:var(--purple);color:#fff}.secondary{background:#f2e7ef;color:#624b6e}
+.check{display:flex;gap:8px;align-items:flex-start;margin-top:12px;padding:10px;border:1px solid #e6dbe2;border-radius:11px;background:#fbf8fb}.check input{width:auto;height:auto;margin-top:4px}.check label{margin:0}.small{font-size:12px;color:#82767b;line-height:1.55}.solarbox{margin-top:10px;padding:11px;border-radius:11px;background:#fbf8fc;border:1px solid #e7dce9}.hide{display:none!important}
+.note,.status{margin-top:13px;padding:12px;border-radius:11px;font-size:13px;line-height:1.7}.note{background:#faf4f1;color:#665956}.status{background:#f5f0f7;color:#65546f}
+.chartScroll{overflow:auto}.chart{min-width:820px;position:relative;display:grid;grid-template-columns:repeat(4,1fr);grid-template-rows:repeat(4,190px);border:2px solid #7d6b77}.palace{position:relative;border:1px solid #b8a9b3;padding:9px;background:#fff;overflow:hidden}.palace.life{background:#f2fbf4}.palace.body{box-shadow:inset 0 0 0 3px rgba(190,122,36,.20)}
+.pname{font-size:18px;font-weight:900;padding-right:48px}.branch{position:absolute;right:8px;top:7px;font-weight:900}.stem{position:absolute;right:8px;top:29px;color:#968890;font-size:12px}.tags{display:flex;flex-wrap:wrap;gap:4px;margin-top:6px}.tag{font-size:10px;font-weight:900;padding:3px 6px;border-radius:999px}.lifeTag{background:#e4f4e7;color:#28723a}.bodyTag{background:#fff0d8;color:#995b0b}.originTag{background:#fff1c9;color:#8a5a08}.annualTag{background:#e7eefb;color:#345d98}.majorTag{background:#efe7f8;color:#64427b}
+.stars{display:flex;flex-wrap:wrap;gap:4px;margin-top:7px;align-content:flex-start}.star{display:inline-flex;align-items:center;gap:2px;padding:3px 5px;border-radius:7px;font-size:11px;font-weight:900}.main{background:#eee6f7;color:#573b6d}.good{background:#e7f5ed;color:var(--good)}.bad{background:#fae8e8;color:var(--bad)}.hua{display:inline-grid;place-items:center;width:16px;height:16px;border-radius:50%;font-size:10px;background:#fff2c8;color:#8a5b13;border:1px solid #e4ca83}.pfoot{position:absolute;left:9px;bottom:6px;font-size:10px;color:#8c7e85;line-height:1.35}
+.center{grid-column:2/4;grid-row:2/4;position:relative;z-index:2;display:flex;align-items:center;justify-content:center;text-align:center;padding:20px;background:linear-gradient(145deg,#fff9f5,#f6eef8)}.center>div{position:relative;z-index:8}.center h3{margin:5px 0;font-size:25px}.center p{margin:4px 0;color:#6b5d65}.key{margin-top:9px;padding:9px;border-radius:11px;background:#ffffffb8;font-weight:800}
+.b5{grid-column:1;grid-row:1}.b6{grid-column:2;grid-row:1}.b7{grid-column:3;grid-row:1}.b8{grid-column:4;grid-row:1}.b4{grid-column:1;grid-row:2}.b9{grid-column:4;grid-row:2}.b3{grid-column:1;grid-row:3}.b10{grid-column:4;grid-row:3}.b2{grid-column:1;grid-row:4}.b1{grid-column:2;grid-row:4}.b0{grid-column:3;grid-row:4}.b11{grid-column:4;grid-row:4}
+.summary{display:grid;grid-template-columns:repeat(7,1fr);gap:8px;margin-top:14px}.sum{padding:10px;border:1px solid #eaded9;border-radius:12px;text-align:center;background:#fff}.sum b{display:block;color:#6c507b;margin-bottom:4px}.legend{display:flex;gap:7px;flex-wrap:wrap;margin-top:12px}
+@media(max-width:960px){.layout{grid-template-columns:1fr}.controls{position:static}}@media(max-width:620px){.wrap2{padding:20px 12px 50px}.summary{grid-template-columns:1fr 1fr}}
+@media print{.topbar,.controls,.hero2,.life-footer{display:none!important}.layout{display:block}.panel{box-shadow:none;border:0}.chartScroll{overflow:visible}.chart{min-width:0;width:100%}}
 
-  <!-- ✅ 主題 CSS（你已放在 assets） -->
-  <link rel="stylesheet" href="./assets/gbeauty-ui.css" />
+/* ===== 欽天四化：離心／向心自化 ===== */
+.selfHua,.inwardHua{
+  display:inline-flex;align-items:center;gap:2px;
+  margin-left:2px;padding:1px 4px;border-radius:999px;
+  font-size:9px;font-weight:900;line-height:1.35
+}
+.selfHua{background:#fff1e2;color:#a65516;border:1px solid #efc18f}
+.inwardHua{background:#e9f2ff;color:#315f99;border:1px solid #b9d1ef}
+.hua-lu{--huaColor:#b57a13}
+.hua-quan{--huaColor:#a24646}
+.hua-ke{--huaColor:#3e6f9f}
+.hua-ji{--huaColor:#66506f}
+.flyOverlay{
+  position:absolute;inset:0;width:100%;height:100%;
+  pointer-events:none;z-index:5;overflow:visible
+}
+.flyLineSelf{stroke:#c5772c;stroke-width:2.1;opacity:.82}
+.flyLineInward{stroke:#4777ae;stroke-width:2.1;opacity:.72}
+.flyLabel{
+  font-size:10px;font-weight:900;
+  paint-order:stroke;stroke:#fff;stroke-width:3px;stroke-linejoin:round
+}
+.flyLabelSelf{fill:#9b541b}
+.flyLabelInward{fill:#315f99}
+.selfPanel{
+  margin-top:14px;border:1px solid #e7dce3;border-radius:14px;
+  background:#fff;padding:14px
+}
+.selfPanel h3{margin:0 0 10px;font-size:18px;color:#624b6e}
+.selfGrid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.selfBox{
+  border-radius:12px;padding:11px;line-height:1.65;font-size:13px;
+  border:1px solid #eee3e8
+}
+.selfBox.out{background:#fff9f2}
+.selfBox.in{background:#f5f9ff}
+.selfBox b{display:block;margin-bottom:5px}
+.selfItem{padding:5px 0;border-bottom:1px dashed #e3d9de}
+.selfItem:last-child{border-bottom:0}
+.noSelf{color:#887b82;font-size:13px}
+@media(max-width:700px){.selfGrid{grid-template-columns:1fr}}
+
+
+.flySourceDot{fill:#fff;stroke-width:2.2}
+.flySourceSelf{stroke:#c5772c}
+.flySourceInward{stroke:#4777ae}
+.flyGlyph{font-size:11px;font-weight:900;paint-order:stroke;stroke:#fff;stroke-width:3px}
+.flyGlyphLu{fill:#b57a13}.flyGlyphQuan{fill:#a24646}.flyGlyphKe{fill:#3e6f9f}.flyGlyphJi{fill:#66506f}
+.flyPathSelf{fill:none;stroke:#c5772c;stroke-width:2.4;opacity:.9}
+.flyPathInward{fill:none;stroke:#4777ae;stroke-width:2.4;opacity:.86}
+.flyLegendHint{font-size:12px;color:#786a71;line-height:1.65;margin-top:8px}
+
+
+/* ===== V4.2 明確版：宮格邊緣箭頭，不再讓向心線穿越中央 ===== */
+.palace{overflow:visible}
+.localHuaBox{
+  position:absolute;left:8px;right:8px;bottom:26px;
+  display:flex;flex-direction:column;gap:4px;z-index:7;pointer-events:none
+}
+.localHuaRow{
+  display:flex;align-items:center;gap:5px;
+  padding:4px 6px;border-radius:9px;
+  font-size:10px;font-weight:900;line-height:1.35;
+  box-shadow:0 1px 5px rgba(70,50,60,.08)
+}
+.localOut{background:#fff1e2;border:1px solid #efc18f;color:#944f17}
+.localIn{background:#eaf3ff;border:1px solid #b9d1ef;color:#315f99}
+.localArrow{
+  font-size:15px;font-weight:1000;line-height:1
+}
+.localGlyph{
+  display:inline-flex;align-items:center;justify-content:center;
+  min-width:30px;padding:1px 5px;border-radius:999px;background:#fff;
+  border:1px solid currentColor
+}
+.localSource{font-size:9px;opacity:.86}
+.palaceEdgeMark{
+  position:absolute;z-index:8;font-weight:1000;font-size:18px;
+  pointer-events:none
+}
+.edgeOut{color:#c5772c}
+.edgeIn{color:#4777ae}
+.edgeTop{top:-11px;left:50%;transform:translateX(-50%)}
+.edgeBottom{bottom:-13px;left:50%;transform:translateX(-50%)}
+.edgeLeft{left:-11px;top:50%;transform:translateY(-50%)}
+.edgeRight{right:-11px;top:50%;transform:translateY(-50%)}
+.selfPanel .directionNote{
+  margin-top:4px;font-size:11px;color:#756b70
+}
+
+
+/* ===== V4.3 中央品牌＋基本資料＋向心強化 ===== */
+.palace{
+  padding:14px 12px 44px !important;
+  overflow:hidden !important;
+}
+.palace .branch{
+  right:10px !important;
+  top:8px !important;
+  z-index:12 !important;
+  background:rgba(255,255,255,.88);
+  padding:0 2px;
+  border-radius:4px;
+}
+.palace .stem{
+  right:10px !important;
+  top:31px !important;
+  z-index:12 !important;
+  background:rgba(255,255,255,.88);
+  padding:0 2px;
+  border-radius:4px;
+}
+.localHuaBox{
+  left:10px !important;
+  right:10px !important;
+  bottom:43px !important;
+  z-index:9 !important;
+}
+.localHuaRow{
+  padding:4px 7px !important;
+  font-size:10px !important;
+}
+.localIn{
+  border:2px solid #8bb8ec !important;
+  background:#eef6ff !important;
+}
+.localOut{
+  border:2px solid #f0bd88 !important;
+  background:#fff7ef !important;
+}
+.pfoot{
+  bottom:8px !important;
+  z-index:11 !important;
+  background:rgba(255,255,255,.9);
+  padding-right:4px;
+}
+
+/* 中央 GoldenBeauty 品牌資訊 */
+.center{
+  padding:14px !important;
+}
+.gbCenter{
+  width:100%;
+  height:100%;
+  border:1px solid #dec69d;
+  border-radius:18px;
+  background:
+    radial-gradient(circle at 85% 25%,rgba(230,191,135,.12),transparent 30%),
+    linear-gradient(145deg,#fffdf8,#fffaf2);
+  display:grid;
+  grid-template-columns:44% 56%;
+  gap:14px;
+  align-items:center;
+  padding:18px 20px;
+  box-shadow:inset 0 0 0 4px rgba(255,255,255,.66);
+}
+.gbBrand{
+  text-align:center;
+  color:#9b6a28;
+}
+.gbBrandMark{
+  width:92px;
+  height:92px;
+  margin:0 auto 10px;
+  border-radius:50%;
+  border:3px solid #c89a55;
+  display:grid;
+  place-items:center;
+  font-size:42px;
+  background:#fffdf9;
+}
+.gbBrand strong{
+  display:block;
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:22px;
+  letter-spacing:.08em;
+}
+.gbBrand small{
+  display:block;
+  margin-top:5px;
+  font-size:14px;
+  letter-spacing:.12em;
+}
+.gbKey{
+  text-align:left;
+  color:#5c4c43;
+}
+.gbKeyTitle{
+  font-weight:900;
+  color:#9b6a28;
+  font-size:18px;
+  margin-bottom:8px;
+}
+.gbKeyGrid{
+  display:grid;
+  grid-template-columns:82px 1fr;
+  gap:5px 10px;
+  font-size:13px;
+  line-height:1.5;
+}
+.gbKeyGrid b{
+  color:#6b584c;
+}
+
+/* 下方資訊區不再空白 */
+.detailSection{
+  margin-top:18px;
+  background:#fff;
+  border:1px solid #eaded9;
+  border-radius:16px;
+  padding:16px;
+}
+.detailSection h3{
+  margin:0 0 12px;
+  color:#624b6e;
+}
+.detailGrid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:10px;
+}
+.detailCard{
+  border:1px solid #eaded9;
+  border-radius:12px;
+  padding:12px;
+  background:#fffdfd;
+  line-height:1.6;
+  font-size:13px;
+}
+.detailCard b{
+  display:block;
+  color:#704f7d;
+  margin-bottom:4px;
+}
+@media(max-width:900px){
+  .gbCenter{grid-template-columns:1fr}
+  .gbBrandMark{width:72px;height:72px;font-size:34px}
+  .detailGrid{grid-template-columns:1fr}
+}
+
+
+/* ===== V4.4 正式更新：自化不遮星曜＋中央 GoldenBeauty ===== */
+.chart{
+  grid-template-rows:repeat(4,250px) !important;
+}
+.palace{
+  padding:12px 12px 40px !important;
+  overflow:hidden !important;
+}
+.stars{
+  margin-top:8px !important;
+  position:relative;
+  z-index:4;
+}
+.localHuaBox{
+  position:static !important;
+  left:auto !important;
+  right:auto !important;
+  bottom:auto !important;
+  margin-top:10px !important;
+  display:flex !important;
+  flex-direction:column;
+  gap:5px;
+  z-index:5 !important;
+}
+.localHuaRow{
+  width:100%;
+  box-sizing:border-box;
+  min-height:32px;
+  padding:5px 7px !important;
+  font-size:10px !important;
+  line-height:1.3 !important;
+  flex-wrap:wrap;
+}
+.localHuaRow .localSource{
+  margin-left:auto;
+  white-space:normal;
+}
+.palaceEdgeMark{
+  display:none !important;
+}
+.pfoot{
+  left:12px !important;
+  right:8px;
+  bottom:7px !important;
+}
+.gbCenter{
+  overflow:hidden;
+}
+@media(max-width:900px){
+  .chart{grid-template-rows:repeat(4,265px) !important}
+}
+
+</style>
+<script src="https://cdn.jsdelivr.net/npm/lunar-javascript@1.7.7/lunar.js"></script>
 </head>
-
 <body>
+<header class="topbar">
+  <div class="wrap topbar-inner">
+    <a class="brand" href="index.html"><img class="brandLogo" src="./images/gbeauty-logo.jpg" alt="GoldenBeauty"><span class="brandText"><strong>GoldenBeauty</strong><small>開運眉眼唇・生命導航</small></span></a>
+    <button class="navBtn" id="navBtn" type="button">☰</button>
+  </div>
+  <nav class="navPanel" id="navPanel"><a href="index.html">首頁</a><a href="index.html#test">命運探索</a><a href="life-numerology.html">生命靈數</a><a href="vip.html">VIP會員專屬</a></nav>
+</header>
 
-  <!-- ✅ 手機置頂導覽（logo/品牌/選單） -->
-  <header class="topbar">
-    <div class="wrap topbar-inner">
-      <a class="brand" href="#top" aria-label="回到首頁">
-        <!-- ✅ Logo（你 repo 的 /images/gbeauty-logo.jpg） -->
-        <img class="brandLogo" src="./images/gbeauty-logo.jpg" alt="GoldenBeauty Logo" />
-        <span class="brandText">
-          <strong>GoldenBeauty</strong>
-          <small>開運眉眼唇・紋繡美學</small>
-        </span>
-      </a>
+<section class="hero2"><div class="wrap2" style="padding-bottom:10px"><div style="font-weight:900;color:#76598a">GOLDENBEAUTY LIFE NAVIGATOR</div><h1>紫微斗數生命命盤</h1><p class="sub">本版：十二宮、五行局、十四主星、六吉星、六煞星、生年四化、來因宮、大限、流年，以及欽天四化的離心自化與對宮向心自化箭頭。</p></div></section>
 
-      <button class="navBtn" id="navBtn" type="button" aria-label="開啟選單" aria-expanded="false">
-        ☰
-      </button>
-    </div>
+<main class="wrap2">
+<div class="layout">
+<section class="panel controls">
+  <h2 style="margin-top:0">輸入出生資料</h2>
+  <label for="name">姓名或暱稱</label><input id="name" placeholder="例如：Mina">
+  <label for="gender">性別</label><select id="gender"><option>女</option><option>男</option></select>
 
-    <nav class="navPanel" id="navPanel">
-      <a href="#service">服務特色</a>
-      <a href="#test">命運測驗</a>
-      <a href="#booking">立即預約</a>
-      <a href="#studio">工作室</a>
-      <a href="vip.html">VIP會員專屬</a>
-    </nav>
-  </header>
-
-  <main id="top">
-
-    <!-- ✅ Hero：圖片 + 文字（手機很好看） -->
-    <section class="hero">
-      <div class="wrap">
-        <div class="heroCard">
-
-          <div class="heroImg">
-
-  <!-- ✅ Logo 疊在 Hero 圖上（品牌一眼就出來） -->
-  <div class="heroLogoOverlay">
-    <img src="./images/gbeauty-logo.jpg" alt="GoldenBeauty Logo" />
-    <span class="heroBrandText">
-      <strong>GoldenBeauty</strong>
-      <small>開運眉眼唇・紋繡美學</small>
-    </span>
+  <label>出生日期曆法</label>
+  <div class="switch"><button id="solarBtn" class="on" type="button">西元生日</button><button id="lunarBtn" type="button">農曆生日</button></div>
+  <div id="solarFields"><label for="solarDate">西元出生日期</label><input id="solarDate" type="date"></div>
+  <div id="lunarFields" class="hide">
+    <div class="row2"><div><label for="lunarYear">農曆年</label><input id="lunarYear" type="number" min="1900" max="2100" placeholder="1990"></div><div><label for="lunarMonth">農曆月</label><select id="lunarMonth"></select></div></div>
+    <div class="row2"><div><label for="lunarDay">農曆日</label><select id="lunarDay"></select></div><div><label for="leapMonth">閏月</label><select id="leapMonth"><option value="0">否</option><option value="1">是</option></select></div></div>
   </div>
 
-  <img src="./images/eyebrow-work.jpg" alt="商業紋眉施作照片" loading="lazy" />
+  <label for="birthShichen">出生時辰</label>
+<select id="birthShichen">
+  <option value="0">子時(23:00-1:00)</option>
+  <option value="1">丑時(1:00-3:00)</option>
+  <option value="2">寅時(3:00-5:00)</option>
+  <option value="3">卯時(5:00-7:00)</option>
+  <option value="4">辰時(7:00-9:00)</option>
+  <option value="5">巳時(9:00-11:00)</option>
+  <option value="6">午時(11:00-13:00)</option>
+  <option value="7">未時(13:00-15:00)</option>
+  <option value="8">申時(15:00-17:00)</option>
+  <option value="9">酉時(17:00-19:00)</option>
+  <option value="10">戌時(19:00-21:00)</option>
+  <option value="11">亥時(21:00-23:00)</option>
+</select>
+<div class="small">一般排盤直接選時辰即可；只有啟用真太陽時時，才需要輸入真實的精確出生時間。系統不會自動帶入預設時間。</div>
+
+<div id="exactTimeBox" class="hide">
+  <div class="row2">
+    <div><label for="birthTime">精確出生時間</label><input id="birthTime" type="time" value="" placeholder="請輸入實際出生時間"></div>
+    <div><label for="lateZiRule">晚子換日</label><select id="lateZiRule"><option value="same">23:00 後不換日</option><option value="next">23:00 起算次日</option></select></div>
+  </div>
+</div>
+
+  <div class="check"><input id="trueSolar" type="checkbox"><label for="trueSolar">啟用真太陽時近似校正<div class="small">校正後若跨時辰，系統會提示並依校正後時辰重排。</div></label></div>
+  <div id="solarBox" class="solarbox hide">
+    <div class="row2"><div><label for="longitude">出生地經度</label><input id="longitude" type="number" step="0.0001" value="121"></div><div><label for="timezone">UTC 時區</label><input id="timezone" type="number" step="0.5" value="8"></div></div>
+    <label for="dst">夏令時間分鐘</label><input id="dst" type="number" value="0">
+    <div class="small">台灣一般 UTC+8；經度請填出生地約略經度。若無夏令時間填 0。</div>
+  </div>
+
+  <label for="flowYear">查看流年</label>
+  <input id="flowYear" type="number" min="1900" max="2200" value="2026">
+  <div class="small">流年命宮以該年太歲地支定位；宮格中會標示流年十二宮。</div>
+
+  <button class="action primary" id="generate">建立紫微命盤</button>
+  <button class="action secondary" id="printBtn">列印／另存 PDF</button>
+
+  <div class="note"><b>本版已加入</b><br>✓ 命宮、身宮、十二宮、宮干<br>✓ 五行局、十四主星<br>✓ 六吉星：左輔、右弼、文昌、文曲、天魁、天鉞<br>✓ 六煞星：擎羊、陀羅、火星、鈴星、地空、地劫<br>✓ 生年四化（GoldenBeauty 欽天四化固定表）<br>✓ 祿存、天馬、天刑、華蓋、紅鸞、天喜、孤辰、寡宿<br>✓ 來因宮：依實際宮干與生年天干逐宮比對<br>✓ 十年大限：五行局起運，陽男陰女順、陰男陽女逆<br>✓ 流年：以流年地支立流年命宮<br>✓ 宮干飛化<br>✓ 離心自化：本宮宮干使本宮星曜四化<br>✓ 向心自化：本宮宮干使對宮星曜四化，箭頭射入對宮</div>
+  <div id="status" class="status">等待輸入出生資料。</div>
+</section>
+
+<section class="panel">
+  <h2 style="margin-top:0">十二宮命盤</h2>
+  <div class="chartScroll"><div id="chart" class="chart"><div class="center"><div><div style="font-size:42px">🌌</div><h3>GoldenBeauty</h3><p>紫微斗數生命命盤</p><div class="key">請輸入出生資料後建立命盤</div></div></div></div></div>
+  <div id="summary" class="summary"><div class="sum"><b>農曆生日</b><span>—</span></div><div class="sum"><b>出生年干支</b><span>—</span></div><div class="sum"><b>命宮</b><span>—</span></div><div class="sum"><b>身宮</b><span>—</span></div><div class="sum"><b>五行局</b><span>—</span></div><div class="sum"><b>來因宮</b><span>—</span></div><div class="sum"><b>流年</b><span>—</span></div></div>
+  <div class="legend"><span class="star main">十四主星</span><span class="star good">六吉星</span><span class="star bad">六煞星</span><span class="star wealth">祿存</span><span class="star minor">神煞／雜曜</span><span class="tag originTag">來因宮</span><span class="tag majorTag">大限</span><span class="tag annualTag">流年</span><span class="star main">生年四化：星曜 <span class="hua">祿</span></span>
+<span class="tag" style="background:#fff4e5;color:#a85b12">●→ 離心自化：本宮往盤外</span>
+<span class="tag" style="background:#eaf3ff;color:#315f9b">●→ 向心自化：來源宮射入對宮</span></div>
+  <div class="note">
+  <b>圖例說明：</b>圓形「祿／權／科／忌」為生年四化；橘色方向卡代表本宮宮干使本宮星曜離心自化並往盤外；藍色方向卡會直接寫「由○○宮射入本宮」，用來源宮名稱判斷向心方向；橘色方向卡則寫「本宮→盤外」。
+</div>
+
+<div id="selfTransformPanel" class="selfPanel">
+  <h3>欽天四化｜自化判斷結果</h3>
+  <div class="noSelf">完成排盤後，這裡會列出離心自化與向心自化。</div>
 </div>
 
 
-          <div class="heroText">
-            <h1>當臉的線條順了，人的思路和選擇也會跟著順。</h1>
-            <p>
-              不是運不好，是狀態有點亂。<br>
-              我不做奇蹟，只做剛剛好的調整：讓您更像「狀態穩定」的自己。
-            </p>
-
-            <div class="heroActions">
-              <a class="btn primary" href="#booking">立即預約｜諮詢 & 施作</a>
-              <a class="btn" href="#test">先做 1 分鐘測驗｜看看您屬於哪一型</a>
-            </div>
-
-            <div class="heroBadges">
-              <span class="chip">✔ 客製化眉型設計／觀察五官和眉毛狀況</span>
-              <span class="chip">✔ 開運眉型諮詢／觀面相與生命靈數找出生命能量</span>
-              <span class="chip">✔ 衛生流程／一人一套耗材</span>
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </section>
-
-    <!-- ✅ 服務特色 -->
-    <section id="service" class="section">
-      <div class="wrap">
-        <h2 class="sectionTitle">服務特色</h2>
-        <p class="sectionSub">您不需要變成別人，只要把自己「調回順」的線條。</p>
-
-        <div class="cards">
-          <article class="cardItem">
-            <h3>眉型設計｜看起來更乾淨有精神</h3>
-            <p>依臉型比例、骨相與氣質微調，讓眉頭、眉中、眉尾更協調自然。</p>
-          </article>
-
-          <article class="cardItem">
-            <h3>開運諮詢｜給您可落地的建議</h3>
-            <p>用「眉眼唇」線條做狀態整理：事業、關係、情緒能量都更穩。</p>
-          </article>
-
-          <article class="cardItem">
-            <h3>安心流程｜衛生與紀錄</h3>
-            <p>一人一套耗材、施作前後說明清楚，並保留紀錄方便後續追蹤。</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-<!-- ================= 命運探索工具 ================= -->
-<section id="test" class="section soft">
-
-  <div class="wrap">
-
-    <h2 class="sectionTitle">命運探索工具</h2>
-
-    <p class="sectionSub">
-      從皇帝詩看見人生提醒，
-      從生命靈數探索先天能量，
-      從紫微斗數理解十二宮、四化、自化與人生運勢軌跡，
-      再從八字看日主、十神、格局、用神與大運流年。
-    </p>
-
-    <div class="cards">
-
-      <!-- 皇帝詩 -->
-      <article class="cardItem">
-
-        <div style="font-size:40px">👑</div>
-
-        <h3>皇帝詩命運測驗</h3>
-
-        <p>
-          一分鐘測驗，
-          看見目前人生正在提醒您的課題。
-        </p>
-
-        <div class="heroBadges">
-          <span class="chip">人生提醒</span>
-          <span class="chip">命運解析</span>
-          <span class="chip">當下方向</span>
-        </div>
-
-        <br>
-
-        <a class="btn primary"
-           href="emperor-poem-test.html">
-           開始測驗
-        </a>
-
-        <br><br>
-
-        <a class="btn"
-           href="after-submit.html">
-           我已提交，查看結果
-        </a>
-
-      </article>
-
-      <!-- 生命靈數 -->
-      <article class="cardItem">
-
-        <div style="font-size:40px">🔢</div>
-
-        <h3>
-          生命靈數能量圖
-          <span
-            style="
-              background:#2e9147;
-              color:white;
-              padding:3px 10px;
-              border-radius:999px;
-              font-size:12px;
-              margin-left:8px;
-            ">
-            NEW
-          </span>
-        </h3>
-
-        <p>
-          輸入生日，
-          自動分析生命靈數、
-          九宮能量圖、
-          先天能量、
-          後天能量、
-          專屬水晶。
-        </p>
-
-        <div class="heroBadges">
-
-          <span class="chip">生命靈數</span>
-
-          <span class="chip">九宮能量圖</span>
-
-          <span class="chip">專屬水晶</span>
-
-          <span class="chip">PDF報告</span>
-
-        </div>
-
-        <br>
-
-        <a class="btn primary"
-           href="life-numerology.html">
-           開始生命靈數分析
-        </a>
-
-      </article>
-
-      <!-- 紫微斗數 -->
-      <article class="cardItem">
-
-        <div style="font-size:40px">🌌</div>
-
-        <h3>
-          紫微斗數生命命盤
-          <span
-            style="
-              background:#7552a3;
-              color:white;
-              padding:3px 10px;
-              border-radius:999px;
-              font-size:12px;
-              margin-left:8px;
-            ">
-            NEW
-          </span>
-        </h3>
-
-        <p>
-          輸入出生年月日與時辰，
-          建立完整紫微命盤，
-          查看十四主星、六吉六煞、生年四化、
-          來因宮、大限流年，以及欽天離心／向心自化箭頭。
-        </p>
-
-        <div class="heroBadges">
-          <span class="chip">十四主星</span>
-          <span class="chip">六吉・六煞</span>
-          <span class="chip">生年四化</span>
-          <span class="chip">來因宮</span>
-          <span class="chip">大限・流年</span>
-          <span class="chip">離心・向心自化</span>
-        </div>
-
-        <br>
-
-        <a class="btn primary"
-           href="ziwei.html">
-           開始紫微斗數排盤
-        </a>
-
-      </article>
-
-      <!-- 八字排盤 -->
-      <article class="cardItem">
-
-        <div style="font-size:40px">☯️</div>
-
-        <h3>
-          八字命盤
-          <span
-            style="
-              background:#9a6b2f;
-              color:white;
-              padding:3px 10px;
-              border-radius:999px;
-              font-size:12px;
-              margin-left:8px;
-            ">
-            NEW
-          </span>
-        </h3>
-
-        <p>
-          輸入出生年月日與時間，
-          建立四柱八字命盤，
-          查看日主、十神、五行強弱、格局、用神、
-          大運、流年與綜合分析。
-        </p>
-
-        <div class="heroBadges">
-          <span class="chip">四柱八字</span>
-          <span class="chip">日主・十神</span>
-          <span class="chip">五行旺衰</span>
-          <span class="chip">格局・用神</span>
-          <span class="chip">大運・流年</span>
-          <span class="chip">真太陽時</span>
-        </div>
-
-        <br>
-
-        <a class="btn primary"
-           href="goldenbeauty-bazi.html">
-           開始八字排盤
-        </a>
-
-      </article>
-
-
-    </div>
-
+<div id="chartDetailSection" class="detailSection">
+  <h3>命盤完整資訊</h3>
+  <div class="detailGrid">
+    <div class="detailCard"><b>基本資料</b><div id="detailBasic">完成排盤後顯示。</div></div>
+    <div class="detailCard"><b>來因宮・大限・流年</b><div id="detailTiming">完成排盤後顯示。</div></div>
+    <div class="detailCard"><b>四化・自化</b><div id="detailHua">完成排盤後顯示。</div></div>
   </div>
+</div>
 
+<div class="note"><b>驗證順序：</b>先核對生年四化，再逐宮核對「宮干 → 本宮星曜＝離心自化」及「宮干 → 對宮星曜＝向心自化」。</div>
 </section>
+</div>
+</main>
 
-    <!-- ✅ 立即預約：整合 3 張 Google 表單（Tabs + 內嵌） -->
-    <section id="booking" class="section">
-      <div class="wrap">
-        <h2 class="sectionTitle">立即預約</h2>
-        <p class="sectionSub">先選您今天最想解決的事：我會用最適合您的方式把狀態整理回來。</p>
+<footer class="life-footer"><div class="wrap" style="padding:25px 18px">© <span id="year"></span> GoldenBeauty｜生命導航</div></footer>
 
-        <div class="formHub cardItem" style="padding:18px;">
-          <div class="formTabs" role="tablist" aria-label="預約與諮詢表單">
-            <button class="tabBtn isActive" type="button" data-tab="book" role="tab" aria-selected="true">
-              ✅ 開運眉預約單（建議先填）
-            </button>
-            <button class="tabBtn" type="button" data-tab="brow" role="tab" aria-selected="false">
-              開運眉型諮詢表
-            </button>
-            <button class="tabBtn" type="button" data-tab="skin" role="tab" aria-selected="false">
-              肌膚諮詢單
-            </button>
-          </div>
+<script>
+document.getElementById("year").textContent=new Date().getFullYear();
+const nameInput=document.getElementById("name");
+const navBtn=document.getElementById("navBtn"),navPanel=document.getElementById("navPanel");
+navBtn?.addEventListener("click",()=>navPanel.classList.toggle("open"));
 
-          <div class="formHint">
-            <div class="note" style="margin-top:12px;">
-              小提醒：<b>第一次來</b>建議先填「開運眉預約單」→ 我會依您的資料回覆確認時間與注意事項。<br>
-              若您想更精準判讀，可再補填「開運眉型諮詢表」或「肌膚諮詢單」。
-            </div>
-          </div>
+const B=["子","丑","寅","卯","辰","巳","午","未","申","酉","戌","亥"];
+const G=["甲","乙","丙","丁","戊","己","庚","辛","壬","癸"];
+const PAL=["命宮","兄弟宮","夫妻宮","子女宮","財帛宮","疾厄宮","遷移宮","僕役宮","官祿宮","田宅宮","福德宮","父母宮"];
+const BUREAU=[["金四局",4],["水二局",2],["火六局",6],["土五局",5],["木三局",3]];
+const HUA={
+  甲:{廉貞:"祿",破軍:"權",武曲:"科",太陽:"忌"},
+  乙:{天機:"祿",天梁:"權",紫微:"科",太陰:"忌"},
+  丙:{天同:"祿",天機:"權",文昌:"科",廉貞:"忌"},
+  丁:{太陰:"祿",天同:"權",天機:"科",巨門:"忌"},
+  戊:{貪狼:"祿",太陰:"權",右弼:"科",天機:"忌"},
+  己:{武曲:"祿",貪狼:"權",天梁:"科",文曲:"忌"},
+  庚:{太陽:"祿",武曲:"權",太陰:"科",天同:"忌"},
+  辛:{巨門:"祿",太陽:"權",文曲:"科",文昌:"忌"},
+  壬:{天梁:"祿",紫微:"權",左輔:"科",武曲:"忌"},
+  癸:{破軍:"祿",巨門:"權",太陰:"科",貪狼:"忌"}
+};
+const mod=(n,m)=>((n%m)+m)%m;
+const p2=n=>String(n).padStart(2,"0");
 
-          <div class="formPanel">
+for(let i=1;i<=12;i++){lunarMonth.add(new Option(i+" 月",i))}
+for(let i=1;i<=30;i++){lunarDay.add(new Option(i+" 日",i))}
+let mode="solar";
+solarBtn.onclick=()=>{mode="solar";solarBtn.classList.add("on");lunarBtn.classList.remove("on");solarFields.classList.remove("hide");lunarFields.classList.add("hide")};
+lunarBtn.onclick=()=>{mode="lunar";lunarBtn.classList.add("on");solarBtn.classList.remove("on");lunarFields.classList.remove("hide");solarFields.classList.add("hide")};
+trueSolar.onchange=()=>{
+  solarBox.classList.toggle("hide",!trueSolar.checked);
+  exactTimeBox.classList.toggle("hide",!trueSolar.checked);
+  if(trueSolar.checked) birthTime.value="";
+};
 
-            <!-- 1) 開運眉預約單（預設顯示） -->
-            <div class="tabPane isShow" id="pane-book" role="tabpanel">
-              <div class="formTopLine">
-                <div class="paneTitle">開運眉預約單</div>
-                <a class="miniLink" href="https://docs.google.com/forms/d/e/1FAIpQLSexG8VG9bjWXVa02-l4BEgf12KPSpTfLPB2JQHVYoFerM4uEw/viewform?usp=pp_url" target="_blank" rel="noopener">
-                  另開新視窗填寫 ↗
-                </a>
-              </div>
-              <div class="iframeWrap">
-                <iframe
-                  title="開運眉預約單"
-                  loading="lazy"
-                  src="https://docs.google.com/forms/d/e/1FAIpQLSexG8VG9bjWXVa02-l4BEgf12KPSpTfLPB2JQHVYoFerM4uEw/viewform?embedded=true">
-                </iframe>
-              </div>
-            </div>
+function rawSolar(){
+  if(mode==="solar"){
+    if(!solarDate.value)throw Error("請先選擇西元出生日期");
+    const [y,m,d]=solarDate.value.split("-").map(Number);return {y,m,d};
+  }
+  const y=+lunarYear.value,m=+lunarMonth.value,d=+lunarDay.value,leap=leapMonth.value==="1";
+  if(!y)throw Error("請輸入農曆出生年");
+  const s=Lunar.fromYmd(y,leap?-m:m,d).getSolar();return {y:s.getYear(),m:s.getMonth(),d:s.getDay()};
+}
+function doy(y,m,d){return Math.floor((Date.UTC(y,m-1,d)-Date.UTC(y,0,0))/86400000)}
+function solarFix(y,m,d,lon,tz,dst){
+  const n=doy(y,m,d),x=2*Math.PI*(n-81)/364;
+  const eot=9.87*Math.sin(2*x)-7.53*Math.cos(x)-1.5*Math.sin(x);
+  return 4*(lon-15*tz)+eot-dst;
+}
+function addMin(y,m,d,h,mi,delta){
+  const t=new Date(Date.UTC(y,m-1,d,h,mi));t.setUTCMinutes(t.getUTCMinutes()+delta);
+  return {y:t.getUTCFullYear(),m:t.getUTCMonth()+1,d:t.getUTCDate(),h:t.getUTCHours(),mi:t.getUTCMinutes()};
+}
+function hourIdx(h){return h===23||h===0?0:Math.floor((h+1)/2)}
+function shichenLabel(h){
+  const idx=hourIdx(h);
+  const ranges=[
+    "子時(23:00-1:00)","丑時(1:00-3:00)","寅時(3:00-5:00)","卯時(5:00-7:00)",
+    "辰時(7:00-9:00)","巳時(9:00-11:00)","午時(11:00-13:00)","未時(13:00-15:00)",
+    "申時(15:00-17:00)","酉時(17:00-19:00)","戌時(19:00-21:00)","亥時(21:00-23:00)"
+  ];
+  return ranges[idx];
+}
+function shichenLabelByIndex(idx){
+  const representativeHours=[0,2,4,6,8,10,12,14,16,18,20,22];
+  return shichenLabel(representativeHours[idx]);
+}
+function yearGanZhi(y){return {gan:G[mod(y-4,10)],zhi:B[mod(y-4,12)]}}
+function isYangStem(g){return ["甲","丙","戊","庚","壬"].includes(g)}
+function majorDirection(yearStem,genderValue){
+  const yang=isYangStem(yearStem);
+  return ((yang&&genderValue==="男")||(!yang&&genderValue==="女")) ? 1 : -1;
+}
+function buildMajorLimits(lifeIndex,bureauNumber,yearStem,genderValue){
+  const dir=majorDirection(yearStem,genderValue),result=Array(12).fill(null);
+  for(let k=0;k<12;k++){
+    const idx=mod(lifeIndex+dir*k,12),start=bureauNumber+k*10;
+    result[idx]={order:k+1,start,end:start+9,dir};
+  }
+  return result;
+}
+function buildAnnualPalaces(flowYear){
+  const gz=yearGanZhi(flowYear),lifeIndex=B.indexOf(gz.zhi),annual=Array(12).fill(null);
+  for(let i=0;i<12;i++) annual[i]=PAL[mod(lifeIndex-i,12)];
+  return {gz,lifeIndex,annual};
+}
+function moment(){
+  if(typeof Solar==="undefined"||typeof Lunar==="undefined")throw Error("農曆元件載入失敗，請確認網路連線");
+  const s=rawSolar();
+  const selectedHi=Number(birthShichen.value);
 
-            <!-- 2) 開運眉型諮詢表 -->
-            <div class="tabPane" id="pane-brow" role="tabpanel">
-              <div class="formTopLine">
-                <div class="paneTitle">開運眉型諮詢表</div>
-                <a class="miniLink" href="https://docs.google.com/forms/d/e/1FAIpQLScp8tjmXXeBo09ThK_ZdyxVgvq_4yzA7f9QsacbEVdtDz4IhA/viewform?usp=pp_url" target="_blank" rel="noopener">
-                  另開新視窗填寫 ↗
-                </a>
-              </div>
-              <div class="iframeWrap">
-                <iframe
-                  title="開運眉型諮詢表"
-                  loading="lazy"
-                  src="https://docs.google.com/forms/d/e/1FAIpQLScp8tjmXXeBo09ThK_ZdyxVgvq_4yzA7f9QsacbEVdtDz4IhA/viewform?embedded=true">
-                </iframe>
-              </div>
-            </div>
-
-            <!-- 3) 肌膚諮詢單 -->
-            <div class="tabPane" id="pane-skin" role="tabpanel">
-              <div class="formTopLine">
-                <div class="paneTitle">肌膚諮詢單</div>
-                <a class="miniLink" href="https://docs.google.com/forms/d/e/1FAIpQLSdhjVanoX4Bz_VrbKWegXRfrlzTi3mq2tjNcXopFRa9la4AQg/viewform?usp=pp_url" target="_blank" rel="noopener">
-                  另開新視窗填寫 ↗
-                </a>
-              </div>
-              <div class="iframeWrap">
-                <iframe
-                  title="肌膚諮詢單"
-                  loading="lazy"
-                  src="https://docs.google.com/forms/d/e/1FAIpQLSdhjVanoX4Bz_VrbKWegXRfrlzTi3mq2tjNcXopFRa9la4AQg/viewform?embedded=true">
-                </iframe>
-              </div>
-            </div>
-
-          </div>
-
-          <div class="btnRowInline" style="margin-top:14px;">
-            <a class="btn primary" href="booking.html#bookingForm">我想看完整價目/注意事項</a>
-            <a class="btn" href="vip.html">VIP 會員專屬內容</a>
-          </div>
-
-        </div>
-      </div>
-    </section>
-
-    <!-- ✅ 工作室 -->
-    <section id="studio" class="section soft">
-      <div class="wrap">
-        <h2 class="sectionTitle">工作室環境</h2>
-        <p class="sectionSub">舒服、乾淨、安靜，讓您安心把狀態調回來。</p>
-
-        <div class="studioCard">
-          <img src="./images/studio.jpg" alt="GoldenBeauty 工作室照片" loading="lazy" />
-          <div class="studioText">
-            <h3>GoldenBeauty Studio</h3>
-            <p>到店前會先確認需求，施作過程會清楚說明每一步，讓您放心。</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ✅ FAQ -->
-    <section id="faq" class="section">
-      <div class="wrap">
-        <h2 class="sectionTitle">常見問題</h2>
-
-        <details class="faq">
-          <summary>從來沒紋過眉毛，會不會看起來「不自然」？</summary>
-          <p>我們以「自然、乾淨、耐看」為優先，線條與顏色都以您本人的氣質做微調，同時順應著您的能量，做最適合您的眉型。</p>
-        </details>
-
-        <details class="faq">
-          <summary>我完全不知道自己適合什麼眉型怎麼辦？</summary>
-          <p>可以先做命運測驗，或直接預約能量諮詢，我會用更好懂的方式帶您找到最適合您的能量與眉型。</p>
-        </details>
-
-        <details class="faq">
-          <summary>提交測驗後回來看不到結果？</summary>
-          <p>請回到測驗頁（不是停在 Google 表單頁），再按「我已提交，顯示結果」。若仍不行，我可以幫您檢查頁面版本。</p>
-        </details>
-      </div>
-    </section>
-
-    <!-- ✅ 頁尾 -->
-    <footer class="footer">
-      <div class="wrap">
-        <div class="footerGrid">
-          <div>
-            <strong>GoldenBeauty</strong>
-            <div class="muted">開運眉眼唇・紋繡美學</div>
-          </div>
-          <div class="footerLinks">
-            <a href="#service">服務</a>
-            <a href="#test">測驗</a>
-            <a href="#booking">預約</a>
-            <a href="vip.html">VIP會員專屬諮詢</a>
-          </div>
-        </div>
-
-        <div class="copyright">
-          © <span id="y"></span> GoldenBeauty. All rights reserved.
-        </div>
-      </div>
-    </footer>
-
-  </main>
-
-  <!-- ✅ JS：導覽開合 + 年份 + 表單 Tabs -->
-  <script>
-    // 年份
-    document.getElementById("y").textContent = new Date().getFullYear();
-
-    // 手機導覽開合
-    const navBtn = document.getElementById("navBtn");
-    const navPanel = document.getElementById("navPanel");
-
-    navBtn.addEventListener("click", () => {
-      const open = navPanel.classList.toggle("open");
-      navBtn.setAttribute("aria-expanded", open ? "true" : "false");
-    });
-
-    // 點選單後自動收起
-    navPanel.querySelectorAll("a").forEach(a => {
-      a.addEventListener("click", () => {
-        navPanel.classList.remove("open");
-        navBtn.setAttribute("aria-expanded", "false");
-      });
-    });
-
-    // ✅ 表單 Tab 切換
-    const tabBtns = document.querySelectorAll(".tabBtn");
-    const panes = {
-      book: document.getElementById("pane-book"),
-      brow: document.getElementById("pane-brow"),
-      skin: document.getElementById("pane-skin"),
+  // 一般排盤：直接使用使用者選定的時辰。
+  if(!trueSolar.checked){
+    const representativeHours=[0,2,4,6,8,10,12,14,16,18,20,22];
+    const h=representativeHours[selectedHi],mi=0,a={...s,h,mi};
+    const l=Solar.fromYmd(s.y,s.m,s.d).getLunar();
+    return {
+      l,ly:l.getYear(),lm:Math.abs(l.getMonth()),ld:l.getDay(),leap:l.getMonth()<0,
+      hi:selectedHi,rawHi:selectedHi,selectedHi,
+      raw:shichenLabel(h),adj:shichenLabel(h),fix:0,a,directShichen:true
     };
+  }
 
-    tabBtns.forEach(btn => {
-      btn.addEventListener("click", () => {
-        const key = btn.dataset.tab;
+  // 真太陽時：必須使用真實的精確出生時間。
+  const tm=birthTime.value;
+  if(!tm)throw Error("啟用真太陽時後，請輸入真實的精確出生時間");
+  let [h,mi]=tm.split(":").map(Number),a={...s,h,mi};
+  const fix=solarFix(s.y,s.m,s.d,+longitude.value,+timezone.value,+dst.value||0);
+  a=addMin(s.y,s.m,s.d,h,mi,fix);
 
-        tabBtns.forEach(b => {
-          b.classList.remove("isActive");
-          b.setAttribute("aria-selected", "false");
+  let cd={y:a.y,m:a.m,d:a.d};
+  if(lateZiRule.value==="next"&&a.h===23){
+    const n=addMin(a.y,a.m,a.d,23,a.mi,60);
+    cd={y:n.y,m:n.m,d:n.d};
+  }
+
+  const l=Solar.fromYmd(cd.y,cd.m,cd.d).getLunar();
+  return {
+    l,ly:l.getYear(),lm:Math.abs(l.getMonth()),ld:l.getDay(),leap:l.getMonth()<0,
+    hi:hourIdx(a.h),rawHi:hourIdx(h),selectedHi,
+    raw:`${p2(h)}:${p2(mi)}`,
+    adj:`${p2(a.h)}:${p2(a.mi)}`,
+    fix,a,directShichen:false
+  };
+}
+function tiger(yg){return {甲:"丙",己:"丙",乙:"戊",庚:"戊",丙:"庚",辛:"庚",丁:"壬",壬:"壬",戊:"甲",癸:"甲"}[yg]}
+function pStem(i,yg){return G[mod(G.indexOf(tiger(yg))+mod(i-2,12),10)]}
+function bureau(stem,bi){
+  const sg=Math.floor(G.indexOf(stem)/2);
+  const step=[0,1,6,7].includes(bi)?0:[2,3,8,9].includes(bi)?1:2;
+  return BUREAU[mod(sg+step,5)];
+}
+function ziwei(day,n){
+  let x=0;while((day+x)%n)x++;
+  const q=(day+x)/n;let i=mod(2+q-1,12);
+  if(x)i=mod(i+(x%2===0?x:-x),12);
+  return i;
+}
+function tianfu(z){return ({0:4,1:3,2:2,3:1,4:0,5:11,6:10,7:9,8:8,9:7,10:6,11:5})[z]}
+function add(map,i,name,type){map[i].push({name,type})}
+function mainStars(map,z,f){
+  const zoff={紫微:0,天機:-1,太陽:-3,武曲:-4,天同:-5,廉貞:-8};
+  const foff={天府:0,太陰:1,貪狼:2,巨門:3,天相:4,天梁:5,七殺:6,破軍:10};
+  Object.entries(zoff).forEach(([n,o])=>add(map,mod(z+o,12),n,"main"));
+  Object.entries(foff).forEach(([n,o])=>add(map,mod(f+o,12),n,"main"));
+}
+function kuiYue(g){return ({甲:[1,7],戊:[1,7],庚:[1,7],乙:[0,8],己:[0,8],辛:[6,2],壬:[3,5],癸:[3,5],丙:[11,9],丁:[11,9]})[g]}
+function lucun(g){return ({甲:2,乙:3,丙:5,戊:5,丁:6,己:6,庚:8,辛:9,壬:11,癸:0})[g]}
+
+// 天馬：依出生年支
+function tianma(z){
+  if("寅午戌".includes(z)) return 8;   // 申
+  if("申子辰".includes(z)) return 2;   // 寅
+  if("巳酉丑".includes(z)) return 11;  // 亥
+  return 5;                            // 亥卯未 -> 巳
+}
+
+// 天刑：酉宮起正月，順數至出生月
+function tianxing(month){
+  return mod(9+(month-1),12);
+}
+
+// 紅鸞：卯宮起子年逆數；天喜在紅鸞對宮
+function hongluan(z){
+  return mod(3-B.indexOf(z),12);
+}
+function tianxi(z){
+  return mod(hongluan(z)+6,12);
+}
+
+// 華蓋：依出生年支三合局
+function huagai(z){
+  if("子辰申".includes(z)) return 4;  // 辰
+  if("丑巳酉".includes(z)) return 1;  // 丑
+  if("寅午戌".includes(z)) return 10; // 戌
+  return 7;                           // 卯未亥 -> 未
+}
+
+// 孤辰、寡宿：依出生年支三會分組
+function guchenGuasu(z){
+  if("寅卯辰".includes(z)) return [5,1];   // 巳、丑
+  if("巳午未".includes(z)) return [8,4];   // 申、辰
+  if("申酉戌".includes(z)) return [11,7];  // 亥、未
+  return [2,10];                           // 亥子丑 -> 寅、戌
+}
+function fireBell(z){if("申子辰".includes(z))return[2,10];if("寅午戌".includes(z))return[1,3];if("巳酉丑".includes(z))return[3,10];return[9,10]}
+function sideStars(map,m,h,g,z){
+  // 六吉星
+  add(map,mod(4+m-1,12),"左輔","good");
+  add(map,mod(10-(m-1),12),"右弼","good");
+  add(map,mod(10-h,12),"文昌","good");
+  add(map,mod(4+h,12),"文曲","good");
+  const [k,y]=kuiYue(g);
+  add(map,k,"天魁","good");
+  add(map,y,"天鉞","good");
+
+  // 祿存、羊陀
+  // 甲祿寅、乙祿卯、丙戊祿巳、丁己祿午、庚祿申、辛祿酉、壬祿亥、癸祿子
+  const lu=lucun(g);
+  add(map,lu,"祿存","wealth");
+  add(map,mod(lu+1,12),"擎羊","bad");
+  add(map,mod(lu-1,12),"陀羅","bad");
+
+  // 火鈴、空劫
+  const [fs,bs]=fireBell(z);
+  add(map,mod(fs+h,12),"火星","bad");
+  add(map,mod(bs+h,12),"鈴星","bad");
+  add(map,mod(11-h,12),"地空","bad");
+  add(map,mod(11+h,12),"地劫","bad");
+
+  // 神煞／雜曜
+  add(map,tianma(z),"天馬","minor");
+  add(map,tianxing(m),"天刑","minor");
+  add(map,huagai(z),"華蓋","minor");
+  add(map,hongluan(z),"紅鸞","minor");
+  add(map,tianxi(z),"天喜","minor");
+
+  const [gu,gua]=guchenGuasu(z);
+  add(map,gu,"孤辰","minor");
+  add(map,gua,"寡宿","minor");
+}
+
+function huaClass(h){
+  return h==="祿"?"hua-lu":h==="權"?"hua-quan":h==="科"?"hua-ke":"hua-ji";
+}
+
+/*
+  欽天自化判斷規則（依目前 GoldenBeauty 固定四化表）：
+  1. 離心自化：某宮宮干 HUA[宮干] 中的星曜，若就在本宮，形成離心自化。
+  2. 向心自化：某宮宮干 HUA[宮干] 中的星曜，若在其對宮，形成「該宮向心X入對宮」。
+  3. 對宮固定為地支相隔六宮：index + 6。
+*/
+function buildSelfTransformations(pal,stars){
+  const outward=[];
+  const inward=[];
+
+  pal.forEach(source=>{
+    const rule=HUA[source.s]||{};
+    const oppositeIndex=mod(source.i+6,12);
+    const target=pal[oppositeIndex];
+
+    // 離心：本宮干使本宮星曜四化
+    stars[source.i].forEach(star=>{
+      const transform=rule[star.name];
+      if(transform){
+        outward.push({
+          type:"離心",
+          source:source.i,
+          target:source.i,
+          sourcePalace:source.name,
+          targetPalace:source.name,
+          sourceStem:source.s,
+          sourceBranch:source.b,
+          targetStem:source.s,
+          targetBranch:source.b,
+          star:star.name,
+          transform
         });
-        Object.values(panes).forEach(p => p && p.classList.remove("isShow"));
-
-        btn.classList.add("isActive");
-        btn.setAttribute("aria-selected", "true");
-        panes[key] && panes[key].classList.add("isShow");
-
-        panes[key] && panes[key].scrollIntoView({ behavior: "smooth", block: "start" });
-      });
+      }
     });
-  </script>
 
+    // 向心：本宮干使對宮星曜四化，能量射入對宮
+    stars[oppositeIndex].forEach(star=>{
+      const transform=rule[star.name];
+      if(transform){
+        inward.push({
+          type:"向心",
+          source:source.i,
+          target:oppositeIndex,
+          sourcePalace:source.name,
+          targetPalace:target.name,
+          sourceStem:source.s,
+          sourceBranch:source.b,
+          targetStem:target.s,
+          targetBranch:target.b,
+          star:star.name,
+          transform
+        });
+      }
+    });
+  });
+
+  return {outward,inward};
+}
+
+function eventsForStar(events,palaceIndex,starName){
+  return events.filter(e=>e.target===palaceIndex&&e.star===starName);
+}
+
+function groupEvents(events,keyFn){
+  const map=new Map();
+  events.forEach(e=>{
+    const key=keyFn(e);
+    if(!map.has(key))map.set(key,[]);
+    map.get(key).push(e);
+  });
+  return [...map.values()];
+}
+
+// 十二地支在 4×4 紫微盤中的中心座標（viewBox 0~400）
+const PALACE_COORDS={
+  0:[250,350], // 子
+  1:[150,350], // 丑
+  2:[50,350],  // 寅
+  3:[50,250],  // 卯
+  4:[50,150],  // 辰
+  5:[50,50],   // 巳
+  6:[150,50],  // 午
+  7:[250,50],  // 未
+  8:[350,50],  // 申
+  9:[350,150], // 酉
+  10:[350,250],// 戌
+  11:[350,350] // 亥
+};
+
+
+function huaGlyph(h){return h==="祿"?"○祿":h==="權"?"◆權":h==="科"?"△科":"×忌";}
+function huaGlyphClass(h){return h==="祿"?"flyGlyphLu":h==="權"?"flyGlyphQuan":h==="科"?"flyGlyphKe":"flyGlyphJi";}
+function pointAlong(sx,sy,tx,ty,t){return [sx+(tx-sx)*t,sy+(ty-sy)*t];}
+
+function renderFlyOverlay(chartEl,b){
+  const NS="http://www.w3.org/2000/svg";
+  const svg=document.createElementNS(NS,"svg");
+  svg.setAttribute("class","flyOverlay");
+  svg.setAttribute("viewBox","0 0 400 400");
+  svg.setAttribute("preserveAspectRatio","none");
+
+  const defs=document.createElementNS(NS,"defs");
+  defs.innerHTML=`
+    <marker id="arrowSelfV41" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto">
+      <path d="M0,0 L9,4.5 L0,9 z" fill="#c5772c"></path>
+    </marker>
+    <marker id="arrowInwardV41" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto">
+      <path d="M0,0 L9,4.5 L0,9 z" fill="#4777ae"></path>
+    </marker>`;
+  svg.appendChild(defs);
+
+  const outGroups=groupEvents(b.selfTransforms.outward,e=>String(e.source));
+  outGroups.forEach(group=>{
+    const i=group[0].source;
+    const [cx,cy]=PALACE_COORDS[i];
+    let vx=cx-200,vy=cy-200;
+    const len=Math.hypot(vx,vy)||1;
+    vx/=len;vy/=len;
+    const px=-vy,py=vx;
+
+    group.forEach((e,j)=>{
+      const lane=(j-(group.length-1)/2)*7;
+      const sx=cx+px*lane-vx*4,sy=cy+py*lane-vy*4;
+      const tx=cx+px*lane+vx*43,ty=cy+py*lane+vy*43;
+
+      const dot=document.createElementNS(NS,"circle");
+      dot.setAttribute("cx",sx);dot.setAttribute("cy",sy);dot.setAttribute("r","3.2");
+      dot.setAttribute("class","flySourceDot flySourceSelf");
+      svg.appendChild(dot);
+
+      const line=document.createElementNS(NS,"line");
+      line.setAttribute("x1",sx);line.setAttribute("y1",sy);
+      line.setAttribute("x2",tx);line.setAttribute("y2",ty);
+      line.setAttribute("class","flyPathSelf");
+      line.setAttribute("marker-end","url(#arrowSelfV41)");
+      svg.appendChild(line);
+
+      const [lx,ly]=pointAlong(sx,sy,tx,ty,.58);
+      const text=document.createElementNS(NS,"text");
+      text.setAttribute("x",lx+px*2);text.setAttribute("y",ly+py*2-3);
+      text.setAttribute("text-anchor","middle");
+      text.setAttribute("class",`flyGlyph ${huaGlyphClass(e.transform)}`);
+      text.textContent=huaGlyph(e.transform);
+      svg.appendChild(text);
+    });
+  });
+
+  const inGroups=groupEvents(b.selfTransforms.inward,e=>`${e.source}-${e.target}`);
+  inGroups.forEach(group=>{
+    const s=group[0].source,t=group[0].target;
+    const [sx0,sy0]=PALACE_COORDS[s],[tx0,ty0]=PALACE_COORDS[t];
+    let vx=tx0-sx0,vy=ty0-sy0;
+    const len=Math.hypot(vx,vy)||1;
+    vx/=len;vy/=len;
+    const px=-vy,py=vx;
+
+    group.forEach((e,j)=>{
+      const lane=(j-(group.length-1)/2)*8;
+      const sx=sx0+vx*18+px*lane,sy=sy0+vy*18+py*lane;
+      const tx=tx0-vx*18+px*lane,ty=ty0-vy*18+py*lane;
+
+      const dot=document.createElementNS(NS,"circle");
+      dot.setAttribute("cx",sx);dot.setAttribute("cy",sy);dot.setAttribute("r","3.2");
+      dot.setAttribute("class","flySourceDot flySourceInward");
+      svg.appendChild(dot);
+
+      const line=document.createElementNS(NS,"line");
+      line.setAttribute("x1",sx);line.setAttribute("y1",sy);
+      line.setAttribute("x2",tx);line.setAttribute("y2",ty);
+      line.setAttribute("class","flyPathInward");
+      line.setAttribute("marker-end","url(#arrowInwardV41)");
+      svg.appendChild(line);
+
+      const [lx,ly]=pointAlong(sx,sy,tx,ty,.5);
+      const text=document.createElementNS(NS,"text");
+      text.setAttribute("x",lx+px*2);
+      text.setAttribute("y",ly+py*2-4);
+      text.setAttribute("text-anchor","middle");
+      text.setAttribute("class",`flyGlyph ${huaGlyphClass(e.transform)}`);
+      text.textContent=huaGlyph(e.transform);
+      svg.appendChild(text);
+    });
+  });
+
+  chartEl.appendChild(svg);
+}
+
+function renderSelfTransformPanel(b){
+  const panel=document.getElementById("selfTransformPanel");
+  if(!panel)return;
+
+  const out=b.selfTransforms.outward;
+  const inn=b.selfTransforms.inward;
+
+  const outHtml=out.length
+    ? out.map(e=>`<div class="selfItem"><b>${e.sourcePalace}｜${e.sourceStem}${e.sourceBranch}</b>${e.star} ●→ 離心自化：本宮往盤外${e.transform}</div>`).join("")
+    : `<div class="noSelf">本盤未形成離心自化。</div>`;
+
+  const inHtml=inn.length
+    ? inn.map(e=>`<div class="selfItem"><b>${e.sourcePalace}｜${e.sourceStem}${e.sourceBranch} → ${e.targetPalace}｜${e.targetStem}${e.targetBranch}</b>${e.star} ●→ 向心自化：來源宮射入對宮${e.transform}</div>`).join("")
+    : `<div class="noSelf">本盤未形成向心自化。</div>`;
+
+  panel.innerHTML=`
+    <h3>欽天四化｜自化判斷結果</h3>
+    <div class="selfGrid">
+      <div class="selfBox out">
+        <b>●→ 離心自化：本宮往盤外｜${out.length} 組</b>
+        ${outHtml}
+      </div>
+      <div class="selfBox in">
+        <b>●→ 向心自化：來源宮射入對宮｜${inn.length} 組</b>
+        ${inHtml}
+      </div>
+    </div>`;
+}
+
+function build(m){
+  const monthBase=mod(2+m.lm-1,12),life=mod(monthBase-m.hi,12),body=mod(monthBase+m.hi,12);
+  const yg=m.l.getYearGan(),yz=m.l.getYearZhi();
+  const pal=Array.from({length:12},(_,i)=>({i,b:B[i],s:pStem(i,yg),name:PAL[mod(life-i,12)],life:i===life,body:i===body}));
+  const bu=bureau(pal[life].s,life),z=ziwei(m.ld,bu[1]),f=tianfu(z),stars=Array.from({length:12},()=>[]);
+  mainStars(stars,z,f);sideStars(stars,m.lm,m.hi,yg,yz);
+
+  // 來因宮：依十二宮實際排出的宮干逐宮比對生年天干。
+  // 不寫死地支，也不假設子、丑同干。
+  pal.forEach(p=>p.origin=(p.s===yg));
+
+  const majors=buildMajorLimits(life,bu[1],yg,gender.value);
+  const selfTransforms=buildSelfTransformations(pal,stars);
+  return {pal,life,body,yg,yz,bu,z,f,stars,majors,selfTransforms};
+}
+function starHTML(s,yg,palaceIndex,b){
+  const c=
+    s.type==="main" ? "main" :
+    s.type==="good" ? "good" :
+    s.type==="bad" ? "bad" :
+    s.type==="wealth" ? "wealth" : "minor";
+
+  const natal=HUA[yg]?.[s.name]||"";
+  const outward=eventsForStar(b.selfTransforms.outward,palaceIndex,s.name);
+  const inward=eventsForStar(b.selfTransforms.inward,palaceIndex,s.name);
+
+  const natalHtml=natal?`<span class="hua">${natal}</span>`:"";
+  const outwardHtml=outward.map(e=>`<span class="selfHua ${huaClass(e.transform)}">↗${e.transform}</span>`).join("");
+  const inwardHtml=inward.map(e=>`<span class="inwardHua ${huaClass(e.transform)}">→${e.transform}</span>`).join("");
+
+  return `<span class="star ${c}">${s.name}${natalHtml}${outwardHtml}${inwardHtml}</span>`;
+}
+
+function palaceEdgeClass(index){
+  // 紫微盤外圈方向：上排往上、下排往下、左列往左、右列往右
+  if([5,6,7,8].includes(index)) return "edgeTop";
+  if([2,1,0,11].includes(index)) return "edgeBottom";
+  if([4,3].includes(index)) return "edgeLeft";
+  return "edgeRight";
+}
+function outwardLocalHTML(b,palaceIndex){
+  const events=b.selfTransforms.outward.filter(e=>e.source===palaceIndex);
+  if(!events.length)return "";
+  return events.map(e=>`
+    <div class="localHuaRow localOut">
+      <span class="localArrow">●➜</span>
+      <span class="localGlyph">${huaGlyph(e.transform)}</span>
+      <span>${e.star} 離心自化${e.transform}</span>
+      <span class="localSource">本宮 → 盤外</span>
+    </div>`).join("");
+}
+function inwardLocalHTML(b,palaceIndex){
+  const events=b.selfTransforms.inward.filter(e=>e.target===palaceIndex);
+  if(!events.length)return "";
+  return events.map(e=>`
+    <div class="localHuaRow localIn">
+      <span class="localArrow">←●</span>
+      <span class="localGlyph">${huaGlyph(e.transform)}</span>
+      <span>${e.star} 向心自化${e.transform}</span>
+      <span class="localSource">由 ${e.sourcePalace} 射入本宮</span>
+    </div>`).join("");
+}
+function edgeMarksHTML(b,palaceIndex){
+  const out=b.selfTransforms.outward.some(e=>e.source===palaceIndex);
+  const inn=b.selfTransforms.inward.some(e=>e.target===palaceIndex);
+  if(!out&&!inn)return "";
+  const edge=palaceEdgeClass(palaceIndex);
+  let html="";
+  if(out)html+=`<span class="palaceEdgeMark edgeOut ${edge}" title="離心自化：由本宮往盤外">↗</span>`;
+  if(inn)html+=`<span class="palaceEdgeMark edgeIn ${edge}" title="向心自化：由對宮射入本宮">⇢</span>`;
+  return html;
+}
+
+function render(b,m){
+  chart.innerHTML="";
+  const fy=Number(flowYear.value)||new Date().getFullYear();
+  const annual=buildAnnualPalaces(fy);
+  const originList=b.pal.filter(p=>p.origin);
+
+  b.pal.forEach(p=>{
+    const e=document.createElement("div");
+    e.className=`palace b${p.i}${p.life?" life":""}${p.body?" body":""}`;
+    const major=b.majors[p.i],annualName=annual.annual[p.i],isAnnualLife=p.i===annual.lifeIndex;
+
+    e.innerHTML=`
+      <div class="branch">${p.b}</div>
+      <div class="stem">${p.s}${p.b}</div>
+      <div class="pname">${p.name}</div>
+      <div class="tags">
+        ${p.life?'<span class="tag lifeTag">命宮</span>':""}
+        ${p.body?'<span class="tag bodyTag">身宮</span>':""}
+        ${p.origin?'<span class="tag originTag">來因宮</span>':""}
+        ${major?`<span class="tag majorTag">大限 ${major.start}-${major.end}</span>`:""}
+        ${isAnnualLife?`<span class="tag annualTag">${fy} 流年命宮</span>`:`<span class="tag annualTag">${annualName}</span>`}
+      </div>
+      <div class="stars">${b.stars[p.i].map(s=>starHTML(s,b.yg,p.i,b)).join("")}</div>
+      <div class="localHuaBox">
+        ${outwardLocalHTML(b,p.i)}
+        ${inwardLocalHTML(b,p.i)}
+      </div>
+      ${edgeMarksHTML(b,p.i)}
+      <div class="pfoot">宮干 ${p.s}｜地支 ${p.b}<br>${major?`第${major.order}大限 ${major.start}-${major.end}歲`:""}</div>`;
+    chart.appendChild(e);
+  });
+
+  const c=document.createElement("div");c.className="center";
+  const cross=m.rawHi!==m.hi;
+  const timeText=trueSolar.checked
+    ? `原出生時間 ${m.raw}｜原時辰 ${shichenLabelByIndex(m.rawHi)} → 真太陽時約 ${m.adj}｜校正後時辰 ${shichenLabelByIndex(m.hi)}（${m.fix>=0?"+":""}${m.fix.toFixed(1)}分）`
+    : "";
+  const originText=originList.length
+    ? originList.map(p=>`${p.name}｜${p.s}${p.b}`).join("、")
+    : "—";
+  const direction=b.majors[b.life]?.dir===1?"順行":"逆行";
+
+  c.innerHTML=`
+  <div class="gbCenter">
+    <div class="gbBrand">
+      <div class="gbBrandMark">✦</div>
+      <strong>GOLDEN BEAUTY</strong>
+      <small>開運美學</small>
+    </div>
+    <div class="gbKey">
+      <div class="gbKeyTitle">🔑 KEY 入｜基本資料</div>
+      <div class="gbKeyGrid">
+        <b>姓名</b><span>${(nameInput?.value || "").trim()||"未填姓名"}</span>
+        <b>農曆生日</b><span>${m.leap?"閏":""}${m.lm}月${m.ld}日</span>
+        <b>出生年干支</b><span>${b.yg}${b.yz}年</span>
+        <b>出生時辰</b><span>${shichenLabelByIndex(m.hi)}</span>
+        <b>命宮</b><span>${b.pal[b.life].name}｜${b.pal[b.life].s}${B[b.life]}</span>
+        <b>身宮</b><span>${b.pal[b.body].name}｜${b.pal[b.body].s}${B[b.body]}</span>
+        <b>五行局</b><span>${b.bu[0]}</span>
+        <b>來因宮</b><span>${originText}</span>
+        <b>流年</b><span>${fy} ${annual.gz.gan}${annual.gz.zhi}年｜流年命宮 ${annual.gz.zhi}</span>
+      </div>
+    </div>
+  </div>`;
+  chart.appendChild(c);
+  renderSelfTransformPanel(b);
+
+  const vals=[
+    `農曆 ${m.leap?"閏":""}${m.lm}月${m.ld}日`,
+    `${b.yg}${b.yz}年`,
+    `${b.pal[b.life].s}${B[b.life]}`,
+    `${b.pal[b.body].s}${B[b.body]}`,
+    b.bu[0],
+    originText,
+    `${fy} ${annual.gz.gan}${annual.gz.zhi}｜命宮${annual.gz.zhi}`
+  ];
+  document.querySelectorAll("#summary span").forEach((x,i)=>x.textContent=vals[i]);
+
+  document.getElementById("detailBasic").innerHTML=
+    `姓名：${(nameInput?.value || "").trim()||"未填姓名"}<br>`+
+    `農曆：${m.leap?"閏":""}${m.lm}月${m.ld}日<br>`+
+    `出生：${b.yg}${b.yz}年｜${shichenLabelByIndex(m.hi)}<br>`+
+    `命宮：${b.pal[b.life].name}｜${b.pal[b.life].s}${B[b.life]}<br>`+
+    `身宮：${b.pal[b.body].name}｜${b.pal[b.body].s}${B[b.body]}<br>`+
+    `五行局：${b.bu[0]}`;
+
+  document.getElementById("detailTiming").innerHTML=
+    `來因宮：${originText}<br>`+
+    `大限方向：${direction}<br>`+
+    `第一大限：${b.bu[1]}-${b.bu[1]+9}歲<br>`+
+    `流年：${fy} ${annual.gz.gan}${annual.gz.zhi}年<br>`+
+    `流年命宮：${annual.gz.zhi}`;
+
+  document.getElementById("detailHua").innerHTML=
+    `生年四化：依 ${b.yg} 干固定四化表<br>`+
+    `離心自化：${b.selfTransforms.outward.length} 組<br>`+
+    `向心自化：${b.selfTransforms.inward.length} 組<br>`+
+    `紫微：${B[b.z]}｜天府：${B[b.f]}`;
+
+
+  status.innerHTML=
+    `✅ ${b.bu[0]}｜紫微在${B[b.z]}｜天府在${B[b.f]}`+
+    `<br>大限：${direction}，第一大限 ${b.bu[1]}-${b.bu[1]+9} 歲。`+
+    `<br>來因宮：${originText}`+
+    `<br>流年：${fy} ${annual.gz.gan}${annual.gz.zhi}年，流年命宮在${annual.gz.zhi}。`+
+    `<br>欽天自化：離心 ${b.selfTransforms.outward.length} 組｜向心 ${b.selfTransforms.inward.length} 組。`+
+    `<br>祿存：${B[lucun(b.yg)]}宮｜天馬：${B[tianma(b.yz)]}宮｜天刑：${B[tianxing(m.lm)]}宮。`+
+    `<br>華蓋：${B[huagai(b.yz)]}宮｜紅鸞：${B[hongluan(b.yz)]}宮｜天喜：${B[tianxi(b.yz)]}宮。`+
+    (()=>{const [gu,gua]=guchenGuasu(b.yz);return `<br>孤辰：${B[gu]}宮｜寡宿：${B[gua]}宮。`;})()+
+    (trueSolar.checked
+      ? `<br>真太陽時近似校正 ${m.fix>=0?"+":""}${m.fix.toFixed(1)} 分。`+
+        (cross
+          ? `<br>⚠ 原時辰 ${shichenLabelByIndex(m.rawHi)} → 校正後 ${shichenLabelByIndex(m.hi)}，已跨時辰；命宮、身宮與時系星曜已依校正後時辰重排。`
+          : `<br>✅ 原時辰與校正後時辰相同，未跨時辰；命宮、身宮不因真太陽時校正而改變。`)
+      : "");
+}
+generate.onclick=()=>{
+  try{
+    const m=moment();
+
+    if(trueSolar.checked && m.rawHi!==m.selectedHi){
+      const selectedText=shichenLabelByIndex(m.selectedHi);
+      const exactText=shichenLabelByIndex(m.rawHi);
+      const ok=confirm(
+        `您上方選擇的是「${selectedText}」，但精確出生時間 ${m.raw} 屬於「${exactText}」。\n\n`+
+        `若精確時間才是正確出生資料，請按「確定」繼續；若輸入錯誤，請按「取消」回去修改。`
+      );
+      if(!ok){
+        status.innerHTML=`⚠ 請確認出生資料：時辰選擇為 ${selectedText}，精確時間 ${m.raw} 則屬於 ${exactText}。`;
+        return;
+      }
+    }
+
+    render(build(m),m);
+  }catch(e){
+    alert(e.message);
+    status.textContent=e.message;
+  }
+};
+printBtn.onclick=()=>window.print();
+(function empty(){const c=chart.querySelector(".center");B.forEach((b,i)=>{const e=document.createElement("div");e.className=`palace b${i}`;e.innerHTML=`<div class="branch">${b}</div><div class="pname">—</div><div class="pfoot">等待排盤</div>`;chart.appendChild(e)});chart.appendChild(c)})();
+</script>
 </body>
 </html>
