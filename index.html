@@ -580,6 +580,7 @@
       if(!gbPendingTool) return;
       if(input === GB_TOOL_PASSWORDS[gbPendingTool]){
         const url = gbPendingUrl;
+        sessionStorage.setItem("gb_auth_" + gbPendingTool, "ok");
         closeGbLock();
         window.location.href = url;
       }else{
