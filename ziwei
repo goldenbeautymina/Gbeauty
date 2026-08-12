@@ -90,7 +90,7 @@ label{display:block;font-weight:800;margin:12px 0 7px}input,select{width:100%;he
   <button class="action primary" id="generate">建立紫微命盤</button>
   <button class="action secondary" id="printBtn">列印／另存 PDF</button>
 
-  <div class="note"><b>本版已加入</b><br>✓ 命宮、身宮、十二宮、宮干<br>✓ 五行局、十四主星<br>✓ 六吉星：左輔、右弼、文昌、文曲、天魁、天鉞<br>✓ 六煞星：擎羊、陀羅、火星、鈴星、地空、地劫<br>✓ 生年四化<br>✓ 來因宮：依實際宮干與生年天干逐宮比對<br>✓ 十年大限：五行局起運，陽男陰女順、陰男陽女逆<br>✓ 流年：以流年地支立流年命宮<br><br><b>下一版：</b>宮干飛化、離心自化、向心自化。</div>
+  <div class="note"><b>本版已加入</b><br>✓ 命宮、身宮、十二宮、宮干<br>✓ 五行局、十四主星<br>✓ 六吉星：左輔、右弼、文昌、文曲、天魁、天鉞<br>✓ 六煞星：擎羊、陀羅、火星、鈴星、地空、地劫<br>✓ 生年四化<br>✓ 祿存、天馬、天刑、華蓋、紅鸞、天喜、孤辰、寡宿<br>✓ 來因宮：依實際宮干與生年天干逐宮比對<br>✓ 十年大限：五行局起運，陽男陰女順、陰男陽女逆<br>✓ 流年：以流年地支立流年命宮<br><br><b>下一版：</b>宮干飛化、離心自化、向心自化。</div>
   <div id="status" class="status">等待輸入出生資料。</div>
 </section>
 
@@ -98,7 +98,7 @@ label{display:block;font-weight:800;margin:12px 0 7px}input,select{width:100%;he
   <h2 style="margin-top:0">十二宮命盤</h2>
   <div class="chartScroll"><div id="chart" class="chart"><div class="center"><div><div style="font-size:42px">🌌</div><h3>GoldenBeauty</h3><p>紫微斗數生命命盤</p><div class="key">請輸入出生資料後建立命盤</div></div></div></div></div>
   <div id="summary" class="summary"><div class="sum"><b>農曆生日</b><span>—</span></div><div class="sum"><b>出生年干支</b><span>—</span></div><div class="sum"><b>命宮</b><span>—</span></div><div class="sum"><b>身宮</b><span>—</span></div><div class="sum"><b>五行局</b><span>—</span></div><div class="sum"><b>來因宮</b><span>—</span></div><div class="sum"><b>流年</b><span>—</span></div></div>
-  <div class="legend"><span class="star main">十四主星</span><span class="star good">六吉星</span><span class="star bad">六煞星</span><span class="tag originTag">來因宮</span><span class="tag majorTag">大限</span><span class="tag annualTag">流年</span><span class="star main">星曜 <span class="hua">祿</span> 生年四化</span></div>
+  <div class="legend"><span class="star main">十四主星</span><span class="star good">六吉星</span><span class="star bad">六煞星</span><span class="star wealth">祿存</span><span class="star minor">神煞／雜曜</span><span class="tag originTag">來因宮</span><span class="tag majorTag">大限</span><span class="tag annualTag">流年</span><span class="star main">星曜 <span class="hua">祿</span> 生年四化</span></div>
   <div class="note"><b>驗證順序：</b>五行局 → 紫微 → 天府 → 十四主星 → 六吉星 → 六煞星 → 生年四化 → 來因宮 → 大限 → 流年。確認後再進欽天自化。</div>
 </section>
 </div>
@@ -232,14 +232,78 @@ function mainStars(map,z,f){
 }
 function kuiYue(g){return ({甲:[1,7],戊:[1,7],庚:[1,7],乙:[0,8],己:[0,8],辛:[6,2],壬:[3,5],癸:[3,5],丙:[11,9],丁:[11,9]})[g]}
 function lucun(g){return ({甲:2,乙:3,丙:5,戊:5,丁:6,己:6,庚:8,辛:9,壬:11,癸:0})[g]}
+
+// 天馬：依出生年支
+function tianma(z){
+  if("寅午戌".includes(z)) return 8;   // 申
+  if("申子辰".includes(z)) return 2;   // 寅
+  if("巳酉丑".includes(z)) return 11;  // 亥
+  return 5;                            // 亥卯未 -> 巳
+}
+
+// 天刑：酉宮起正月，順數至出生月
+function tianxing(month){
+  return mod(9+(month-1),12);
+}
+
+// 紅鸞：卯宮起子年逆數；天喜在紅鸞對宮
+function hongluan(z){
+  return mod(3-B.indexOf(z),12);
+}
+function tianxi(z){
+  return mod(hongluan(z)+6,12);
+}
+
+// 華蓋：依出生年支三合局
+function huagai(z){
+  if("子辰申".includes(z)) return 4;  // 辰
+  if("丑巳酉".includes(z)) return 1;  // 丑
+  if("寅午戌".includes(z)) return 10; // 戌
+  return 7;                           // 卯未亥 -> 未
+}
+
+// 孤辰、寡宿：依出生年支三會分組
+function guchenGuasu(z){
+  if("寅卯辰".includes(z)) return [5,1];   // 巳、丑
+  if("巳午未".includes(z)) return [8,4];   // 申、辰
+  if("申酉戌".includes(z)) return [11,7];  // 亥、未
+  return [2,10];                           // 亥子丑 -> 寅、戌
+}
 function fireBell(z){if("申子辰".includes(z))return[2,10];if("寅午戌".includes(z))return[1,3];if("巳酉丑".includes(z))return[3,10];return[9,10]}
 function sideStars(map,m,h,g,z){
-  add(map,mod(4+m-1,12),"左輔","good");add(map,mod(10-(m-1),12),"右弼","good");
-  add(map,mod(10-h,12),"文昌","good");add(map,mod(4+h,12),"文曲","good");
-  const [k,y]=kuiYue(g);add(map,k,"天魁","good");add(map,y,"天鉞","good");
-  const lu=lucun(g);add(map,mod(lu+1,12),"擎羊","bad");add(map,mod(lu-1,12),"陀羅","bad");
-  const [fs,bs]=fireBell(z);add(map,mod(fs+h,12),"火星","bad");add(map,mod(bs+h,12),"鈴星","bad");
-  add(map,mod(11-h,12),"地空","bad");add(map,mod(11+h,12),"地劫","bad");
+  // 六吉星
+  add(map,mod(4+m-1,12),"左輔","good");
+  add(map,mod(10-(m-1),12),"右弼","good");
+  add(map,mod(10-h,12),"文昌","good");
+  add(map,mod(4+h,12),"文曲","good");
+  const [k,y]=kuiYue(g);
+  add(map,k,"天魁","good");
+  add(map,y,"天鉞","good");
+
+  // 祿存、羊陀
+  // 甲祿寅、乙祿卯、丙戊祿巳、丁己祿午、庚祿申、辛祿酉、壬祿亥、癸祿子
+  const lu=lucun(g);
+  add(map,lu,"祿存","wealth");
+  add(map,mod(lu+1,12),"擎羊","bad");
+  add(map,mod(lu-1,12),"陀羅","bad");
+
+  // 火鈴、空劫
+  const [fs,bs]=fireBell(z);
+  add(map,mod(fs+h,12),"火星","bad");
+  add(map,mod(bs+h,12),"鈴星","bad");
+  add(map,mod(11-h,12),"地空","bad");
+  add(map,mod(11+h,12),"地劫","bad");
+
+  // 神煞／雜曜
+  add(map,tianma(z),"天馬","minor");
+  add(map,tianxing(m),"天刑","minor");
+  add(map,huagai(z),"華蓋","minor");
+  add(map,hongluan(z),"紅鸞","minor");
+  add(map,tianxi(z),"天喜","minor");
+
+  const [gu,gua]=guchenGuasu(z);
+  add(map,gu,"孤辰","minor");
+  add(map,gua,"寡宿","minor");
 }
 function build(m){
   const monthBase=mod(2+m.lm-1,12),life=mod(monthBase-m.hi,12),body=mod(monthBase+m.hi,12);
@@ -256,7 +320,12 @@ function build(m){
   return {pal,life,body,yg,yz,bu,z,f,stars,majors};
 }
 function starHTML(s,yg){
-  const c=s.type==="main"?"main":s.type==="good"?"good":"bad",h=HUA[yg]?.[s.name]||"";
+  const c=
+    s.type==="main" ? "main" :
+    s.type==="good" ? "good" :
+    s.type==="bad" ? "bad" :
+    s.type==="wealth" ? "wealth" : "minor";
+  const h=HUA[yg]?.[s.name]||"";
   return `<span class="star ${c}">${s.name}${h?`<span class="hua">${h}</span>`:""}</span>`;
 }
 function render(b,m){
@@ -329,6 +398,9 @@ function render(b,m){
     `<br>大限：${direction}，第一大限 ${b.bu[1]}-${b.bu[1]+9} 歲。`+
     `<br>來因宮：${originText}`+
     `<br>流年：${fy} ${annual.gz.gan}${annual.gz.zhi}年，流年命宮在${annual.gz.zhi}。`+
+    `<br>祿存：${B[lucun(b.yg)]}宮｜天馬：${B[tianma(b.yz)]}宮｜天刑：${B[tianxing(m.lm)]}宮。`+
+    `<br>華蓋：${B[huagai(b.yz)]}宮｜紅鸞：${B[hongluan(b.yz)]}宮｜天喜：${B[tianxi(b.yz)]}宮。`+
+    (()=>{const [gu,gua]=guchenGuasu(b.yz);return `<br>孤辰：${B[gu]}宮｜寡宿：${B[gua]}宮。`;})()+
     (trueSolar.checked?`<br>真太陽時近似校正 ${m.fix>=0?"+":""}${m.fix.toFixed(1)} 分${cross?"；⚠ 已跨時辰並重排":""}`:"");
 }
 generate.onclick=()=>{try{const m=moment();render(build(m),m)}catch(e){alert(e.message);status.textContent=e.message}};
