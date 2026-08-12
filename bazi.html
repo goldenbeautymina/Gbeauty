@@ -44,7 +44,14 @@
       <h2>出生資料</h2>
       <div class="row"><div class="field"><label>姓名（選填）</label><input id="name" placeholder="例如：Mina"></div><div class="field"><label>性別</label><select id="gender"><option value="0">女</option><option value="1">男</option></select></div></div>
       <div class="field"><label>公曆出生日期</label><input id="birthDate" type="date" value="1990-01-01"></div>
-      <div class="field"><label>出生時間</label><input id="birthTime" type="time" value="12:00" step="60"></div>
+      <div class="field"><label>出生時辰</label><select id="birthTime">
+<option value="00:00">子時（23:00–00:59）</option><option value="02:00">丑時（01:00–02:59）</option>
+<option value="04:00">寅時（03:00–04:59）</option><option value="06:00">卯時（05:00–06:59）</option>
+<option value="08:00">辰時（07:00–08:59）</option><option value="10:00">巳時（09:00–10:59）</option>
+<option value="12:00" selected>午時（11:00–12:59）</option><option value="14:00">未時（13:00–14:59）</option>
+<option value="16:00">申時（15:00–16:59）</option><option value="18:00">酉時（17:00–18:59）</option>
+<option value="20:00">戌時（19:00–20:59）</option><option value="22:00">亥時（21:00–22:59）</option>
+</select></div>
       <div class="row"><div class="field"><label>時區 UTC</label><select id="tz"><option value="8" selected>UTC+8 台灣／中國</option><option value="9">UTC+9</option><option value="7">UTC+7</option><option value="0">UTC+0</option><option value="-5">UTC-5</option><option value="-8">UTC-8</option></select></div><div class="field"><label>出生地經度（東經＋）</label><input id="longitude" type="number" step="0.0001" value="121.5654"></div></div>
       <div class="field"><label>常用出生地</label><select id="city"><option value="121.5654">台北 121.5654°E</option><option value="121.3010">桃園 121.3010°E</option><option value="120.6736">台中 120.6736°E</option><option value="120.3014">高雄 120.3014°E</option><option value="120.2270">台南 120.2270°E</option><option value="custom">自行輸入</option></select></div>
       <label class="check"><input id="trueSolar" type="checkbox" checked> 使用真太陽時校正</label>
