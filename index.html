@@ -589,14 +589,16 @@
       }
     }
 
-    document.getElementById("gbLockCancel").addEventListener("click", closeGbLock);
-    document.getElementById("gbLockEnter").addEventListener("click", submitGbLock);
-    document.getElementById("gbLockPassword").addEventListener("keydown", e=>{
-      if(e.key === "Enter") submitGbLock();
-      if(e.key === "Escape") closeGbLock();
-    });
-    document.getElementById("gbLockOverlay").addEventListener("click", e=>{
-      if(e.target.id === "gbLockOverlay") closeGbLock();
+    document.addEventListener("DOMContentLoaded", () => {
+      document.getElementById("gbLockCancel").addEventListener("click", closeGbLock);
+      document.getElementById("gbLockEnter").addEventListener("click", submitGbLock);
+      document.getElementById("gbLockPassword").addEventListener("keydown", e=>{
+        if(e.key === "Enter") submitGbLock();
+        if(e.key === "Escape") closeGbLock();
+      });
+      document.getElementById("gbLockOverlay").addEventListener("click", e=>{
+        if(e.target.id === "gbLockOverlay") closeGbLock();
+      });
     });
 
 </script>
