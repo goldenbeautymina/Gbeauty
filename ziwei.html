@@ -66,6 +66,204 @@ label{display:block;font-weight:800;margin:12px 0 7px}input,select{width:100%;he
 .noSelf{color:#887b82;font-size:13px}
 @media(max-width:700px){.selfGrid{grid-template-columns:1fr}}
 
+
+.flySourceDot{fill:#fff;stroke-width:2.2}
+.flySourceSelf{stroke:#c5772c}
+.flySourceInward{stroke:#4777ae}
+.flyGlyph{font-size:11px;font-weight:900;paint-order:stroke;stroke:#fff;stroke-width:3px}
+.flyGlyphLu{fill:#b57a13}.flyGlyphQuan{fill:#a24646}.flyGlyphKe{fill:#3e6f9f}.flyGlyphJi{fill:#66506f}
+.flyPathSelf{fill:none;stroke:#c5772c;stroke-width:2.4;opacity:.9}
+.flyPathInward{fill:none;stroke:#4777ae;stroke-width:2.4;opacity:.86}
+.flyLegendHint{font-size:12px;color:#786a71;line-height:1.65;margin-top:8px}
+
+
+/* ===== V4.2 明確版：宮格邊緣箭頭，不再讓向心線穿越中央 ===== */
+.palace{overflow:visible}
+.localHuaBox{
+  position:absolute;left:8px;right:8px;bottom:26px;
+  display:flex;flex-direction:column;gap:4px;z-index:7;pointer-events:none
+}
+.localHuaRow{
+  display:flex;align-items:center;gap:5px;
+  padding:4px 6px;border-radius:9px;
+  font-size:10px;font-weight:900;line-height:1.35;
+  box-shadow:0 1px 5px rgba(70,50,60,.08)
+}
+.localOut{background:#fff1e2;border:1px solid #efc18f;color:#944f17}
+.localIn{background:#eaf3ff;border:1px solid #b9d1ef;color:#315f99}
+.localArrow{
+  font-size:15px;font-weight:1000;line-height:1
+}
+.localGlyph{
+  display:inline-flex;align-items:center;justify-content:center;
+  min-width:30px;padding:1px 5px;border-radius:999px;background:#fff;
+  border:1px solid currentColor
+}
+.localSource{font-size:9px;opacity:.86}
+.palaceEdgeMark{
+  position:absolute;z-index:8;font-weight:1000;font-size:18px;
+  pointer-events:none
+}
+.edgeOut{color:#c5772c}
+.edgeIn{color:#4777ae}
+.edgeTop{top:-11px;left:50%;transform:translateX(-50%)}
+.edgeBottom{bottom:-13px;left:50%;transform:translateX(-50%)}
+.edgeLeft{left:-11px;top:50%;transform:translateY(-50%)}
+.edgeRight{right:-11px;top:50%;transform:translateY(-50%)}
+.selfPanel .directionNote{
+  margin-top:4px;font-size:11px;color:#756b70
+}
+
+
+/* ===== V4.3 中央品牌＋基本資料＋向心強化 ===== */
+.palace{
+  padding:14px 12px 44px !important;
+  overflow:hidden !important;
+}
+.palace .branch{
+  right:10px !important;
+  top:8px !important;
+  z-index:12 !important;
+  background:rgba(255,255,255,.88);
+  padding:0 2px;
+  border-radius:4px;
+}
+.palace .stem{
+  right:10px !important;
+  top:31px !important;
+  z-index:12 !important;
+  background:rgba(255,255,255,.88);
+  padding:0 2px;
+  border-radius:4px;
+}
+.localHuaBox{
+  left:10px !important;
+  right:10px !important;
+  bottom:43px !important;
+  z-index:9 !important;
+}
+.localHuaRow{
+  padding:4px 7px !important;
+  font-size:10px !important;
+}
+.localIn{
+  border:2px solid #8bb8ec !important;
+  background:#eef6ff !important;
+}
+.localOut{
+  border:2px solid #f0bd88 !important;
+  background:#fff7ef !important;
+}
+.pfoot{
+  bottom:8px !important;
+  z-index:11 !important;
+  background:rgba(255,255,255,.9);
+  padding-right:4px;
+}
+
+/* 中央 GoldenBeauty 品牌資訊 */
+.center{
+  padding:14px !important;
+}
+.gbCenter{
+  width:100%;
+  height:100%;
+  border:1px solid #dec69d;
+  border-radius:18px;
+  background:
+    radial-gradient(circle at 85% 25%,rgba(230,191,135,.12),transparent 30%),
+    linear-gradient(145deg,#fffdf8,#fffaf2);
+  display:grid;
+  grid-template-columns:44% 56%;
+  gap:14px;
+  align-items:center;
+  padding:18px 20px;
+  box-shadow:inset 0 0 0 4px rgba(255,255,255,.66);
+}
+.gbBrand{
+  text-align:center;
+  color:#9b6a28;
+}
+.gbBrandMark{
+  width:92px;
+  height:92px;
+  margin:0 auto 10px;
+  border-radius:50%;
+  border:3px solid #c89a55;
+  display:grid;
+  place-items:center;
+  font-size:42px;
+  background:#fffdf9;
+}
+.gbBrand strong{
+  display:block;
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:22px;
+  letter-spacing:.08em;
+}
+.gbBrand small{
+  display:block;
+  margin-top:5px;
+  font-size:14px;
+  letter-spacing:.12em;
+}
+.gbKey{
+  text-align:left;
+  color:#5c4c43;
+}
+.gbKeyTitle{
+  font-weight:900;
+  color:#9b6a28;
+  font-size:18px;
+  margin-bottom:8px;
+}
+.gbKeyGrid{
+  display:grid;
+  grid-template-columns:82px 1fr;
+  gap:5px 10px;
+  font-size:13px;
+  line-height:1.5;
+}
+.gbKeyGrid b{
+  color:#6b584c;
+}
+
+/* 下方資訊區不再空白 */
+.detailSection{
+  margin-top:18px;
+  background:#fff;
+  border:1px solid #eaded9;
+  border-radius:16px;
+  padding:16px;
+}
+.detailSection h3{
+  margin:0 0 12px;
+  color:#624b6e;
+}
+.detailGrid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:10px;
+}
+.detailCard{
+  border:1px solid #eaded9;
+  border-radius:12px;
+  padding:12px;
+  background:#fffdfd;
+  line-height:1.6;
+  font-size:13px;
+}
+.detailCard b{
+  display:block;
+  color:#704f7d;
+  margin-bottom:4px;
+}
+@media(max-width:900px){
+  .gbCenter{grid-template-columns:1fr}
+  .gbBrandMark{width:72px;height:72px;font-size:34px}
+  .detailGrid{grid-template-columns:1fr}
+}
+
 </style>
 <script src="https://cdn.jsdelivr.net/npm/lunar-javascript@1.7.7/lunar.js"></script>
 </head>
@@ -142,15 +340,25 @@ label{display:block;font-weight:800;margin:12px 0 7px}input,select{width:100%;he
   <div class="chartScroll"><div id="chart" class="chart"><div class="center"><div><div style="font-size:42px">🌌</div><h3>GoldenBeauty</h3><p>紫微斗數生命命盤</p><div class="key">請輸入出生資料後建立命盤</div></div></div></div></div>
   <div id="summary" class="summary"><div class="sum"><b>農曆生日</b><span>—</span></div><div class="sum"><b>出生年干支</b><span>—</span></div><div class="sum"><b>命宮</b><span>—</span></div><div class="sum"><b>身宮</b><span>—</span></div><div class="sum"><b>五行局</b><span>—</span></div><div class="sum"><b>來因宮</b><span>—</span></div><div class="sum"><b>流年</b><span>—</span></div></div>
   <div class="legend"><span class="star main">十四主星</span><span class="star good">六吉星</span><span class="star bad">六煞星</span><span class="star wealth">祿存</span><span class="star minor">神煞／雜曜</span><span class="tag originTag">來因宮</span><span class="tag majorTag">大限</span><span class="tag annualTag">流年</span><span class="star main">生年四化：星曜 <span class="hua">祿</span></span>
-<span class="tag" style="background:#fff4e5;color:#a85b12">↗ 離心自化</span>
-<span class="tag" style="background:#eaf3ff;color:#315f9b">→ 向心自化</span></div>
+<span class="tag" style="background:#fff4e5;color:#a85b12">●→ 離心自化：本宮往盤外</span>
+<span class="tag" style="background:#eaf3ff;color:#315f9b">●→ 向心自化：來源宮射入對宮</span></div>
   <div class="note">
-  <b>圖例說明：</b>圓形「祿／權／科／忌」為生年四化；橘色「↗離心」代表本宮宮干使本宮星曜自化；藍色「→向心」代表對宮宮干射入本宮星曜。命盤箭頭與下方自化清單會同步顯示。
+  <b>圖例說明：</b>圓形「祿／權／科／忌」為生年四化；橘色方向卡代表本宮宮干使本宮星曜離心自化並往盤外；藍色方向卡會直接寫「由○○宮射入本宮」，用來源宮名稱判斷向心方向；橘色方向卡則寫「本宮→盤外」。
 </div>
 
 <div id="selfTransformPanel" class="selfPanel">
   <h3>欽天四化｜自化判斷結果</h3>
   <div class="noSelf">完成排盤後，這裡會列出離心自化與向心自化。</div>
+</div>
+
+
+<div id="chartDetailSection" class="detailSection">
+  <h3>命盤完整資訊</h3>
+  <div class="detailGrid">
+    <div class="detailCard"><b>基本資料</b><div id="detailBasic">完成排盤後顯示。</div></div>
+    <div class="detailCard"><b>來因宮・大限・流年</b><div id="detailTiming">完成排盤後顯示。</div></div>
+    <div class="detailCard"><b>四化・自化</b><div id="detailHua">完成排盤後顯示。</div></div>
+  </div>
 </div>
 
 <div class="note"><b>驗證順序：</b>先核對生年四化，再逐宮核對「宮干 → 本宮星曜＝離心自化」及「宮干 → 對宮星曜＝向心自化」。</div>
@@ -476,6 +684,11 @@ const PALACE_COORDS={
   11:[350,350] // 亥
 };
 
+
+function huaGlyph(h){return h==="祿"?"○祿":h==="權"?"◆權":h==="科"?"△科":"×忌";}
+function huaGlyphClass(h){return h==="祿"?"flyGlyphLu":h==="權"?"flyGlyphQuan":h==="科"?"flyGlyphKe":"flyGlyphJi";}
+function pointAlong(sx,sy,tx,ty,t){return [sx+(tx-sx)*t,sy+(ty-sy)*t];}
+
 function renderFlyOverlay(chartEl,b){
   const NS="http://www.w3.org/2000/svg";
   const svg=document.createElementNS(NS,"svg");
@@ -485,69 +698,85 @@ function renderFlyOverlay(chartEl,b){
 
   const defs=document.createElementNS(NS,"defs");
   defs.innerHTML=`
-    <marker id="arrowSelf" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
-      <path d="M0,0 L8,4 L0,8 z" fill="#c5772c"></path>
+    <marker id="arrowSelfV41" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto">
+      <path d="M0,0 L9,4.5 L0,9 z" fill="#c5772c"></path>
     </marker>
-    <marker id="arrowInward" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
-      <path d="M0,0 L8,4 L0,8 z" fill="#4777ae"></path>
+    <marker id="arrowInwardV41" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto">
+      <path d="M0,0 L9,4.5 L0,9 z" fill="#4777ae"></path>
     </marker>`;
   svg.appendChild(defs);
 
-  // 離心箭頭：由本宮中心往盤外射
-  groupEvents(b.selfTransforms.outward,e=>String(e.source)).forEach(group=>{
+  const outGroups=groupEvents(b.selfTransforms.outward,e=>String(e.source));
+  outGroups.forEach(group=>{
     const i=group[0].source;
-    const [x,y]=PALACE_COORDS[i];
-    let vx=x-200,vy=y-200;
+    const [cx,cy]=PALACE_COORDS[i];
+    let vx=cx-200,vy=cy-200;
     const len=Math.hypot(vx,vy)||1;
     vx/=len;vy/=len;
+    const px=-vy,py=vx;
 
-    const x1=x-vx*7,y1=y-vy*7;
-    const x2=x+vx*34,y2=y+vy*34;
+    group.forEach((e,j)=>{
+      const lane=(j-(group.length-1)/2)*7;
+      const sx=cx+px*lane-vx*4,sy=cy+py*lane-vy*4;
+      const tx=cx+px*lane+vx*43,ty=cy+py*lane+vy*43;
 
-    const line=document.createElementNS(NS,"line");
-    line.setAttribute("x1",x1);line.setAttribute("y1",y1);
-    line.setAttribute("x2",x2);line.setAttribute("y2",y2);
-    line.setAttribute("class","flyLineSelf");
-    line.setAttribute("marker-end","url(#arrowSelf)");
-    svg.appendChild(line);
+      const dot=document.createElementNS(NS,"circle");
+      dot.setAttribute("cx",sx);dot.setAttribute("cy",sy);dot.setAttribute("r","3.2");
+      dot.setAttribute("class","flySourceDot flySourceSelf");
+      svg.appendChild(dot);
 
-    const text=document.createElementNS(NS,"text");
-    text.setAttribute("x",x+vx*18);
-    text.setAttribute("y",y+vy*18-4);
-    text.setAttribute("text-anchor","middle");
-    text.setAttribute("class","flyLabel flyLabelSelf");
-    const labels=[...new Set(group.map(e=>e.transform))].join("/");
-    text.textContent=`離心${labels}`;
-    svg.appendChild(text);
+      const line=document.createElementNS(NS,"line");
+      line.setAttribute("x1",sx);line.setAttribute("y1",sy);
+      line.setAttribute("x2",tx);line.setAttribute("y2",ty);
+      line.setAttribute("class","flyPathSelf");
+      line.setAttribute("marker-end","url(#arrowSelfV41)");
+      svg.appendChild(line);
+
+      const [lx,ly]=pointAlong(sx,sy,tx,ty,.58);
+      const text=document.createElementNS(NS,"text");
+      text.setAttribute("x",lx+px*2);text.setAttribute("y",ly+py*2-3);
+      text.setAttribute("text-anchor","middle");
+      text.setAttribute("class",`flyGlyph ${huaGlyphClass(e.transform)}`);
+      text.textContent=huaGlyph(e.transform);
+      svg.appendChild(text);
+    });
   });
 
-  // 向心箭頭：由來源宮射向對宮
-  groupEvents(b.selfTransforms.inward,e=>`${e.source}-${e.target}`).forEach((group,gIndex)=>{
+  const inGroups=groupEvents(b.selfTransforms.inward,e=>`${e.source}-${e.target}`);
+  inGroups.forEach(group=>{
     const s=group[0].source,t=group[0].target;
-    const [sx,sy]=PALACE_COORDS[s],[tx,ty]=PALACE_COORDS[t];
+    const [sx0,sy0]=PALACE_COORDS[s],[tx0,ty0]=PALACE_COORDS[t];
+    let vx=tx0-sx0,vy=ty0-sy0;
+    const len=Math.hypot(vx,vy)||1;
+    vx/=len;vy/=len;
+    const px=-vy,py=vx;
 
-    // 稍微縮短線段，避免箭頭直接蓋住星曜文字
-    const x1=sx+(tx-sx)*0.16,y1=sy+(ty-sy)*0.16;
-    const x2=sx+(tx-sx)*0.84,y2=sy+(ty-sy)*0.84;
+    group.forEach((e,j)=>{
+      const lane=(j-(group.length-1)/2)*8;
+      const sx=sx0+vx*18+px*lane,sy=sy0+vy*18+py*lane;
+      const tx=tx0-vx*18+px*lane,ty=ty0-vy*18+py*lane;
 
-    const line=document.createElementNS(NS,"line");
-    line.setAttribute("x1",x1);line.setAttribute("y1",y1);
-    line.setAttribute("x2",x2);line.setAttribute("y2",y2);
-    line.setAttribute("class","flyLineInward");
-    line.setAttribute("marker-end","url(#arrowInward)");
-    svg.appendChild(line);
+      const dot=document.createElementNS(NS,"circle");
+      dot.setAttribute("cx",sx);dot.setAttribute("cy",sy);dot.setAttribute("r","3.2");
+      dot.setAttribute("class","flySourceDot flySourceInward");
+      svg.appendChild(dot);
 
-    const text=document.createElementNS(NS,"text");
-    const mx=(x1+x2)/2,my=(y1+y2)/2;
-    // 同一直線若兩個方向都有向心，稍微錯開文字
-    const offset=(s<t?-8:10);
-    text.setAttribute("x",mx);
-    text.setAttribute("y",my+offset);
-    text.setAttribute("text-anchor","middle");
-    text.setAttribute("class","flyLabel flyLabelInward");
-    const labels=[...new Set(group.map(e=>e.transform))].join("/");
-    text.textContent=`向心${labels}`;
-    svg.appendChild(text);
+      const line=document.createElementNS(NS,"line");
+      line.setAttribute("x1",sx);line.setAttribute("y1",sy);
+      line.setAttribute("x2",tx);line.setAttribute("y2",ty);
+      line.setAttribute("class","flyPathInward");
+      line.setAttribute("marker-end","url(#arrowInwardV41)");
+      svg.appendChild(line);
+
+      const [lx,ly]=pointAlong(sx,sy,tx,ty,.5);
+      const text=document.createElementNS(NS,"text");
+      text.setAttribute("x",lx+px*2);
+      text.setAttribute("y",ly+py*2-4);
+      text.setAttribute("text-anchor","middle");
+      text.setAttribute("class",`flyGlyph ${huaGlyphClass(e.transform)}`);
+      text.textContent=huaGlyph(e.transform);
+      svg.appendChild(text);
+    });
   });
 
   chartEl.appendChild(svg);
@@ -561,22 +790,22 @@ function renderSelfTransformPanel(b){
   const inn=b.selfTransforms.inward;
 
   const outHtml=out.length
-    ? out.map(e=>`<div class="selfItem"><b>${e.sourcePalace}｜${e.sourceStem}${e.sourceBranch}</b>${e.star} ↗ 離心自化${e.transform}</div>`).join("")
+    ? out.map(e=>`<div class="selfItem"><b>${e.sourcePalace}｜${e.sourceStem}${e.sourceBranch}</b>${e.star} ●→ 離心自化：本宮往盤外${e.transform}</div>`).join("")
     : `<div class="noSelf">本盤未形成離心自化。</div>`;
 
   const inHtml=inn.length
-    ? inn.map(e=>`<div class="selfItem"><b>${e.sourcePalace}｜${e.sourceStem}${e.sourceBranch} → ${e.targetPalace}｜${e.targetStem}${e.targetBranch}</b>${e.star} → 向心自化${e.transform}</div>`).join("")
+    ? inn.map(e=>`<div class="selfItem"><b>${e.sourcePalace}｜${e.sourceStem}${e.sourceBranch} → ${e.targetPalace}｜${e.targetStem}${e.targetBranch}</b>${e.star} ●→ 向心自化：來源宮射入對宮${e.transform}</div>`).join("")
     : `<div class="noSelf">本盤未形成向心自化。</div>`;
 
   panel.innerHTML=`
     <h3>欽天四化｜自化判斷結果</h3>
     <div class="selfGrid">
       <div class="selfBox out">
-        <b>↗ 離心自化｜${out.length} 組</b>
+        <b>●→ 離心自化：本宮往盤外｜${out.length} 組</b>
         ${outHtml}
       </div>
       <div class="selfBox in">
-        <b>→ 向心自化｜${inn.length} 組</b>
+        <b>●→ 向心自化：來源宮射入對宮｜${inn.length} 組</b>
         ${inHtml}
       </div>
     </div>`;
@@ -614,6 +843,47 @@ function starHTML(s,yg,palaceIndex,b){
 
   return `<span class="star ${c}">${s.name}${natalHtml}${outwardHtml}${inwardHtml}</span>`;
 }
+
+function palaceEdgeClass(index){
+  // 紫微盤外圈方向：上排往上、下排往下、左列往左、右列往右
+  if([5,6,7,8].includes(index)) return "edgeTop";
+  if([2,1,0,11].includes(index)) return "edgeBottom";
+  if([4,3].includes(index)) return "edgeLeft";
+  return "edgeRight";
+}
+function outwardLocalHTML(b,palaceIndex){
+  const events=b.selfTransforms.outward.filter(e=>e.source===palaceIndex);
+  if(!events.length)return "";
+  return events.map(e=>`
+    <div class="localHuaRow localOut">
+      <span class="localArrow">●➜</span>
+      <span class="localGlyph">${huaGlyph(e.transform)}</span>
+      <span>${e.star} 離心自化${e.transform}</span>
+      <span class="localSource">→ 盤外</span>
+    </div>`).join("");
+}
+function inwardLocalHTML(b,palaceIndex){
+  const events=b.selfTransforms.inward.filter(e=>e.target===palaceIndex);
+  if(!events.length)return "";
+  return events.map(e=>`
+    <div class="localHuaRow localIn">
+      <span class="localArrow">←●</span>
+      <span class="localGlyph">${huaGlyph(e.transform)}</span>
+      <span>${e.star} 向心自化${e.transform}</span>
+      <span class="localSource">由 ${e.sourcePalace} 射入本宮</span>
+    </div>`).join("");
+}
+function edgeMarksHTML(b,palaceIndex){
+  const out=b.selfTransforms.outward.some(e=>e.source===palaceIndex);
+  const inn=b.selfTransforms.inward.some(e=>e.target===palaceIndex);
+  if(!out&&!inn)return "";
+  const edge=palaceEdgeClass(palaceIndex);
+  let html="";
+  if(out)html+=`<span class="palaceEdgeMark edgeOut ${edge}" title="離心自化：由本宮往盤外">↗</span>`;
+  if(inn)html+=`<span class="palaceEdgeMark edgeIn ${edge}" title="向心自化：由對宮射入本宮">⇢</span>`;
+  return html;
+}
+
 function render(b,m){
   chart.innerHTML="";
   const fy=Number(flowYear.value)||new Date().getFullYear();
@@ -637,6 +907,11 @@ function render(b,m){
         ${isAnnualLife?`<span class="tag annualTag">${fy} 流年命宮</span>`:`<span class="tag annualTag">${annualName}</span>`}
       </div>
       <div class="stars">${b.stars[p.i].map(s=>starHTML(s,b.yg,p.i,b)).join("")}</div>
+      <div class="localHuaBox">
+        ${outwardLocalHTML(b,p.i)}
+        ${inwardLocalHTML(b,p.i)}
+      </div>
+      ${edgeMarksHTML(b,p.i)}
       <div class="pfoot">宮干 ${p.s}｜地支 ${p.b}<br>${major?`第${major.order}大限 ${major.start}-${major.end}歲`:""}</div>`;
     chart.appendChild(e);
   });
@@ -651,23 +926,29 @@ function render(b,m){
     : "—";
   const direction=b.majors[b.life]?.dir===1?"順行":"逆行";
 
-  c.innerHTML=`<div>
-    <div style="font-size:42px">🌌</div>
-    <h3>${name.value.trim()||"未填姓名"}</h3>
-    <p>${gender.value}｜${b.yg}${b.yz}年｜${b.bu[0]}｜大限${direction}</p>
-    <p>農曆 ${m.ly}年 ${m.leap?"閏":""}${m.lm}月${m.ld}日</p>
-    <p>${shichenLabel(m.a.h)}${trueSolar.checked?(cross?"｜⚠ 真太陽時校正後跨時辰":"｜✅ 未跨時辰"):""}</p>
-    ${timeText?`<p class="small">${timeText}</p>`:""}
-    <div class="key">
-      命宮：${b.pal[b.life].s}${B[b.life]}<br>
-      身宮：${b.pal[b.body].s}${B[b.body]}<br>
-      來因宮：${originText}<br>
-      紫微：${B[b.z]}｜天府：${B[b.f]}<br>
-      流年：${fy} ${annual.gz.gan}${annual.gz.zhi}年｜流年命宮 ${annual.gz.zhi}<br>離心自化：${b.selfTransforms.outward.length} 組｜向心自化：${b.selfTransforms.inward.length} 組
+  c.innerHTML=`
+  <div class="gbCenter">
+    <div class="gbBrand">
+      <div class="gbBrandMark">✦</div>
+      <strong>GOLDEN BEAUTY</strong>
+      <small>開運美學</small>
+    </div>
+    <div class="gbKey">
+      <div class="gbKeyTitle">🔑 KEY 入｜基本資料</div>
+      <div class="gbKeyGrid">
+        <b>姓名</b><span>${name.value.trim()||"未填姓名"}</span>
+        <b>農曆生日</b><span>${m.leap?"閏":""}${m.lm}月${m.ld}日</span>
+        <b>出生年干支</b><span>${b.yg}${b.yz}年</span>
+        <b>出生時辰</b><span>${shichenLabel(m.a.h)}</span>
+        <b>命宮</b><span>${b.pal[b.life].name}｜${b.pal[b.life].s}${B[b.life]}</span>
+        <b>身宮</b><span>${b.pal[b.body].name}｜${b.pal[b.body].s}${B[b.body]}</span>
+        <b>五行局</b><span>${b.bu[0]}</span>
+        <b>來因宮</b><span>${originText}</span>
+        <b>流年</b><span>${fy} ${annual.gz.gan}${annual.gz.zhi}年｜流年命宮 ${annual.gz.zhi}</span>
+      </div>
     </div>
   </div>`;
   chart.appendChild(c);
-  renderFlyOverlay(chart,b);
   renderSelfTransformPanel(b);
 
   const vals=[
@@ -680,6 +961,28 @@ function render(b,m){
     `${fy} ${annual.gz.gan}${annual.gz.zhi}｜命宮${annual.gz.zhi}`
   ];
   document.querySelectorAll("#summary span").forEach((x,i)=>x.textContent=vals[i]);
+
+  document.getElementById("detailBasic").innerHTML=
+    `姓名：${name.value.trim()||"未填姓名"}<br>`+
+    `農曆：${m.leap?"閏":""}${m.lm}月${m.ld}日<br>`+
+    `出生：${b.yg}${b.yz}年｜${shichenLabel(m.a.h)}<br>`+
+    `命宮：${b.pal[b.life].name}｜${b.pal[b.life].s}${B[b.life]}<br>`+
+    `身宮：${b.pal[b.body].name}｜${b.pal[b.body].s}${B[b.body]}<br>`+
+    `五行局：${b.bu[0]}`;
+
+  document.getElementById("detailTiming").innerHTML=
+    `來因宮：${originText}<br>`+
+    `大限方向：${direction}<br>`+
+    `第一大限：${b.bu[1]}-${b.bu[1]+9}歲<br>`+
+    `流年：${fy} ${annual.gz.gan}${annual.gz.zhi}年<br>`+
+    `流年命宮：${annual.gz.zhi}`;
+
+  document.getElementById("detailHua").innerHTML=
+    `生年四化：依 ${b.yg} 干固定四化表<br>`+
+    `離心自化：${b.selfTransforms.outward.length} 組<br>`+
+    `向心自化：${b.selfTransforms.inward.length} 組<br>`+
+    `紫微：${B[b.z]}｜天府：${B[b.f]}`;
+
 
   status.innerHTML=
     `✅ ${b.bu[0]}｜紫微在${B[b.z]}｜天府在${B[b.f]}`+
