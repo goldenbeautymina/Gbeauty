@@ -73,7 +73,94 @@
     .result h2{margin:0 0 10px;font-size:20px;line-height:1.45}
     .result p{margin:10px 0}
   </style>
-  <script src="gb-auth.js"></script>
+<script>
+(() => {
+  const GB_AUTH_KEY = "gb_auth_poem";
+  const GB_AUTH_NAME = '皇帝詩命運測驗';
+  const GB_AUTH_PASSWORD = 'GB-POEM-2026';
+
+  if (sessionStorage.getItem(GB_AUTH_KEY) === "ok") return;
+
+  document.documentElement.style.visibility = "hidden";
+
+  function showGate() {
+    document.documentElement.style.visibility = "visible";
+
+    const overlay = document.createElement("div");
+    overlay.id = "gbInlineGate";
+    overlay.innerHTML = `
+      <div class="gb-inline-card" role="dialog" aria-modal="true">
+        <div class="gb-inline-lock">🔐</div>
+        <h2>${GB_AUTH_NAME}</h2>
+        <p>此功能為專屬內容，請輸入密碼後進入。</p>
+        <input id="gbInlinePassword" type="password" placeholder="請輸入專屬密碼" autocomplete="off">
+        <div id="gbInlineError" class="gb-inline-error"></div>
+        <button id="gbInlineEnter" type="button">進入系統</button>
+        <a href="index.html">返回 GoldenBeauty 首頁</a>
+      </div>`;
+
+    const style = document.createElement("style");
+    style.textContent = `
+      #gbInlineGate{
+        position:fixed;inset:0;z-index:2147483647;
+        display:flex;align-items:center;justify-content:center;
+        padding:20px;background:linear-gradient(135deg,#f6f1e8,#eee3d2);
+        font-family:"Microsoft JhengHei","PingFang TC",sans-serif;
+      }
+      .gb-inline-card{
+        width:min(430px,100%);background:#fffdf8;border:1px solid #e1d5c4;
+        border-radius:22px;padding:30px 26px;text-align:center;
+        box-shadow:0 24px 70px rgba(55,45,32,.18);
+      }
+      .gb-inline-lock{font-size:42px;margin-bottom:8px}
+      .gb-inline-card h2{margin:4px 0 10px;color:#2d2a25;font-size:24px}
+      .gb-inline-card p{color:#746b60;line-height:1.7;margin:0 0 18px}
+      .gb-inline-card input{
+        width:100%;box-sizing:border-box;padding:13px 14px;border:1px solid #d8cbb9;
+        border-radius:11px;font-size:16px;outline:none;background:#fff;
+      }
+      .gb-inline-card input:focus{
+        border-color:#a98445;box-shadow:0 0 0 3px rgba(169,132,69,.12)
+      }
+      .gb-inline-error{height:22px;color:#a1433b;font-size:13px;padding-top:6px}
+      .gb-inline-card button{
+        width:100%;border:0;border-radius:11px;padding:13px 16px;margin-top:6px;
+        background:#26352f;color:#fff;font-size:16px;font-weight:700;cursor:pointer;
+      }
+      .gb-inline-card a{
+        display:inline-block;margin-top:16px;color:#806a48;text-decoration:none;font-size:14px
+      }
+    `;
+    document.head.appendChild(style);
+    document.body.appendChild(overlay);
+
+    const input = document.getElementById("gbInlinePassword");
+    const error = document.getElementById("gbInlineError");
+
+    function submit() {
+      if (input.value === GB_AUTH_PASSWORD) {
+        sessionStorage.setItem(GB_AUTH_KEY, "ok");
+        overlay.remove();
+      } else {
+        error.textContent = "密碼錯誤，請重新輸入。";
+        input.select();
+      }
+    }
+
+    document.getElementById("gbInlineEnter").addEventListener("click", submit);
+    input.addEventListener("keydown", e => {
+      if (e.key === "Enter") submit();
+    });
+    setTimeout(() => input.focus(), 50);
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", showGate, { once:true });
+  } else {
+    showGate();
+  }
+})();
+</script>
 </head>
 
 <body>
