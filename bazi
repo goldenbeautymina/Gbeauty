@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Golden Beauty｜八字排盤</title>
+  <meta name="description" content="以立春、節氣、真太陽時與子時正換日規則排定四柱八字，並顯示十神、五行、旺衰、用神與大運流年框架。" />
+  <style>
+    :root{
+      --bg:#f6f1e8;--paper:#fffdf8;--ink:#28241f;--muted:#776f65;--line:#ddd2c2;
+      --gold:#9a7434;--gold2:#c7a967;--deep:#26352f;--soft:#efe5d5;--danger:#9d4b42;
+    }
+    *{box-sizing:border-box} body{margin:0;background:linear-gradient(180deg,#f3ecdf 0,#faf7f0 45%,#f6f1e8 100%);color:var(--ink);font-family:"Noto Serif TC","PingFang TC","Microsoft JhengHei",serif}
+    .wrap{max-width:1180px;margin:auto;padding:32px 18px 72px}
+    header{padding:28px 30px;border:1px solid var(--line);background:rgba(255,253,248,.88);border-radius:22px;box-shadow:0 16px 45px rgba(62,47,31,.08)}
+    .eyebrow{letter-spacing:.18em;color:var(--gold);font-size:13px}.title{font-size:clamp(30px,5vw,54px);margin:8px 0 5px;font-weight:700}.sub{color:var(--muted);line-height:1.8;max-width:850px}
+    .grid{display:grid;grid-template-columns:390px 1fr;gap:22px;margin-top:22px}.panel{background:var(--paper);border:1px solid var(--line);border-radius:20px;padding:22px;box-shadow:0 12px 32px rgba(62,47,31,.055)}
+    h2{font-size:20px;margin:0 0 18px} h3{font-size:17px;margin:0 0 12px}.field{margin:12px 0}.row{display:grid;grid-template-columns:1fr 1fr;gap:10px}label{display:block;font-size:13px;color:var(--muted);margin-bottom:6px}
+    input,select{width:100%;border:1px solid var(--line);background:#fff;padding:11px 12px;border-radius:10px;color:var(--ink);font:inherit;outline:none}input:focus,select:focus{border-color:var(--gold2);box-shadow:0 0 0 3px rgba(199,169,103,.16)}
+    .check{display:flex;gap:8px;align-items:center;margin:13px 0;color:var(--muted);font-size:14px}.check input{width:auto}.btn{width:100%;border:0;border-radius:12px;padding:13px 18px;background:var(--deep);color:#fff;font-weight:700;font-size:16px;cursor:pointer}.btn:hover{filter:brightness(1.08)}
+    .hint{font-size:12px;color:var(--muted);line-height:1.65}.notice{background:#f5ede1;border-left:3px solid var(--gold2);padding:11px 13px;border-radius:8px;font-size:13px;line-height:1.7;color:#625b52}
+    .pillbar{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px}.pill{background:var(--soft);padding:7px 10px;border-radius:999px;font-size:12px;color:#66583e}
+    .pill b{color:var(--deep)}
+    .pillars{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}.pillar{text-align:center;border:1px solid var(--line);border-radius:15px;overflow:hidden;background:#fff}.pillar .cap{background:#eee4d4;padding:8px;font-size:13px;color:#6e6049}.gan,.zhi{font-size:35px;padding:10px 4px 6px;font-weight:700}.zhi{padding-top:0}.meta{border-top:1px dashed var(--line);padding:8px 6px 11px;color:var(--muted);font-size:11px;line-height:1.6}.daymaster{outline:2px solid var(--gold2);outline-offset:-2px}
+    .section{margin-top:18px}.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.card{border:1px solid var(--line);border-radius:14px;padding:14px;background:#fff}.big{font-size:25px;font-weight:700;color:var(--deep)}
+    .bar{height:9px;background:#eee8df;border-radius:999px;overflow:hidden;margin:8px 0}.bar span{display:block;height:100%;background:linear-gradient(90deg,var(--gold2),var(--gold));border-radius:999px}.five{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}.five>div{border:1px solid var(--line);padding:10px 7px;border-radius:12px;text-align:center;background:#fff}.five strong{display:block;font-size:20px;margin-top:4px}
+    table{width:100%;border-collapse:collapse;font-size:13px}th,td{padding:10px 8px;border-bottom:1px solid #ece5da;text-align:left}th{color:#746955;font-weight:600;background:#fbf7f0}.scroll{overflow:auto}
+    .tabs{display:flex;gap:7px;flex-wrap:wrap;margin:14px 0}.tab{border:1px solid var(--line);background:#fff;border-radius:999px;padding:7px 11px;font-size:12px;cursor:pointer}.tab.active{background:var(--deep);color:#fff;border-color:var(--deep)}
+    .hidden{display:none!important}.error{color:var(--danger);background:#fff0ed;border:1px solid #efc6c1;border-radius:10px;padding:10px 12px;margin-top:12px;font-size:13px}.footer{margin-top:22px;color:var(--muted);font-size:12px;line-height:1.7;text-align:center}
+    .placeholder{color:#8e857a;background:#fbf8f3;border:1px dashed var(--line);border-radius:12px;padding:14px;line-height:1.75}
+    @media(max-width:900px){.grid{grid-template-columns:1fr}.cards{grid-template-columns:1fr}.panel{padding:17px}}@media(max-width:560px){.pillars{gap:5px}.gan,.zhi{font-size:29px}.meta{font-size:10px}.five{grid-template-columns:repeat(5,1fr);gap:4px}.five>div{padding:8px 3px}}
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="eyebrow">GOLDEN BEAUTY · BAZI ENGINE</div>
+    <div class="title">八字排盤</div>
+    <div class="sub">以公曆出生時間為起點，先校正真太陽時，再依立春定年、節氣定月、六十甲子定日、五鼠遁定時。排盤資料與命理解讀分層呈現，讓每一個判定都有依據可追溯。</div>
+  </header>
+
+  <div class="grid">
+    <aside class="panel">
+      <h2>出生資料</h2>
+      <div class="row"><div class="field"><label>姓名（選填）</label><input id="name" placeholder="例如：Mina"></div><div class="field"><label>性別</label><select id="gender"><option value="0">女</option><option value="1">男</option></select></div></div>
+      <div class="field"><label>公曆出生日期</label><input id="birthDate" type="date" value="1990-01-01"></div>
+      <div class="field"><label>出生時間</label><input id="birthTime" type="time" value="12:00" step="60"></div>
+      <div class="row"><div class="field"><label>時區 UTC</label><select id="tz"><option value="8" selected>UTC+8 台灣／中國</option><option value="9">UTC+9</option><option value="7">UTC+7</option><option value="0">UTC+0</option><option value="-5">UTC-5</option><option value="-8">UTC-8</option></select></div><div class="field"><label>出生地經度（東經＋）</label><input id="longitude" type="number" step="0.0001" value="121.5654"></div></div>
+      <div class="field"><label>常用出生地</label><select id="city"><option value="121.5654">台北 121.5654°E</option><option value="121.3010">桃園 121.3010°E</option><option value="120.6736">台中 120.6736°E</option><option value="120.3014">高雄 120.3014°E</option><option value="120.2270">台南 120.2270°E</option><option value="custom">自行輸入</option></select></div>
+      <label class="check"><input id="trueSolar" type="checkbox" checked> 使用真太陽時校正</label>
+      <div class="notice">換日規則：採您指定的「<b>日主以子時正（00:00）為界</b>」。23:00–23:59 屬子時，但日柱仍是當日；00:00 起才進入下一日。</div>
+      <div class="field"><label>分析年份</label><input id="targetYear" type="number" min="1900" max="2200" value="2026"></div>
+      <button id="calc" class="btn">開始排盤</button>
+      <div id="err" class="error hidden"></div>
+      <p class="hint">核心曆法使用 lunar-javascript 的「立春交接時刻／節氣交接時刻」精確干支資料，再套用本頁指定的子時正換日規則。真太陽時採經度差＋均時差（Equation of Time）校正。</p>
+    </aside>
+
+    <main>
+      <section class="panel" id="result">
+        <div class="pillbar" id="summaryPills"></div>
+        <div class="pillars" id="pillars"></div>
+
+        <div class="section">
+          <h3>命盤摘要</h3>
+          <div class="cards">
+            <div class="card"><div class="hint">日主</div><div class="big" id="dm">—</div><div class="hint" id="dmDesc">等待排盤</div></div>
+            <div class="card"><div class="hint">旺衰評分（V1）</div><div class="big" id="strength">—</div><div class="bar"><span id="strengthBar" style="width:0%"></span></div><div class="hint" id="strengthDesc">季令 ＞ 通根 ＞ 透干 ＞ 調整項</div></div>
+            <div class="card"><div class="hint">扶抑用神（V1）</div><div class="big" id="useGod">—</div><div class="hint" id="useGodDesc">另列調候建議，不強行合併</div></div>
+          </div>
+        </div>
+
+        <div class="section"><h3>五行分佈（含地支藏干權重）</h3><div class="five" id="five"></div></div>
+
+        <div class="section">
+          <h3>十神結構</h3>
+          <div class="scroll"><table><thead><tr><th>柱</th><th>天干十神</th><th>地支藏干</th><th>藏干十神</th><th>納音</th></tr></thead><tbody id="tenGodRows"></tbody></table></div>
+        </div>
+
+        <div class="section">
+          <h3>格局與用神</h3>
+          <div class="cards">
+            <div class="card"><div class="hint">子平月令取格</div><div class="big" id="pattern">—</div><div class="hint" id="patternDesc">以月支藏干，本氣透干優先；V1 顯示判定依據。</div></div>
+            <div class="card"><div class="hint">調候建議</div><div class="big" id="climate">—</div><div class="hint" id="climateDesc">依出生節令的寒暖燥濕提示。</div></div>
+            <div class="card"><div class="hint">衍生資訊</div><div id="derived" style="line-height:1.9">—</div></div>
+          </div>
+        </div>
+
+        <div class="section">
+          <h3>大運</h3><div id="yunStart" class="hint" style="margin-bottom:8px"></div>
+          <div class="scroll"><table><thead><tr><th>大運</th><th>起運年齡</th><th>起始年</th><th>十神</th><th>提示</th></tr></thead><tbody id="yunRows"></tbody></table></div>
+        </div>
+
+        <div class="section">
+          <h3>流年分析</h3>
+          <div class="cards"><div class="card"><div class="hint">流年干支</div><div class="big" id="flowYear">—</div></div><div class="card"><div class="hint">與日主關係</div><div class="big" id="flowTenGod">—</div></div><div class="card"><div class="hint">五級時機評分</div><div class="big" id="flowScore">待規則定稿</div><div class="hint">事業／財運／感情／健康將在規則庫確認後分項計分。</div></div></div>
+        </div>
+
+        <div class="section">
+          <h3>綜合斷語</h3>
+          <div id="judgement" class="placeholder">本頁 V1 先把「排盤資料」準確建立。綜合斷語會引用日主、旺衰、格局、扶抑用神、調候、大運與流年資料，但不會把尚未定稿的門派判斷偽裝成客觀計算結果。</div>
+        </div>
+      </section>
+      <div class="footer">命理內容屬傳統文化與自我探索用途，不應作為醫療、法律、投資或其他高風險決策的唯一依據。</div>
+    </main>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/lunar-javascript@1.7.7/lunar.js"></script>
+<script>
+const GAN=['甲','乙','丙','丁','戊','己','庚','辛','壬','癸'];
+const ZHI=['子','丑','寅','卯','辰','巳','午','未','申','酉','戌','亥'];
+const GAN_ELEM={甲:'木',乙:'木',丙:'火',丁:'火',戊:'土',己:'土',庚:'金',辛:'金',壬:'水',癸:'水'};
+const ZHI_ELEM={子:'水',丑:'土',寅:'木',卯:'木',辰:'土',巳:'火',午:'火',未:'土',申:'金',酉:'金',戌:'土',亥:'水'};
+const YINYANG={甲:'陽',乙:'陰',丙:'陽',丁:'陰',戊:'陽',己:'陰',庚:'陽',辛:'陰',壬:'陽',癸:'陰'};
+const HIDDEN={子:[['癸',1]],丑:[['己',.6],['癸',.3],['辛',.1]],寅:[['甲',.6],['丙',.3],['戊',.1]],卯:[['乙',1]],辰:[['戊',.6],['乙',.3],['癸',.1]],巳:[['丙',.6],['戊',.3],['庚',.1]],午:[['丁',.7],['己',.3]],未:[['己',.6],['丁',.3],['乙',.1]],申:[['庚',.6],['壬',.3],['戊',.1]],酉:[['辛',1]],戌:[['戊',.6],['辛',.3],['丁',.1]],亥:[['壬',.7],['甲',.3]]};
+const PRODUCES={木:'火',火:'土',土:'金',金:'水',水:'木'};
+const CONTROLS={木:'土',土:'水',水:'火',火:'金',金:'木'};
+function parentOf(e){return Object.keys(PRODUCES).find(k=>PRODUCES[k]===e)}
+function controllerOf(e){return Object.keys(CONTROLS).find(k=>CONTROLS[k]===e)}
+function tenGod(dm, other){
+  if(dm===other) return '比肩';
+  const de=GAN_ELEM[dm], oe=GAN_ELEM[other], sameYY=YINYANG[dm]===YINYANG[other];
+  if(de===oe) return sameYY?'比肩':'劫財';
+  if(PRODUCES[de]===oe) return sameYY?'食神':'傷官';
+  if(PRODUCES[oe]===de) return sameYY?'偏印':'正印';
+  if(CONTROLS[de]===oe) return sameYY?'偏財':'正財';
+  if(CONTROLS[oe]===de) return sameYY?'七殺':'正官';
+  return '—';
+}
+function eotMinutes(date){
+  const start=new Date(date.getFullYear(),0,0), diff=date-start;
+  const n=Math.floor(diff/86400000); const B=2*Math.PI*(n-81)/364;
+  return 9.87*Math.sin(2*B)-7.53*Math.cos(B)-1.5*Math.sin(B);
+}
+function correctedDate(y,m,d,h,min,lon,tz,useTrue){
+  let dt=new Date(y,m-1,d,h,min,0,0); if(!useTrue) return {date:dt,delta:0,eot:0,lonDelta:0};
+  const e=eotMinutes(dt), standard=tz*15, lonDelta=4*(lon-standard), delta=e+lonDelta;
+  return {date:new Date(dt.getTime()+delta*60000),delta,eot:e,lonDelta};
+}
+function fmtDate(dt){return `${dt.getFullYear()}-${String(dt.getMonth()+1).padStart(2,'0')}-${String(dt.getDate()).padStart(2,'0')} ${String(dt.getHours()).padStart(2,'0')}:${String(dt.getMinutes()).padStart(2,'0')}`}
+function timeZhiIndex(hour){return hour===23||hour===0?0:Math.floor((hour+1)/2)}
+function timeGanFromDay(dayGan,hour){const dg=GAN.indexOf(dayGan), ziStem=(dg%5)*2, zi=timeZhiIndex(hour); return GAN[(ziStem+zi)%10]+ZHI[zi]}
+function parsePillar(gz){return {gan:gz[0],zhi:gz[1]}}
+function scoreStrength(pillars){
+  const dm=pillars.day.gan, de=GAN_ELEM[dm], support=new Set([de,parentOf(de)]), drain=new Set([PRODUCES[de],CONTROLS[de],controllerOf(de)]);
+  let s=50, notes=[]; const me=ZHI_ELEM[pillars.month.zhi];
+  if(support.has(me)){s+=20;notes.push('月令生扶 +20')} else {s-=20;notes.push('月令耗剋 -20')}
+  // 通根：各支藏干中有日主同類或印星
+  for(const key of ['year','month','day','time']){let w=0;for(const [g,p] of HIDDEN[pillars[key].zhi]) if(support.has(GAN_ELEM[g])) w+=p; if(w){const add=Math.round(w*7);s+=add;notes.push(`${key}支通根/生扶 +${add}`)}}
+  for(const key of ['year','month','time']){const e=GAN_ELEM[pillars[key].gan]; if(support.has(e)) s+=5; else s-=4}
+  s=Math.max(0,Math.min(100,s)); let label=s>=75?'極旺':s>=60?'偏旺':s>=45?'中和':s>=30?'偏弱':'極弱';
+  return {score:s,label,notes,support:[...support],drain:[...drain]};
+}
+function fiveElements(pillars){const out={木:0,火:0,土:0,金:0,水:0};for(const k of ['year','month','day','time']){out[GAN_ELEM[pillars[k].gan]]+=1;for(const [g,w] of HIDDEN[pillars[k].zhi])out[GAN_ELEM[g]]+=w}return out}
+function useGodV1(dm,str){const e=GAN_ELEM[dm];if(str.score<45)return {main:parentOf(e),alt:e,text:'身偏弱：V1 以印星生扶、比劫助身為先。'};if(str.score>55)return {main:PRODUCES[e],alt:CONTROLS[e],text:'身偏旺：V1 以食傷泄秀、財星耗身為先，再觀官殺。'};return {main:'依格局',alt:'調候',text:'日主接近中和，不宜只用身強身弱二分法，需回到格局與調候。'}}
+function climateAdvice(monthZhi){if(['亥','子','丑'].includes(monthZhi))return {main:'火',text:'冬令寒濕，調候先看丙丁火暖局，再依原局燥濕細分。'};if(['巳','午','未'].includes(monthZhi))return {main:'水',text:'夏令炎燥，調候先看壬癸水潤局，再看金水來源。'};if(['寅','卯','辰'].includes(monthZhi))return {main:'視燥濕',text:'春令木旺，重點在木氣疏泄與寒暖轉化，需看火土金配置。'};return {main:'視寒燥',text:'秋令金旺，需看金氣是否過肅，配合火煉、水潤與木氣。'}}
+function patternV1(dm,pillars){const hidden=HIDDEN[pillars.month.zhi].map(x=>x[0]);const exposed=[pillars.year.gan,pillars.month.gan,pillars.time.gan];let chosen=hidden.find(g=>exposed.includes(g))||hidden[0];return {god:tenGod(dm,chosen),gan:chosen,text:`月支${pillars.month.zhi}藏干 ${hidden.join('、')}；${exposed.includes(chosen)?`以透出的${chosen}優先`:`本氣未透，V1 暫取本氣${chosen}`}。`}}
+function currentFlowYear(year){const solar=Solar.fromYmdHms(year,7,1,12,0,0), ec=solar.getLunar().getEightChar();return ec.getYear()}
+function pillarHTML(label,p,ec,key){const hide=HIDDEN[p.zhi].map(x=>x[0]).join('');let nayin='';try{nayin=ec['get'+key+'NaYin']()}catch(e){}return `<div class="pillar ${key==='Day'?'daymaster':''}"><div class="cap">${label}</div><div class="gan">${p.gan}</div><div class="zhi">${p.zhi}</div><div class="meta">${GAN_ELEM[p.gan]} · ${YINYANG[p.gan]}<br>藏干 ${hide}<br>${nayin||''}</div></div>`}
+function render(){
+  const err=document.getElementById('err');err.classList.add('hidden');
+  try{
+    if(typeof Solar==='undefined') throw new Error('曆法核心未載入，請確認網路可連線後再試。');
+    const [y,m,d]=document.getElementById('birthDate').value.split('-').map(Number),[h,mi]=document.getElementById('birthTime').value.split(':').map(Number);
+    const lon=+document.getElementById('longitude').value,tz=+document.getElementById('tz').value,useTrue=document.getElementById('trueSolar').checked;
+    if(!y||!m||!d||Number.isNaN(h)||Number.isNaN(lon))throw new Error('請完整填寫出生日期、時間與經度。');
+    const corr=correctedDate(y,m,d,h,mi,lon,tz,useTrue), dt=corr.date;
+    const solar=Solar.fromYmdHms(dt.getFullYear(),dt.getMonth()+1,dt.getDate(),dt.getHours(),dt.getMinutes(),0), lunar=solar.getLunar(), ec=lunar.getEightChar();
+    ec.setSect(2); // 00:00 換日（23:00 不提前換日）
+    const pillars={year:parsePillar(ec.getYear()),month:parsePillar(ec.getMonth()),day:parsePillar(ec.getDay()),time:parsePillar(timeGanFromDay(ec.getDayGan(),dt.getHours()))};
+    document.getElementById('pillars').innerHTML=pillarHTML('年柱',pillars.year,ec,'Year')+pillarHTML('月柱',pillars.month,ec,'Month')+pillarHTML('日柱（日主）',pillars.day,ec,'Day')+pillarHTML('時柱',pillars.time,ec,'Time');
+    const name=document.getElementById('name').value.trim();
+    document.getElementById('summaryPills').innerHTML=`${name?`<span class="pill"><b>${name}</b></span>`:''}<span class="pill">原始時間 <b>${y}-${String(m).padStart(2,'0')}-${String(d).padStart(2,'0')} ${String(h).padStart(2,'0')}:${String(mi).padStart(2,'0')}</b></span><span class="pill">真太陽時 <b>${fmtDate(dt)}</b></span><span class="pill">校正 <b>${corr.delta>=0?'+':''}${corr.delta.toFixed(1)} 分</b></span><span class="pill">農曆 <b>${lunar.toString()}</b></span>`;
+    const dm=pillars.day.gan,str=scoreStrength(pillars),ug=useGodV1(dm,str),cl=climateAdvice(pillars.month.zhi),pat=patternV1(dm,pillars);
+    document.getElementById('dm').textContent=`${dm}${GAN_ELEM[dm]}`;document.getElementById('dmDesc').textContent=`${YINYANG[dm]}${GAN_ELEM[dm]}日主；其他七字皆以其與日主的生剋陰陽關係定十神。`;
+    document.getElementById('strength').textContent=`${str.label} ${str.score}/100`;document.getElementById('strengthBar').style.width=str.score+'%';document.getElementById('strengthDesc').textContent=str.notes.slice(0,4).join('；');
+    document.getElementById('useGod').textContent=ug.main+(ug.alt?`／${ug.alt}`:'');document.getElementById('useGodDesc').textContent=ug.text;
+    const five=fiveElements(pillars);document.getElementById('five').innerHTML=Object.keys(five).map(k=>`<div>${k}<strong>${five[k].toFixed(1)}</strong></div>`).join('');
+    const rows=[['年柱','Year',pillars.year],['月柱','Month',pillars.month],['日柱','Day',pillars.day],['時柱','Time',pillars.time]];
+    document.getElementById('tenGodRows').innerHTML=rows.map(([label,key,p])=>{const hg=HIDDEN[p.zhi].map(x=>x[0]);let na='';try{na=ec['get'+key+'NaYin']()}catch(e){}return `<tr><td>${label} ${p.gan}${p.zhi}</td><td>${key==='Day'?'日主':tenGod(dm,p.gan)}</td><td>${hg.join('、')}</td><td>${hg.map(g=>tenGod(dm,g)).join('、')}</td><td>${na}</td></tr>`}).join('');
+    document.getElementById('pattern').textContent=pat.god+'格';document.getElementById('patternDesc').textContent=pat.text;document.getElementById('climate').textContent=cl.main;document.getElementById('climateDesc').textContent=cl.text;
+    let derived=[];try{derived.push(`胎元：${ec.getTaiYuan()}（${ec.getTaiYuanNaYin()}）`)}catch(e){}try{derived.push(`命宮：${ec.getMingGong()}（${ec.getMingGongNaYin()}）`)}catch(e){}try{derived.push(`身宮：${ec.getShenGong()}（${ec.getShenGongNaYin()}）`)}catch(e){}document.getElementById('derived').innerHTML=derived.join('<br>')||'—';
+    // 大運
+    try{
+      const gender=+document.getElementById('gender').value, yun=ec.getYun(gender,2), dys=yun.getDaYun(9);
+      document.getElementById('yunStart').textContent=`起運：約 ${yun.getStartYear()} 年 ${yun.getStartMonth()} 月 ${yun.getStartDay()} 日後；順逆由性別 × 年干陰陽決定。`;
+      document.getElementById('yunRows').innerHTML=dys.slice(1).map(dy=>{const gz=dy.getGanZhi(),p=parsePillar(gz),age=dy.getStartAge(),sy=dy.getStartYear();return `<tr><td><b>${gz}</b></td><td>${age} 歲</td><td>${sy}</td><td>${tenGod(dm,p.gan)}</td><td>${GAN_ELEM[p.gan]}${GAN_ELEM[p.zhi]||ZHI_ELEM[p.zhi]}運，需與原局用忌合看</td></tr>`}).join('');
+    }catch(e){document.getElementById('yunRows').innerHTML='<tr><td colspan="5">大運資料暫無法讀取</td></tr>'}
+    const ty=+document.getElementById('targetYear').value, fy=currentFlowYear(ty), fp=parsePillar(fy);document.getElementById('flowYear').textContent=`${ty} ${fy}`;document.getElementById('flowTenGod').textContent=`${tenGod(dm,fp.gan)}／${ZHI_ELEM[fp.zhi]}`;
+    document.getElementById('judgement').innerHTML=`<b>${dm}${GAN_ELEM[dm]}日主</b>，V1 旺衰評估為「<b>${str.label}</b>」。月令取格暫判「<b>${pat.god}格</b>」，扶抑角度先取「<b>${ug.main}</b>」為主要調節方向；調候角度則提示「<b>${cl.main}</b>」。兩套用神若出現差異，應保留差異並回到原局組合、大運與流年驗證，不直接強行合併。`;
+  }catch(e){err.textContent=e.message||String(e);err.classList.remove('hidden')}
+}
+document.getElementById('city').addEventListener('change',e=>{if(e.target.value!=='custom')document.getElementById('longitude').value=e.target.value});document.getElementById('calc').addEventListener('click',render);window.addEventListener('load',render);
+</script>
+</body>
+</html>
