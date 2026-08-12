@@ -8,6 +8,34 @@
 
   <!-- ✅ 主題 CSS（你已放在 assets） -->
   <link rel="stylesheet" href="./assets/gbeauty-ui.css" />
+
+<style>
+.gb-lock-overlay{
+  position:fixed; inset:0; background:rgba(20,18,15,.52);
+  display:none; align-items:center; justify-content:center;
+  z-index:9999; padding:20px;
+}
+.gb-lock-overlay.show{display:flex}
+.gb-lock-box{
+  width:min(420px,100%); background:#fffdf8; border-radius:20px;
+  padding:24px; box-shadow:0 20px 60px rgba(0,0,0,.22);
+  border:1px solid #e5dac9;
+}
+.gb-lock-box h3{margin:0 0 8px;font-size:22px}
+.gb-lock-box p{margin:0 0 16px;color:#6d655d;line-height:1.7}
+.gb-lock-box input{
+  width:100%; padding:12px 14px; border:1px solid #d9cdbb;
+  border-radius:10px; font-size:16px; margin-bottom:10px;
+}
+.gb-lock-actions{display:flex;gap:10px;margin-top:10px}
+.gb-lock-actions button{
+  flex:1; padding:11px 14px; border-radius:10px; border:1px solid #d9cdbb;
+  background:#fff; cursor:pointer; font-weight:700;
+}
+.gb-lock-actions .enter{background:#26352f;color:#fff;border-color:#26352f}
+.gb-lock-error{color:#a1433b;font-size:13px;min-height:20px;margin-top:6px}
+</style>
+
 </head>
 
 <body>
@@ -145,7 +173,7 @@
         <br>
 
         <a class="btn primary"
-           href="emperor-poem-test.html">
+           href="emperor-poem-test.html" onclick="return openProtected(event, 'poem', 'emperor-poem-test.html')">
            開始測驗
         </a>
 
@@ -202,7 +230,7 @@
         <br>
 
         <a class="btn primary"
-           href="life-numerology.html">
+           href="life-numerology.html" onclick="return openProtected(event, 'numerology', 'life-numerology.html')">
            開始生命靈數分析
         </a>
 
@@ -247,7 +275,7 @@
         <br>
 
         <a class="btn primary"
-           href="ziwei.html">
+           href="ziwei.html" onclick="return openProtected(event, 'ziwei', 'ziwei.html')">
            開始紫微斗數排盤
         </a>
 
@@ -292,7 +320,7 @@
         <br>
 
         <a class="btn primary"
-           href="bazi.html">
+           href="bazi.html" onclick="return openProtected(event, 'bazi', 'bazi.html')" onclick="return openProtected(event, 'bazi', 'bazi.html')">
            開始八字排盤
         </a>
 
@@ -504,7 +532,87 @@
         panes[key] && panes[key].scrollIntoView({ behavior: "smooth", block: "start" });
       });
     });
-  </script>
+  
+    // ===== GoldenBeauty 命理工具個別密碼 =====
+    // 可在這裡自行修改四組密碼
+    const GB_TOOL_PASSWORDS = {
+      poem: "GB-POEM-2026",
+      numerology: "GB-NUM-2026",
+      ziwei: "GB-ZIWEI-2026",
+      bazi: "GB-BAZI-2026"
+    };
+
+    const GB_TOOL_NAMES = {
+      poem: "皇帝詩命運測驗",
+      numerology: "生命靈數能量圖",
+      ziwei: "紫微斗數生命命盤",
+      bazi: "八字命盤"
+    };
+
+    let gbPendingTool = null;
+    let gbPendingUrl = null;
+
+    function openProtected(event, toolKey, url){
+      event.preventDefault();
+      gbPendingTool = toolKey;
+      gbPendingUrl = url;
+      document.getElementById("gbLockTitle").textContent = "🔐 " + GB_TOOL_NAMES[toolKey];
+      document.getElementById("gbLockText").textContent = "此功能需要專屬密碼，請輸入後進入。";
+      document.getElementById("gbLockPassword").value = "";
+      document.getElementById("gbLockError").textContent = "";
+      const overlay = document.getElementById("gbLockOverlay");
+      overlay.classList.add("show");
+      overlay.setAttribute("aria-hidden","false");
+      setTimeout(()=>document.getElementById("gbLockPassword").focus(),50);
+      return false;
+    }
+
+    function closeGbLock(){
+      const overlay = document.getElementById("gbLockOverlay");
+      overlay.classList.remove("show");
+      overlay.setAttribute("aria-hidden","true");
+      gbPendingTool = null;
+      gbPendingUrl = null;
+    }
+
+    function submitGbLock(){
+      const input = document.getElementById("gbLockPassword").value;
+      if(!gbPendingTool) return;
+      if(input === GB_TOOL_PASSWORDS[gbPendingTool]){
+        const url = gbPendingUrl;
+        closeGbLock();
+        window.location.href = url;
+      }else{
+        document.getElementById("gbLockError").textContent = "密碼錯誤，請重新輸入。";
+        document.getElementById("gbLockPassword").select();
+      }
+    }
+
+    document.getElementById("gbLockCancel").addEventListener("click", closeGbLock);
+    document.getElementById("gbLockEnter").addEventListener("click", submitGbLock);
+    document.getElementById("gbLockPassword").addEventListener("keydown", e=>{
+      if(e.key === "Enter") submitGbLock();
+      if(e.key === "Escape") closeGbLock();
+    });
+    document.getElementById("gbLockOverlay").addEventListener("click", e=>{
+      if(e.target.id === "gbLockOverlay") closeGbLock();
+    });
+
+</script>
+
+
+<div class="gb-lock-overlay" id="gbLockOverlay" aria-hidden="true">
+  <div class="gb-lock-box" role="dialog" aria-modal="true" aria-labelledby="gbLockTitle">
+    <h3 id="gbLockTitle">🔐 會員密碼</h3>
+    <p id="gbLockText">請輸入密碼後進入。</p>
+    <input id="gbLockPassword" type="password" placeholder="請輸入密碼" autocomplete="off">
+    <div class="gb-lock-error" id="gbLockError"></div>
+    <div class="gb-lock-actions">
+      <button type="button" id="gbLockCancel">取消</button>
+      <button type="button" class="enter" id="gbLockEnter">進入系統</button>
+    </div>
+  </div>
+</div>
 
 </body>
 </html>
