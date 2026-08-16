@@ -407,95 +407,17 @@ button{
   .card,.crystal-section{box-shadow:none;border:0;padding:0}
   .crystal-grid{grid-template-columns:repeat(3,1fr)}
 }
+
+.vip-book-cta{margin-top:24px;padding:24px;border-radius:22px;border:1px solid #dfc39e;
+background:linear-gradient(145deg,#fff8ed,#f3e1cb)}
+.vip-book-cta h3{margin:0 0 10px;font-size:clamp(24px,3vw,34px)}
+.vip-book-cta p{line-height:1.8;color:#5b4d46}
+.vip-book-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px 14px;margin:16px 0 18px}
+.vip-book-list span::before{content:"✓ ";color:#2e9147;font-weight:900}
+@media(max-width:620px){.vip-book-list{grid-template-columns:1fr}}
+
 </style>
-<script>
-(() => {
-  const GB_AUTH_KEY = "gb_auth_numerology";
-  const GB_AUTH_NAME = '生命靈數能量圖';
-  const GB_AUTH_PASSWORD = 'GB-NUM-2026';
 
-  if (sessionStorage.getItem(GB_AUTH_KEY) === "ok") return;
-
-  document.documentElement.style.visibility = "hidden";
-
-  function showGate() {
-    document.documentElement.style.visibility = "visible";
-
-    const overlay = document.createElement("div");
-    overlay.id = "gbInlineGate";
-    overlay.innerHTML = `
-      <div class="gb-inline-card" role="dialog" aria-modal="true">
-        <div class="gb-inline-lock">🔐</div>
-        <h2>${GB_AUTH_NAME}</h2>
-        <p>此功能為專屬內容，請輸入密碼後進入。</p>
-        <input id="gbInlinePassword" type="password" placeholder="請輸入專屬密碼" autocomplete="off">
-        <div id="gbInlineError" class="gb-inline-error"></div>
-        <button id="gbInlineEnter" type="button">進入系統</button>
-        <a href="index.html">返回 GoldenBeauty 首頁</a>
-      </div>`;
-
-    const style = document.createElement("style");
-    style.textContent = `
-      #gbInlineGate{
-        position:fixed;inset:0;z-index:2147483647;
-        display:flex;align-items:center;justify-content:center;
-        padding:20px;background:linear-gradient(135deg,#f6f1e8,#eee3d2);
-        font-family:"Microsoft JhengHei","PingFang TC",sans-serif;
-      }
-      .gb-inline-card{
-        width:min(430px,100%);background:#fffdf8;border:1px solid #e1d5c4;
-        border-radius:22px;padding:30px 26px;text-align:center;
-        box-shadow:0 24px 70px rgba(55,45,32,.18);
-      }
-      .gb-inline-lock{font-size:42px;margin-bottom:8px}
-      .gb-inline-card h2{margin:4px 0 10px;color:#2d2a25;font-size:24px}
-      .gb-inline-card p{color:#746b60;line-height:1.7;margin:0 0 18px}
-      .gb-inline-card input{
-        width:100%;box-sizing:border-box;padding:13px 14px;border:1px solid #d8cbb9;
-        border-radius:11px;font-size:16px;outline:none;background:#fff;
-      }
-      .gb-inline-card input:focus{
-        border-color:#a98445;box-shadow:0 0 0 3px rgba(169,132,69,.12)
-      }
-      .gb-inline-error{height:22px;color:#a1433b;font-size:13px;padding-top:6px}
-      .gb-inline-card button{
-        width:100%;border:0;border-radius:11px;padding:13px 16px;margin-top:6px;
-        background:#26352f;color:#fff;font-size:16px;font-weight:700;cursor:pointer;
-      }
-      .gb-inline-card a{
-        display:inline-block;margin-top:16px;color:#806a48;text-decoration:none;font-size:14px
-      }
-    `;
-    document.head.appendChild(style);
-    document.body.appendChild(overlay);
-
-    const input = document.getElementById("gbInlinePassword");
-    const error = document.getElementById("gbInlineError");
-
-    function submit() {
-      if (input.value === GB_AUTH_PASSWORD) {
-        sessionStorage.setItem(GB_AUTH_KEY, "ok");
-        overlay.remove();
-      } else {
-        error.textContent = "密碼錯誤，請重新輸入。";
-        input.select();
-      }
-    }
-
-    document.getElementById("gbInlineEnter").addEventListener("click", submit);
-    input.addEventListener("keydown", e => {
-      if (e.key === "Enter") submit();
-    });
-    setTimeout(() => input.focus(), 50);
-  }
-
-  if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", showGate, { once:true });
-  } else {
-    showGate();
-  }
-})();
-</script>
 </head>
 <body>
 <header class="topbar">
@@ -592,6 +514,16 @@ button{
         <div class="energy-stats" id="energyStats">
           <h3>先天、後天與主命能量統計</h3>
           <div id="energyStatsContent">完成計算後，這裡會顯示每個數字的能量數量。</div>
+        </div>
+        <div class="vip-book-cta">
+          <h3>🔒 您的生命故事，才剛開始。</h3>
+          <p>免費版先看主命數、先天與後天能量；VIP 版會進一步把八大主線、四條副線、缺數、工作、關係與財富方向，整合成一本《生命靈數人生導航書》。</p>
+          <div class="vip-book-list">
+            <span>八大生命主線</span><span>四條生命副線</span>
+            <span>缺數與補強方向</span><span>工作與關係導航</span>
+            <span>財富傾向</span><span>個人化整合總結</span>
+          </div>
+          <a class="btn primary" href="vip-life-book.html">解鎖生命靈數人生導航書</a>
         </div>
       </div>
     </section>
@@ -900,6 +832,7 @@ document.getElementById("generateBtn").addEventListener("click",()=>{
   const firstSum=digits.reduce((a,b)=>a+b,0);
   const steps=reduceNumber(firstSum);
   const main=steps[steps.length-1];
+  localStorage.setItem("gb_life_birthday", value);
   // 所有二位數以上的中間結果，都拆成個別數字並保留「出現次數」。
   // 例如：38 → 11 → 2，後天數為 3、8、1、1，因此 1 要畫兩個三角形。
   const talentCounts=Array(10).fill(0);
