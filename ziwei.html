@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>紫微斗數生命命盤｜GoldenBeauty 生命導航</title>
-<meta name="description" content="GoldenBeauty 紫微斗數排盤：真太陽時、十二宮、五行局、十四主星、六吉星、六煞星、生年四化、離心自化、向心自化、大限與流年。">
+<title>免費紫微斗數命盤｜GoldenBeauty 生命導航</title>
+<meta name="description" content="GoldenBeauty 免費紫微斗數排盤：十二宮、命宮身宮、五行局、十四主星、六吉星、六煞星、祿存與常用神煞、生年四化位置。進階來因宮、自化、大限流年由 VIP 紫微人生導航解鎖。">
 <link rel="stylesheet" href="./assets/gbeauty-ui.css">
 <style>
 :root{--purple:#7552a3;--ink:#2c2728;--muted:#766d70;--line:#cdbfc7;--good:#2f7b50;--bad:#b84e4e}
@@ -317,107 +317,59 @@ label{display:block;font-weight:800;margin:12px 0 7px}input,select{width:100%;he
   .chart{grid-template-rows:repeat(4,265px) !important}
 }
 
+
+/* ===== 免費版 / VIP 分層 ===== */
+.freeVipBox{
+  margin-top:16px;padding:18px;border-radius:16px;
+  background:linear-gradient(135deg,#fff7e9,#f7efff);
+  border:1px solid #e5d4b4;text-align:center
+}
+.freeVipBox h3{margin:0 0 8px;color:#6c4c79;font-size:20px}
+.freeVipBox p{margin:6px 0 14px;color:#6f6267;line-height:1.7}
+.freeVipGrid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;text-align:left;margin:12px 0 16px}
+.freeVipItem{padding:9px 10px;border-radius:10px;background:#fff;border:1px solid #eadfd7;font-size:12px}
+.vipUnlock{
+  display:inline-flex;align-items:center;justify-content:center;
+  min-height:46px;padding:0 20px;border-radius:12px;text-decoration:none;
+  background:#7552a3;color:#fff;font-weight:900
+}
+.freeBadge{
+  display:inline-flex;padding:4px 10px;border-radius:999px;
+  background:#e8f5eb;color:#2e7b48;font-weight:900;font-size:12px
+}
+.vipLocked{
+  padding:13px;border:1px dashed #d9c6dd;border-radius:12px;
+  background:#faf7fc;color:#756a78;text-align:center
+}
+/* 免費版只顯示本命盤與生年四化位置；以下進階標示留給 VIP */
+body.free-mode .originTag,
+body.free-mode .majorTag,
+body.free-mode .annualTag,
+body.free-mode .selfHua,
+body.free-mode .inwardHua,
+body.free-mode .localHuaBox,
+body.free-mode .palaceEdgeMark{display:none!important}
+body.free-mode .pfoot{bottom:7px!important}
+body.free-mode .summary{grid-template-columns:repeat(5,1fr)}
+@media(max-width:620px){
+  .freeVipGrid{grid-template-columns:1fr}
+  body.free-mode .summary{grid-template-columns:1fr 1fr}
+}
+
 </style>
 <script src="https://cdn.jsdelivr.net/npm/lunar-javascript@1.7.7/lunar.js"></script>
-<script>
-(() => {
-  const GB_AUTH_KEY = "gb_auth_ziwei";
-  const GB_AUTH_NAME = '紫微斗數生命命盤';
-  const GB_AUTH_PASSWORD = 'GB-ZIWEI-2026';
 
-  if (sessionStorage.getItem(GB_AUTH_KEY) === "ok") return;
-
-  document.documentElement.style.visibility = "hidden";
-
-  function showGate() {
-    document.documentElement.style.visibility = "visible";
-
-    const overlay = document.createElement("div");
-    overlay.id = "gbInlineGate";
-    overlay.innerHTML = `
-      <div class="gb-inline-card" role="dialog" aria-modal="true">
-        <div class="gb-inline-lock">🔐</div>
-        <h2>${GB_AUTH_NAME}</h2>
-        <p>此功能為專屬內容，請輸入密碼後進入。</p>
-        <input id="gbInlinePassword" type="password" placeholder="請輸入專屬密碼" autocomplete="off">
-        <div id="gbInlineError" class="gb-inline-error"></div>
-        <button id="gbInlineEnter" type="button">進入系統</button>
-        <a href="index.html">返回 GoldenBeauty 首頁</a>
-      </div>`;
-
-    const style = document.createElement("style");
-    style.textContent = `
-      #gbInlineGate{
-        position:fixed;inset:0;z-index:2147483647;
-        display:flex;align-items:center;justify-content:center;
-        padding:20px;background:linear-gradient(135deg,#f6f1e8,#eee3d2);
-        font-family:"Microsoft JhengHei","PingFang TC",sans-serif;
-      }
-      .gb-inline-card{
-        width:min(430px,100%);background:#fffdf8;border:1px solid #e1d5c4;
-        border-radius:22px;padding:30px 26px;text-align:center;
-        box-shadow:0 24px 70px rgba(55,45,32,.18);
-      }
-      .gb-inline-lock{font-size:42px;margin-bottom:8px}
-      .gb-inline-card h2{margin:4px 0 10px;color:#2d2a25;font-size:24px}
-      .gb-inline-card p{color:#746b60;line-height:1.7;margin:0 0 18px}
-      .gb-inline-card input{
-        width:100%;box-sizing:border-box;padding:13px 14px;border:1px solid #d8cbb9;
-        border-radius:11px;font-size:16px;outline:none;background:#fff;
-      }
-      .gb-inline-card input:focus{
-        border-color:#a98445;box-shadow:0 0 0 3px rgba(169,132,69,.12)
-      }
-      .gb-inline-error{height:22px;color:#a1433b;font-size:13px;padding-top:6px}
-      .gb-inline-card button{
-        width:100%;border:0;border-radius:11px;padding:13px 16px;margin-top:6px;
-        background:#26352f;color:#fff;font-size:16px;font-weight:700;cursor:pointer;
-      }
-      .gb-inline-card a{
-        display:inline-block;margin-top:16px;color:#806a48;text-decoration:none;font-size:14px
-      }
-    `;
-    document.head.appendChild(style);
-    document.body.appendChild(overlay);
-
-    const input = document.getElementById("gbInlinePassword");
-    const error = document.getElementById("gbInlineError");
-
-    function submit() {
-      if (input.value === GB_AUTH_PASSWORD) {
-        sessionStorage.setItem(GB_AUTH_KEY, "ok");
-        overlay.remove();
-      } else {
-        error.textContent = "密碼錯誤，請重新輸入。";
-        input.select();
-      }
-    }
-
-    document.getElementById("gbInlineEnter").addEventListener("click", submit);
-    input.addEventListener("keydown", e => {
-      if (e.key === "Enter") submit();
-    });
-    setTimeout(() => input.focus(), 50);
-  }
-
-  if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", showGate, { once:true });
-  } else {
-    showGate();
-  }
-})();
-</script>
 </head>
-<body>
+<body class="free-mode">
 <header class="topbar">
   <div class="wrap topbar-inner">
     <a class="brand" href="index.html"><img class="brandLogo" src="./images/gbeauty-logo.jpg" alt="GoldenBeauty"><span class="brandText"><strong>GoldenBeauty</strong><small>開運眉眼唇・生命導航</small></span></a>
     <button class="navBtn" id="navBtn" type="button">☰</button>
   </div>
-  <nav class="navPanel" id="navPanel"><a href="index.html">首頁</a><a href="index.html#test">命運探索</a><a href="life-numerology.html">生命靈數</a><a href="vip.html">VIP會員專屬</a></nav>
+  <nav class="navPanel" id="navPanel"><a href="index.html">首頁</a><a href="index.html#test">命運探索</a><a href="life-numerology.html">生命靈數</a><a href="ziwei-vip.html">VIP 紫微人生導航</a><a href="vip.html">VIP會員專屬</a></nav>
 </header>
 
-<section class="hero2"><div class="wrap2" style="padding-bottom:10px"><div style="font-weight:900;color:#76598a">GOLDENBEAUTY LIFE NAVIGATOR</div><h1>紫微斗數生命命盤</h1><p class="sub">本版：十二宮、五行局、十四主星、六吉星、六煞星、生年四化、來因宮、大限、流年，以及欽天四化的離心自化與對宮向心自化箭頭。</p></div></section>
+<section class="hero2"><div class="wrap2" style="padding-bottom:10px"><div style="font-weight:900;color:#76598a">GOLDENBEAUTY LIFE NAVIGATOR</div><h1>免費紫微斗數生命命盤</h1><p class="sub">免費看見你的本命盤骨架：十二宮、命宮身宮、五行局、十四主星、六吉六煞、祿存與常用神煞，以及生年四化位置。<br>來因宮、離心／向心自化、大限流年與完整人生導航，於 VIP 版解鎖。</p></div></section>
 
 <main class="wrap2">
 <div class="layout">
@@ -465,44 +417,73 @@ label{display:block;font-weight:800;margin:12px 0 7px}input,select{width:100%;he
     <div class="small">台灣一般 UTC+8；經度請填出生地約略經度。若無夏令時間填 0。</div>
   </div>
 
-  <label for="flowYear">查看流年</label>
-  <input id="flowYear" type="number" min="1900" max="2200" value="2026">
-  <div class="small">流年命宮以該年太歲地支定位；宮格中會標示流年十二宮。</div>
+  <div class="hide">
+    <label for="flowYear">查看流年</label>
+    <input id="flowYear" type="number" min="1900" max="2200" value="2026">
+  </div>
 
   <button class="action primary" id="generate">建立紫微命盤</button>
   <button class="action secondary" id="printBtn">列印／另存 PDF</button>
 
-  <div class="note"><b>本版已加入</b><br>✓ 命宮、身宮、十二宮、宮干<br>✓ 五行局、十四主星<br>✓ 六吉星：左輔、右弼、文昌、文曲、天魁、天鉞<br>✓ 六煞星：擎羊、陀羅、火星、鈴星、地空、地劫<br>✓ 生年四化（GoldenBeauty 欽天四化固定表）<br>✓ 祿存、天馬、天刑、華蓋、紅鸞、天喜、孤辰、寡宿<br>✓ 來因宮：依實際宮干與生年天干逐宮比對<br>✓ 十年大限：五行局起運，陽男陰女順、陰男陽女逆<br>✓ 流年：以流年地支立流年命宮<br>✓ 宮干飛化<br>✓ 離心自化：本宮宮干使本宮星曜四化<br>✓ 向心自化：本宮宮干使對宮星曜四化，箭頭射入對宮</div>
+  <div class="note">
+      <span class="freeBadge">FREE 免費版</span><br><br>
+      <b>免費版顯示</b><br>
+      ✓ 命宮、身宮、十二宮與宮干<br>
+      ✓ 五行局、十四主星<br>
+      ✓ 六吉星、六煞星<br>
+      ✓ 祿存、天馬、天刑、華蓋、紅鸞、天喜、孤辰、寡宿<br>
+      ✓ 生年四化位置<br><br>
+      🔒 <b>VIP 解鎖：</b>來因宮、宮干飛化、離心自化、向心自化、大限、流年與完整人生導航。
+    </div>
   <div id="status" class="status">等待輸入出生資料。</div>
 </section>
 
 <section class="panel">
   <h2 style="margin-top:0">十二宮命盤</h2>
   <div class="chartScroll"><div id="chart" class="chart"><div class="center"><div><div style="font-size:42px">🌌</div><h3>GoldenBeauty</h3><p>紫微斗數生命命盤</p><div class="key">請輸入出生資料後建立命盤</div></div></div></div></div>
-  <div id="summary" class="summary"><div class="sum"><b>農曆生日</b><span>—</span></div><div class="sum"><b>出生年干支</b><span>—</span></div><div class="sum"><b>命宮</b><span>—</span></div><div class="sum"><b>身宮</b><span>—</span></div><div class="sum"><b>五行局</b><span>—</span></div><div class="sum"><b>來因宮</b><span>—</span></div><div class="sum"><b>流年</b><span>—</span></div></div>
-  <div class="legend"><span class="star main">十四主星</span><span class="star good">六吉星</span><span class="star bad">六煞星</span><span class="star wealth">祿存</span><span class="star minor">神煞／雜曜</span><span class="tag originTag">來因宮</span><span class="tag majorTag">大限</span><span class="tag annualTag">流年</span><span class="star main">生年四化：星曜 <span class="hua">祿</span></span>
-<span class="tag" style="background:#fff4e5;color:#a85b12">●→ 離心自化：本宮往盤外</span>
-<span class="tag" style="background:#eaf3ff;color:#315f9b">●→ 向心自化：來源宮射入對宮</span></div>
+  <div id="summary" class="summary">
+    <div class="sum"><b>農曆生日</b><span>—</span></div>
+    <div class="sum"><b>出生年干支</b><span>—</span></div>
+    <div class="sum"><b>命宮</b><span>—</span></div>
+    <div class="sum"><b>身宮</b><span>—</span></div>
+    <div class="sum"><b>五行局</b><span>—</span></div>
+  </div>
+  <div class="legend">
+    <span class="star main">十四主星</span>
+    <span class="star good">六吉星</span>
+    <span class="star bad">六煞星</span>
+    <span class="star wealth">祿存</span>
+    <span class="star minor">神煞／雜曜</span>
+    <span class="star main">生年四化：星曜 <span class="hua">祿</span></span>
+  </div>
   <div class="note">
   <b>圖例說明：</b>圓形「祿／權／科／忌」為生年四化；橘色方向卡代表本宮宮干使本宮星曜離心自化並往盤外；藍色方向卡會直接寫「由○○宮射入本宮」，用來源宮名稱判斷向心方向；橘色方向卡則寫「本宮→盤外」。
 </div>
 
-<div id="selfTransformPanel" class="selfPanel">
-  <h3>欽天四化｜自化判斷結果</h3>
-  <div class="noSelf">完成排盤後，這裡會列出離心自化與向心自化。</div>
+<div class="freeVipBox" id="vipUnlock">
+  <h3>🔐 解鎖你的 VIP 紫微人生導航</h3>
+  <p>免費版先讓你看見「星曜在哪裡」；VIP 進一步解讀它們如何彼此作用，以及人生不同階段的變化。</p>
+  <div class="freeVipGrid">
+    <div class="freeVipItem">✨ 來因宮與生命起點</div>
+    <div class="freeVipItem">↗ 離心自化完整判讀</div>
+    <div class="freeVipItem">→ 向心自化與對宮關係</div>
+    <div class="freeVipItem">📈 十年大限與流年</div>
+    <div class="freeVipItem">💼 事業・財運方向</div>
+    <div class="freeVipItem">❤️ 感情・人際課題</div>
+  </div>
+  <a class="vipUnlock" id="goZiweiVip" href="ziwei-vip.html">進入 VIP 紫微人生導航</a>
 </div>
 
-
-<div id="chartDetailSection" class="detailSection">
-  <h3>命盤完整資訊</h3>
+<div class="detailSection">
+  <h3>免費命盤重點</h3>
   <div class="detailGrid">
     <div class="detailCard"><b>基本資料</b><div id="detailBasic">完成排盤後顯示。</div></div>
-    <div class="detailCard"><b>來因宮・大限・流年</b><div id="detailTiming">完成排盤後顯示。</div></div>
-    <div class="detailCard"><b>四化・自化</b><div id="detailHua">完成排盤後顯示。</div></div>
+    <div class="detailCard"><b>星曜配置</b><div>免費版顯示十四主星、六吉星、六煞星、祿存與常用神煞。</div></div>
+    <div class="detailCard"><b>進階分析</b><div class="vipLocked">🔒 來因宮・自化・大限・流年請進入 VIP 版</div></div>
   </div>
 </div>
 
-<div class="note"><b>驗證順序：</b>先核對生年四化，再逐宮核對「宮干 → 本宮星曜＝離心自化」及「宮干 → 對宮星曜＝向心自化」。</div>
+<div class="note"><b>免費版閱讀方式：</b>先看命宮、身宮、十四主星與六吉六煞，再觀察生年四化落在哪顆星。更進一步的飛化、自化與大限流年請由 VIP 版解鎖。</div>
 </section>
 </div>
 </main>
@@ -1085,8 +1066,7 @@ function render(b,m){
         <b>命宮</b><span>${b.pal[b.life].name}｜${b.pal[b.life].s}${B[b.life]}</span>
         <b>身宮</b><span>${b.pal[b.body].name}｜${b.pal[b.body].s}${B[b.body]}</span>
         <b>五行局</b><span>${b.bu[0]}</span>
-        <b>來因宮</b><span>${originText}</span>
-        <b>流年</b><span>${fy} ${annual.gz.gan}${annual.gz.zhi}年｜流年命宮 ${annual.gz.zhi}</span>
+
       </div>
     </div>
   </div>`;
@@ -1112,36 +1092,31 @@ function render(b,m){
     `身宮：${b.pal[b.body].name}｜${b.pal[b.body].s}${B[b.body]}<br>`+
     `五行局：${b.bu[0]}`;
 
-  document.getElementById("detailTiming").innerHTML=
-    `來因宮：${originText}<br>`+
-    `大限方向：${direction}<br>`+
-    `第一大限：${b.bu[1]}-${b.bu[1]+9}歲<br>`+
-    `流年：${fy} ${annual.gz.gan}${annual.gz.zhi}年<br>`+
-    `流年命宮：${annual.gz.zhi}`;
-
-  document.getElementById("detailHua").innerHTML=
-    `生年四化：依 ${b.yg} 干固定四化表<br>`+
-    `離心自化：${b.selfTransforms.outward.length} 組<br>`+
-    `向心自化：${b.selfTransforms.inward.length} 組<br>`+
-    `紫微：${B[b.z]}｜天府：${B[b.f]}`;
-
 
   status.innerHTML=
-    `✅ ${b.bu[0]}｜紫微在${B[b.z]}｜天府在${B[b.f]}`+
-    `<br>大限：${direction}，第一大限 ${b.bu[1]}-${b.bu[1]+9} 歲。`+
-    `<br>來因宮：${originText}`+
-    `<br>流年：${fy} ${annual.gz.gan}${annual.gz.zhi}年，流年命宮在${annual.gz.zhi}。`+
-    `<br>欽天自化：離心 ${b.selfTransforms.outward.length} 組｜向心 ${b.selfTransforms.inward.length} 組。`+
+    `✅ 免費紫微命盤建立完成｜${b.bu[0]}｜紫微在${B[b.z]}｜天府在${B[b.f]}`+
     `<br>祿存：${B[lucun(b.yg)]}宮｜天馬：${B[tianma(b.yz)]}宮｜天刑：${B[tianxing(m.lm)]}宮。`+
     `<br>華蓋：${B[huagai(b.yz)]}宮｜紅鸞：${B[hongluan(b.yz)]}宮｜天喜：${B[tianxi(b.yz)]}宮。`+
     (()=>{const [gu,gua]=guchenGuasu(b.yz);return `<br>孤辰：${B[gu]}宮｜寡宿：${B[gua]}宮。`;})()+
-    (trueSolar.checked
-      ? `<br>真太陽時近似校正 ${m.fix>=0?"+":""}${m.fix.toFixed(1)} 分。`+
-        (cross
-          ? `<br>⚠ 原時辰 ${shichenLabelByIndex(m.rawHi)} → 校正後 ${shichenLabelByIndex(m.hi)}，已跨時辰；命宮、身宮與時系星曜已依校正後時辰重排。`
-          : `<br>✅ 原時辰與校正後時辰相同，未跨時辰；命宮、身宮不因真太陽時校正而改變。`)
-      : "");
+    `<br><b>VIP 可解鎖：</b>來因宮、離心／向心自化、大限與流年。`;
 }
+
+function saveZiweiDraft(){
+  const d={
+    name:(nameInput?.value||"").trim(),
+    gender:gender.value,
+    mode,
+    solarDate:solarDate.value,
+    lunarYear:lunarYear.value,
+    lunarMonth:lunarMonth.value,
+    lunarDay:lunarDay.value,
+    leapMonth:leapMonth.value,
+    birthShichen:birthShichen.value,
+    flowYear:flowYear.value
+  };
+  sessionStorage.setItem("gb_ziwei_draft",JSON.stringify(d));
+}
+
 generate.onclick=()=>{
   try{
     const m=moment();
@@ -1160,12 +1135,14 @@ generate.onclick=()=>{
     }
 
     render(build(m),m);
+    saveZiweiDraft();
   }catch(e){
     alert(e.message);
     status.textContent=e.message;
   }
 };
 printBtn.onclick=()=>window.print();
+document.getElementById("goZiweiVip")?.addEventListener("click",()=>saveZiweiDraft());
 (function empty(){const c=chart.querySelector(".center");B.forEach((b,i)=>{const e=document.createElement("div");e.className=`palace b${i}`;e.innerHTML=`<div class="branch">${b}</div><div class="pname">—</div><div class="pfoot">等待排盤</div>`;chart.appendChild(e)});chart.appendChild(c)})();
 </script>
 </body>
