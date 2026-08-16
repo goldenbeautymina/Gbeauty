@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>生命靈數人生導航書｜GoldenBeauty VIP</title>
+<link rel="stylesheet" href="./assets/gbeauty-ui.css">
+<style>
+:root{--green:#2f8e48;--gold:#b48a52;--ink:#241f1d;--muted:#756b67;--line:#eaded7;--soft:#fbf5f1}
+*{box-sizing:border-box}body{margin:0;font-family:"Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif;color:var(--ink);background:linear-gradient(145deg,#fffaf7,#f6ece7)}
+.hidden{display:none!important}.shell{max-width:1180px;margin:auto;padding:34px 18px 80px}
+.hero{text-align:center;padding:30px 0}.hero h1{font-size:clamp(34px,6vw,58px);margin:10px 0}.hero p{max-width:760px;margin:auto;color:var(--muted);line-height:1.9}
+.tag{display:inline-block;padding:7px 13px;border:1px solid #e3d4c4;border-radius:999px;background:#fff;color:#8d673b;font-size:13px;font-weight:900}
+.gate,.book{background:#fff;border:1px solid var(--line);border-radius:24px;box-shadow:0 18px 45px rgba(76,52,42,.10)}
+.gate{max-width:560px;margin:20px auto;padding:26px}.gate input{width:100%;height:48px;border:1px solid #d7c8c0;border-radius:12px;padding:0 12px;font-size:16px}
+.gate button{width:100%;height:48px;margin-top:12px;border:0;border-radius:12px;background:var(--green);color:#fff;font-weight:900;font-size:16px}
+.err{color:#b23c3c;font-weight:800;margin-top:10px}.small{color:var(--muted);font-size:12px;line-height:1.7}
+.cover{padding:34px;background:linear-gradient(135deg,#fff,#faf0e5);border-bottom:1px solid var(--line)}
+.coverGrid{display:grid;grid-template-columns:1.2fr .8fr;gap:22px;align-items:center}.cover h2{font-size:clamp(30px,5vw,50px);margin:8px 0}
+.identity{border:1px solid #ddc7aa;border-radius:18px;padding:18px;background:#ffffffbf}.row{display:flex;justify-content:space-between;padding:9px 0;border-bottom:1px dashed #dccfc5}.row:last-child{border:0}
+.toolbar{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;padding:16px 24px;border-bottom:1px solid var(--line)}.toolbar input{height:42px;border:1px solid #d7c8c0;border-radius:10px;padding:0 10px}
+.btn{min-height:42px;padding:0 15px;border:0;border-radius:10px;font-weight:900;display:inline-flex;align-items:center;justify-content:center;text-decoration:none;cursor:pointer}.primary{background:var(--green);color:#fff}.light{background:#f2e7e2;color:#5d4941}
+.content{padding:28px}.chapter{margin-bottom:38px}.kicker{color:#8f6736;font-size:12px;font-weight:900;letter-spacing:.12em}.chapter h2{font-size:clamp(26px,4vw,38px);margin:6px 0 10px}.intro{color:var(--muted);line-height:1.8}
+.summary{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.box{padding:18px;border:1px solid var(--line);border-radius:16px;background:linear-gradient(#fff,#fcf8f5)}.box b{display:block;font-size:30px;margin-top:6px}
+.bars{display:grid;gap:10px}.energy{display:grid;grid-template-columns:40px 1fr 65px;gap:10px;align-items:center}.n{width:38px;height:38px;border-radius:50%;display:grid;place-items:center;background:#f0e5df;font-weight:900}.track{height:12px;background:#eee5e0;border-radius:999px;overflow:hidden}.fill{height:100%;background:linear-gradient(90deg,#bd8b4f,#e0bd89)}
+.profile,.insight{padding:20px;border:1px solid var(--line);border-radius:18px;line-height:1.85;background:#fff}.grid2{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}.mini{padding:14px;background:var(--soft);border-radius:12px}
+.lines{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}.line{padding:18px;border:1px solid var(--line);border-radius:18px;background:#fff}.line.on{border-color:#8ebc9a;box-shadow:0 0 0 4px #2f8e4815}.line h3{margin:0 0 8px}.nodes{display:flex;align-items:center;gap:6px;margin:10px 0}.node{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:#eee3dd;font-weight:900}.node.on{background:#dff0e2;color:#216a35}.link{height:3px;flex:1;background:#ddd1cb}.link.on{background:#76a984}.badge{display:inline-block;padding:4px 8px;border-radius:999px;background:#f1e7e2;font-size:12px;font-weight:800;margin:3px 4px 3px 0}.warn{margin-top:10px;padding:11px;border-radius:10px;background:#fff4e6;color:#6b4e33}
+.nav3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.insight{background:linear-gradient(145deg,#fff7eb,#f2dfc7);border-color:#ddbd92}.insight blockquote{margin:16px 0 0;padding:16px;border-left:4px solid var(--gold);background:#ffffff99}
+@media(max-width:850px){.coverGrid,.summary,.grid2,.lines,.nav3{grid-template-columns:1fr 1fr}.coverGrid{grid-template-columns:1fr}}
+@media(max-width:600px){.summary,.grid2,.lines,.nav3{grid-template-columns:1fr}.cover,.content{padding:20px}.toolbar>*{width:100%}}
+@media print{.topbar,.hero,.gate,.toolbar{display:none!important}body{background:#fff}.book{box-shadow:none;border:0}.shell{padding:0}}
+</style>
+</head>
+<body>
+<header class="topbar"><div class="wrap topbar-inner"><a class="brand" href="index.html"><img class="brandLogo" src="./images/gbeauty-logo.jpg" alt="GoldenBeauty Logo"><span class="brandText"><strong>GoldenBeauty</strong><small>開運眉眼唇・生命導航</small></span></a></div></header>
+
+<main class="shell">
+<section class="hero"><span class="tag">GOLDENBEAUTY VIP LIFE NAVIGATION BOOK</span><h1>生命靈數人生導航書</h1><p>從數字，不只看見個性；更看見天賦、卡點、關係模式、工作方向，以及下一步可以怎麼走。</p></section>
+
+<section class="gate" id="gate"><h2>VIP 會員解鎖</h2><p class="intro">請輸入 VIP 密碼，開啟您的專屬人生導航書。</p><input id="pw" type="password" placeholder="請輸入 VIP 密碼"><button id="unlock">解鎖人生導航書</button><div class="err" id="err"></div><p class="small">預設密碼：GBVIP2026。可在程式中的 VIP_PASSWORD 修改。</p></section>
+
+<section class="book hidden" id="book">
+<div class="cover"><div class="coverGrid"><div><span class="tag">PERSONAL LIFE NAVIGATION BOOK</span><h2>您的生命，不是偶然。</h2><p class="intro">每一個出生數字，都是一種能量線索。這份導航書會把主命數、能量強弱、主線、副線與缺數，整理成可以落實在生活中的方向。</p></div><div class="identity"><div class="row"><span>出生日期</span><b id="cDate">—</b></div><div class="row"><span>主命數</span><b id="cMain">—</b></div><div class="row"><span>最強能量</span><b id="cStrong">—</b></div><div class="row"><span>報告</span><b>VIP 專業版</b></div></div></div></div>
+
+<div class="toolbar"><div><input id="birthday" type="date"> <button class="btn primary" id="run">產生／更新導航書</button></div><div><a class="btn light" href="life-numerology.html">← 返回免費版</a> <button class="btn light" onclick="window.print()">列印／另存 PDF</button></div></div>
+
+<div class="content">
+<section class="chapter"><p class="kicker">CHAPTER 01</p><h2>我的生命藍圖</h2><div class="summary"><div class="box">主命數<b id="main">—</b></div><div class="box">完整主線<b id="mainCount">—</b></div><div class="box">完整副線<b id="subCount">—</b></div><div class="box">最強數字<b id="strong">—</b></div></div></section>
+<section class="chapter"><p class="kicker">CHAPTER 02</p><h2>1～9 我的能量分布</h2><p class="intro">能量越高，代表越自然、越常使用；缺少則代表需要後天培養。</p><div class="bars" id="bars"></div></section>
+<section class="chapter"><p class="kicker">CHAPTER 03</p><h2>我的主命人格</h2><div class="profile" id="mainProfile"></div></section>
+<section class="chapter"><p class="kicker">CHAPTER 04</p><h2>我的缺數不是缺陷</h2><div class="profile" id="missingProfile"></div></section>
+<section class="chapter"><p class="kicker">CHAPTER 05</p><h2>八大生命主線</h2><div class="lines" id="mainLines"></div></section>
+<section class="chapter"><p class="kicker">CHAPTER 06</p><h2>四條生命副線</h2><div class="lines" id="subLines"></div></section>
+<section class="chapter"><p class="kicker">CHAPTER 07－09</p><h2>工作・關係・財富導航</h2><div class="nav3"><div class="profile"><h3>工作導航</h3><p id="work"></p></div><div class="profile"><h3>關係導航</h3><p id="love"></p></div><div class="profile"><h3>財富導航</h3><p id="wealth"></p></div></div></section>
+<section class="chapter"><p class="kicker">CHAPTER 10</p><h2>我的人生導航總結</h2><div class="insight" id="insight"></div></section>
+</div></section>
+</main>
+
+<script>
+const VIP_PASSWORD="GBVIP2026";
+const P={
+1:["開創／獨立","開創、獨立與帶頭行動","過度靠自己，容易把責任全部扛在身上","練習授權與傾聽，讓領導力變成帶動力","適合自主、決策、開創型角色","需要被尊重與信任，也要避免過度主導","偏主動創造型，財富來自開創與決策"],
+2:["溝通／合作","理解、協調與感受他人","過度敏感，容易委屈自己","建立界線並清楚表達需求","適合溝通、協調、服務與顧問","重視安全感與被理解","財富常來自合作、人脈與關係經營"],
+3:["創意／表達","創意、表達與感染力","容易分心或三分鐘熱度","一次只完成一件事","適合內容、藝術、講師、行銷","需要互動與欣賞","適合透過創意、表達與個人品牌創收"],
+4:["穩定／安全感","結構、秩序與穩定執行","害怕改變或過度要求細節","先完成再優化","適合流程、管理、行政與技術","重視可靠與承諾","偏累積型，適合長期規劃"],
+5:["自由／冒險","自由、行動與突破","容易焦躁、方向多變","設定短期里程碑","適合開發、創新與快速變動環境","需要空間與新鮮感","偏機會型，需用制度穩定波動"],
+6:["奉獻／愛與療癒","照顧、責任與療癒","容易過度付出","先照顧自己的能量","適合教育、照顧、服務與美感工作","重視家庭與承諾","財富常與服務價值與信任有關"],
+7:["分析／真理","洞察、分析與尋找真相","容易想太多","把答案拆成小步驟驗證","適合研究、分析與專業顧問","需要精神交流與獨處空間","偏專業知識型收入"],
+8:["顯化／財富掌控","資源、格局與成果導向","控制感過強、壓力大","把目標拆成制度","適合管理、商業與資源整合","重視承諾與實際行動","具資源整合與成果導向傾向"],
+9:["靈性／圓滿","大局、理想與心靈影響力","理想太大容易脫離現實","替理想設定時間與交付成果","適合教育、公益、創意與使命型工作","重視價值觀與精神共鳴","財富常與影響力與願景有關"]
+};
+const MAIN=[
+[[1,2,3],"美感藝術線／體能主線","審美、創作、表達與平衡感較強。","低頻時可能任性、情緒化或理想化。"],
+[[4,5,6],"完美組織線／知能主線","組織、執行、品質與解決問題能力突出。","低頻時容易完美主義或拘泥細節。"],
+[[7,8,9],"權勢高峰線／心靈主線","具魅力、企圖、人脈與資源整合能力。","低頻時可能依賴外援或缺乏主動。"],
+[[1,4,7],"物質充裕線／物質主線","務實、重視安全感、懂資源配置。","低頻時可能過度看重物質或守成。"],
+[[2,5,8],"熱情公關線／情緒主線","情感豐富、善表達、重視人際連結。","低頻時容易口快、情緒化或過度投入。"],
+[[3,6,9],"聰明智慧線／創意主線","理解、創意、靈感與表達智慧強。","低頻時容易空想、想多做少。"],
+[[1,5,9],"工作事業線／成效主線","對工作有熱情、企圖與持久力。","低頻時可能工作過度，忽略生活。"],
+[[3,5,7],"人際關係線／溝通主線","人緣、表達與舞台魅力佳。","低頻時容易在意掌聲、八卦或爭寵。"]
+];
+const SUB=[
+[[2,4],"靈巧變通線","應變快、能舉一反三。","低頻時可能善變或過度防衛。"],
+[[2,6],"公平正義線／和平線","重視公平、同理與助人。","低頻時可能不善拒絕、過度付出。"],
+[[4,8],"工作模範線／穩定線","勤勞、負責、有效率。","低頻時容易焦慮或過度成果導向。"],
+[[6,8],"誠實親切線／誠懇線","親切、誠懇、樂於服務。","低頻時可能隱藏感受或討好。"]
+];
+
+function energy(date){
+ const ds=date.replaceAll("-","").split("").map(Number),inn=Array(10).fill(0),acq=Array(10).fill(0);ds.forEach(d=>inn[d]++);
+ let s=ds.reduce((a,b)=>a+b,0);while(s>9){String(s).split("").map(Number).forEach(d=>acq[d]++);s=String(s).split("").reduce((a,b)=>a+Number(b),0)}
+ return {main:s,total:inn.map((v,i)=>v+acq[i]+(s===i?1:0))}
+}
+function nodes(nums,total){return nums.map((n,i)=>`<span class="node ${total[n]>0?"on":""}">${n}</span>${i<nums.length-1?`<span class="link ${total[n]>0&&total[nums[i+1]]>0?"on":""}"></span>`:""}`).join("")}
+function renderLines(id,data,e){
+ let c=0;const el=document.getElementById(id);el.innerHTML="";
+ data.forEach(x=>{const [nums,name,hi,lo]=x,miss=nums.filter(n=>!e.total[n]),on=!miss.length;if(on)c++;
+ const strong=Math.max(...nums.map(n=>e.total[n])),sn=nums.filter(n=>e.total[n]===strong);
+ const d=document.createElement("div");d.className="line "+(on?"on":"");d.innerHTML=`<h3>${nums.join("－")}｜${name}</h3><div class="nodes">${nodes(nums,e.total)}</div><span class="badge">${on?"已形成完整連線":"尚未完整"}</span><span class="badge">偏強 ${sn.join("、")}</span><p><b>高頻：</b>${hi}</p><p><b>低頻：</b>${lo}</p><div class="warn">${on?"此線已完整，請觀察高低頻切換。":"目前缺少："+miss.join("、")+"。缺少不是缺點，而是後天培養方向。"}</div>`;el.appendChild(d)});
+ return c
+}
+function analyze(){
+ const v=document.getElementById("birthday").value;if(!v){alert("請輸入出生日期");return}
+ const e=energy(v),max=Math.max(...e.total.slice(1)),strong=e.total.map((x,i)=>i>0&&x===max?i:null).filter(Boolean),p=P[e.main],missing=[];for(let i=1;i<=9;i++)if(!e.total[i])missing.push(i);
+ document.getElementById("cDate").textContent=v.replaceAll("-","／");document.getElementById("cMain").textContent=e.main;document.getElementById("cStrong").textContent=strong.join("、");
+ document.getElementById("main").textContent=e.main;document.getElementById("strong").textContent=strong.join("、");
+ const mc=renderLines("mainLines",MAIN,e),sc=renderLines("subLines",SUB,e);document.getElementById("mainCount").textContent=mc;document.getElementById("subCount").textContent=sc;
+ const bars=document.getElementById("bars");bars.innerHTML="";for(let i=1;i<=9;i++){const pct=e.total[i]?Math.max(6,e.total[i]/max*100):0;bars.innerHTML+=`<div class="energy"><div class="n">${i}</div><div class="track"><div class="fill" style="width:${pct}%"></div></div><b>${e.total[i]} 層</b></div>`}
+ document.getElementById("mainProfile").innerHTML=`<h3>${e.main}號｜${p[0]}</h3><p>核心天賦：<b>${p[1]}</b>。</p><div class="grid2"><div class="mini"><b>低頻提醒</b><br>${p[2]}</div><div class="mini"><b>人生功課</b><br>${p[3]}</div></div>`;
+ document.getElementById("missingProfile").innerHTML=missing.length?`<h3>目前缺少：${missing.join("、")}</h3><p>缺數不等於缺陷，而是較不會自動啟動的能力，需要透過環境、訓練、合作與經驗培養。若缺數同時影響某一條連線，要一起觀察整張生命圖。</p>`:`<h3>目前沒有完全缺少的數字</h3><p>仍需觀察能量強弱與連線結構，不代表每個面向都同樣成熟。</p>`;
+ document.getElementById("work").textContent=p[4]+"。";document.getElementById("love").textContent=p[5]+"。";document.getElementById("wealth").textContent=p[6]+"。";
+ document.getElementById("insight").innerHTML=`<h3>您的專屬導航摘要</h3><p>您的主命數是 <b>${e.main}</b>，核心驅動力是「${p[1]}」。目前最集中的能量是 <b>${strong.join("、")}</b>，通常也是您最自然、最常被他人看見的能力。</p><p>目前形成 <b>${mc}</b> 條完整主線與 <b>${sc}</b> 條完整副線。${missing.length?`缺少的數字是 <b>${missing.join("、")}</b>。`:"目前沒有完全缺數。"}請把缺數視為可培養方向，而不是缺陷。</p><p><b>下一步：</b>${p[3]}。</p><blockquote>真正的生命導航，不是要成為別人，而是學會把自己的天賦放在對的位置。</blockquote>`;
+ localStorage.setItem("gb_life_birthday",v)
+}
+function openBook(){if(document.getElementById("pw").value===VIP_PASSWORD){sessionStorage.setItem("gb_vip_book","ok");document.getElementById("gate").classList.add("hidden");document.getElementById("book").classList.remove("hidden");const s=localStorage.getItem("gb_life_birthday");if(s){document.getElementById("birthday").value=s;analyze()}}else document.getElementById("err").textContent="密碼不正確，請重新輸入。"}
+document.getElementById("unlock").onclick=openBook;document.getElementById("pw").addEventListener("keydown",e=>{if(e.key==="Enter")openBook()});document.getElementById("run").onclick=analyze;
+if(sessionStorage.getItem("gb_vip_book")==="ok"){document.getElementById("gate").classList.add("hidden");document.getElementById("book").classList.remove("hidden");const s=localStorage.getItem("gb_life_birthday");if(s){document.getElementById("birthday").value=s;analyze()}}
+</script>
+</body></html>
