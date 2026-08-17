@@ -675,6 +675,108 @@ label{display:block;font-weight:800;margin:12px 0 7px}input,select{width:100%;he
   font-size:11px !important;
 }
 
+
+/* ===== VIP V5.2 圖像2版：直式星曜＋大生年四化＋星色紅藍 ===== */
+.stars{
+  display:flex !important;
+  flex-direction:column !important;
+  flex-wrap:nowrap !important;
+  align-items:flex-start !important;
+  gap:1px !important;
+  margin-top:7px !important;
+  line-height:1.18 !important;
+}
+.star{
+  display:block !important;
+  padding:0 !important;
+  background:transparent !important;
+  border:0 !important;
+  border-radius:0 !important;
+  font-size:13px !important;
+  line-height:1.2 !important;
+  font-weight:900 !important;
+  white-space:nowrap;
+}
+.star.main{font-size:16px !important}
+.star.good,.star.bad,.star.wealth,.star.minor{font-size:12px !important}
+
+.star.main:not(.natal-red):not(.natal-blue){color:#211d1f !important}
+.star.good:not(.natal-red):not(.natal-blue){color:#236f4a !important}
+.star.bad:not(.natal-red):not(.natal-blue){color:#b84646 !important}
+.star.wealth:not(.natal-red):not(.natal-blue){color:#9b6500 !important}
+.star.minor:not(.natal-red):not(.natal-blue){color:#6a4b7f !important}
+
+.star.natal-blue{color:#0857d9 !important}
+.star.natal-red{color:#e12626 !important}
+
+.hua{
+  display:inline-flex !important;
+  width:28px !important;
+  height:28px !important;
+  margin-left:5px !important;
+  border-radius:50% !important;
+  align-items:center !important;
+  justify-content:center !important;
+  font-size:16px !important;
+  font-weight:1000 !important;
+  line-height:1 !important;
+  background:#fff !important;
+  border:2.5px solid currentColor !important;
+  vertical-align:middle !important;
+  box-shadow:0 1px 4px rgba(0,0,0,.10);
+}
+.natal-blue .hua{color:#0857d9 !important}
+.natal-red .hua{color:#e12626 !important}
+
+.selfHua,.inwardHua{
+  font-size:7px !important;
+  padding:0 2px !important;
+  margin-left:3px !important;
+  opacity:.72 !important;
+  border-width:1px !important;
+}
+
+.flyPathSelf,.flyLineSelf,
+.flyPathInward,.flyLineInward{
+  stroke-width:.85 !important;
+  opacity:.58 !important;
+}
+.flyGlyph,.flyLabel{
+  font-size:7px !important;
+  font-weight:700 !important;
+  stroke-width:1.6px !important;
+}
+
+.originTag{
+  font-size:13px !important;
+  padding:4px 8px !important;
+  border-width:2px !important;
+  background:#ffd05a !important;
+  color:#7b4300 !important;
+  border-color:#cf8400 !important;
+  box-shadow:0 2px 6px rgba(207,132,0,.18);
+}
+
+.chart{grid-template-rows:repeat(4,245px) !important}
+.palace{padding:10px 10px 34px !important}
+
+.vipKeyPanel.huaPanel{
+  border:2px solid #c93d3d !important;
+  border-top:7px solid #b72b2b !important;
+}
+.vipKeyPanel.huaPanel h3{
+  font-size:20px !important;
+  color:#b72b2b !important;
+}
+.huaFour b{font-size:22px !important}
+.huaFour span{
+  font-size:14px !important;
+  font-weight:1000 !important;
+}
+@media(max-width:700px){
+  .chart{grid-template-rows:repeat(4,260px) !important}
+}
+
 </style>
 <script src="https://cdn.jsdelivr.net/npm/lunar-javascript@1.7.7/lunar.js"></script>
 <script>
@@ -775,7 +877,7 @@ label{display:block;font-weight:800;margin:12px 0 7px}input,select{width:100%;he
   <nav class="navPanel" id="navPanel"><a href="index.html">首頁</a><a href="index.html#test">命運探索</a><a href="life-numerology.html">生命靈數</a><a href="ziwei.html">免費紫微排盤</a><a href="vip.html">VIP會員專屬</a></nav>
 </header>
 
-<section class="hero2"><div class="wrap2" style="padding-bottom:10px"><div style="font-weight:900;color:#76598a">GOLDENBEAUTY LIFE NAVIGATOR</div><h1>VIP 紫微人生導航</h1><p class="sub">VIP 傳統方盤 V5.1：以十二宮外框＋中央飛化線為主，完整呈現十四主星、六吉六煞、祿存與常用神煞、生年四化、來因宮、離心／向心自化、大限與流年。</p></div></section>
+<section class="hero2"><div class="wrap2" style="padding-bottom:10px"><div style="font-weight:900;color:#76598a">GOLDENBEAUTY LIFE NAVIGATOR</div><h1>VIP 紫微人生導航</h1><p class="sub">VIP 傳統方盤 V5.2：以十二宮外框＋中央飛化線為主，完整呈現十四主星、六吉六煞、祿存與常用神煞、生年四化、來因宮、離心／向心自化、大限與流年。</p></div></section>
 
 <main class="wrap2">
 <div class="layout">
@@ -858,7 +960,7 @@ label{display:block;font-weight:800;margin:12px 0 7px}input,select{width:100%;he
 <span class="tag" style="background:#fff4e5;color:#a85b12">●→ 離心自化：本宮往盤外</span>
 <span class="tag" style="background:#eaf3ff;color:#315f9b">●→ 向心自化：來源宮射入對宮</span></div>
   <div class="note">
-  <b>圖例說明：</b><b>生年四化</b>以較大的圓形「祿／權／科／忌」直接標在星曜旁；<b>來因宮</b>以金色標籤醒目顯示。中央綠線為離心自化、藍線為向心自化，刻意採細線與小字，避免搶過本命資訊。
+  <b>圖例說明：</b><b>生年四化</b>直接附在對應星曜旁並放大；星曜依欽天附表標成藍／紅色。<b>來因宮</b>以金色標籤醒目顯示。中央自化線採細線：離心由該宮星曜位置往外拉，向心由來源宮射入對宮。
 </div>
 
 <div id="selfTransformPanel" class="selfPanel">
@@ -905,6 +1007,24 @@ const HUA={
   壬:{天梁:"祿",紫微:"權",左輔:"科",武曲:"忌"},
   癸:{破軍:"祿",巨門:"權",太陰:"科",貪狼:"忌"}
 };
+
+/*
+  GoldenBeauty 欽天四化紅藍配色表
+  依附表固定；廉貞化祿＝藍，廉貞化忌＝紅。
+*/
+const HUA_COLOR={
+  甲:{廉貞:"blue",破軍:"red",武曲:"red",太陽:"blue"},
+  乙:{天機:"blue",天梁:"blue",紫微:"red",太陰:"red"},
+  丙:{天同:"blue",天機:"blue",文昌:"blue",廉貞:"red"},
+  丁:{太陰:"red",天同:"blue",天機:"blue",巨門:"red"},
+  戊:{貪狼:"blue",太陰:"red",右弼:"red",天機:"blue"},
+  己:{武曲:"blue",貪狼:"blue",天梁:"blue",文曲:"red"},
+  庚:{太陽:"blue",武曲:"red",太陰:"red",天同:"blue"},
+  辛:{巨門:"blue",太陽:"blue",文曲:"red",文昌:"red"},
+  壬:{天梁:"blue",紫微:"red",左輔:"blue",武曲:"blue"},
+  癸:{破軍:"red",巨門:"red",太陰:"red",貪狼:"blue"}
+};
+
 const mod=(n,m)=>((n%m)+m)%m;
 const p2=n=>String(n).padStart(2,"0");
 
@@ -1373,6 +1493,9 @@ function starHTML(s,yg,palaceIndex,b){
     s.type==="wealth" ? "wealth" : "minor";
 
   const natal=HUA[yg]?.[s.name]||"";
+  const natalColor=HUA_COLOR[yg]?.[s.name]||"";
+  const colorClass=natalColor?` natal-${natalColor}`:"";
+
   const outward=eventsForStar(b.selfTransforms.outward,palaceIndex,s.name);
   const inward=eventsForStar(b.selfTransforms.inward,palaceIndex,s.name);
 
@@ -1380,7 +1503,7 @@ function starHTML(s,yg,palaceIndex,b){
   const outwardHtml=outward.map(e=>`<span class="selfHua ${huaClass(e.transform)}">↗${e.transform}</span>`).join("");
   const inwardHtml=inward.map(e=>`<span class="inwardHua ${huaClass(e.transform)}">→${e.transform}</span>`).join("");
 
-  return `<span class="star ${c}">${s.name}${natalHtml}${outwardHtml}${inwardHtml}</span>`;
+  return `<span class="star ${c}${colorClass}">${s.name}${natalHtml}${outwardHtml}${inwardHtml}</span>`;
 }
 
 function palaceEdgeClass(index){
