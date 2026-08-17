@@ -561,6 +561,120 @@ label{display:block;font-weight:800;margin:12px 0 7px}input,select{width:100%;he
   .chart{grid-template-rows:repeat(4,235px) !important}
 }
 
+
+/* ===== VIP V5.1 視覺強化：自化細線、生年四化/來因宮醒目 ===== */
+
+/* 1) 離心/向心自化：線更細、標記更小 */
+.flyPathSelf,.flyLineSelf{
+  stroke-width:1.15 !important;
+  opacity:.72 !important;
+}
+.flyPathInward,.flyLineInward{
+  stroke-width:1.15 !important;
+  opacity:.72 !important;
+}
+.flySourceDot{
+  r:2.2;
+}
+.flyGlyph{
+  font-size:8px !important;
+  font-weight:800 !important;
+  stroke-width:2px !important;
+}
+.flyLabel{
+  font-size:8px !important;
+  font-weight:800 !important;
+  stroke-width:2px !important;
+}
+.flySourceSelf{stroke-width:1.2 !important}
+.flySourceInward{stroke-width:1.2 !important}
+
+/* 中央線不要搶過星曜與生年四化 */
+.flyOverlay{opacity:.9 !important}
+
+/* 2) 生年四化：星曜旁的祿權科忌明顯 */
+.hua{
+  width:21px !important;
+  height:21px !important;
+  font-size:12px !important;
+  font-weight:1000 !important;
+  border-width:2.4px !important;
+  box-shadow:0 1px 4px rgba(0,0,0,.10);
+}
+.star .hua{
+  transform:translateY(-1px);
+}
+
+/* 生年四化右側獨立面板更醒目 */
+.vipKeyPanel.huaPanel{
+  border:2px solid #d66a6a !important;
+  border-top:6px solid #b83232 !important;
+  background:linear-gradient(180deg,#fffafa,#fff) !important;
+  box-shadow:0 5px 16px rgba(184,50,50,.08);
+}
+.vipKeyPanel.huaPanel h3{
+  color:#b83232 !important;
+  font-size:19px !important;
+}
+.huaFour{
+  padding:9px 7px !important;
+  border-width:1.5px !important;
+  background:#fff !important;
+}
+.huaFour b{
+  font-size:19px !important;
+}
+.huaFour span{
+  font-size:13px !important;
+  font-weight:900 !important;
+  color:#372f32;
+}
+
+/* 3) 來因宮：宮格內與右側摘要都加強 */
+.originTag{
+  background:#ffd76a !important;
+  color:#7a4300 !important;
+  border:2px solid #d08a00 !important;
+  font-size:12px !important;
+  font-weight:1000 !important;
+  padding:3px 7px !important;
+  box-shadow:0 1px 5px rgba(208,138,0,.16);
+}
+.vipKeyPanel.originPanel{
+  border:2px solid #e0a02a !important;
+  border-top:6px solid #d38a00 !important;
+  background:linear-gradient(180deg,#fffaf0,#fff) !important;
+  box-shadow:0 5px 16px rgba(211,138,0,.08);
+}
+.vipKeyPanel.originPanel h3{
+  color:#a76500 !important;
+  font-size:19px !important;
+}
+.originBig{
+  background:#ffe8a6 !important;
+  color:#774300 !important;
+  border:2px solid #d99b20 !important;
+  font-size:13px !important;
+  padding:7px 11px !important;
+  box-shadow:0 1px 4px rgba(211,138,0,.10);
+}
+
+/* 4) 生年四化文字與自化文字區隔更明確 */
+.selfHua,.inwardHua{
+  font-size:8px !important;
+  padding:1px 3px !important;
+  opacity:.78;
+}
+.selfHua{border-width:1px !important}
+.inwardHua{border-width:1px !important}
+
+/* 5) 圖例同步說明 */
+.legend .star.main .hua{
+  width:19px !important;
+  height:19px !important;
+  font-size:11px !important;
+}
+
 </style>
 <script src="https://cdn.jsdelivr.net/npm/lunar-javascript@1.7.7/lunar.js"></script>
 <script>
@@ -661,7 +775,7 @@ label{display:block;font-weight:800;margin:12px 0 7px}input,select{width:100%;he
   <nav class="navPanel" id="navPanel"><a href="index.html">首頁</a><a href="index.html#test">命運探索</a><a href="life-numerology.html">生命靈數</a><a href="ziwei.html">免費紫微排盤</a><a href="vip.html">VIP會員專屬</a></nav>
 </header>
 
-<section class="hero2"><div class="wrap2" style="padding-bottom:10px"><div style="font-weight:900;color:#76598a">GOLDENBEAUTY LIFE NAVIGATOR</div><h1>VIP 紫微人生導航</h1><p class="sub">VIP 傳統方盤：以十二宮外框＋中央飛化線為主，完整呈現十四主星、六吉六煞、祿存與常用神煞、生年四化、來因宮、離心／向心自化、大限與流年。</p></div></section>
+<section class="hero2"><div class="wrap2" style="padding-bottom:10px"><div style="font-weight:900;color:#76598a">GOLDENBEAUTY LIFE NAVIGATOR</div><h1>VIP 紫微人生導航</h1><p class="sub">VIP 傳統方盤 V5.1：以十二宮外框＋中央飛化線為主，完整呈現十四主星、六吉六煞、祿存與常用神煞、生年四化、來因宮、離心／向心自化、大限與流年。</p></div></section>
 
 <main class="wrap2">
 <div class="layout">
@@ -744,7 +858,7 @@ label{display:block;font-weight:800;margin:12px 0 7px}input,select{width:100%;he
 <span class="tag" style="background:#fff4e5;color:#a85b12">●→ 離心自化：本宮往盤外</span>
 <span class="tag" style="background:#eaf3ff;color:#315f9b">●→ 向心自化：來源宮射入對宮</span></div>
   <div class="note">
-  <b>圖例說明：</b>圓形「祿／權／科／忌」為生年四化；中央綠線代表離心自化，藍線代表向心自化。來因宮以金色標籤直接標在宮位上，下方另有完整自化清單。
+  <b>圖例說明：</b><b>生年四化</b>以較大的圓形「祿／權／科／忌」直接標在星曜旁；<b>來因宮</b>以金色標籤醒目顯示。中央綠線為離心自化、藍線為向心自化，刻意採細線與小字，避免搶過本命資訊。
 </div>
 
 <div id="selfTransformPanel" class="selfPanel">
