@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>GoldenBeauty｜完整人生導航 V2.2</title>
+<meta name="description" content="一次輸入姓名、生日與出生時辰，同頁顯示生命靈數、紫微斗數、八字與皇帝詩完整內容。">
+<link rel="stylesheet" href="./assets/gbeauty-ui.css">
+<style>
+:root{--ink:#2d2925;--muted:#756d64;--gold:#b58a4e;--line:#e6d7c1;--soft:#fbf6ed;--deep:#283830}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;font-family:"Noto Sans TC","Microsoft JhengHei",sans-serif;color:var(--ink);background:linear-gradient(180deg,#fff,#faf5ec)}
+.wrap{width:min(1280px,95vw);margin:auto}
+.topbar{position:sticky;top:0;z-index:100;background:#fffffff2;backdrop-filter:blur(10px);border-bottom:1px solid #eee}
+.topin{min-height:68px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:inherit}.brand img{width:45px;height:45px;border-radius:50%;object-fit:cover}.brand strong,.brand small{display:block}.brand small{color:#8b8175;font-size:11px}
+.nav{display:flex;gap:12px;font-size:12px;font-weight:900}.nav a{text-decoration:none;color:#594c40}
+.hero{text-align:center;padding:42px 0 20px}.hero .eyebrow{font-size:11px;letter-spacing:.16em;color:#946f36;font-weight:900}.hero h1{font:500 clamp(31px,5vw,54px)/1.2 Georgia,"Noto Serif TC",serif;margin:8px 0}.hero p{max-width:840px;margin:auto;color:var(--muted);line-height:1.8}
+.input{background:#fff;border:1px solid var(--line);border-radius:22px;padding:20px;box-shadow:0 12px 32px rgba(70,48,24,.07);margin-bottom:24px}
+.input h2{margin:0 0 5px}.hint{color:var(--muted);font-size:12px;line-height:1.65}
+.formgrid{display:grid;grid-template-columns:1.1fr .7fr 1fr 1.2fr .9fr;gap:9px;align-items:end;margin-top:13px}
+label{display:block;font-size:12px;font-weight:900;margin-bottom:5px}
+input,select{width:100%;height:44px;border:1px solid #d7c9bd;border-radius:10px;padding:0 9px;background:#fff;font-size:14px}
+.go{height:47px;border:0;border-radius:12px;background:var(--deep);color:#fff;font-size:15px;font-weight:900;cursor:pointer;padding:0 22px}
+.status{margin-top:11px;padding:10px 12px;background:#f6f0e6;border-radius:10px;font-size:12px;color:#6e6052;line-height:1.7}
+.quick{display:flex;flex-wrap:wrap;gap:7px;margin:15px 0 25px}.quick a{padding:8px 12px;border:1px solid #d8c6aa;border-radius:999px;background:#fff;text-decoration:none;color:#6b5434;font-size:12px;font-weight:900}
+.system{margin:0 0 30px;background:#fff;border:1px solid var(--line);border-radius:22px;overflow:hidden;box-shadow:0 12px 32px rgba(70,48,24,.06)}
+.systemHead{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:17px 20px;background:linear-gradient(90deg,#fffaf1,#fff);border-bottom:1px solid #eee2d2}
+.systemHead h2{margin:0;font-size:22px}.systemHead p{margin:4px 0 0;color:var(--muted);font-size:12px}.tag{padding:5px 9px;border-radius:999px;background:#eee4d2;color:#72552e;font-size:10px;font-weight:900}
+.frameTools{padding:9px 12px;display:flex;justify-content:flex-end;gap:7px;border-bottom:1px solid #e8ded2;background:#fff}
+.frameTools button,.frameTools a{border:1px solid #d7c5aa;border-radius:8px;padding:6px 10px;background:#fff;color:#6b5330;font-size:11px;font-weight:900;text-decoration:none;cursor:pointer}
+iframe{display:block;width:100%;height:1200px;border:0;background:#fff}
+#ziweiFrame{height:1550px}#baziFrame{height:1550px}#emperorFrame{height:1200px}#numerologyFrame{height:1400px}
+.cross{padding:25px;border-radius:22px;border:1px solid #d5bb8d;background:linear-gradient(135deg,#fff9ec,#f2e3ca);margin-bottom:55px}
+.cross h2{font:500 29px Georgia,"Noto Serif TC",serif;margin:0 0 8px}.crossGrid{display:grid;grid-template-columns:repeat(4,1fr);gap:9px;margin-top:14px}.crossItem{background:#ffffffbd;border:1px solid #ddc8a5;border-radius:12px;padding:12px}.crossItem b{display:block;color:#7a5b2d;margin-bottom:5px}
+.notice{margin-top:12px;font-size:12px;line-height:1.7;color:#6e5d49}
+#masterGate{position:fixed;inset:0;z-index:99999;display:flex;align-items:center;justify-content:center;padding:20px;background:linear-gradient(135deg,#f7f0e5,#efe2cf)}
+#masterGate.hidden{display:none}.masterCard{width:min(460px,100%);background:#fff;border:1px solid #dfcfb8;border-radius:24px;padding:28px;text-align:center;box-shadow:0 26px 80px rgba(61,44,25,.18)}
+.masterLogo{width:86px;height:86px;border-radius:50%;object-fit:cover;margin:0 auto 10px}.masterCard h2{margin:6px 0 8px;font-size:26px}.masterCard p{color:#76695c;line-height:1.7;margin:0 0 16px}.masterCard button{width:100%;height:48px;margin-top:10px;border:0;border-radius:12px;background:#283830;color:#fff;font-size:16px;font-weight:900}.masterErr{min-height:22px;color:#b13f3f;font-size:13px;padding-top:6px}
+@media(max-width:1000px){.formgrid{grid-template-columns:repeat(3,1fr)}.crossGrid{grid-template-columns:1fr 1fr}}
+@media(max-width:650px){.nav{display:none}.formgrid{grid-template-columns:1fr 1fr}.crossGrid{grid-template-columns:1fr}.go{width:100%}iframe{height:1300px}#ziweiFrame,#baziFrame{height:1750px}}
+</style>
+</head>
+<body>
+<div id="masterGate">
+  <div class="masterCard">
+    <img class="masterLogo" src="./images/gbeauty-logo.jpg" alt="GoldenBeauty Logo">
+    <div class="eyebrow">GOLDENBEAUTY VIP FOUR-SYSTEM NAVIGATION</div>
+    <h2>四盤人生導航｜VIP 解鎖</h2>
+    <p>整合頁只驗證一次。解鎖後載入的是「無第二層密碼」的專用嵌入頁，因此不再卡在紫微或八字的原頁密碼畫面。</p>
+    <input id="masterPassword" type="password" placeholder="請輸入 VIP 密碼">
+    <div id="masterErr" class="masterErr"></div>
+    <button id="masterUnlock" type="button">解鎖四盤人生導航</button>
+  </div>
+</div>
+
+<header class="topbar"><div class="wrap topin">
+<a class="brand" href="index.html"><img src="./images/academy-logo.jpg" alt="GoldenBeauty"><span><strong>GoldenBeauty</strong><small>四盤完整人生導航 V2.2</small></span></a>
+<nav class="nav"><a href="#input">輸入資料</a><a href="#numerology">生命靈數</a><a href="#ziwei">紫微</a><a href="#bazi">八字</a><a href="#emperor">皇帝詩</a></nav>
+</div></header>
+
+<section class="hero"><div class="wrap">
+<div class="eyebrow">GOLDENBEAUTY · COMPLETE FOUR-SYSTEM NAVIGATION</div>
+<h1>一次輸入生日與時辰，四套完整內容同畫面</h1>
+<p>V2.2 改為專用嵌入版，不再讓紫微與八字各自跳出第二層密碼。出生時間也改成十二時辰，不使用分鐘，避免邊界時間造成判讀混亂。</p>
+</div></section>
+
+<main class="wrap">
+<section class="input" id="input">
+<h2>共用出生資料</h2>
+<div class="hint">本整合頁以「出生時辰」為準。若日後需要真太陽時精細校正，請回各完整工具單獨輸入精確分鐘；這一頁不使用分鐘校正。</div>
+<div class="formgrid">
+<div><label>姓名／暱稱</label><input id="name" placeholder="例如 Mina"></div>
+<div><label>性別</label><select id="gender"><option value="女">女</option><option value="男">男</option></select></div>
+<div><label>西元生日</label><input id="date" type="date"></div>
+<div><label>出生時辰</label>
+<select id="shichen">
+<option value="0">子時（23:00–00:59）</option><option value="1">丑時（01:00–02:59）</option>
+<option value="2">寅時（03:00–04:59）</option><option value="3">卯時（05:00–06:59）</option>
+<option value="4">辰時（07:00–08:59）</option><option value="5">巳時（09:00–10:59）</option>
+<option value="6">午時（11:00–12:59）</option><option value="7">未時（13:00–14:59）</option>
+<option value="8">申時（15:00–16:59）</option><option value="9">酉時（17:00–18:59）</option>
+<option value="10">戌時（19:00–20:59）</option><option value="11">亥時（21:00–22:59）</option>
+</select></div>
+<div><label>查看流年</label><input id="flowYear" type="number" min="1900" max="2200"></div>
+<div style="grid-column:span 2"><button class="go" id="syncBtn">同步四盤資料並開始</button></div>
+</div>
+<div class="status" id="status">等待輸入。VIP 解鎖後，四個嵌入頁會直接載入。</div>
+</section>
+
+<div class="quick"><a href="#numerology">① 生命靈數</a><a href="#ziwei">② 紫微斗數</a><a href="#bazi">③ 八字</a><a href="#emperor">④ 皇帝詩</a><a href="#cross">⑤ 四盤交叉導航</a></div>
+
+<section class="system" id="numerology">
+<div class="systemHead"><div><h2>① 🔢 生命靈數完整內容</h2><p>沿用正式生命靈數頁：九宮圖、先後天、主命數、缺數、能量與水晶。</p></div><span class="tag">完整內容</span></div>
+<div class="frameTools"><button onclick="syncNumerology()">重新同步本區</button><a href="life-numerology.html" target="_blank">另開正式頁 ↗</a></div>
+<iframe id="numerologyFrame" src="about:blank" title="生命靈數"></iframe>
+</section>
+
+<section class="system" id="ziwei">
+<div class="systemHead"><div><h2>② 🌌 紫微斗數 VIP 完整方盤</h2><p>使用專用嵌入頁：完整命盤內容保留，但移除第二層 VIP 密碼。</p></div><span class="tag">VIP 完整內容</span></div>
+<div class="frameTools"><button onclick="syncZiwei()">重新同步本區</button><a href="ziwei-vip.html" target="_blank">另開正式 VIP 頁 ↗</a></div>
+<iframe id="ziweiFrame" src="about:blank" title="紫微斗數"></iframe>
+</section>
+
+<section class="system" id="bazi">
+<div class="systemHead"><div><h2>③ ☯️ 八字完整命盤</h2><p>使用專用嵌入頁：完整八字內容保留，但移除第二層頁內密碼。</p></div><span class="tag">完整內容</span></div>
+<div class="frameTools"><button onclick="syncBazi()">重新同步本區</button><a href="bazi.html" target="_blank">另開正式頁 ↗</a></div>
+<iframe id="baziFrame" src="about:blank" title="八字"></iframe>
+</section>
+
+<section class="system" id="emperor">
+<div class="systemHead"><div><h2>④ 👑 皇帝詩完整內容</h2><p>保留原本皇帝詩頁與 Google 表單流程，整合頁只帶入季節與出生時辰。</p></div><span class="tag">完整內容</span></div>
+<div class="frameTools"><button onclick="syncEmperor()">重新同步本區</button><a href="emperor-poem-test.html" target="_blank">另開正式頁 ↗</a></div>
+<iframe id="emperorFrame" src="about:blank" title="皇帝詩"></iframe>
+</section>
+
+<section class="cross" id="cross">
+<h2>⑤ 四盤交叉人生導航</h2>
+<div class="crossGrid">
+<div class="crossItem"><b>生命靈數</b><span>主命數、缺數、連線、先後天能量</span></div>
+<div class="crossItem"><b>紫微斗數</b><span>命身宮、來因宮、生年四化、自化、大限流年</span></div>
+<div class="crossItem"><b>八字</b><span>日主、十神、五行、格局、用神、大運流年</span></div>
+<div class="crossItem"><b>皇帝詩</b><span>人生提醒、命運解析與當下方向</span></div>
+</div>
+<div class="notice"><b>這一版先解決顯示與存取：</b>四個正式內容都能在同一頁載入；下一步再把四個結果抽成真正的 GoldenBeauty 交叉分析。</div>
+</section>
+</main>
+
+<script>
+const MASTER_VIP_PASSWORD="GBVIP2026";
+const ZHI=["子","丑","寅","卯","辰","巳","午","未","申","酉","戌","亥"];
+const MID_HOUR=[0,2,4,6,8,10,12,14,16,18,20,22];
+const FRAME_URLS={
+ numerologyFrame:"life-numerology-embed.html",
+ ziweiFrame:"ziwei-vip-embed.html",
+ baziFrame:"bazi-embed.html",
+ emperorFrame:"emperor-poem-embed.html"
+};
+document.getElementById("flowYear").value=new Date().getFullYear();
+
+function loadFrames(){
+ Object.entries(FRAME_URLS).forEach(([id,url])=>document.getElementById(id).src=url);
+}
+function unlock(){
+ const pw=document.getElementById("masterPassword").value;
+ if(pw!==MASTER_VIP_PASSWORD){document.getElementById("masterErr").textContent="密碼不正確，請重新輸入。";return}
+ sessionStorage.setItem("gb_four_nav_vip","ok");
+ document.getElementById("masterGate").classList.add("hidden");
+ loadFrames();
+}
+document.getElementById("masterUnlock").onclick=unlock;
+document.getElementById("masterPassword").addEventListener("keydown",e=>{if(e.key==="Enter")unlock()});
+if(sessionStorage.getItem("gb_four_nav_vip")==="ok"){document.getElementById("masterGate").classList.add("hidden");loadFrames()}
+
+const $=id=>document.getElementById(id);
+function inputData(){
+ const date=$("date").value,hi=+$("shichen").value;
+ return {name:$("name").value.trim(),gender:$("gender").value,date,hi,zhi:ZHI[hi],midHour:MID_HOUR[hi],flowYear:$("flowYear").value};
+}
+function setVal(doc,id,val){
+ const el=doc.getElementById(id);if(!el)return false;
+ el.value=val??"";el.dispatchEvent(new Event("input",{bubbles:true}));el.dispatchEvent(new Event("change",{bubbles:true}));return true;
+}
+function clickId(doc,id){const el=doc.getElementById(id);if(el){el.click();return true}return false}
+function season(date){
+ const [y,m,d]=date.split("-").map(Number),md=m*100+d;
+ return md>=204&&md<=505?"spring":md>=506&&md<=807?"summer":md>=808&&md<=1107?"autumn":"winter";
+}
+
+function syncNumerology(){
+ const x=inputData(),f=$("numerologyFrame");if(!x.date||!f.contentDocument)return false;
+ const d=f.contentDocument;
+ setVal(d,"birthday",x.date);
+ return clickId(d,"generateBtn")||clickId(d,"generate")||clickId(d,"run");
+}
+function syncZiwei(){
+ const x=inputData(),f=$("ziweiFrame");if(!x.date||!f.contentDocument)return false;
+ const d=f.contentDocument;
+ setVal(d,"name",x.name);setVal(d,"gender",x.gender);clickId(d,"solarBtn");
+ setVal(d,"solarDate",x.date);setVal(d,"birthShichen",String(x.hi));setVal(d,"flowYear",x.flowYear);
+ // 若原頁仍有精確時間欄位，僅以該時辰中央小時作為技術性代表，不使用分鐘判斷時辰。
+ setVal(d,"birthTime",String(x.midHour).padStart(2,"0")+":00");
+ return clickId(d,"generate");
+}
+function syncBazi(){
+ const x=inputData(),f=$("baziFrame");if(!x.date||!f.contentDocument)return false;
+ const d=f.contentDocument;
+ setVal(d,"name",x.name);setVal(d,"gender",x.gender);setVal(d,"birthDate",x.date);
+ setVal(d,"birthTime",String(x.midHour).padStart(2,"0")+":00");setVal(d,"targetYear",x.flowYear);
+ return clickId(d,"calc")||clickId(d,"generate");
+}
+function syncEmperor(){
+ const x=inputData(),f=$("emperorFrame");if(!x.date||!f.contentDocument)return false;
+ const d=f.contentDocument;
+ setVal(d,"custName",x.name);setVal(d,"season",season(x.date));setVal(d,"time",x.zhi);return true;
+}
+function saveShared(){
+ const x=inputData();
+ localStorage.setItem("gb_life_birthday",x.date);
+ sessionStorage.setItem("gb_life_navigation_input",JSON.stringify(x));
+ sessionStorage.setItem("gb_ziwei_draft",JSON.stringify({name:x.name,gender:x.gender,mode:"solar",solarDate:x.date,birthShichen:String(x.hi),flowYear:String(x.flowYear)}));
+ sessionStorage.setItem("gb_emperor_inputs_session",JSON.stringify({name:x.name,s:season(x.date),t:x.zhi,ts:Date.now()}));
+}
+$("syncBtn").onclick=()=>{
+ if(sessionStorage.getItem("gb_four_nav_vip")!=="ok"){ $("masterGate").classList.remove("hidden");$("status").textContent="⚠ 請先解鎖 VIP。";return}
+ const x=inputData();if(!x.date){$("status").textContent="⚠ 請先輸入生日。";return}
+ saveShared();
+ const r=[syncNumerology(),syncZiwei(),syncBazi(),syncEmperor()];
+ $("status").innerHTML=`✅ 已用「${x.zhi}時」同步四盤。生命靈數：${r[0]?"完成":"請按本區重新同步"}｜紫微：${r[1]?"完成":"請按本區重新同步"}｜八字：${r[2]?"完成":"請按本區重新同步"}｜皇帝詩：${r[3]?"完成":"請按本區重新同步"}。<br>本整合頁不以分鐘判定出生時辰。`;
+ $("numerology").scrollIntoView({behavior:"smooth",block:"start"});
+};
+</script>
+</body>
+</html>
