@@ -356,6 +356,37 @@ body.free-mode .summary{grid-template-columns:repeat(5,1fr)}
   body.free-mode .summary{grid-template-columns:1fr 1fr}
 }
 
+
+/* ===== GoldenBeauty 中央 Logo 修正 ===== */
+.centerLogo{
+  width:92px;height:92px;object-fit:cover;border-radius:50%;
+  border:3px solid #c89a55;box-shadow:0 6px 18px rgba(154,106,40,.14);
+  display:block;margin:0 auto 10px;background:#fff;
+}
+.gbBrandLogo{
+  width:112px;height:112px;object-fit:cover;border-radius:50%;
+  border:3px solid #c89a55;box-shadow:0 7px 20px rgba(154,106,40,.14);
+  display:block;margin:0 auto 12px;background:#fff;
+}
+@media(max-width:900px){
+  .centerLogo{width:78px;height:78px}
+  .gbBrandLogo{width:88px;height:88px}
+}
+
+
+/* ===== 免費版 V2：手機輸入區更明確 ===== */
+.mobileInputHint{
+  display:none;
+  margin:0 0 12px;padding:10px 12px;border-radius:10px;
+  background:#eef7f0;border:1px solid #c9dfcf;color:#326143;
+  font-size:13px;font-weight:800
+}
+@media(max-width:960px){
+  .mobileInputHint{display:block}
+  .controls{order:1!important}
+  .layout>.panel:not(.controls){order:2!important}
+}
+
 </style>
 <script src="https://cdn.jsdelivr.net/npm/lunar-javascript@1.7.7/lunar.js"></script>
 
@@ -374,6 +405,7 @@ body.free-mode .summary{grid-template-columns:repeat(5,1fr)}
 <main class="wrap2">
 <div class="layout">
 <section class="panel controls">
+  <div class="mobileInputHint">📌 先輸入出生資料並建立免費命盤；完成後可直接帶入 VIP 深度分析。</div>
   <h2 style="margin-top:0">輸入出生資料</h2>
   <label for="name">姓名或暱稱</label><input id="name" placeholder="例如：Mina">
   <label for="gender">性別</label><select id="gender"><option>女</option><option>男</option></select>
@@ -440,7 +472,7 @@ body.free-mode .summary{grid-template-columns:repeat(5,1fr)}
 
 <section class="panel">
   <h2 style="margin-top:0">十二宮命盤</h2>
-  <div class="chartScroll"><div id="chart" class="chart"><div class="center"><div><div style="font-size:42px">🌌</div><h3>GoldenBeauty</h3><p>紫微斗數生命命盤</p><div class="key">請輸入出生資料後建立命盤</div></div></div></div></div>
+  <div class="chartScroll"><div id="chart" class="chart"><div class="center"><div><img class="centerLogo" src="./images/gbeauty-logo.jpg" alt="GoldenBeauty Logo"><h3>GoldenBeauty</h3><p>紫微斗數生命命盤</p><div class="key">請輸入出生資料後建立命盤</div></div></div></div></div>
   <div id="summary" class="summary">
     <div class="sum"><b>農曆生日</b><span>—</span></div>
     <div class="sum"><b>出生年干支</b><span>—</span></div>
@@ -1052,7 +1084,7 @@ function render(b,m){
   c.innerHTML=`
   <div class="gbCenter">
     <div class="gbBrand">
-      <div class="gbBrandMark">✦</div>
+      <img class="gbBrandLogo" src="./images/gbeauty-logo.jpg" alt="GoldenBeauty 開運美學 Logo">
       <strong>GOLDEN BEAUTY</strong>
       <small>開運美學</small>
     </div>
